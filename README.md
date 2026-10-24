@@ -15,6 +15,12 @@ Products currently covered include:
 - DevBoard
 - Grit & Grain (listed in the original repository scope)
 
+## Licensing, Credits and Provenance
+
+> Outer Void is proprietary by default. Third-party rights remain third-party rights. Attribution is preserved beyond the minimum legal requirement where provenance is known.
+
+See [Copyright & Intellectual Property Policy](legal/outer-void/copyright-and-intellectual-property-policy.md#licensing-default-and-third-party-rights) and the canonical ledger at [github.com/Outer-Void/credits](https://github.com/Outer-Void/credits).
+
 ## Important Note
 
 These documents are practical public-facing policy baselines for operations and transparency. They are not legal advice and should be reviewed by qualified counsel before high-risk or large-scale deployment.
