@@ -28,3 +28,12 @@ See [Copyright & Intellectual Property Policy](legal/outer-void/copyright-and-in
 ## Important Note
 
 These documents are practical public-facing policy baselines for operations and transparency. They are not legal advice and should be reviewed by qualified counsel before high-risk or large-scale deployment.
+
+## License
+
+**Outer-Void Proprietary License** (proprietary). Copyright (c) 2026 Outer-Void / Justadudeinspace (JADIS). All rights reserved. See [LICENSE](LICENSE).
+
+Copies and releases obtained before 2026-10-25 remain available under the Apache License 2.0 they were
+published with; every change and release from that date on is proprietary.
+
+Contact: outervoid.blux@gmail.com (main) · theoutervoid@outlook.com (fallback)
