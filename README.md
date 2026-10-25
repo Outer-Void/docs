@@ -19,6 +19,10 @@ Products currently covered include:
 
 > Outer Void is proprietary by default. Third-party rights remain third-party rights. Attribution is preserved beyond the minimum legal requirement where provenance is known.
 
+> **We acknowledge the shoulders we stand on.** Outer Void recognizes that meaningful engineering is built upon generations of prior work. We make a reasonable, evidence-based effort to acknowledge the people, communities, projects, technologies, research, tools, infrastructure, models, standards, and ideas that enabled or influenced our work. We preserve legally required attribution and voluntarily acknowledge meaningful intellectual contributions beyond those requirements. We distinguish authorship from inspiration, dependency from influence, and evidence from assumption. We do not erase historical contribution simply because our implementation evolves.
+
+The governing rule and its Definition of Done are in [credits/GOVERNANCE.md](https://github.com/Outer-Void/credits/blob/main/GOVERNANCE.md), and the human-readable acknowledgments are in [credits/ACKNOWLEDGMENTS.md](https://github.com/Outer-Void/credits/blob/main/ACKNOWLEDGMENTS.md).
+
 See [Copyright & Intellectual Property Policy](legal/outer-void/copyright-and-intellectual-property-policy.md#licensing-default-and-third-party-rights) and the canonical ledger at [github.com/Outer-Void/credits](https://github.com/Outer-Void/credits).
 
 ## Important Note
