@@ -317,7 +317,7 @@
    "component": "AXIOM Launcher",
    "repo": "void.os",
    "version": "2.0.0-dev",
-   "commit_sha": "097f50d",
+   "commit_sha": "4964895",
    "role": "Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -337,19 +337,19 @@
     "Public repository for a paid product",
     "Legal/asset notice review"
    ],
-   "evidence": "testDebugUnitTest 75 passed (incl. ProductBoundaryTest), assembleDebug OK, tools/components.py check --upstream OK at 097f50d (Stage 24)",
+   "evidence": "testDebugUnitTest 75 passed, assembleDebug OK, tool tests 14 passed, components check with void.game and void.sys upstreams OK at 4964895 (Stage 25)",
    "last_verified": "2026-10-26"
   },
   {
    "component": "VOID.SYS",
    "repo": "void.sys",
-   "version": "2.0.0-dev",
-   "commit_sha": "26d91b9",
-   "role": "Icon system: bundled AXIOM Launcher component and separate icon-pack product",
+   "version": "2.1.0-dev",
+   "commit_sha": "09cf56f",
+   "role": "Icon system: one lineage for the standalone icon pack and the versioned bundle consumed by AXIOM Launcher",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "MOCK_TESTED",
    "hardware_status": "HARDWARE_PENDING",
    "security_status": "BLOCKED",
    "package_status": "IMPLEMENTED",
@@ -358,10 +358,10 @@
    "known_blockers": [
     "Standalone signature verification is a TODO stub (fails closed)",
     "2,903 asset variants pending individual visual review",
-    "No versioned release consumed by AXIOM yet (Stage 25)",
+    "No device test of the standalone pack in third-party launchers",
     "Public repository for a paid product"
    ],
-   "evidence": "590 SVG sources, 609 appfilter entries counted 2026-10-26; tests not run in this pass",
+   "evidence": "tools tests 8 passed, verify_drawables OK, assembleDebug + assembleRelease OK, release APK keeps all 587 drawable names (Stage 25); AXIOM vendors release/manifest.json bundle byte-for-byte",
    "last_verified": "2026-10-26"
   },
   {

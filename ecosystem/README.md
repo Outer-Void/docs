@@ -1,7 +1,7 @@
 # Outer Void ecosystem: map, authority and status
 
 Engineering and governance reference, kept current by the documentation-synchronization pass that follows
-every stage. Full reconciliation **2026-10-26** after Stage 23; incremental sync after Stage 24 (2026-10-26).
+every stage. Full reconciliation **2026-10-26** after Stage 23; incremental syncs after Stages 24 and 25 (2026-10-26).
 
 > Standalone where it makes sense. BLUX-integrated everywhere it adds genuine value. Contract-driven.
 > Auditable. Replaceable. No duplicated authority.
@@ -103,7 +103,7 @@ clean-room; no BLHermes code was copied without provenance accounting.
 | Product | State today |
 |---|---|
 | **VoidForge** | **Development preview, writes locked in production.** Core implements ADB, Fastboot/fastbootd, sideload, sync, Logcat, APK manifest parsing, backups, gated flash, Magisk patch verification, root restore and module rollback, all mock-tested. The app exposes only read-only paths and live Logcat. No real-device evidence exists (Stage 23 probe: BLOCKED). Members-only distribution is implemented in CI and tooling, but the repository is still public. |
-| **AXIOM Launcher, VOID.SYS, AXIOM Shooter** | **Not releasable.** The launcher builds and its unit tests pass. Entitlement, Play Integrity and product-signature verification are TODO stubs; release paths fail closed. No device matrix has run, and the Stage 24 gate is not passed. Since Stage 24 the bundled Shooter core is vendored byte-for-byte from `void.game` (authoritative) and CI checks for drift. Shooter is a hidden Home-screen Easter egg with no Settings entry. None of the three requires BLUX. |
+| **AXIOM Launcher, VOID.SYS, AXIOM Shooter** | **Not releasable.** The launcher builds and its unit tests pass. Entitlement, Play Integrity and product-signature verification are TODO stubs; release paths fail closed. No device matrix has run, and the Stage 24 gate is not passed. The bundled Shooter core (Stage 24) and VOID.SYS bundle (Stage 25) are vendored byte-for-byte from `void.game` and `void.sys`, the authoritative sources, at locked commits, and CI checks for drift. Shooter is a hidden Home-screen Easter egg with no Settings entry. None of the three requires BLUX. |
 | **Roughin, Vigyl** | Standalone products, not released. Release-readiness work is Stages 28 and 29. |
 | **Resolver** | Telegram runtime, classified a release candidate at the Stage 00 baseline (not re-verified on 2026-10-26). Its website is a separate repository (`theresolver`). |
 
@@ -179,7 +179,7 @@ Rules:
 
 The master plan continues with:
 - **Stage 24:** AXIOM Launcher release overhaul. Done; the hard gate is **not passed**, so Stage 27 stays blocked.
-- **Stage 25:** VOID.SYS release track.
+- **Stage 25:** VOID.SYS release track. Done: AXIOM consumes the versioned bundle; not releasable (signature TODO, no device tests).
 - **Stage 26:** AXIOM Shooter release track.
 - **Stage 27:** optional BLUX layer for the launcher, only after Stage 24's gate.
 - **Stage 28:** Roughin readiness.

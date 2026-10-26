@@ -37,6 +37,14 @@ noted. History stays in git.
 | F21 | void.os | No release keystore or protected signing job; environment-only signing exists | High (P0) | Release matrix | Release blocker (owner) | Yes |
 | F22 | void.game | Standalone Android packaging is only build-verified (debug APK with 4 native libraries). The 16 KB alignment audit, release/R8 build and device runs are not done | Medium | Stage 24 build | Stage 26 | Yes: standalone release |
 
+## Stage 25 incremental sync (2026-10-26)
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F23 | void.os ↔ void.sys | VOID.SYS work had been authored only inside AXIOM: 7 vector glyphs, their mappings, and the generic-drawable classification, so the standalone pack lacked them. **Resolved:** promoted to void.sys (`09cf56f`); AXIOM vendors the versioned bundle through its component lock (`4964895`). | Medium | Byte comparison of both repositories | Stage 25 | No longer |
+| F24 | void.sys | The VOID.SYS app icon was a plain vector, not an adaptive icon. **Resolved:** adaptive background/foreground/monochrome layers inside the safe zone (`09cf56f`). | Low | Adaptive-icon audit | Stage 25 | No longer |
+| F25 | void.sys | The standalone pack has not been device-tested in third-party launchers (Nova, Lawnchair); appfilter resolution is verified only statically | Medium | Stage 25 tests are static | Hardware pending | Yes: standalone release |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,
