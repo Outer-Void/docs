@@ -317,7 +317,7 @@
    "component": "AXIOM Launcher",
    "repo": "void.os",
    "version": "2.0.0-dev",
-   "commit_sha": "f6fb0a9",
+   "commit_sha": "097f50d",
    "role": "Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -329,13 +329,15 @@
    "distribution_status": "BLOCKED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
+    "Stage 24 hard gate NOT passed (docs/release/release-matrix.md)",
     "Entitlement, Play Integrity and product-signature verification are TODO stubs (release paths fail closed)",
     "No device matrix run",
-    "Bundled Shooter source diverges from void.game (no single source of truth yet; Stage 24)",
+    "No release keystore / protected signing job (env-only signing exists)",
+    "No crash-loop guard",
     "Public repository for a paid product",
     "Legal/asset notice review"
    ],
-   "evidence": "testDebugUnitTest 72 passed and assembleDebug OK at f6fb0a9 (2026-10-26)",
+   "evidence": "testDebugUnitTest 75 passed (incl. ProductBoundaryTest), assembleDebug OK, tools/components.py check --upstream OK at 097f50d (Stage 24)",
    "last_verified": "2026-10-26"
   },
   {
@@ -365,24 +367,24 @@
   {
    "component": "AXIOM Shooter",
    "repo": "void.game",
-   "version": "2.0.0-dev (android versionName); root Gradle project version 0.1.0",
-   "commit_sha": "2ac95ca",
-   "role": "Standalone game product and the hidden Easter egg bundled in AXIOM Launcher",
+   "version": "2.1.0-dev",
+   "commit_sha": "ad7e0ab",
+   "role": "Standalone game product; core/ is the authoritative gameplay source bundled in AXIOM Launcher as a hidden Easter egg",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "MOCK_TESTED",
    "hardware_status": "HARDWARE_PENDING",
    "security_status": "BLOCKED",
    "package_status": "IMPLEMENTED",
    "distribution_status": "BLOCKED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Gameplay last updated 2026-05-12; newer fixes live only in void.os's bundled copy",
     "Signature/launch verification is TODO (fails closed)",
+    "No device playthroughs, GL context-loss or audio evidence (Stage 26)",
     "Public repository for a paid product"
    ],
-   "evidence": "No automated test suite in the repository; not built in this pass",
+   "evidence": "core:test 18 passed and android:assembleDebug OK at ad7e0ab (Stage 24); AXIOM vendors core byte-for-byte (components lock)",
    "last_verified": "2026-10-26"
   },
   {

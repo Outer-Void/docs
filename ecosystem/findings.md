@@ -11,8 +11,8 @@ noted. History stays in git.
 |---|---|---|---|---|---|---|
 | F1 | void.os | Paid-app entitlement, Play Integrity and product-signature verification are `TODO` stubs (`EntitlementManager`, `IntegrityGate`, `SignatureVerifier`). Release paths fail closed. | Critical | The README claimed a "signed AXIOM-to-VOID.GAME launch contract" | Stage 24 (needs the owner's Play/backend decisions) | Yes: paid release |
 | F2 | void.game | `SignatureVerifier` and `LaunchGate` also leave cryptographic verification as `TODO`. Release fails closed; debug builds bypass. | Critical | `docs/security.md` said "protected by a launch contract and runtime module signature gate" | Stage 26 | Yes: paid release |
-| F3 | void.os ↔ void.game | No single source of truth for Shooter: 14 shared files differ. The launcher copy has newer lifecycle, control and progression fixes (2026-10-21); `void.game` gameplay dates from 2026-05-12. | High | The READMEs called the copies "mirrored" | Stage 24 / 26 (versioned shared core with a drift check) | Yes: product |
-| F4 | void.game | Two versions: root Gradle `version = "0.1.0"` and Android `versionName = "2.0.0-dev"` | Low | Version-consistency audit | Stage 26 | No |
+| F3 | void.os ↔ void.game | ~~No single source of truth for Shooter~~ **Resolved in Stage 24:** `void.game/core` is authoritative (void.game `ad7e0ab`); AXIOM vendors it byte-for-byte at a locked commit, and `tools/components.py check` fails CI on drift (void.os `097f50d`). | High | Status audit | Stage 24 | No longer |
+| F4 | void.game | ~~Two versions (root 0.1.0 vs versionName 2.0.0-dev)~~ **Resolved in Stage 24:** one version, 2.1.0-dev (void.game `ad7e0ab`) | Low | Version-consistency audit | Stage 24 | No |
 | F5 | voidforge | No local confirmation UI. The app's authorizer declines every write, and the production write barrier is locked. File pull/push, backup capture, install, sideload, flash and the root/module workflows exist only in `:core`. | High (by design until hardware qualification) | Four-state status audit (core / app / mock / hardware) | After real-device acceptance | Yes: write features |
 | F6 | voidforge | No real-device evidence. The Stage 23 probe was BLOCKED: no USB in the build container, no attached target, app not installed. | High | Hardware column of the status matrix | Owner-run acceptance (`tools/device_acceptance.py`) | Yes: release |
 | F7 | voidforge, void.os, void.sys, void.game, roughin, vigyl | Proprietary, paid or members-only product source sits in **public** repositories (unauthenticated GitHub API returns 200). VoidForge's members-only policy is therefore not met for source. | High (policy) | Distribution-status audit | Owner action (repository visibility) | Yes: VoidForge distribution policy |
@@ -26,6 +26,16 @@ noted. History stays in git.
 | F15 | jadis.toolbox | The README was an operating checklist and did not describe the repository's scripts. An identity section was added. | Low (docs) | Identity audit | Fixed in this pass | No |
 | F16 | blux10k | `dotfiles/.zshrc` exports `BLUX10K_VERSION="2.0.0"`, while `VERSION` and `bin/blux10k --version` report 3.0.0 | Low | Version-consistency audit | Next blux10k change | No |
 | F17 | void.sys | `security/SignatureVerifier.kt` also leaves signature verification as `TODO`: the standalone icon-pack signature gate is scaffolding | High | TODO/FIXME source audit | Stage 25 | Yes: paid release |
+
+## Stage 24 incremental sync (2026-10-26)
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F18 | void.os | CI uploaded the debug APK from a public repository. Debug builds bypass entitlement, so unlocked builds of a paid product were downloadable. **Contained in Stage 24:** upload limited to private repositories (`097f50d`). The unauthenticated API lists no current void.os artifacts (2026-10-26), so none remain to clean up. | High | CI workflow review | Distribution blocker | **Resolved** |
+| F19 | void.os | No crash-loop guard: a startup crash repeats until the user changes the default Home app | Medium (P1) | Stage 24 release matrix | Future-stage work, needs device verification | Yes: paid release |
+| F20 | void.os | Backup is disabled (`allowBackup="false"`); customization is lost on device transfer | Low (P2) | Release matrix | Product decision (open question) | No |
+| F21 | void.os | No release keystore or protected signing job; environment-only signing exists | High (P0) | Release matrix | Release blocker (owner) | Yes |
+| F22 | void.game | Standalone Android packaging is only build-verified (debug APK with 4 native libraries). The 16 KB alignment audit, release/R8 build and device runs are not done | Medium | Stage 24 build | Stage 26 | Yes: standalone release |
 
 ## TODO / FIXME source audit (2026-10-26)
 
