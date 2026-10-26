@@ -317,7 +317,7 @@
    "component": "AXIOM Launcher",
    "repo": "void.os",
    "version": "2.0.0-dev",
-   "commit_sha": "4964895",
+   "commit_sha": "24b07cd",
    "role": "Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -337,7 +337,7 @@
     "Public repository for a paid product",
     "Legal/asset notice review"
    ],
-   "evidence": "testDebugUnitTest 75 passed, assembleDebug OK, tool tests 14 passed, components check with void.game and void.sys upstreams OK at 4964895 (Stage 25)",
+   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26)",
    "last_verified": "2026-10-26"
   },
   {
@@ -368,7 +368,7 @@
    "component": "AXIOM Shooter",
    "repo": "void.game",
    "version": "2.1.0-dev",
-   "commit_sha": "ad7e0ab",
+   "commit_sha": "b56c1ae",
    "role": "Standalone game product; core/ is the authoritative gameplay source bundled in AXIOM Launcher as a hidden Easter egg",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -380,11 +380,14 @@
    "distribution_status": "BLOCKED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Signature/launch verification is TODO (fails closed)",
-    "No device playthroughs, GL context-loss or audio evidence (Stage 26)",
+    "Purchase/signature verification is TODO (release fails closed)",
+    "No audio",
+    "Interrupted runs are not resumed",
+    "No device playthroughs, GL context-loss, frame-time or battery evidence",
+    "Default font licence unresolved (credits UNR-020)",
     "Public repository for a paid product"
    ],
-   "evidence": "core:test 18 passed and android:assembleDebug OK at ad7e0ab (Stage 24); AXIOM vendors core byte-for-byte (components lock)",
+   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26)",
    "last_verified": "2026-10-26"
   },
   {

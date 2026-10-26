@@ -1,7 +1,7 @@
 # Outer Void ecosystem: map, authority and status
 
 Engineering and governance reference, kept current by the documentation-synchronization pass that follows
-every stage. Full reconciliation **2026-10-26** after Stage 23; incremental syncs after Stages 24 and 25 (2026-10-26).
+every stage. Full reconciliation **2026-10-26** after Stage 23; incremental syncs after Stages 24–26 (2026-10-26).
 
 > Standalone where it makes sense. BLUX-integrated everywhere it adds genuine value. Contract-driven.
 > Auditable. Replaceable. No duplicated authority.
@@ -180,7 +180,7 @@ Rules:
 The master plan continues with:
 - **Stage 24:** AXIOM Launcher release overhaul. Done; the hard gate is **not passed**, so Stage 27 stays blocked.
 - **Stage 25:** VOID.SYS release track. Done: AXIOM consumes the versioned bundle; not releasable (signature TODO, no device tests).
-- **Stage 26:** AXIOM Shooter release track.
+- **Stage 26:** AXIOM Shooter release track. Done: standalone build launchable with matching 16 KB natives and its own entitlement; not releasable (verification TODO, no audio, no device evidence).
 - **Stage 27:** optional BLUX layer for the launcher, only after Stage 24's gate.
 - **Stage 28:** Roughin readiness.
 - **Stage 29:** Vigyl readiness.

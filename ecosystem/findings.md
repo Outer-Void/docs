@@ -10,7 +10,7 @@ noted. History stays in git.
 | # | Repo | Issue | Severity | How documentation exposed it | Recommended stage | Blocking |
 |---|---|---|---|---|---|---|
 | F1 | void.os | Paid-app entitlement, Play Integrity and product-signature verification are `TODO` stubs (`EntitlementManager`, `IntegrityGate`, `SignatureVerifier`). Release paths fail closed. | Critical | The README claimed a "signed AXIOM-to-VOID.GAME launch contract" | Stage 24 (needs the owner's Play/backend decisions) | Yes: paid release |
-| F2 | void.game | `SignatureVerifier` and `LaunchGate` also leave cryptographic verification as `TODO`. Release fails closed; debug builds bypass. | Critical | `docs/security.md` said "protected by a launch contract and runtime module signature gate" | Stage 26 | Yes: paid release |
+| F2 | void.game | `SignatureVerifier` leaves cryptographic verification as `TODO` (Stage 26 replaced `LaunchGate` with `StandaloneEntitlementGate`; still fails closed). Release fails closed; debug builds bypass. | Critical | `docs/security.md` said "protected by a launch contract and runtime module signature gate" | Stage 26 | Yes: paid release |
 | F3 | void.os ↔ void.game | ~~No single source of truth for Shooter~~ **Resolved in Stage 24:** `void.game/core` is authoritative (void.game `ad7e0ab`); AXIOM vendors it byte-for-byte at a locked commit, and `tools/components.py check` fails CI on drift (void.os `097f50d`). | High | Status audit | Stage 24 | No longer |
 | F4 | void.game | ~~Two versions (root 0.1.0 vs versionName 2.0.0-dev)~~ **Resolved in Stage 24:** one version, 2.1.0-dev (void.game `ad7e0ab`) | Low | Version-consistency audit | Stage 24 | No |
 | F5 | voidforge | No local confirmation UI. The app's authorizer declines every write, and the production write barrier is locked. File pull/push, backup capture, install, sideload, flash and the root/module workflows exist only in `:core`. | High (by design until hardware qualification) | Four-state status audit (core / app / mock / hardware) | After real-device acceptance | Yes: write features |
@@ -35,7 +35,7 @@ noted. History stays in git.
 | F19 | void.os | No crash-loop guard: a startup crash repeats until the user changes the default Home app | Medium (P1) | Stage 24 release matrix | Future-stage work, needs device verification | Yes: paid release |
 | F20 | void.os | Backup is disabled (`allowBackup="false"`); customization is lost on device transfer | Low (P2) | Release matrix | Product decision (open question) | No |
 | F21 | void.os | No release keystore or protected signing job; environment-only signing exists | High (P0) | Release matrix | Release blocker (owner) | Yes |
-| F22 | void.game | Standalone Android packaging is only build-verified (debug APK with 4 native libraries). The 16 KB alignment audit, release/R8 build and device runs are not done | Medium | Stage 24 build | Stage 26 | Yes: standalone release |
+| F22 | void.game | ~~Standalone packaging only build-verified~~ **Mostly resolved in Stage 26:** release/R8 build and 16 KB audit pass (`6f6c85b`); device runs remain (see F31) | Medium | Stage 24 build | Stage 26 | No longer (device part: F31) |
 
 ## Stage 25 incremental sync (2026-10-26)
 
@@ -44,6 +44,18 @@ noted. History stays in git.
 | F23 | void.os ↔ void.sys | VOID.SYS work had been authored only inside AXIOM: 7 vector glyphs, their mappings, and the generic-drawable classification, so the standalone pack lacked them. **Resolved:** promoted to void.sys (`09cf56f`); AXIOM vendors the versioned bundle through its component lock (`4964895`). | Medium | Byte comparison of both repositories | Stage 25 | No longer |
 | F24 | void.sys | The VOID.SYS app icon was a plain vector, not an adaptive icon. **Resolved:** adaptive background/foreground/monochrome layers inside the safe zone (`09cf56f`). | Low | Adaptive-icon audit | Stage 25 | No longer |
 | F25 | void.sys | The standalone pack has not been device-tested in third-party launchers (Nova, Lawnchair); appfilter resolution is verified only statically | Medium | Stage 25 tests are static | Hardware pending | Yes: standalone release |
+
+## Stage 26 incremental sync (2026-10-26)
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F26 | void.game | Tracked libGDX **1.12.1** natives were packaged with the **1.14.2** Java backend (JNI mismatch risk, 4 KB alignment). **Resolved:** natives extracted from Maven 1.14.2 at build time; `.so` files untracked (`6f6c85b`) | Critical | APK native audit (hash and alignment differed from AXIOM's) | Stage 26 | No longer |
+| F27 | void.game | The standalone app had no `LAUNCHER` entry, label or icon, so buyers could not launch it. **Resolved:** "AXIOM Shooter" launcher entry with adaptive icon (`6f6c85b`). Supersedes the earlier development-only design | Critical | Manifest audit; `aapt2 dump badging` | Stage 26 | No longer |
+| F28 | void.game | The standalone release gate required an AXIOM launch payload that AXIOM never sends, so a standalone purchase could never unlock. **Resolved:** `StandaloneEntitlementGate` (verification still TODO, F2) | High | Code review of both hosts | Stage 26 | No longer (crypto: F2) |
+| F29 | void.game | No audio: no sound assets or synthesis exist | Medium | Asset and code audit | Future-stage product work (needs licensed or synthesized audio and device verification) | Yes: product polish |
+| F30 | void.game | An interrupted run is not resumed; only campaign progress, scores and settings persist | Medium | Persistence audit | Future-stage work | No |
+| F31 | void.game, void.os | No device playthroughs, GL context-loss, frame-time or battery evidence on either surface | High | Status matrix | Hardware pending | Yes: release |
+| F32 | void.game, void.os | The default font (libGDX `lsans-15`) has no confirmed upstream licence (credits UNR-020) | Medium | Asset-licensing audit | Unresolved attribution | Yes: legal review |
 
 ## TODO / FIXME source audit (2026-10-26)
 

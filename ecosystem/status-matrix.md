@@ -19,9 +19,9 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | cA dataset | `blux-ca-dataset` | dynamic (pyproject) | `662ec33` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | CogA dataset | `blux-coga-dataset` | dynamic (pyproject) | `9331f73` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | VoidForge | `voidforge` | 0.1.0-dev | `463b921` | IMPLEMENTED | OPTIONAL | INTEGRATION_TESTED | MOCK_TESTED | BLOCKED | MOCK_TESTED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
-| AXIOM Launcher | `void.os` | 2.0.0-dev | `4964895` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
+| AXIOM Launcher | `void.os` | 2.0.0-dev | `24b07cd` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | VOID.SYS | `void.sys` | 2.1.0-dev | `09cf56f` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
-| AXIOM Shooter | `void.game` | 2.1.0-dev | `ad7e0ab` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
+| AXIOM Shooter | `void.game` | 2.1.0-dev | `b56c1ae` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | Resolver (Telegram runtime) | `resolver` | 1.0.0 (app/__init__.py) | `9c66aaf` | IMPLEMENTED | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | 2026-10-24 |
 | Resolver website | `ov-webpages/theresolver` | 0.1.0 | `75a6352` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | BLOCKED | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-24 |
 | Roughin | `roughin` | frontend 1.0.0 | `7bd7125` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-24 |
@@ -69,7 +69,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: No real-device acceptance (2026-10-26 probe BLOCKED)
   - Blocker: Repository is public, conflicting with members-only policy (owner action in docs/DISTRIBUTION.md)
   - Blocker: No production release key or keystore configured
-- **AXIOM Launcher** (`void.os`): Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter). Evidence: testDebugUnitTest 75 passed, assembleDebug OK, tool tests 14 passed, components check with void.game and void.sys upstreams OK at 4964895 (Stage 25).
+- **AXIOM Launcher** (`void.os`): Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter). Evidence: testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26).
   - Blocker: Stage 24 hard gate NOT passed (docs/release/release-matrix.md)
   - Blocker: Entitlement, Play Integrity and product-signature verification are TODO stubs (release paths fail closed)
   - Blocker: No device matrix run
@@ -82,9 +82,12 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: 2,903 asset variants pending individual visual review
   - Blocker: No device test of the standalone pack in third-party launchers
   - Blocker: Public repository for a paid product
-- **AXIOM Shooter** (`void.game`): Standalone game product; core/ is the authoritative gameplay source bundled in AXIOM Launcher as a hidden Easter egg. Evidence: core:test 18 passed and android:assembleDebug OK at ad7e0ab (Stage 24); AXIOM vendors core byte-for-byte (components lock).
-  - Blocker: Signature/launch verification is TODO (fails closed)
-  - Blocker: No device playthroughs, GL context-loss or audio evidence (Stage 26)
+- **AXIOM Shooter** (`void.game`): Standalone game product; core/ is the authoritative gameplay source bundled in AXIOM Launcher as a hidden Easter egg. Evidence: core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26).
+  - Blocker: Purchase/signature verification is TODO (release fails closed)
+  - Blocker: No audio
+  - Blocker: Interrupted runs are not resumed
+  - Blocker: No device playthroughs, GL context-loss, frame-time or battery evidence
+  - Blocker: Default font licence unresolved (credits UNR-020)
   - Blocker: Public repository for a paid product
 - **Resolver (Telegram runtime)** (`resolver`): Telegram moderation bot runtime with a paid intelligence layer. Evidence: Stage 00 baseline (2026-10-24) classified it RELEASE_CANDIDATE; not re-run in this pass.
   - Blocker: Release tag status not re-verified in this pass
