@@ -27,7 +27,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | Roughin | `roughin` | frontend 1.0.0 | `7bd7125` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-24 |
 | Vigyl | `vigyl` | - | `2af2717` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-24 |
 | Termux Background | `termux-background` | 1.1.0 | `c375c7e` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | NOT_RELEASED | 2026-10-26 |
-| Jadis Toolbox | `jadis.toolbox` | - | `0981ab5` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
+| JADIS Toolbox (`jadis`) | `jadis.toolbox` | 0.1.0 | `64f5d08` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | HARDWARE_PENDING | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | Credits ledger | `credits` | - | `9fb3fbf` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
 | Central docs | `docs` | - | `636decb` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
 | Organization profile | `.github` | - | `71f58e0` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
@@ -101,7 +101,11 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: Public repository for privacy-sensitive product source
 - **Termux Background** (`termux-background`): Standalone Android companion + Termux CLI for Termux Monet wallpapers. Evidence: Repository docs; not re-run in this pass.
   - Blocker: No device has passed docs/DEVICE_RC_CHECKLIST.md
-- **Jadis Toolbox** (`jadis.toolbox`): Personal utility scripts (GitHub backup, master log) and Termux notes. Evidence: Repository contents inspected 2026-10-26.
+- **JADIS Toolbox (`jadis`)** (`jadis.toolbox`): Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian). Evidence: 67 tests (unit, fixture, real-filesystem integration, adversarial redaction), 7 deliberate breaks caught, ruff/mypy/hygiene clean, wheel smoke test; real PRoot Debian 13 run; real BLUX subprocess call (2026-10-26).
+  - Blocker: Not run in native Termux (fixture-tested only)
+  - Blocker: Native Debian 13 evidence pending the CI container job's first run
+  - Blocker: No published package (install from source)
+  - Blocker: Small repair catalogue (4 repairs)
 - **Credits ledger** (`credits`): Canonical attribution, licensing and provenance ledger. Evidence: validate.py --org-root and 39 tests OK (Stage 23 update).
 - **Central docs** (`docs`): Legal/policy baselines and ecosystem governance documentation (this repository). Evidence: tools/build_status_matrix.py --check.
 - **Organization profile** (`.github`): Public organization profile and doctrine. Evidence: Contents inspected 2026-10-26.

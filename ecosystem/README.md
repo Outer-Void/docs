@@ -1,7 +1,7 @@
 # Outer Void ecosystem: map, authority and status
 
 Engineering and governance reference, kept current by the documentation-synchronization pass that follows
-every stage. Full reconciliation **2026-10-26** after Stage 23; incremental syncs after Stages 24–26 (2026-10-26).
+every stage. Full reconciliation **2026-10-26** after Stage 23; incremental syncs after Stages 24–26 and the JADIS Toolbox checkpoint (2026-10-26).
 
 > Standalone where it makes sense. BLUX-integrated everywhere it adds genuine value. Contract-driven.
 > Auditable. Replaceable. No duplicated authority.
@@ -42,6 +42,7 @@ Roughin, Vigyl, Resolver (Telegram runtime) and its website, Termux Background, 
 | **BLUX App** (blux-app) | Read-only observability viewer | Execution or enforcement |
 | **BluxGPT** (blux-gpt) | Provider transport behind Model API v1: retries, streaming, normalization | Agent loops, tool execution, routing across providers, ecosystem authority |
 | **blux10k** | Environment and toolchain authority (`ax env`) and dotfiles | Project or device work |
+| **JADIS Toolbox** (`jadis`, jadis.toolbox) | *This workstation*: environment classification, doctor, safe journaled local repairs and bootstraps, reproducibility snapshots | Dotfile management (blux10k), routing (`ax`), audits (DAT), discovery (GOD), devices (VoidForge), intelligence (BLUX: read-only access only) |
 | **VoidForge** | Android device work: ADB, Fastboot/fastbootd, sideload, flashing, Magisk, its journal and local authorization | Being directed by BLUX: BLUX and `ax devices` can only ask, and writes need the person at the VoidForge device |
 | **AXIOM Launcher** (void.os) | Launcher behavior, launcher state, the bundled VOID.SYS and AXIOM Shooter surfaces | Requiring BLUX |
 | **Products** (Roughin, Vigyl, Resolver) | Their own business, financial, care and moderation truth | Delegating that truth to BLUX (BLUX may only assist, where integrated) |
@@ -177,12 +178,17 @@ Rules:
 
 ## Where it goes next
 
-The master plan continues with:
-- **Stage 24:** AXIOM Launcher release overhaul. Done; the hard gate is **not passed**, so Stage 27 stays blocked.
-- **Stage 25:** VOID.SYS release track. Done: AXIOM consumes the versioned bundle; not releasable (signature TODO, no device tests).
-- **Stage 26:** AXIOM Shooter release track. Done: standalone build launchable with matching 16 KB natives and its own entitlement; not releasable (verification TODO, no audio, no device evidence).
-- **Stage 27:** optional BLUX layer for the launcher, only after Stage 24's gate.
-- **Stage 28:** Roughin readiness.
-- **Stage 29:** Vigyl readiness.
+Done:
+- **Stages 24–26:** the AXIOM product family. Gates are not fully passed; see the matrix.
+- **Interjected checkpoint (2026-10-26): JADIS Toolbox overhaul.** It is not a numbered stage.
 
-A documentation-synchronization pass follows every stage.
+**Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
+it only after Stage 24's hard gate passes, and that gate is not passed.
+
+Next:
+- Stage 28 (Roughin readiness);
+- Stage 29 (Vigyl readiness);
+- Stage 30, followed by the mandatory full reconciliation;
+- then the owner-queued Stages 31–45, through to a freeze for reassessment.
+
+An incremental documentation and evidence sync follows every stage.
