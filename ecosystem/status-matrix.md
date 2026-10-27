@@ -5,7 +5,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 
 | Component | Repo | Version | Commit | Standalone | BLUX | ax | Tests | Hardware | Security | Package | Distribution | Release | Last verified |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| BLUX (runtime, SDK, contracts, `blux` CLI) | `blux` | outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0 | `ba160c3` | IMPLEMENTED | NOT_APPLICABLE | INTEGRATION_TESTED | INTEGRATION_TESTED | BLOCKED | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
+| BLUX (runtime, SDK, contracts, `blux` CLI) | `blux` | outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0 | `83ded6f` | IMPLEMENTED | NOT_APPLICABLE | INTEGRATION_TESTED | INTEGRATION_TESTED | BLOCKED | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | AXIOM control plane (`ax`) | `axiom` | 2.0.0 | `a276744` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | blux10k | `blux10k` | 3.0.0 | `fcb127d` | IMPLEMENTED | EXCLUDED | INTEGRATION_TESTED | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | CogA | `blux-coga` | 2.0.0 | `3dc86fa` | IMPLEMENTED | INTEGRATION_TESTED | IMPLEMENTED | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
@@ -39,7 +39,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 
 ## Evidence and blockers
 
-- **BLUX (runtime, SDK, contracts, `blux` CLI)** (`blux`): Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation. Evidence: make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36).
+- **BLUX (runtime, SDK, contracts, `blux` CLI)** (`blux`): Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation. Evidence: make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md).
   - Blocker: No release tag or published package
   - Blocker: Termux APT on-device install not run (owner steps in packaging/termux/ACCEPTANCE.md)
   - Blocker: No real-provider Model API evidence (provider accounts without balance)

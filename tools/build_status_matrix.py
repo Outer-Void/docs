@@ -36,11 +36,11 @@ def c(component, repo, version, sha, role, standalone, blux, ax, test, hardware,
 NA = "NOT_APPLICABLE"
 COMPONENTS = [
     c("BLUX (runtime, SDK, contracts, `blux` CLI)", "blux", "outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0",
-      "ba160c3", "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation",
+      "83ded6f", "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation",
       "IMPLEMENTED", NA, "INTEGRATION_TESTED", "INTEGRATION_TESTED", "BLOCKED", "MOCK_TESTED", "IMPLEMENTED", "NOT_STARTED", "NOT_RELEASED",
       ["No release tag or published package", "Termux APT on-device install not run (owner steps in packaging/termux/ACCEPTANCE.md)",
        "No real-provider Model API evidence (provider accounts without balance)", "Gen 0 model suites BLOCKED (F60); no native specialist integrated (F63)"],
-      "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36)",
+      "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md)",
       "2026-10-27"),
     c("AXIOM control plane (`ax`)", "axiom", "2.0.0", "a276744", "Developer control plane; routes to authoritative engines, reimplements none",
       "IMPLEMENTED", "OPTIONAL", NA, "INTEGRATION_TESTED", NA, NA, "IMPLEMENTED", "NOT_STARTED", "NOT_RELEASED",

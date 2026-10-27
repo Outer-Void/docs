@@ -243,6 +243,18 @@ nine release tags from before the staged rebuild that were recorded nowhere; the
 | F69 | dat, lrc, god, blux-coga, blux-ca | Historical tags (`dat` v1.0.0, v2.0.0-Stable, v2.0.0-alpha.1; `lrc` v1.0.0-stable; `god` v1.0.0; CogA-0.1-mini; cA-0.1, cA-0.1-mini) predate the rebuild and do not describe the current code; `v2.0.0-Stable` and `v1.0.0-stable` names suggest current stability | Low | `ecosystem/release-ledger.json` | Owner decision: keep as history, or retire the tag names | No |
 | F70 | all | The contract checks run in docs CI, which is blocked org-wide (F49); today they run only locally | High | Stage 42 | BLOCKED (billing lock) | Yes: automatic detection in CI |
 
+## Stage 43 incremental sync (2026-10-27)
+
+Ecosystem release-candidate validation: [release-candidate.md](release-candidate.md). The run found one RC
+blocker (F71), and it is fixed. Everything that can run here passes. Real providers, devices and CI stay BLOCKED
+(F10, F49), so nothing is released.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F71 | blux | `blux agent` (what `ax agent` routes to) built its runtime without a receipt sink, so a configured `system_store` was ignored and agent runs left no receipts in BLUX System | High | Stage 43 e2e run: `blux-system list` empty after `ax agent` | Fixed (blux `83ded6f`: sink, tool-call → model-call parent links, exit 5 when not recorded, regression test) | No (fixed) |
+| F72 | axiom | `cockpit/bin/ax` must be sourced. When it is executed instead (`timeout ax …`, scripts, cron), it prints "must be sourced" on **stdout** and exits 1, so a caller expecting JSON gets text. Non-interactive callers must use `cockpit/bin/ax-route` | Low | Stage 43 | Usability; documented here | No |
+| F73 | roughin | With the R2 settings empty (tests, development), `app/services/r2.py` builds its `boto3` client with no credentials. `boto3` then falls back to its default credential chain and probes the cloud instance-metadata address `169.254.169.254`. On a cloud host, a development instance could pick up that host's role credentials. Production is safe: the configuration check requires all four R2 settings | Low | Stage 43 offline run: two refused lookups traced to urllib3 under the Roughin suite | Pass explicit credentials or disable the metadata provider (`AWS_EC2_METADATA_DISABLED=true`) outside production | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,
