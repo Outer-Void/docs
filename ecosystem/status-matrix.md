@@ -22,16 +22,16 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | AXIOM Launcher | `void.os` | 2.0.0-dev | `24b07cd` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | VOID.SYS | `void.sys` | 2.1.0-dev | `09cf56f` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | AXIOM Shooter | `void.game` | 2.1.0-dev | `b56c1ae` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
-| Resolver (Telegram runtime) | `resolver` | 1.0.0 (app/__init__.py) | `9c66aaf` | IMPLEMENTED | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | 2026-10-24 |
-| Resolver website | `ov-webpages/theresolver` | 0.1.0 | `75a6352` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | BLOCKED | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-24 |
+| Resolver (Telegram runtime) | `resolver` | 1.0.0 (app/__init__.py); git tag v4.0 | `bf7f26a` | IMPLEMENTED | UNVERIFIED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | 2026-10-27 |
+| Resolver website | `ov-webpages/theresolver` | 0.1.0 | `9b944d4` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | BLOCKED | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-27 |
 | Roughin | `roughin` | 1.1.0 (API); frontend 1.0.0 | `f3599d3` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Vigyl | `vigyl` | API 0.2.0 | `a0816a4` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Termux Background | `termux-background` | 1.1.0 | `c375c7e` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | NOT_RELEASED | 2026-10-26 |
 | JADIS Toolbox (`jadis`) | `jadis.toolbox` | 0.1.0 | `64f5d08` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | HARDWARE_PENDING | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
-| Credits ledger | `credits` | - | `9fb3fbf` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
-| Central docs | `docs` | - | `636decb` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
-| Organization profile | `.github` | - | `71f58e0` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
-| Private organization profile | `.github-private` | - | `8707173` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
+| Credits ledger | `credits` | - | `18240ba` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
+| Central docs | `docs` | - | `6cfbd70` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
+| Organization profile | `.github` | - | `7c9ad5a` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
+| Private organization profile | `.github-private` | - | `bc32b7a` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
 | BLHermes (archived fork) | `blhermes-agent` | upstream metadata only | `dc8abc1db0` | ARCHIVED | ARCHIVED | NOT_APPLICABLE | ARCHIVED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | ARCHIVED | ARCHIVED | 2026-10-26 |
 | Operation: Restore website | `ov-webpages/operationrestore` | - | `126453f` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-26 |
 | bluxai.app | `ov-webpages/bluxai.app` | - | `a8d127a` | NOT_STARTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
@@ -89,10 +89,12 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: No device playthroughs, GL context-loss, frame-time or battery evidence
   - Blocker: Default font licence unresolved (credits UNR-020)
   - Blocker: Public repository for a paid product
-- **Resolver (Telegram runtime)** (`resolver`): Telegram moderation bot runtime with a paid intelligence layer. Evidence: Stage 00 baseline (2026-10-24) classified it RELEASE_CANDIDATE; not re-run in this pass.
-  - Blocker: Release tag status not re-verified in this pass
-- **Resolver website** (`ov-webpages/theresolver`): Marketing/acquisition site for the Resolver bot (separate from the runtime). Evidence: Stage 00 baseline (2026-10-24).
-  - Blocker: Stage 00 baseline: next 16.1.6 critical advisory, upgrade to >=16.4.3 (not re-verified)
+- **Resolver (Telegram runtime)** (`resolver`): Telegram moderation bot runtime with a paid intelligence layer. Evidence: Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation).
+  - Blocker: Version mismatch: tag v4.0 (73abe3e) vs __version__ 1.0.0 (F48)
+  - Blocker: Release gate steps install_resolver.sh / run_resolver.sh need live secrets: not run
+  - Blocker: CI blocked org-wide by the GitHub billing lock (F49)
+- **Resolver website** (`ov-webpages/theresolver`): Marketing/acquisition site for the Resolver bot (separate from the runtime). Evidence: npm audit --package-lock-only at 9b944d4: 1 critical, 11 high, 3 moderate, 1 low (2026-10-27 reconciliation).
+  - Blocker: npm audit (lockfile): 16 advisories incl. critical next 16.1.6, fix next>=16.4.3 (F12, re-verified)
 - **Roughin** (`roughin`): Standalone contractor SaaS (FastAPI + React PWA). Evidence: pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28).
   - Blocker: PostgreSQL migration + backup/restore CI BLOCKED: GitHub account billing lock, jobs never started (F34)
   - Blocker: No deployment, Stripe test-mode or real R2 run (F35)
@@ -112,10 +114,11 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: Native Debian 13 evidence pending the CI container job's first run
   - Blocker: No published package (install from source)
   - Blocker: Small repair catalogue (4 repairs)
-- **Credits ledger** (`credits`): Canonical attribution, licensing and provenance ledger. Evidence: validate.py --org-root and 39 tests OK (Stage 23 update).
-- **Central docs** (`docs`): Legal/policy baselines and ecosystem governance documentation (this repository). Evidence: tools/build_status_matrix.py --check.
-- **Organization profile** (`.github`): Public organization profile and doctrine. Evidence: Contents inspected 2026-10-26.
-- **Private organization profile** (`.github-private`): Members-only organization profile. Evidence: Contents inspected 2026-10-26.
+- **Credits ledger** (`credits`): Canonical attribution, licensing and provenance ledger. Evidence: validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync).
+- **Central docs** (`docs`): Legal/policy baselines and ecosystem governance documentation (this repository). Evidence: tools/build_status_matrix.py --check OK; full reconciliation 2026-10-27.
+- **Organization profile** (`.github`): Public organization profile and doctrine. Evidence: Contents reconciled 2026-10-27.
+  - Blocker: Owner banner says 'Stage 21 - 30 of 44'; the queued plan ends at Stage 45 (F50, owner decision)
+- **Private organization profile** (`.github-private`): Members-only organization profile. Evidence: Contents inspected 2026-10-27 (logo and doctrine line only).
 - **BLHermes (archived fork)** (`blhermes-agent`): Historical/reference fork of Nous Research hermes-agent (MIT); replaced by BLUX. Evidence: GitHub API archived=true; credits LIN-001 archival facts.
 - **Operation: Restore website** (`ov-webpages/operationrestore`): Static site for operationrestore.net. Evidence: README inspected 2026-10-26.
 - **bluxai.app** (`ov-webpages/bluxai.app`): Reserved BLUX website repository; contains only README and LICENSE. Evidence: File list inspected 2026-10-26.

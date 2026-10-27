@@ -20,7 +20,7 @@ noted. History stays in git.
 | F9 | blux | No release tag or published package. Termux APT on-device installation not run. | Medium | Package and release status | Owner steps in `packaging/termux/ACCEPTANCE.md` | Yes: BLUX release |
 | F10 | blux, blux-gpt | No real-provider Model API evidence (provider accounts without balance). Hard-coded provider model IDs are not checked against current catalogs. | Medium | Evidence-model audit (mock vs real-provider) | When provider access exists | No |
 | F11 | .github | `docs/ecosystem-diagram.md` described five repositories that do not exist (`blux-core`, `blux-orbit`, `blux-design-system`, `blux-experience-kit`, `blux-governance`). Now replaced by a pointer to this map. | Medium (docs) | Cross-reference audit | Fixed in this pass | No |
-| F12 | theresolver | Stage 00 baseline: `next` 16.1.6 critical advisory, upgrade to >= 16.4.3. Not re-verified. | High (security, unverified) | Status matrix | Product maintenance | Yes: site release |
+| F12 | theresolver | `next` 16.1.6 critical advisory, upgrade to >= 16.4.3. **Re-verified 2026-10-27** (`npm audit --package-lock-only` at `9b944d4`): 16 advisories, 1 critical, 11 high, 3 moderate, 1 low, all with fixes available | High (security) | Status matrix; full reconciliation | Stage 31 (website) | Yes: site release |
 | F13 | roughin | ~~Stage 00 baseline: missing `greenlet` dependency~~ **Resolved in Stage 28:** reproduced (import error), fixed with `sqlalchemy[asyncio]` in `backend/requirements.txt` (roughin `9e5cf12`). | Medium | Status matrix | Stage 28 | No longer |
 | F14 | termux-background | README said "v1.0.0 Not Operational" while `VERSION` is 1.1.0; no device has passed its checklist. README corrected. | Low | Version-consistency audit | Owner device run | Yes: release |
 | F15 | jadis.toolbox | The README was an operating checklist and did not describe the repository's scripts. An identity section was added. | Low (docs) | Identity audit | Fixed in this pass | No |
@@ -96,6 +96,28 @@ starlette 0.47.3 (7 advisories). Open items:
 | F45 | vigyl | The PostgreSQL migration test and backup round-trip are CI-defined but CI run 40445574378 (`a01497d`) never started: "account is locked due to a billing issue" (same as F34) | High | GitHub check-run annotation | **BLOCKED** (Appendix B): the owner clears the billing lock; acceptance = `backend` and `postgres` jobs green | Yes: release |
 | F46 | vigyl | No recurring tasks, password reset, email verification or 2FA; subscriptions (master plan §VI) and location are not built; the privacy policy is a corrected draft needing legal review (health-adjacent data) | Medium | Stage 29 audit | Future stages + owner legal review | Yes: release |
 | F47 | vigyl | Optional BLUX assistance not started; the boundary (suggest-only, never completes/reassigns/verifies, no medical decisions) is documented in `docs/architecture.md#blux-boundary` | Info | Stage 29 brief | After F43/F44 | No |
+
+## Full ecosystem reconciliation after Stage 30 (2026-10-27)
+
+Stage 30 has no brief of its own: the owner's prompts cover Stages 20–29 and 31–45. It is recorded as the
+checkpoint that closes the 21–29 wave and triggers this mandatory reconciliation. All 28 repositories
+(26 under `~/ov` plus `.github` and `.github-private`) were fetched; every one is clean and level with
+`origin/main`. Excluded: `secret-project` (owner exclusion) and `blhermes-agent` (archived, read-only).
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F48 | resolver | Version mismatch: git tag `v4.0` (on `73abe3e`) versus `app/__init__.py` `__version__ = "1.0.0"`. Neither is documented as the release version | Medium | Reconciliation | Owner decision on the versioning scheme | Yes: release labelling |
+| F49 | all repositories with CI (18 use `ubuntu-latest`) | **No CI has run organization-wide.** The latest run of every checked repository (voidforge, void.os, void.sys, void.game, blux, axiom, dat, jadis.toolbox, termux-background, credits, docs, blux-ca, roughin, vigyl) failed before starting: "The job was not started because your account is locked due to a billing issue." Every CI-based evidence claim therefore rests on local runs only. GitHub also warns that `ubuntu-latest` moves to Ubuntu 26 | Critical (process) | GitHub check-run annotations, 2026-10-27 | **BLOCKED** (Appendix B): the owner clears the billing lock, then re-runs CI; pin runner images in Stage 42 (cross-repo CI) | Yes: every release |
+| F50 | .github | The owner-written banner says "Stage 21 - 30 of 44"; the queued plan ends at Stage 45, and Stage 30 has no brief | Low | Profile versus the stage queue | Owner decision (owner text was not edited) | No |
+| F51 | dat | `snapshot.md` (2026-01-21, `f735057`) still described DAT as MIT-licensed and "enterprise-grade", and holds the only broken relative link in the organization. **Resolved:** a historical-snapshot banner (dat `8898290`); the content is kept as history | Low | Link check; claim search | Docs | No longer |
+| F52 | .github | The profile listed Vigyl's stack as SQLite and described the jadis.toolbox overhaul as only scheduled. **Resolved** (.github `7c9ad5a`) | Low | Profile versus matrix | Docs | No longer |
+
+Checked with no contradiction found: versions in the matrix against package metadata (every row matches);
+stage references in every repository; obsolete names (BLHermes references are historical and accurate; no
+`blux-web` claims); release-sounding claims (none unqualified outside the DAT snapshot); the repository
+visibility list in F7 (unchanged: 6 proprietary product repositories are still public; resolver,
+theresolver, bluxai.app, ivrp, operationrestore and .github-private are private); a secret and personal-path
+scan of every file changed since 2026-10-26 (clean); and credits `validate.py --org-root` (OK).
 
 ## TODO / FIXME source audit (2026-10-26)
 

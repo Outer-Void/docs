@@ -393,29 +393,31 @@
   {
    "component": "Resolver (Telegram runtime)",
    "repo": "resolver",
-   "version": "1.0.0 (app/__init__.py)",
-   "commit_sha": "9c66aaf",
+   "version": "1.0.0 (app/__init__.py); git tag v4.0",
+   "commit_sha": "bf7f26a",
    "role": "Telegram moderation bot runtime with a paid intelligence layer",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "UNVERIFIED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "MOCK_TESTED",
    "hardware_status": "NOT_APPLICABLE",
    "security_status": "UNVERIFIED",
    "package_status": "NOT_APPLICABLE",
    "distribution_status": "IMPLEMENTED",
    "release_status": "UNVERIFIED",
    "known_blockers": [
-    "Release tag status not re-verified in this pass"
+    "Version mismatch: tag v4.0 (73abe3e) vs __version__ 1.0.0 (F48)",
+    "Release gate steps install_resolver.sh / run_resolver.sh need live secrets: not run",
+    "CI blocked org-wide by the GitHub billing lock (F49)"
    ],
-   "evidence": "Stage 00 baseline (2026-10-24) classified it RELEASE_CANDIDATE; not re-run in this pass",
-   "last_verified": "2026-10-24"
+   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Resolver website",
    "repo": "ov-webpages/theresolver",
    "version": "0.1.0",
-   "commit_sha": "75a6352",
+   "commit_sha": "9b944d4",
    "role": "Marketing/acquisition site for the Resolver bot (separate from the runtime)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -427,10 +429,10 @@
    "distribution_status": "UNVERIFIED",
    "release_status": "UNVERIFIED",
    "known_blockers": [
-    "Stage 00 baseline: next 16.1.6 critical advisory, upgrade to >=16.4.3 (not re-verified)"
+    "npm audit (lockfile): 16 advisories incl. critical next 16.1.6, fix next>=16.4.3 (F12, re-verified)"
    ],
-   "evidence": "Stage 00 baseline (2026-10-24)",
-   "last_verified": "2026-10-24"
+   "evidence": "npm audit --package-lock-only at 9b944d4: 1 critical, 11 high, 3 moderate, 1 low (2026-10-27 reconciliation)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Roughin",
@@ -531,7 +533,7 @@
    "component": "Credits ledger",
    "repo": "credits",
    "version": null,
-   "commit_sha": "9fb3fbf",
+   "commit_sha": "18240ba",
    "role": "Canonical attribution, licensing and provenance ledger",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -543,14 +545,14 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "validate.py --org-root and 39 tests OK (Stage 23 update)",
-   "last_verified": "2026-10-26"
+   "evidence": "validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Central docs",
    "repo": "docs",
    "version": null,
-   "commit_sha": "636decb",
+   "commit_sha": "6cfbd70",
    "role": "Legal/policy baselines and ecosystem governance documentation (this repository)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -562,14 +564,14 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "tools/build_status_matrix.py --check",
-   "last_verified": "2026-10-26"
+   "evidence": "tools/build_status_matrix.py --check OK; full reconciliation 2026-10-27",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Organization profile",
    "repo": ".github",
    "version": null,
-   "commit_sha": "71f58e0",
+   "commit_sha": "7c9ad5a",
    "role": "Public organization profile and doctrine",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -580,15 +582,17 @@
    "package_status": "NOT_APPLICABLE",
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
-   "known_blockers": [],
-   "evidence": "Contents inspected 2026-10-26",
-   "last_verified": "2026-10-26"
+   "known_blockers": [
+    "Owner banner says 'Stage 21 - 30 of 44'; the queued plan ends at Stage 45 (F50, owner decision)"
+   ],
+   "evidence": "Contents reconciled 2026-10-27",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Private organization profile",
    "repo": ".github-private",
    "version": null,
-   "commit_sha": "8707173",
+   "commit_sha": "bc32b7a",
    "role": "Members-only organization profile",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -600,8 +604,8 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "Contents inspected 2026-10-26",
-   "last_verified": "2026-10-26"
+   "evidence": "Contents inspected 2026-10-27 (logo and doctrine line only)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "BLHermes (archived fork)",

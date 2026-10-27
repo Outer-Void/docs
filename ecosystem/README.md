@@ -106,7 +106,7 @@ clean-room; no BLHermes code was copied without provenance accounting.
 | **VoidForge** | **Development preview, writes locked in production.** Core implements ADB, Fastboot/fastbootd, sideload, sync, Logcat, APK manifest parsing, backups, gated flash, Magisk patch verification, root restore and module rollback, all mock-tested. The app exposes only read-only paths and live Logcat. No real-device evidence exists (Stage 23 probe: BLOCKED). Members-only distribution is implemented in CI and tooling, but the repository is still public. |
 | **AXIOM Launcher, VOID.SYS, AXIOM Shooter** | **Not releasable.** The launcher builds and its unit tests pass. Entitlement, Play Integrity and product-signature verification are TODO stubs; release paths fail closed. No device matrix has run, and the Stage 24 gate is not passed. The bundled Shooter core (Stage 24) and VOID.SYS bundle (Stage 25) are vendored byte-for-byte from `void.game` and `void.sys`, the authoritative sources, at locked commits, and CI checks for drift. Shooter is a hidden Home-screen Easter egg with no Settings entry. None of the three requires BLUX. |
 | **Roughin, Vigyl** | Standalone products, not released. Roughin's release-readiness work (Stage 28) is done; its release gate waits on a PostgreSQL CI run and a staging run (findings F34, F35). Vigyl's core was rebuilt in Stage 29; it has no UI or notification delivery yet (F43, F44). |
-| **Resolver** | Telegram runtime, classified a release candidate at the Stage 00 baseline (not re-verified on 2026-10-26). Its website is a separate repository (`theresolver`). |
+| **Resolver** | Private Telegram runtime. On 2026-10-27 its offline release-gate steps passed (compileall, 173 unit tests, smoke check); the steps that need live secrets were not run, and its version labels disagree (tag `v4.0`, code `1.0.0`; F48). Its website is a separate private repository (`theresolver`), with a critical `next` advisory (F12). |
 
 ## Evidence model
 
@@ -188,12 +188,14 @@ Done:
   access, privacy, task-history and failure-path tests have evidence (78 tests, SQLite). PostgreSQL and
   backup evidence is blocked by the GitHub billing lock (F45). Release blockers: no UI and no notification
   delivery (F43, F44).
+- **Stage 30 (2026-10-27): wave checkpoint and full ecosystem reconciliation.** Stage 30 has no brief of its
+  own, so it closes the 21–29 wave with the mandatory reconciliation. Findings F48–F52. The main one: CI is
+  blocked organization-wide by a GitHub billing lock (F49).
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.
 
 Next:
-- Stage 30, followed by the mandatory full reconciliation;
-- then the owner-queued Stages 31–45, through to a freeze for reassessment.
+- the owner-queued Stages 31–45, through to a freeze for reassessment (Stage 27 still to be circled back to).
 
 An incremental documentation and evidence sync follows every stage.
