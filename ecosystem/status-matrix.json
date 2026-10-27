@@ -416,22 +416,23 @@
   {
    "component": "Resolver website",
    "repo": "ov-webpages/theresolver",
-   "version": "0.1.0",
-   "commit_sha": "9b944d4",
+   "version": "0.2.0",
+   "commit_sha": "49dbeff",
    "role": "Marketing/acquisition site for the Resolver bot (separate from the runtime)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "INTEGRATION_TESTED",
    "hardware_status": "NOT_APPLICABLE",
-   "security_status": "BLOCKED",
+   "security_status": "IMPLEMENTED",
    "package_status": "NOT_APPLICABLE",
-   "distribution_status": "UNVERIFIED",
-   "release_status": "UNVERIFIED",
+   "distribution_status": "IMPLEMENTED",
+   "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "npm audit (lockfile): 16 advisories incl. critical next 16.1.6, fix next>=16.4.3 (F12, re-verified)"
+    "Custom domain theresolverbot.net (and www) returns Cloudflare error 1033 (tunnel), not the Pages site (F54)",
+    "GitHub Actions blocked org-wide by the billing lock (F49)"
    ],
-   "evidence": "npm audit --package-lock-only at 9b944d4: 1 critical, 11 high, 3 moderate, 1 low (2026-10-27 reconciliation)",
+   "evidence": "npm run check at 49dbeff: lint, build, 9 node:test checks over the export incl. HTTP smoke; npm audit 0; two builds byte-identical; deployed theresolver.pages.dev serves this build (pages 200, deep links, CSP/HSTS headers) (Stage 31)",
    "last_verified": "2026-10-27"
   },
   {

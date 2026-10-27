@@ -23,7 +23,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | VOID.SYS | `void.sys` | 2.1.0-dev | `09cf56f` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | AXIOM Shooter | `void.game` | 2.1.0-dev | `b56c1ae` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | Resolver (Telegram runtime) | `resolver` | 1.0.0 (app/__init__.py); git tag v4.0 | `bf7f26a` | IMPLEMENTED | UNVERIFIED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | 2026-10-27 |
-| Resolver website | `ov-webpages/theresolver` | 0.1.0 | `9b944d4` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | BLOCKED | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-27 |
+| Resolver website | `ov-webpages/theresolver` | 0.2.0 | `49dbeff` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | IMPLEMENTED | NOT_RELEASED | 2026-10-27 |
 | Roughin | `roughin` | 1.1.0 (API); frontend 1.0.0 | `f3599d3` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Vigyl | `vigyl` | API 0.2.0 | `a0816a4` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Termux Background | `termux-background` | 1.1.0 | `c375c7e` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | NOT_RELEASED | 2026-10-26 |
@@ -93,8 +93,9 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: Version mismatch: tag v4.0 (73abe3e) vs __version__ 1.0.0 (F48)
   - Blocker: Release gate steps install_resolver.sh / run_resolver.sh need live secrets: not run
   - Blocker: CI blocked org-wide by the GitHub billing lock (F49)
-- **Resolver website** (`ov-webpages/theresolver`): Marketing/acquisition site for the Resolver bot (separate from the runtime). Evidence: npm audit --package-lock-only at 9b944d4: 1 critical, 11 high, 3 moderate, 1 low (2026-10-27 reconciliation).
-  - Blocker: npm audit (lockfile): 16 advisories incl. critical next 16.1.6, fix next>=16.4.3 (F12, re-verified)
+- **Resolver website** (`ov-webpages/theresolver`): Marketing/acquisition site for the Resolver bot (separate from the runtime). Evidence: npm run check at 49dbeff: lint, build, 9 node:test checks over the export incl. HTTP smoke; npm audit 0; two builds byte-identical; deployed theresolver.pages.dev serves this build (pages 200, deep links, CSP/HSTS headers) (Stage 31).
+  - Blocker: Custom domain theresolverbot.net (and www) returns Cloudflare error 1033 (tunnel), not the Pages site (F54)
+  - Blocker: GitHub Actions blocked org-wide by the billing lock (F49)
 - **Roughin** (`roughin`): Standalone contractor SaaS (FastAPI + React PWA). Evidence: pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28).
   - Blocker: PostgreSQL migration + backup/restore CI BLOCKED: GitHub account billing lock, jobs never started (F34)
   - Blocker: No deployment, Stripe test-mode or real R2 run (F35)

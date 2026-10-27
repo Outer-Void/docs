@@ -20,7 +20,7 @@ noted. History stays in git.
 | F9 | blux | No release tag or published package. Termux APT on-device installation not run. | Medium | Package and release status | Owner steps in `packaging/termux/ACCEPTANCE.md` | Yes: BLUX release |
 | F10 | blux, blux-gpt | No real-provider Model API evidence (provider accounts without balance). Hard-coded provider model IDs are not checked against current catalogs. | Medium | Evidence-model audit (mock vs real-provider) | When provider access exists | No |
 | F11 | .github | `docs/ecosystem-diagram.md` described five repositories that do not exist (`blux-core`, `blux-orbit`, `blux-design-system`, `blux-experience-kit`, `blux-governance`). Now replaced by a pointer to this map. | Medium (docs) | Cross-reference audit | Fixed in this pass | No |
-| F12 | theresolver | `next` 16.1.6 critical advisory, upgrade to >= 16.4.3. **Re-verified 2026-10-27** (`npm audit --package-lock-only` at `9b944d4`): 16 advisories, 1 critical, 11 high, 3 moderate, 1 low, all with fixes available | High (security) | Status matrix; full reconciliation | Stage 31 (website) | Yes: site release |
+| F12 | theresolver | ~~`next` 16.1.6 critical advisory~~ **Resolved in Stage 31:** `next` 16.4.3; `npm audit`: 0 vulnerabilities (theresolver `49dbeff`) | High (security) | Status matrix; full reconciliation | Stage 31 | No longer |
 | F13 | roughin | ~~Stage 00 baseline: missing `greenlet` dependency~~ **Resolved in Stage 28:** reproduced (import error), fixed with `sqlalchemy[asyncio]` in `backend/requirements.txt` (roughin `9e5cf12`). | Medium | Status matrix | Stage 28 | No longer |
 | F14 | termux-background | README said "v1.0.0 Not Operational" while `VERSION` is 1.1.0; no device has passed its checklist. README corrected. | Low | Version-consistency audit | Owner device run | Yes: release |
 | F15 | jadis.toolbox | The README was an operating checklist and did not describe the repository's scripts. An identity section was added. | Low (docs) | Identity audit | Fixed in this pass | No |
@@ -118,6 +118,22 @@ stage references in every repository; obsolete names (BLHermes references are hi
 visibility list in F7 (unchanged: 6 proprietary product repositories are still public; resolver,
 theresolver, bluxai.app, ivrp, operationrestore and .github-private are private); a secret and personal-path
 scan of every file changed since 2026-10-26 (clean); and credits `validate.py --org-root` (OK).
+
+## Stage 31 incremental sync (2026-10-27)
+
+Resolver website overhaul (theresolver `49dbeff`). Fixed in the stage, with tests:
+- The status page and the footer of every page claimed "All Systems Operational", with a build-time "Last
+  checked" timestamp.
+- Pricing sold a RAG add-on the bot no longer offers.
+- The privacy page said AI-provider data is "anonymized"; `llm.py` and `rag.py` send text and user IDs.
+- Canonical URLs pointed at a redirecting `www` host.
+- There was no CSP, and builds were not reproducible.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F53 | resolver | Tracked `cloudflared/config.yml` names tunnel `thetheresolverbotbot` and routes `admin.thetheresolverbotbot.net` / `hq.thetheresolverbotbot.net`; the site and bot docs use `admin.theresolverbot.net` (looks like a doubled find-and-replace) | Medium | Stage 31 domain check | Bot maintenance (separate lifecycle; not changed here) | Possibly: admin cockpit routing |
+| F54 | theresolver | `https://theresolverbot.net/` and `www` return HTTP 530, Cloudflare error 1033 (tunnel unreachable), on 2026-10-27; the Pages deployment `theresolver.pages.dev` serves the current build. The apex hostname is routed to a tunnel instead of the Pages project | High | `curl` against both hosts | Owner action in Cloudflare (attach the custom domain to the Pages project, or fix the tunnel route) | Yes: site launch |
+| F55 | theresolver | GitHub reported 86 Dependabot alerts on push while `npm audit` of the pushed lockfile reports 0; the private repository's alerts cannot be listed here (`gh` unauthenticated) | Low | Push output versus `npm audit` | Re-check once `gh` is authenticated | No |
 
 ## TODO / FIXME source audit (2026-10-26)
 
