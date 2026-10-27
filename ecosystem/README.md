@@ -207,6 +207,8 @@ Done:
   physical models.
 - **Stage 38 (2026-10-27): BLUX App 2.0.** Hard gate passed: the app inspects a real end-to-end operation
   from BLUX System, and it controls only read-only checks.
+- **Stage 39 (2026-10-27): BLUX web.** `blux-web` was confirmed absent. bluxai.app 0.1.0 is an API-only
+  workspace service, and its hard gate passed: no BLUX logic is duplicated, and it can be switched off safely.
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.

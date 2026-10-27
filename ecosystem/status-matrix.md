@@ -34,7 +34,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | Private organization profile | `.github-private` | - | `bc32b7a` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
 | BLHermes (archived fork) | `blhermes-agent` | upstream metadata only | `dc8abc1db0` | ARCHIVED | ARCHIVED | NOT_APPLICABLE | ARCHIVED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | ARCHIVED | ARCHIVED | 2026-10-26 |
 | Operation: Restore website | `ov-webpages/operationrestore` | - | `126453f` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-26 |
-| bluxai.app | `ov-webpages/bluxai.app` | - | `a8d127a` | NOT_STARTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
+| bluxai.app | `ov-webpages/bluxai.app` | 0.1.0 | `9fdb0a2` | IMPLEMENTED | INTEGRATION_TESTED | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | IVRP website | `ov-webpages/ivrp` | - | `0e2b75e` | NOT_STARTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-26 |
 
 ## Evidence and blockers
@@ -128,5 +128,8 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 - **Private organization profile** (`.github-private`): Members-only organization profile. Evidence: Contents inspected 2026-10-27 (logo and doctrine line only).
 - **BLHermes (archived fork)** (`blhermes-agent`): Historical/reference fork of Nous Research hermes-agent (MIT); replaced by BLUX. Evidence: GitHub API archived=true; credits LIN-001 archival facts.
 - **Operation: Restore website** (`ov-webpages/operationrestore`): Static site for operationrestore.net. Evidence: README inspected 2026-10-26.
-- **bluxai.app** (`ov-webpages/bluxai.app`): Reserved BLUX website repository; contains only README and LICENSE. Evidence: File list inspected 2026-10-26.
+- **bluxai.app** (`ov-webpages/bluxai.app`): Private BLUX workspace service over the BLUX executables (orgs, roles, runs/receipts, API tokens, audit, opt-in remote runs). Evidence: 12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; no BLUX runtime imports and local BLUX works without it (Stage 39).
+  - Blocker: No web front end (F66)
+  - Blocker: Not deployed; rate limits are per process (F66)
+  - Blocker: CI blocked org-wide (F49)
 - **IVRP website** (`ov-webpages/ivrp`): Reserved Inner Void Recovery Program website repository; README and LICENSE only. Evidence: File list inspected 2026-10-26.

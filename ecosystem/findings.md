@@ -194,6 +194,18 @@ controls are read-only BLUX System checks.
 | F64 | blux-app | The page was syntax-checked (`node --check`) but not exercised in a browser; there are no UI or accessibility tests yet | Medium | Stage 38 test inventory | Future (UI testing) | Yes: release |
 | F65 | blux-gpt (local shells) | BluxGPT 1.0's shell overlay defined a `blux()` function that shadows BLUX's `blux` command. BluxGPT already fixed this (its installer ships `bluxgpt` and runs `unfunction blux`; `docs/AUDIT-1.0.md` item 1, tested), but a stale copy can survive in a user's own startup file and was observed in one. BLUX App resolves tools to absolute paths, so it is unaffected | Low | A `blux` function observed in a local shell profile; `blux-gpt/scripts/install_shell.sh` | Owner action: remove the old function, or re-run BluxGPT's `install_shell.sh` | No |
 
+## Stage 39 incremental sync (2026-10-27)
+
+BLUX web consolidation. `blux-web` was re-verified absent: not found under Outer-Void or Justadudeinspace,
+over SSH or the API, and only historical baseline records mention it. Nothing was archived or built in
+parallel. bluxai.app 0.1.0 (`9fdb0a2`) is a private workspace service over the BLUX executables, and its
+hard gate passed: there is no runtime-logic duplication (no BLUX imports), and local BLUX works with the
+service off.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F66 | bluxai.app | API only: no web front end; not deployed; rate limiting is per process; no email verification or password reset; remote agents not offered | Medium | Stage 39 scope | Future stage (product) | Yes: launch |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,

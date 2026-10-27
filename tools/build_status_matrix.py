@@ -158,8 +158,11 @@ COMPONENTS = [
       "GitHub API archived=true; credits LIN-001 archival facts"),
     c("Operation: Restore website", "ov-webpages/operationrestore", None, "126453f", "Static site for operationrestore.net",
       "IMPLEMENTED", "EXCLUDED", NA, NA, NA, NA, NA, "UNVERIFIED", "UNVERIFIED", [], "README inspected 2026-10-26"),
-    c("bluxai.app", "ov-webpages/bluxai.app", None, "a8d127a", "Reserved BLUX website repository; contains only README and LICENSE",
-      "NOT_STARTED", NA, NA, NA, NA, NA, NA, NA, NA, [], "File list inspected 2026-10-26"),
+    c("bluxai.app", "ov-webpages/bluxai.app", "0.1.0", "9fdb0a2", "Private BLUX workspace service over the BLUX executables (orgs, roles, runs/receipts, API tokens, audit, opt-in remote runs)",
+      "IMPLEMENTED", "INTEGRATION_TESTED", NA, "INTEGRATION_TESTED", NA, "MOCK_TESTED", "IMPLEMENTED", "NOT_STARTED", "NOT_RELEASED",
+      ["No web front end (F66)", "Not deployed; rate limits are per process (F66)", "CI blocked org-wide (F49)"],
+      "12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; "
+      "no BLUX runtime imports and local BLUX works without it (Stage 39)", "2026-10-27"),
     c("IVRP website", "ov-webpages/ivrp", None, "0e2b75e", "Reserved Inner Void Recovery Program website repository; README and LICENSE only",
       "NOT_STARTED", NA, NA, NA, NA, NA, NA, NA, NA, [], "File list inspected 2026-10-26"),
 ]

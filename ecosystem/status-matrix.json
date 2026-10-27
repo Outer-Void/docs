@@ -655,21 +655,25 @@
   {
    "component": "bluxai.app",
    "repo": "ov-webpages/bluxai.app",
-   "version": null,
-   "commit_sha": "a8d127a",
-   "role": "Reserved BLUX website repository; contains only README and LICENSE",
-   "standalone_status": "NOT_STARTED",
-   "blux_status": "NOT_APPLICABLE",
+   "version": "0.1.0",
+   "commit_sha": "9fdb0a2",
+   "role": "Private BLUX workspace service over the BLUX executables (orgs, roles, runs/receipts, API tokens, audit, opt-in remote runs)",
+   "standalone_status": "IMPLEMENTED",
+   "blux_status": "INTEGRATION_TESTED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "NOT_APPLICABLE",
+   "test_status": "INTEGRATION_TESTED",
    "hardware_status": "NOT_APPLICABLE",
-   "security_status": "NOT_APPLICABLE",
-   "package_status": "NOT_APPLICABLE",
-   "distribution_status": "NOT_APPLICABLE",
-   "release_status": "NOT_APPLICABLE",
-   "known_blockers": [],
-   "evidence": "File list inspected 2026-10-26",
-   "last_verified": "2026-10-26"
+   "security_status": "MOCK_TESTED",
+   "package_status": "IMPLEMENTED",
+   "distribution_status": "NOT_STARTED",
+   "release_status": "NOT_RELEASED",
+   "known_blockers": [
+    "No web front end (F66)",
+    "Not deployed; rate limits are per process (F66)",
+    "CI blocked org-wide (F49)"
+   ],
+   "evidence": "12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; no BLUX runtime imports and local BLUX works without it (Stage 39)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "IVRP website",
