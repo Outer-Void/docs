@@ -11,7 +11,7 @@
  "excluded": [
   {
    "repo": "secret-project",
-   "note": "Owner-excluded; never read"
+   "note": "Private workspace excluded except owner-authorized secret-project/er; never inspect other contents"
   }
  ],
  "repositories": [
@@ -210,7 +210,7 @@
    "interface": "Android app; `voidforge` integration client (ping, describe, devices, call; ask only)",
    "integration_boundary": "Local integration endpoint; every write is confirmed on the device; members-only distribution",
    "blux": "optional",
-   "visibility": "public",
+   "visibility": "private",
    "depends_on": []
   },
   {
@@ -222,7 +222,7 @@
    "interface": "Android app",
    "integration_boundary": "Standalone; vendors void.sys and void.game with drift checks; optional BLUX layer is Stage 27 (skipped)",
    "blux": "optional",
-   "visibility": "public",
+   "visibility": "private",
    "depends_on": [
     "void.sys",
     "void.game"
@@ -237,7 +237,7 @@
    "interface": "Android icon pack",
    "integration_boundary": "Vendored by the AXIOM Launcher at a locked commit",
    "blux": "excluded",
-   "visibility": "public",
+   "visibility": "private",
    "depends_on": []
   },
   {
@@ -249,7 +249,7 @@
    "interface": "Android app; core library",
    "integration_boundary": "Vendored by the AXIOM Launcher as a hidden Easter egg",
    "blux": "excluded",
-   "visibility": "public",
+   "visibility": "private",
    "depends_on": []
   },
   {
@@ -261,7 +261,7 @@
    "interface": "Web app (FastAPI + React PWA)",
    "integration_boundary": "Standalone; BLUX may only assist in future, never own financial state",
    "blux": "optional",
-   "visibility": "public",
+   "visibility": "private",
    "depends_on": []
   },
   {
@@ -270,10 +270,10 @@
    "kind": "product",
    "owns": "Care-group truth: members, roles, tasks, escalation, timeline",
    "never_owns": "Medical decisions; delegating care responsibility to BLUX",
-   "interface": "FastAPI backend (no UI yet)",
+   "interface": "FastAPI backend and React care-workspace development preview",
    "integration_boundary": "Standalone; any BLUX assistance is suggest-only",
    "blux": "optional",
-   "visibility": "public",
+   "visibility": "private",
    "depends_on": []
   },
   {
@@ -398,6 +398,19 @@
    "blux": "excluded",
    "visibility": "private",
    "depends_on": []
+  },
+  {
+   "repo": "secret-project/er",
+   "component": "Eden Recovery",
+   "kind": "institutional planning",
+   "owns": "Canonical Eden Recovery architecture, source IVRP workups, Restore integration model, feasibility and evidence gates",
+   "never_owns": "Autonomous clinical decisions or public website runtime; no care delivery authority from repository tests",
+   "interface": "Versioned planning documents, source manifests, illustrative finance model and integrity checks",
+   "integration_boundary": "Public IVRP and Operation: Restore consume only explicitly approved exports; BLUX supports optional non-clinical work only",
+   "blux": "optional",
+   "visibility": "private",
+   "depends_on": []
   }
- ]
+ ],
+ "visibility_evidence": "Owner v1 plan reports private products; anonymous checks in OV-scaffold/visibility-check.json. HTTP 404 alone does not prove private visibility. Authenticated API unavailable in this environment."
 }

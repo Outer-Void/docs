@@ -15,7 +15,7 @@ noted. History stays in git.
 | F4 | void.game | ~~Two versions (root 0.1.0 vs versionName 2.0.0-dev)~~ **Resolved in Stage 24:** one version, 2.1.0-dev (void.game `ad7e0ab`) | Low | Version-consistency audit | Stage 24 | No |
 | F5 | voidforge | No local confirmation UI. The app's authorizer declines every write, and the production write barrier is locked. File pull/push, backup capture, install, sideload, flash and the root/module workflows exist only in `:core`. | High (by design until hardware qualification) | Four-state status audit (core / app / mock / hardware) | After real-device acceptance | Yes: write features |
 | F6 | voidforge | No real-device evidence. The Stage 23 probe was BLOCKED: no USB in the build container, no attached target, app not installed. | High | Hardware column of the status matrix | Owner-run acceptance (`tools/device_acceptance.py`) | Yes: release |
-| F7 | voidforge, void.os, void.sys, void.game, roughin, vigyl | Proprietary, paid or members-only product source sits in **public** repositories (unauthenticated GitHub API returns 200). VoidForge's members-only policy is therefore not met for source. | High (policy) | Distribution-status audit | Owner action (repository visibility) | Yes: VoidForge distribution policy |
+| F7 | voidforge, void.os, void.sys, void.game, roughin, vigyl | **Resolved for current source discoverability:** owner v1 plan reports all six private; anonymous API returns 404 on 2026-10-27 (see `../OV-scaffold/visibility-check.json`). Authenticated visibility attestation is unavailable. Historical exposure and retained copies cannot be recalled by making a repository private. | High (policy) | Forward visibility reconciliation | Preserve historical Stage 45 evidence; recheck visibility at release | No current public-source finding; historical exposure remains |
 | F8 | dat | README install command pinned tag `v4.0.0`, which does not exist (tags: `v1.0.0`, `v2.0.0-alpha.1`, `v2.0.0-Stable`). The README is now corrected. | Medium | Command verification | Owner: tag 4.0.0, or keep installing from `main` | No |
 | F9 | blux | No release tag or published package. Termux APT on-device installation not run. | Medium | Package and release status | Owner steps in `packaging/termux/ACCEPTANCE.md` | Yes: BLUX release |
 | F10 | blux, blux-gpt | No real-provider Model API evidence (provider accounts without balance). Hard-coded provider model IDs are not checked against current catalogs. | Medium | Evidence-model audit (mock vs real-provider) | When provider access exists | No |
@@ -280,3 +280,29 @@ JSON and vendored licences, found 17 hits:
 
 One broken relative link remains by design: `dat/snapshot.md` is a historical repository snapshot dated
 2026-01-21 that links to `docs/ROADMAP.md`, which was removed in Stage 03.
+
+
+## Forward execution — 2026-10-27
+
+Stage 45 and prior stage sections above remain historical evidence. Current disposition:
+
+| Finding | Current result | Remaining acceptance |
+|---|---|---|
+| F7 visibility | Owner reports private products; anonymous API checks show not publicly discoverable. See `../OV-scaffold/visibility-check.json`. | Authenticated visibility attestation remains unavailable; a 404 alone does not establish privacy. |
+| F36 Roughin dependencies | Frontend toolchain, PWA plugin and router upgraded; production build and four frontend regressions pass; npm audit reports zero advisories. | Future audits and browser/payment workflows remain required. |
+| F37 Roughin frontend tests | Four tests now cover protected routing, server invoice amount and uncertain network outcomes. | Real mobile/browser/poor-network testing remains open. |
+| F43 Vigyl UI | Development care workspace added: accounts, circles, invitations, task actions, independent verification, status, notifications and timeline; eight frontend tests and build pass. | Browser/accessibility/device qualification; broader product features remain open. |
+| F68 SDK pin | BLUX System pins immutable SDK 0.2.0 revision `6ee4c805`; local SDK source matches it. | Contract and consumer regression checks recorded in forward report. |
+| F72 ax direct execution | Direct shell entry delegates to the thin router; thirteen routing tests pass, including stdout and exit-code preservation. | Packaging/release acceptance remains open. |
+| F73 R2 credential discovery | Import no longer builds a client. Explicit configuration is required before lazy client construction; two regressions cover the guard and explicit credentials. | Real R2 qualification remains open. |
+| BLUX10K drift | Shell export, VERSION and README aligned to 3.0.0. | Release packaging and Termux evidence remain open. |
+| Resolver drift | Application version aligned to 4.0.0; duplicate `the` tunnel/host names corrected. | Actual DNS/tunnel/provider/payment/admin release gate remains unverified. |
+
+PostgreSQL 17 `initdb` could not finish under this PRoot environment; the previous session's
+process remained stopped in tracing for over an hour. No database migration, backup or restore
+pass is claimed. PostgreSQL 16 CI remains separate required evidence. Existing billing-lock
+findings are retained until an actual successful CI run is available.
+
+ER is active at `secret-project/er`. Its source-preserving Phase 0 package and illustrative
+financial arithmetic confer no institutional approval. See `../OV-scaffold/forward-plan.md`
+for plan-by-plan status, exact validation and remaining work.

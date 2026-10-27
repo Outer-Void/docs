@@ -1,0 +1,114 @@
+{
+  "secret-project/er": {
+    "last_verified": "2026-10-27",
+    "commit_sha": "ac4b89a"
+  },
+  "voidforge": {
+    "known_blockers": [
+      "Production write barrier locked; no local confirmation UI",
+      "No real-device acceptance (2026-10-26 probe BLOCKED)",
+      "No production release key or keystore configured"
+    ],
+    "evidence": "Stage 22/23: :core 86, :integration 9, tools 24 tests passed; app assembleDebug OK; all mock/synthetic. Stage 44 DoD at 59b6d67 (2026-10-27): :core 86 + :integration 9 passed (forced rerun); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable."
+  },
+  "void.os": {
+    "known_blockers": [
+      "Stage 24 hard gate NOT passed (docs/release/release-matrix.md)",
+      "Entitlement, Play Integrity and product-signature verification are TODO stubs (release paths fail closed)",
+      "No device matrix run",
+      "No release keystore / protected signing job (env-only signing exists)",
+      "No crash-loop guard",
+      "Legal/asset notice review"
+    ],
+    "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26). Stage 44 DoD at 24b07cd (2026-10-27): unit 78 passed, debug APK built (BLUX-free core); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable."
+  },
+  "void.sys": {
+    "known_blockers": [
+      "Standalone signature verification is a TODO stub (fails closed)",
+      "2,903 asset variants pending individual visual review",
+      "No device test of the standalone pack in third-party launchers"
+    ],
+    "evidence": "tools tests 8 passed, verify_drawables OK, assembleDebug + assembleRelease OK, release APK keeps all 587 drawable names (Stage 25); AXIOM vendors release/manifest.json bundle byte-for-byte. Stage 44 DoD at 09cf56f (2026-10-27): debug APK built; no automated tests; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable."
+  },
+  "void.game": {
+    "known_blockers": [
+      "Purchase/signature verification is TODO (release fails closed)",
+      "No audio",
+      "Interrupted runs are not resumed",
+      "No device playthroughs, GL context-loss, frame-time or battery evidence",
+      "Default font licence unresolved (credits UNR-020)"
+    ],
+    "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26). Stage 44 DoD at b56c1ae (2026-10-27): core 21 passed, debug APK built; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable."
+  },
+  "roughin": {
+    "known_blockers": [
+      "PostgreSQL 16 migration/backup/restore CI remains blocked; local PostgreSQL 17 initdb stalled in PRoot",
+      "No staging deployment, Stripe test-mode or real R2 qualification (F35)",
+      "Real mobile/poor-network/browser testing and production PWA assets pending",
+      "Frontend coverage is focused (4 tests); broader payment/task workflows need browser evidence"
+    ],
+    "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28). Stage 44 DoD at 97921fc (2026-10-27): backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: frontend has 4 regression tests; Vite/React plugin/PWA tooling/React Router upgraded; build PASS and npm audit zero advisories. R2 client now initializes lazily with explicit credentials and fails before credential discovery when unconfigured; 2 regression tests added. Network error text preserves uncertainty about server commits. Resumed validation: backend 93 PASS (including two new R2 configuration regressions), backend ruff PASS; 938 existing datetime deprecation warnings remain.",
+    "commit_sha": "a4410a1"
+  },
+  "vigyl": {
+    "known_blockers": [
+      "Frontend is a development preview; real-browser/mobile/accessibility qualification pending",
+      "Notifications are in-app only; no external push/email delivery (F44)",
+      "PostgreSQL 16 migration/backup/restore and staging remain unqualified; local PostgreSQL 17 initdb stalled in PRoot",
+      "Recurring tasks, password reset and privacy/legal approval remain open (F46)"
+    ],
+    "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.",
+    "commit_sha": "f7ce8f3",
+    "role": "Standalone caregiving/accountability product; FastAPI backend and React development care workspace; server remains authoritative"
+  },
+  "axiom": {
+    "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.",
+    "known_blockers": [
+      "Engines must be installed separately; missing engines exit 69 by design",
+      "Release packaging/tag qualification remains pending"
+    ],
+    "last_verified": "2026-10-27",
+    "commit_sha": "ed079e8"
+  },
+  "blux10k": {
+    "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26). Stage 44 DoD at 80a7465 (2026-10-27): 10 passed; DAT audit triaged Forward execution: dotfiles/.zshrc BLUX10K_VERSION aligned with VERSION and CLI at 3.0.0; README corrected.",
+    "known_blockers": [
+      "Release packaging/tag and real Termux acceptance remain pending"
+    ],
+    "last_verified": "2026-10-27",
+    "commit_sha": "e2e9f58"
+  },
+  "resolver": {
+    "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation). Stage 44 DoD at bf7f26a (2026-10-27): 173 unit tests passed; DAT audit triaged Forward execution: app.__version__ aligned to historical v4.0 as 4.0.0; duplicate the in tunnel/host names corrected. Historical tags unchanged.",
+    "known_blockers": [
+      "Release gate steps install_resolver.sh / run_resolver.sh need live secrets: not run",
+      "CI blocked org-wide by the GitHub billing lock (F49)",
+      "Live tunnel/DNS, provider, payment/subscription/admin qualification and release gate need operational credentials",
+      "Website domain deployment remains unverified"
+    ],
+    "last_verified": "2026-10-27",
+    "commit_sha": "aae88c2"
+  },
+  "blux-system": {
+    "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26). Stage 44 DoD at f0ba3a1 (2026-10-27): 74 passed (network off); DAT audit triaged Forward execution: SDK dependency pin advanced to immutable SDK 0.2.0 commit 6ee4c805; local sdk/python matches pinned source. Resumed consumer suite: 74 tests PASS.",
+    "known_blockers": [
+      "No release tag for 2.0.0",
+      "Long-running/replay and release/distribution qualification remain pending"
+    ],
+    "last_verified": "2026-10-27",
+    "commit_sha": "77173f2"
+  },
+  "blux": {
+    "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.",
+    "known_blockers": [
+      "No release tag or published package",
+      "Termux APT on-device install not run (owner steps in packaging/termux/ACCEPTANCE.md)",
+      "No real-provider Model API evidence (provider accounts without balance)",
+      "Gen 0 model suites BLOCKED (F60); no native specialist integrated (F63)",
+      "Rights-cleared substantial corpus and independent protected evaluation are not acquired",
+      "Compute budget, inference baseline, serious training and provider qualification remain pending"
+    ],
+    "last_verified": "2026-10-27",
+    "commit_sha": "8d989de"
+  }
+}

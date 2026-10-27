@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-27",
+  "basis": "owner-provided plan plus anonymous API; no authenticated visibility attestation",
+  "checks": [
+    {
+      "repository": "roughin",
+      "anonymous_status": 404,
+      "visibility": "not publicly discoverable"
+    },
+    {
+      "repository": "vigyl",
+      "anonymous_status": 404,
+      "visibility": "not publicly discoverable"
+    },
+    {
+      "repository": "void.game",
+      "anonymous_status": 404,
+      "visibility": "not publicly discoverable"
+    },
+    {
+      "repository": "void.os",
+      "anonymous_status": 404,
+      "visibility": "not publicly discoverable"
+    },
+    {
+      "repository": "void.sys",
+      "anonymous_status": 404,
+      "visibility": "not publicly discoverable"
+    },
+    {
+      "repository": "voidforge",
+      "anonymous_status": 404,
+      "visibility": "not publicly discoverable"
+    }
+  ]
+}

@@ -209,6 +209,26 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-10-27"
 
 
+# Forward execution is additive; Stage 44/45 evidence above stays historical.
+_forward = ROOT / "OV-scaffold" / "component-updates.json"
+if _forward.exists():
+    _updates = json.loads(_forward.read_text())
+    for _component in COMPONENTS:
+        _component.update(_updates.get(_component["repo"], {}))
+    if "secret-project/er" in _updates:
+        COMPONENTS.append(c(
+            "Eden Recovery", "secret-project/er", "Phase 0 draft", "4622037",
+            "Institutional architecture, IVRP workups and Restore integration; no clinical authority",
+            "IMPLEMENTED", "OPTIONAL", NA, "INTEGRATION_TESTED", NA, "UNVERIFIED",
+            NA, "NOT_RELEASED", "NOT_RELEASED",
+            ["Independent clinical/medical/legal/finance/lived-experience review pending",
+             "Jurisdiction, market, workforce, payer and capital studies not commissioned",
+             "Curriculum approval and institutional phase gates remain open"],
+            "281 source references verified; three illustrative financial-model tests pass; no institutional approval",
+            "2026-10-27"))
+        COMPONENTS[-1].update(_updates["secret-project/er"])
+
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

@@ -21,12 +21,12 @@ integration boundary. `blux` column: integrated (part of BLUX), standalone (work
 | `axiom` | AXIOM (`ax`) | tool | optional | public |
 | `blux10k` | blux10k | tool | excluded | public |
 | `jadis.toolbox` | JADIS Toolbox (`jadis`) | tool | optional | public |
-| `voidforge` | VoidForge | product | optional | public |
-| `void.os` | AXIOM Launcher | product | optional | public |
-| `void.sys` | VOID.SYS | product | excluded | public |
-| `void.game` | AXIOM Shooter | product | excluded | public |
-| `roughin` | Roughin | product | optional | public |
-| `vigyl` | Vigyl | product | optional | public |
+| `voidforge` | VoidForge | product | optional | private |
+| `void.os` | AXIOM Launcher | product | optional | private |
+| `void.sys` | VOID.SYS | product | excluded | private |
+| `void.game` | AXIOM Shooter | product | excluded | private |
+| `roughin` | Roughin | product | optional | private |
+| `vigyl` | Vigyl | product | optional | private |
 | `resolver` | Resolver (Telegram bot) | product | optional | private |
 | `ov-webpages/theresolver` | Resolver website | product | excluded | private |
 | `termux-background` | Termux Background | product | excluded | public |
@@ -37,6 +37,7 @@ integration boundary. `blux` column: integrated (part of BLUX), standalone (work
 | `docs` | Central docs | governance | excluded | public |
 | `.github` | Organization profile | governance | excluded | public |
 | `.github-private` | Private organization profile | governance | excluded | private |
+| `secret-project/er` | Eden Recovery | institutional planning | optional | private |
 
 ## `blux`: BLUX
 
@@ -183,7 +184,7 @@ integration boundary. `blux` column: integrated (part of BLUX), standalone (work
 
 - **Owns:** Care-group truth: members, roles, tasks, escalation, timeline
 - **Never owns:** Medical decisions; delegating care responsibility to BLUX
-- **Interface:** FastAPI backend (no UI yet)
+- **Interface:** FastAPI backend and React care-workspace development preview
 - **Integration boundary:** Standalone; any BLUX assistance is suggest-only
 
 ## `resolver`: Resolver (Telegram bot)
@@ -257,7 +258,14 @@ integration boundary. `blux` column: integrated (part of BLUX), standalone (work
 - **Interface:** GitHub profile README
 - **Integration boundary:** None
 
+## `secret-project/er`: Eden Recovery
+
+- **Owns:** Canonical Eden Recovery architecture, source IVRP workups, Restore integration model, feasibility and evidence gates
+- **Never owns:** Autonomous clinical decisions or public website runtime; no care delivery authority from repository tests
+- **Interface:** Versioned planning documents, source manifests, illustrative finance model and integrity checks
+- **Integration boundary:** Public IVRP and Operation: Restore consume only explicitly approved exports; BLUX supports optional non-clinical work only
+
 ## Not active
 
 - `blhermes-agent`: Archived fork of Nous Research hermes-agent (MIT); replaced by BLUX; reference only
-- `secret-project`: Owner-excluded; never read
+- `secret-project`: Private workspace excluded except owner-authorized secret-project/er; never inspect other contents
