@@ -147,6 +147,24 @@ Termux Background release checks (termux-background `75cfb97`). Fixed: three neg
 | F56 | termux-background | Targets SDK 35 while 36 is available (lint `OldTargetApi`); raising it needs a behaviour review and a device re-test | Low | `./gradlew lint` | Future maintenance | Only for Play distribution |
 | F57 | termux-background | `set` installs the image before rewriting properties; a failure in the last step leaves the new image with the old properties (benign: same file name) | Low | CLI review | Tech debt | No |
 
+## Stage 33 incremental sync (2026-10-27)
+
+jadis.toolbox standalone scripts (jadis.toolbox `253c386`). Every retained utility now has a stated purpose and
+tests (`scripts/README.md`, `tests/test_scripts.py`). Fixed:
+- `github_backup` would commit and push in **plaintext** from a cloned-but-locked repository; it now unlocks
+  with the exported key or refuses (mutation-tested).
+- `timelog` invoice totals silently failed on mawk/busybox.
+- Commas corrupted the timelog CSV.
+- The timelog invoice path ignored `TMPDIR`.
+
+Nothing was deleted (personal tools; use cannot be ruled out). No capability adapters were added (the scripts
+write data).
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F58 | jadis.toolbox | `master_log` writes the home-tree listing, `logcat` and `ps aux` to shared storage by default (readable by apps with storage permission), and pings 8.8.8.8. Documented, and `MASTER_LOG_DIR` added; the default was kept because the widget workflow relies on it | Medium (privacy) | Script audit | Owner decision on the default | No |
+| F59 | jadis.toolbox | `newproject` overlaps LRC's repository-creation role and defaults to the MIT licence (the organization's default is proprietary); kept as a personal tool and documented | Low | Script audit | Owner decision | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,

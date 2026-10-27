@@ -27,7 +27,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | Roughin | `roughin` | 1.1.0 (API); frontend 1.0.0 | `f3599d3` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Vigyl | `vigyl` | API 0.2.0 | `a0816a4` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Termux Background | `termux-background` | 1.1.0 | `75cfb97` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-27 |
-| JADIS Toolbox (`jadis`) | `jadis.toolbox` | 0.1.0 | `64f5d08` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | HARDWARE_PENDING | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
+| JADIS Toolbox (`jadis`) | `jadis.toolbox` | 0.1.0 | `253c386` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | HARDWARE_PENDING | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Credits ledger | `credits` | - | `18240ba` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
 | Central docs | `docs` | - | `6cfbd70` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
 | Organization profile | `.github` | - | `7c9ad5a` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
@@ -112,11 +112,12 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: No device has passed docs/DEVICE_RC_CHECKLIST.md
   - Blocker: No signing key in CI; CI blocked org-wide (F49)
   - Blocker: Targets SDK 35; 36 available (F56)
-- **JADIS Toolbox (`jadis`)** (`jadis.toolbox`): Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian). Evidence: 67 tests (unit, fixture, real-filesystem integration, adversarial redaction), 7 deliberate breaks caught, ruff/mypy/hygiene clean, wheel smoke test; real PRoot Debian 13 run; real BLUX subprocess call (2026-10-26).
+- **JADIS Toolbox (`jadis`)** (`jadis.toolbox`): Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian). Evidence: 75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33).
   - Blocker: Not run in native Termux (fixture-tested only)
   - Blocker: Native Debian 13 evidence pending the CI container job's first run
   - Blocker: No published package (install from source)
   - Blocker: Small repair catalogue (4 repairs)
+  - Blocker: CI blocked org-wide (F49)
 - **Credits ledger** (`credits`): Canonical attribution, licensing and provenance ledger. Evidence: validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync).
 - **Central docs** (`docs`): Legal/policy baselines and ecosystem governance documentation (this repository). Evidence: tools/build_status_matrix.py --check OK; full reconciliation 2026-10-27.
 - **Organization profile** (`.github`): Public organization profile and doctrine. Evidence: Contents reconciled 2026-10-27.

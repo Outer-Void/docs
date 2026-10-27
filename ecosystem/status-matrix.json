@@ -512,7 +512,7 @@
    "component": "JADIS Toolbox (`jadis`)",
    "repo": "jadis.toolbox",
    "version": "0.1.0",
-   "commit_sha": "64f5d08",
+   "commit_sha": "253c386",
    "role": "Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "OPTIONAL",
@@ -527,10 +527,11 @@
     "Not run in native Termux (fixture-tested only)",
     "Native Debian 13 evidence pending the CI container job's first run",
     "No published package (install from source)",
-    "Small repair catalogue (4 repairs)"
+    "Small repair catalogue (4 repairs)",
+    "CI blocked org-wide (F49)"
    ],
-   "evidence": "67 tests (unit, fixture, real-filesystem integration, adversarial redaction), 7 deliberate breaks caught, ruff/mypy/hygiene clean, wheel smoke test; real PRoot Debian 13 run; real BLUX subprocess call (2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Credits ledger",
