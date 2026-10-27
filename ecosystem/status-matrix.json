@@ -24,8 +24,8 @@
    "component": "BLUX (runtime, SDK, contracts, `blux` CLI)",
    "repo": "blux",
    "version": "outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0",
-   "commit_sha": "f491524",
-   "role": "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI",
+   "commit_sha": "ba160c3",
+   "role": "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
    "ax_status": "INTEGRATION_TESTED",
@@ -38,10 +38,11 @@
    "known_blockers": [
     "No release tag or published package",
     "Termux APT on-device install not run (owner steps in packaging/termux/ACCEPTANCE.md)",
-    "No real-provider Model API evidence (provider accounts without balance)"
+    "No real-provider Model API evidence (provider accounts without balance)",
+    "Gen 0 model suites BLOCKED (F60); no native specialist integrated (F63)"
    ],
-   "evidence": "make ci at f491524: 563 passed, 15 skipped; schema lock, ruff, mypy, wheel OK (Stage 22)",
-   "last_verified": "2026-10-26"
+   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "AXIOM control plane (`ax`)",

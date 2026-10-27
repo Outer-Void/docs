@@ -198,6 +198,13 @@ Done:
   standalone release gate is not passed: no device qualification, and CI is blocked.
 - **Stage 33 (2026-10-27): jadis.toolbox.** Hard gate passed: every retained utility has a defined purpose and
   tests. A plaintext-push risk in `github_backup` was fixed.
+- **Stages 34–36 (2026-10-27): BLUX training pipeline, Generation 0 baseline, specialist register.**
+  - Stage 34's gate passed.
+  - Stage 35's reproducible report exists, but its model suites are blocked (no credentials).
+  - Stage 36's gate passed by explicit, evidence-backed rejections; no specialist was integrated.
+- **Stage 37 (2026-10-27): Generation 2 readiness.** No model was trained: the data, the baseline and
+  GPU compute are missing (`training/GENERATION2.md`). A guard test now keeps application code independent of
+  physical models.
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.

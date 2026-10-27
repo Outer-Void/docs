@@ -165,6 +165,24 @@ write data).
 | F58 | jadis.toolbox | `master_log` writes the home-tree listing, `logcat` and `ps aux` to shared storage by default (readable by apps with storage permission), and pings 8.8.8.8. Documented, and `MASTER_LOG_DIR` added; the default was kept because the widget workflow relies on it | Medium (privacy) | Script audit | Owner decision on the default | No |
 | F59 | jadis.toolbox | `newproject` overlaps LRC's repository-creation role and defaults to the MIT licence (the organization's default is proprietary); kept as a personal tool and documented | Low | Script audit | Owner decision | No |
 
+## Stages 34–36 incremental sync (2026-10-27)
+
+BLUX AI pipeline (blux `7bdd076`, `8ef10d5`, `ba160c3`):
+- **Stage 34:** the `blux_training` trajectory → dataset pipeline. Its hard gate passed (22 tests).
+- **Stage 35:** the Generation 0 harness and its committed, reproducible baseline.
+- **Stage 36:** a register of all eight specialist candidates. None is integrated. Capability routing, risk
+  and verdict classification are rejected with evidence; the rest are blocked on data.
+
+The Gen 0 policy suite found a real gap: `adb shell recovery --wipe_data` went undetected. It was fixed in
+the rule and covered by a regression test.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F60 | blux | Model-dependent Gen 0 suites (intent, tool selection, repository diagnosis) are BLOCKED: no provider credentials (same cause as F10); the harness has no live model runner yet | High | `evals/reports/gen0/` | Owner action (provider balance) + harness work | Yes: a complete Gen 0 baseline |
+| F61 | blux | Engine "task success" is replay determinism against records the same pinned engine produced; it detects regressions, not answer quality. No human-reviewed quality labels exist | Medium | `evals/README.md` | Future evaluation work | No |
+| F62 | blux | A second session committed native-router work to `blux/training/` concurrently (a107205…0e4b4f6) and replaced `training/README.md`; the Stage 34 commit had to be rebased (README merged, nothing overwritten). Tooling behind those commits is undeclared (credits UNR-021) | Medium (process) | Rejected push, then rebase | Owner coordination of parallel sessions | No |
+| F63 | blux | Native specialists need owner-authored, rights-cleared data: 694 independent routing families (training/research/WAKE_UP_REPORT.md section 39); repair and patch ranking need multi-candidate outcome data that cA does not produce | High | `training/SPECIALISTS.md` | Owner data collection | Yes: Generation 1 |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,
