@@ -192,7 +192,7 @@ controls are read-only BLUX System checks.
 | # | Repo | Issue | Severity | Evidence | Class | Blocking |
 |---|---|---|---|---|---|---|
 | F64 | blux-app | The page was syntax-checked (`node --check`) but not exercised in a browser; there are no UI or accessibility tests yet | Medium | Stage 38 test inventory | Future (UI testing) | Yes: release |
-| F65 | blux, blux-gpt | A user shell function or alias named `blux` (an older BluxGPT wrapper) can shadow BLUX's `blux` command, and BluxGPT already ships `bluxgpt`. BLUX App resolves tools to absolute paths; BluxGPT's docs should not suggest a `blux` alias | Low | A `blux` function observed in a local shell profile | Docs (BluxGPT install guidance) | No |
+| F65 | blux-gpt (local shells) | BluxGPT 1.0's shell overlay defined a `blux()` function that shadows BLUX's `blux` command. BluxGPT already fixed this (its installer ships `bluxgpt` and runs `unfunction blux`; `docs/AUDIT-1.0.md` item 1, tested), but a stale copy can survive in a user's own startup file and was observed in one. BLUX App resolves tools to absolute paths, so it is unaffected | Low | A `blux` function observed in a local shell profile; `blux-gpt/scripts/install_shell.sh` | Owner action: remove the old function, or re-run BluxGPT's `install_shell.sh` | No |
 
 ## TODO / FIXME source audit (2026-10-26)
 
