@@ -183,6 +183,17 @@ the rule and covered by a regression test.
 | F62 | blux | A second session committed native-router work to `blux/training/` concurrently (a107205…0e4b4f6) and replaced `training/README.md`; the Stage 34 commit had to be rebased (README merged, nothing overwritten). Tooling behind those commits is undeclared (credits UNR-021) | Medium (process) | Rejected push, then rebase | Owner coordination of parallel sessions | No |
 | F63 | blux | Native specialists need owner-authored, rights-cleared data: 694 independent routing families (training/research/WAKE_UP_REPORT.md section 39); repair and patch ranking need multi-candidate outcome data that cA does not produce | High | `training/SPECIALISTS.md` | Owner data collection | Yes: Generation 1 |
 
+## Stage 38 incremental sync (2026-10-27)
+
+BLUX App 2.0 (blux-app `6c8e8dd`): local mission control over the real BLUX tools. The hard gate passed: a
+real operation recorded in a real BLUX System store is inspected end to end through the app, and the only
+controls are read-only BLUX System checks.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F64 | blux-app | The page was syntax-checked (`node --check`) but not exercised in a browser; there are no UI or accessibility tests yet | Medium | Stage 38 test inventory | Future (UI testing) | Yes: release |
+| F65 | blux, blux-gpt | A user shell function or alias named `blux` (an older BluxGPT wrapper) can shadow BLUX's `blux` command, and BluxGPT already ships `bluxgpt`. BLUX App resolves tools to absolute paths; BluxGPT's docs should not suggest a `blux` alias | Low | A `blux` function observed in a local shell profile | Docs (BluxGPT install guidance) | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,

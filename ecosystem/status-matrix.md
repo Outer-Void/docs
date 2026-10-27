@@ -15,7 +15,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | GOD | `god` | 2.0.0 | `a329d89` | IMPLEMENTED | INTEGRATION_TESTED | IMPLEMENTED | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | BLUX System | `blux-system` | 2.0.0 | `f0ba3a1` | IMPLEMENTED | INTEGRATION_TESTED | IMPLEMENTED | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | BluxGPT | `blux-gpt` | 2.0.0 | `4609cd9` | IMPLEMENTED | INTEGRATION_TESTED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
-| BLUX App | `blux-app` | - | `386e81f` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_STARTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
+| BLUX App | `blux-app` | 2.0.0 | `6c8e8dd` | IMPLEMENTED | INTEGRATION_TESTED | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | cA dataset | `blux-ca-dataset` | dynamic (pyproject) | `662ec33` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | CogA dataset | `blux-coga-dataset` | dynamic (pyproject) | `9331f73` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | VoidForge | `voidforge` | 0.1.0-dev | `463b921` | IMPLEMENTED | OPTIONAL | INTEGRATION_TESTED | MOCK_TESTED | BLOCKED | MOCK_TESTED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
@@ -61,8 +61,10 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: No release tag for 2.0.0
 - **BluxGPT** (`blux-gpt`): Provider/model gateway behind Model API v1; no agent loop, no tool execution, no authority. Evidence: pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports.
   - Blocker: Real-provider runs not recorded; hard-coded provider model IDs not verified against current catalogs
-- **BLUX App** (`blux-app`): Read-only observability viewer of artifacts and receipts. Evidence: Not re-run in the 2026-10-26 documentation pass.
-  - Blocker: Phase 1 CLI viewer only
+- **BLUX App** (`blux-app`): Local mission control over the real BLUX tools (read-only views; only read-only BLUX System checks as controls). Evidence: 11 tests at 6c8e8dd incl. end-to-end: real blux run operations recorded in a real BLUX System store, inspected through the HTTP API; Host/token/origin/id-validation and secret-redaction tests (Stage 38).
+  - Blocker: Not browser-tested (page script syntax-checked only)
+  - Blocker: CI blocked org-wide (F49)
+  - Blocker: VoidForge devices need the device app running
 - **cA dataset** (`blux-ca-dataset`): Deterministic cA evaluation/training dataset (Hugging Face card layout). Evidence: pytest: 36 passed, 2 skipped at 662ec33 (re-run 2026-10-26).
 - **CogA dataset** (`blux-coga-dataset`): Deterministic CogA evaluation/training dataset. Evidence: pytest: 38 passed at 9331f73 (re-run 2026-10-26).
 - **VoidForge** (`voidforge`): Standalone Android-to-Android device-engineering workstation (members-only, free for now). Evidence: Stage 22/23: :core 86, :integration 9, tools 24 tests passed; app assembleDebug OK; all mock/synthetic.

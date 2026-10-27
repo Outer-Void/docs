@@ -234,23 +234,25 @@
   {
    "component": "BLUX App",
    "repo": "blux-app",
-   "version": null,
-   "commit_sha": "386e81f",
-   "role": "Read-only observability viewer of artifacts and receipts",
+   "version": "2.0.0",
+   "commit_sha": "6c8e8dd",
+   "role": "Local mission control over the real BLUX tools (read-only views; only read-only BLUX System checks as controls)",
    "standalone_status": "IMPLEMENTED",
-   "blux_status": "OPTIONAL",
+   "blux_status": "INTEGRATION_TESTED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "INTEGRATION_TESTED",
    "hardware_status": "NOT_APPLICABLE",
-   "security_status": "NOT_APPLICABLE",
-   "package_status": "NOT_STARTED",
+   "security_status": "MOCK_TESTED",
+   "package_status": "IMPLEMENTED",
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Phase 1 CLI viewer only"
+    "Not browser-tested (page script syntax-checked only)",
+    "CI blocked org-wide (F49)",
+    "VoidForge devices need the device app running"
    ],
-   "evidence": "Not re-run in the 2026-10-26 documentation pass",
-   "last_verified": "2026-10-26"
+   "evidence": "11 tests at 6c8e8dd incl. end-to-end: real blux run operations recorded in a real BLUX System store, inspected through the HTTP API; Host/token/origin/id-validation and secret-redaction tests (Stage 38)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "cA dataset",

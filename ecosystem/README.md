@@ -205,6 +205,8 @@ Done:
 - **Stage 37 (2026-10-27): Generation 2 readiness.** No model was trained: the data, the baseline and
   GPU compute are missing (`training/GENERATION2.md`). A guard test now keeps application code independent of
   physical models.
+- **Stage 38 (2026-10-27): BLUX App 2.0.** Hard gate passed: the app inspects a real end-to-end operation
+  from BLUX System, and it controls only read-only checks.
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.
