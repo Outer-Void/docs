@@ -24,7 +24,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | AXIOM Shooter | `void.game` | 2.1.0-dev | `b56c1ae` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | BLOCKED | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-26 |
 | Resolver (Telegram runtime) | `resolver` | 1.0.0 (app/__init__.py) | `9c66aaf` | IMPLEMENTED | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | 2026-10-24 |
 | Resolver website | `ov-webpages/theresolver` | 0.1.0 | `75a6352` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | BLOCKED | NOT_APPLICABLE | UNVERIFIED | UNVERIFIED | 2026-10-24 |
-| Roughin | `roughin` | 1.1.0 (API); frontend 1.0.0 | `9e5cf12` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
+| Roughin | `roughin` | 1.1.0 (API); frontend 1.0.0 | `f3599d3` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Vigyl | `vigyl` | - | `2af2717` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | UNVERIFIED | NOT_APPLICABLE | NOT_STARTED | NOT_RELEASED | 2026-10-24 |
 | Termux Background | `termux-background` | 1.1.0 | `c375c7e` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | NOT_RELEASED | 2026-10-26 |
 | JADIS Toolbox (`jadis`) | `jadis.toolbox` | 0.1.0 | `64f5d08` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | HARDWARE_PENDING | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
@@ -93,11 +93,11 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: Release tag status not re-verified in this pass
 - **Resolver website** (`ov-webpages/theresolver`): Marketing/acquisition site for the Resolver bot (separate from the runtime). Evidence: Stage 00 baseline (2026-10-24).
   - Blocker: Stage 00 baseline: next 16.1.6 critical advisory, upgrade to >=16.4.3 (not re-verified)
-- **Roughin** (`roughin`): Standalone contractor SaaS (FastAPI + React PWA). Evidence: pytest: 91 passed at 9e5cf12 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28).
+- **Roughin** (`roughin`): Standalone contractor SaaS (FastAPI + React PWA). Evidence: pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28).
   - Blocker: PostgreSQL migration + backup/restore CI job defined, no recorded run (F34)
   - Blocker: No deployment, Stripe test-mode or real R2 run (F35)
   - Blocker: No frontend tests or device testing (F37)
-  - Blocker: Frontend dependency advisories need major upgrades (F36)
+  - Blocker: Frontend dependency advisories need major upgrades; Python deps pip-audit clean (F36)
   - Blocker: Public repository for proprietary SaaS source
 - **Vigyl** (`vigyl`): Standalone caregiving/accountability product; Stage 1 backend foundation only. Evidence: Stage 00 baseline (2026-10-24); release readiness is Stage 29.
   - Blocker: Only the Stage 1 core loop exists
