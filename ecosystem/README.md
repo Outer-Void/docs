@@ -214,6 +214,8 @@ Done:
   workspace service, and its hard gate passed: no BLUX logic is duplicated, and it can be switched off safely.
 - **Stage 40 (2026-10-27): docs as constitution.** `constitution/` was added. Hard gate passed: every active
   repository has a role and an integration boundary (`tools/build_constitution.py --check`).
+- **Stage 41 (2026-10-27): organization metadata.** The profiles and defaults now match the architecture, and
+  false repository claims were removed.
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.

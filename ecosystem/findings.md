@@ -217,8 +217,18 @@ described BLUX App 1.0. BLUX App's engine grouping missed most DAT and LRC capab
 
 | # | Repo | Issue | Severity | Evidence | Class | Blocking |
 |---|---|---|---|---|---|---|
-| F67 | god | `pyproject.toml` declares `Development Status :: 5 - Production/Stable` although GOD is not released | Low | Constitution cross-check | Stage 41 (metadata accuracy) | No |
+| F67 | god, dat, lrc | ~~`pyproject.toml` declared `Development Status :: 5 - Production/Stable` although none is released~~ **Resolved in Stage 41:** all three now declare `4 - Beta` | Low | Constitution cross-check | Stage 41 | No longer |
 | F68 | blux-system | Pins blux-sdk 0.1.0 (commit `0b09a46`) while BLUX ships 0.2.0; same Contract 1.0, but the pin is one release behind | Low | Compatibility matrix | Stage 42 (contract CI) | No |
+
+## Stage 41 incremental sync (2026-10-27)
+
+Organization metadata (`.github`, `.github-private`):
+- Removed the README's index of five repositories that never existed, and the doctrine links to them.
+- The profile now distinguishes AXIOM Launcher (`void.os`) from `ax` (`axiom`), and the Resolver bot from its
+  website.
+- Organization defaults added: SECURITY, CONTRIBUTING, and issue and PR templates.
+- The members-only profile now lists the private repositories and the VoidForge members-only build path.
+- Package classifiers corrected (F67).
 
 ## TODO / FIXME source audit (2026-10-26)
 
