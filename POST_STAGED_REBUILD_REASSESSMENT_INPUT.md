@@ -182,5 +182,35 @@ The ones that gate the most:
 
 ## Stage 27 (circled back after the freeze)
 
-**Pending.** Stage 27 is being circled back to now, as the owner directed (run Stages 31–45, then return to
-Stage 27). Its outcome will be recorded here, and only then is the staged execution plan complete.
+**BLOCKED (precondition not met), re-checked 2026-10-27 after the freeze.** The Stage 27 brief allows the work
+"only after Stage 24's standalone release gate passes". That gate still fails:
+- entitlement, Play Integrity and product-signature verification are `TODO` stubs in `EntitlementManager`,
+  `IntegrityGate` and `SignatureVerifier` (F1);
+- no device matrix has run;
+- there is no release keystore;
+- legal review is outstanding;
+- the repository is public (F7).
+
+So no BLUX layer was designed into the launcher, and nothing was committed to void.os or blux. That matches the
+brief's rule that the launcher ships without BLUX rather than having integration forced into it. The boundaries the
+brief protects hold today:
+- launcher startup does not depend on BLUX (`ProductBoundaryTest`);
+- VOID.SYS and AXIOM Shooter are BLUX-free;
+- no launcher state is owned by BLUX.
+
+**To unblock Stage 27:**
+1. Implement the F1 verifications.
+2. Pass the launcher device matrix (`docs/device-testing.md`).
+3. Provision an offline release keystore.
+4. Complete the legal review.
+5. Make the repository private.
+
+Then run the brief's usefulness/complexity/reliability review of the four candidate features (natural-language
+search, assistant surface, contextual actions, intelligent organization) before implementing any of them.
+
+---
+
+**STAGED EXECUTION PLAN COMPLETE — READY FOR OUTER VOID REASSESSMENT**
+
+Every stage from 00 to 45 was executed with evidence or resolved with a recorded reason. Stage 27 is BLOCKED, not
+done. Nothing is shipped, and every blocker that gates a release is listed above.

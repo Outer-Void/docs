@@ -226,11 +226,14 @@ Done:
   against the Definition of Done ([definition-of-done.md](definition-of-done.md)). The status matrix is the final
   matrix, re-anchored to the verified commits. Fixed in this stage: bluxai.app without BLUX (F74) and blux-app lint
   (F75). Not met: CI (F49), real providers (F10), devices, and VoidForge visibility (F7).
-
-**Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
-it only after Stage 24's hard gate passes, and that gate is not passed.
+- **Stage 45 (2026-10-27): freeze for reassessment.** The rebuild is frozen; the input for the reassessment is
+  [POST_STAGED_REBUILD_REASSESSMENT_INPUT.md](../POST_STAGED_REBUILD_REASSESSMENT_INPUT.md).
+- **Stage 27 (circled back 2026-10-27): BLOCKED.** Its brief allows the AXIOM Launcher optional BLUX layer only
+  after Stage 24's release gate passes, and on re-check that gate still fails (F1 stubs, no device matrix, no
+  keystore, legal review, public repository). No integration was added; the launcher stays BLUX-free at its core.
 
 Next:
-- the owner-queued Stages 31–45, through to a freeze for reassessment (Stage 27 still to be circled back to).
+- the Outer Void reassessment, using the freeze input. Stage 27 is unblocked by the Stage 24 gate items listed
+  there.
 
 An incremental documentation and evidence sync follows every stage.
