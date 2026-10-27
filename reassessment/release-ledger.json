@@ -1,0 +1,84 @@
+{
+ "frozen_at": "2026-10-27",
+ "source": "docs/ecosystem/release-ledger.json",
+ "source_sha256": "96096cc5ffbf1a6e417cb16425adef72127b3cd740f850219f84f9e34739cb2b",
+ "content": {
+  "kind": "outer-void.release-ledger",
+  "version": "1",
+  "policy": "Every release tag of a contract-bearing repository is recorded here. A tag that is not recorded fails tools/check_contracts.py. A release is 'current' only with the evidence the constitution's release policy requires; none is current on 2026-10-27.",
+  "releases": [
+   {
+    "repo": "blux",
+    "tag": "blux-sdk-v0.1.0",
+    "commit": "0b09a46a98a2",
+    "date": "2026-10-24",
+    "status": "historical",
+    "note": "SDK baseline pinned by blux-system (Contract v1.0)."
+   },
+   {
+    "repo": "blux-coga",
+    "tag": "CogA-0.1-mini",
+    "commit": "91e849fe8f3b",
+    "date": "2026-01-30",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "blux-ca",
+    "tag": "cA-0.1",
+    "commit": "97f8a397d1ff",
+    "date": "2026-01-30",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "blux-ca",
+    "tag": "cA-0.1-mini",
+    "commit": "9b5b24077e14",
+    "date": "2026-01-30",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "dat",
+    "tag": "v1.0.0",
+    "commit": "174b1773c570",
+    "date": "2025-10-17",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "dat",
+    "tag": "v2.0.0-Stable",
+    "commit": "68422f63abed",
+    "date": "2025-10-22",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "dat",
+    "tag": "v2.0.0-alpha.1",
+    "commit": "bc12c4d0c134",
+    "date": "2025-10-24",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "lrc",
+    "tag": "v1.0.0-stable",
+    "commit": "b34d9c7ae4fa",
+    "date": "2025-10-23",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   },
+   {
+    "repo": "god",
+    "tag": "v1.0.0",
+    "commit": "e4ab9c20f2c8",
+    "date": "2025-11-10",
+    "status": "historical",
+    "note": "Tag created before the 2026 staged rebuild; not re-qualified. Not a current release."
+   }
+  ]
+ }
+}

@@ -1,0 +1,580 @@
+{
+ "frozen_at": "2026-10-27",
+ "source": "blux/migration/blhermes/parity-matrix.json",
+ "states_defined": [
+  "NOT_STARTED",
+  "CHARACTERIZED",
+  "IN_PROGRESS",
+  "MIGRATED",
+  "PLANNED_REMOVAL",
+  "KEPT_AS_ATTRIBUTION",
+  "DEFERRED"
+ ],
+ "by_state": {
+  "IN_PROGRESS": 10,
+  "PLANNED_REMOVAL": 3,
+  "CHARACTERIZED": 2,
+  "MIGRATED": 8,
+  "NOT_STARTED": 15,
+  "DEFERRED": 5,
+  "KEPT_AS_ATTRIBUTION": 1
+ },
+ "total": 44,
+ "features": [
+  {
+   "id": "BLH-001",
+   "feature": "Agent conversation loop (turns, tool dispatch, compaction, interrupts)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/agents.py (AgentRunner over model.generate + tool capabilities)",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "Minimal loop migrated (turns, tool dispatch through the runtime, turn limit); compaction, interrupts and streaming turns are not."
+  },
+  {
+   "id": "BLH-002",
+   "feature": "Model provider transport and provider catalogue",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux-gpt",
+    "module": "bluxgpt/providers/ + routes (logical models)",
+    "owner": "blux-gpt"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "OpenAI, Anthropic, DeepSeek and OpenAI-compatible servers are routed through BluxGPT; the other upstream providers in the provider_registry golden each still need a BluxGPT route (or retirement)."
+  },
+  {
+   "id": "BLH-003",
+   "feature": "Nous Portal account, billing and inference (device-code login, subscriptions, invoke JWT)",
+   "classification": "REMOVE",
+   "target": null,
+   "migration_state": "PLANNED_REMOVAL",
+   "blocker": null
+  },
+  {
+   "id": "BLH-004",
+   "feature": "Tool registry and built-in tools",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/tools/builtin.py (shell.exec, fs.read, fs.write as capabilities)",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "3 core tools migrated; the remaining tools in the tool_registry golden need a capability each (or retirement)."
+  },
+  {
+   "id": "BLH-005",
+   "feature": "Toolsets (named tool bundles and resolution)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/policy (toolset -> capability grants)",
+    "owner": "blux"
+   },
+   "migration_state": "CHARACTERIZED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-006",
+   "feature": "Terminal execution environments and child-process environment scrubbing",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/security/environment.py (child_env allow-list) used by shell.exec",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": "Remote sandbox backends (ssh, docker, modal) are not migrated; only local execution."
+  },
+  {
+   "id": "BLH-007",
+   "feature": "Dangerous-command approval, session approvals and YOLO",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/security/commands.py + security/approvals.py (+ Stage 12 hook vetoes)",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": "Gateway/remote approval prompts (approval over messaging platforms) move with BLH-021."
+  },
+  {
+   "id": "BLH-008",
+   "feature": "File-write safety (credential paths, profile roots, approval-required paths)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/security/paths.py",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-009",
+   "feature": "Secret redaction for logs, outputs and egress",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/security/environment.py redact() over the SDK scrub patterns",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-010",
+   "feature": "Credential storage, pools and routing (.env, auth.json, credential pool, secret scope)",
+   "classification": "TEMPORARY_COMPATIBILITY",
+   "target": {
+    "repository": "Outer-Void/blux-gpt",
+    "module": "bluxgpt/config.py (provider keys); BLUX credential.requested hook (Stage 12)",
+    "owner": "blux-gpt"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": "Credential pools/rotation and OAuth providers are not migrated (BluxGPT reads one key per provider)."
+  },
+  {
+   "id": "BLH-011",
+   "feature": "Session store (SQLite sessions, messages, FTS search, lineage, compression)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/sessions.py (SessionStore) + compat import from state.db",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "Core store, search and import migrated; branching, rewind, compression and lineage are not."
+  },
+  {
+   "id": "BLH-012",
+   "feature": "State root, HERMES_HOME and profiles",
+   "classification": "TEMPORARY_COMPATIBILITY",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/state.py (BLUX_HOME, profiles) + runtime/blux_runtime/compat/hermes.py (time-bounded legacy import)",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": "Compatibility import (hermes-home-import) expires 2027-04-30 and must then be removed."
+  },
+  {
+   "id": "BLH-013",
+   "feature": "Memory (built-in memory tool and memory-provider plugins)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/capabilities/memory",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Characterization pending: needs a temp-home probe of the memory tool's add/replace/remove file format."
+  },
+  {
+   "id": "BLH-014",
+   "feature": "Subagents and delegation (depth limits, toolset derivation, child sessions)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/agents.py (AgentRunner.delegate)",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-015",
+   "feature": "Skills (bundled and optional)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/skills.py (SkillLibrary; skill.list / skill.get)",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "Loader and admission rules migrated; each upstream skill still needs licence review and a declared network surface before BLUX ships it."
+  },
+  {
+   "id": "BLH-016",
+   "feature": "Plugins, plugin loader and plugin catalogue",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/plugins.py (blux-plugin.json, out-of-process capabilities and hooks)",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "The plugin mechanism is migrated (out of process, no credentials, operator grants); upstream in-process plugins must each be re-implemented as blux plugins."
+  },
+  {
+   "id": "BLH-017",
+   "feature": "MCP client (connecting to MCP servers, tool discovery)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/mcp.py (stdio MCP client; mcp.<server>.<tool> capabilities)",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "stdio transport migrated; Streamable HTTP/SSE transports and OAuth for remote MCP servers are not."
+  },
+  {
+   "id": "BLH-018",
+   "feature": "MCP server (exposing agent tools over MCP)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "integrations/mcp (BLUX capabilities served over MCP)",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-019",
+   "feature": "Optional MCP server definitions (third-party services)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "registry/ (reviewed MCP catalogue)",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-020",
+   "feature": "Cron/scheduled agent jobs",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/scheduler.py (parsing, JobStore, run_due); driven by ax",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "BLUX side migrated; the ax command that drives run_due arrives with the ax control plane (Stage 18)."
+  },
+  {
+   "id": "BLH-021",
+   "feature": "Messaging gateway core (routing, sessions, delivery, webhooks, API server)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/extensions/gateway.py (authenticated loopback execution API)",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "The authenticated execution surface is migrated; messaging session routing, delivery and webhooks are not."
+  },
+  {
+   "id": "BLH-022",
+   "feature": "Gateway platform adapters (Telegram, Discord, Slack, Matrix, WhatsApp, ...)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "integrations/gateway/platforms",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Per-platform SDK licence review; adapters move only after BLH-021."
+  },
+  {
+   "id": "BLH-023",
+   "feature": "Interactive CLI and slash commands",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "cli/blux_cli (blux chat for direct use); management commands in ax",
+    "owner": "blux"
+   },
+   "migration_state": "CHARACTERIZED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-024",
+   "feature": "Entry points hermes / hermes-agent / hermes-acp",
+   "classification": "TEMPORARY_COMPATIBILITY",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "compatibility shims forwarding to blux / ax",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-025",
+   "feature": "Install, setup and uninstall",
+   "classification": "REPLACE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "packaging/ (BLUX install) with an optional Hermes state import",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Superseded by BLUX-owned packaging (ADR-0015); nothing upstream is used."
+  },
+  {
+   "id": "BLH-026",
+   "feature": "Upstream self-update, release channels and update feeds",
+   "classification": "REMOVE",
+   "target": null,
+   "migration_state": "PLANNED_REMOVAL",
+   "blocker": null
+  },
+  {
+   "id": "BLH-027",
+   "feature": "Telemetry, shared metrics and OTLP export",
+   "classification": "REMOVE",
+   "target": null,
+   "migration_state": "PLANNED_REMOVAL",
+   "blocker": null
+  },
+  {
+   "id": "BLH-028",
+   "feature": "TUI (Ink UI) and TUI gateway (JSON-RPC methods)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "cli/blux_cli/direct.py (blux chat) as the terminal UI",
+    "owner": "blux"
+   },
+   "migration_state": "IN_PROGRESS",
+   "blocker": "Interactive terminal chat is migrated (blux chat); the full-screen Ink TUI is not (owner decision on which TUI ships)."
+  },
+  {
+   "id": "BLH-029",
+   "feature": "ACP adapter (editor integration)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "integrations/acp",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-030",
+   "feature": "Desktop application (Electron) and bootstrap installer",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "undecided (owner decision)",
+    "owner": "blux"
+   },
+   "migration_state": "DEFERRED",
+   "blocker": "Owner decision: whether BLUX keeps a desktop app (4,212 files)."
+  },
+  {
+   "id": "BLH-031",
+   "feature": "Web dashboard",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "undecided (owner decision)",
+    "owner": "blux"
+   },
+   "migration_state": "DEFERRED",
+   "blocker": "Owner decision: whether BLUX keeps the web dashboard."
+  },
+  {
+   "id": "BLH-032",
+   "feature": "Platform detection (OS, Android/Bionic, executables)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/platform",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-033",
+   "feature": "Termux packaging (bionic CPython/Node/uv, native wheels, .deb)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "packaging/termux (build_deb.py, audit_deb.py, validate_installed.py, maintainer/)",
+    "owner": "blux"
+   },
+   "migration_state": "MIGRATED",
+   "blocker": "Installation through Termux APT on a device is BLOCKED until the owner runs packaging/termux/ACCEPTANCE.md; no BLUX APT repository is published yet."
+  },
+  {
+   "id": "BLH-034",
+   "feature": "Package manager (PM: locks, extras, platform gates)",
+   "classification": "REPLACE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "packaging/ (pinned locks per BLUX distribution)",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Superseded by BLUX-owned packaging (ADR-0015); nothing upstream is used."
+  },
+  {
+   "id": "BLH-035",
+   "feature": "Nix, Docker, build scripts and CI",
+   "classification": "REPLACE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "packaging/ and .github/ of BLUX",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Superseded by BLUX-owned packaging (ADR-0015); nothing upstream is used."
+  },
+  {
+   "id": "BLH-036",
+   "feature": "LSP integration",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/capabilities/lsp (blux-code)",
+    "owner": "blux"
+   },
+   "migration_state": "DEFERRED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-037",
+   "feature": "Browser automation and computer use",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "runtime/blux_runtime/capabilities/browser",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Session-scoped permissions must map onto BLUX policy before porting."
+  },
+  {
+   "id": "BLH-038",
+   "feature": "Localization (locales)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "cli/blux_cli/locales",
+    "owner": "blux"
+   },
+   "migration_state": "DEFERRED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-039",
+   "feature": "Documentation website and docs",
+   "classification": "REPLACE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "docs/ (BLUX documentation)",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-040",
+   "feature": "Upstream test suites and evals (characterization sources)",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "tests/migration (ported characterization tests)",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  },
+  {
+   "id": "BLH-041",
+   "feature": "Upstream licence, notices and contributor records",
+   "classification": "UPSTREAM_ATTRIBUTION",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "LICENSE/THIRD_PARTY_NOTICES of every BLUX distribution containing ported code; credits LIN-001",
+    "owner": "blux"
+   },
+   "migration_state": "KEPT_AS_ATTRIBUTION",
+   "blocker": null
+  },
+  {
+   "id": "BLH-042",
+   "feature": "Core root modules (time, YAML, logging, utils, runners, trajectory tools)",
+   "classification": "REPLACE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "re-homed helpers inside the modules that need them",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": "Batch/trajectory runners generate training data: any use must pass the dataset rules (no private data, no hidden chain-of-thought)."
+  },
+  {
+   "id": "BLH-043",
+   "feature": "Native helpers",
+   "classification": "MIGRATE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "undecided (review)",
+    "owner": "blux"
+   },
+   "migration_state": "DEFERRED",
+   "blocker": "Review what native/ builds and its licences."
+  },
+  {
+   "id": "BLH-044",
+   "feature": "Hermes-branded identifiers, env vars, paths and package names",
+   "classification": "REPLACE",
+   "target": {
+    "repository": "Outer-Void/blux",
+    "module": "BLUX_* names; HERMES_* read only as fallbacks (BLH-012)",
+    "owner": "blux"
+   },
+   "migration_state": "NOT_STARTED",
+   "blocker": null
+  }
+ ],
+ "decoupling_evidence": {
+  "contract": "blux.blhermes-decoupling-evidence",
+  "recorded": "2026-10-26",
+  "method": "Fresh clone of blux (branch stage-16/decoupling) and blux-gpt in an isolated directory with NO blhermes-agent beside them; fresh Python 3.13 venv built from the clone (pip install -e sdk/python -e . -r requirements-dev.txt; ecosystem packages with --no-deps, as CI); BLHERMES_SOURCE/BLHERMES_PYTHON unset.",
+  "fork_present": false,
+  "fork_head_untouched": "ac51a44f1f73452446ddea8e51c58e9e5e9098fc",
+  "results": {
+   "schema_lock": "PASS",
+   "format": "PASS",
+   "lint": "PASS",
+   "types": "PASS",
+   "tests": {
+    "passed": 543,
+    "skipped": 20,
+    "failed": 0,
+    "skips": "16 fork-dependent reference checks (Stage 11 characterization/matrix-location/no-deletion/rescan, optional SKILL.md format check) skip cleanly; 2 REAL-provider tests need credentials; CogA/cA integration re-run with their project dirs: 9 passed"
+   },
+   "wheel": "PASS (verify_wheel: OK, Model API OK, Hook System OK)",
+   "termux_deb": {
+    "build": "PASS",
+    "audit": "PASS",
+    "sha256": "8881ee39162adb05767bb5b4c8dc05c92f068c274a75b57b2bf73382b2e01585"
+   },
+   "decoupling_scan": {
+    "violations": 0,
+    "files_scanned": 365
+   },
+   "dat_release": {
+    "verdict": "pass",
+    "blocking": 0,
+    "suppressed": 14,
+    "remaining": [
+     "medium release.untagged-version",
+     "info package.unversioned-requirement",
+     "info package.unversioned-requirement"
+    ]
+   }
+  }
+ }
+}

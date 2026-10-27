@@ -1,0 +1,597 @@
+{
+ "format": "outer-void-freeze-capabilities v1",
+ "frozen_at": "2026-10-27",
+ "discovered_by": "god capabilities over the seven repositories with .blux/",
+ "count": 38,
+ "capabilities": [
+  {
+   "capability_id": "artifact.audit",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability artifact.audit",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "artifact.construct",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability artifact.construct",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "artifact.modify",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability artifact.modify",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "artifact.repair",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability artifact.repair",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "artifact.validate",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability artifact.validate",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "capability.compat",
+   "project_id": "god",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "discovery"
+   },
+   "provider": {
+    "entrypoint": "god blux-capability capability.compat",
+    "kind": "subprocess",
+    "repository": "Outer-Void/god"
+   }
+  },
+  {
+   "capability_id": "capability.describe",
+   "project_id": "god",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "discovery"
+   },
+   "provider": {
+    "entrypoint": "god blux-capability capability.describe",
+    "kind": "subprocess",
+    "repository": "Outer-Void/god"
+   }
+  },
+  {
+   "capability_id": "capability.discover",
+   "project_id": "god",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "discovery"
+   },
+   "provider": {
+    "entrypoint": "god blux-capability capability.discover",
+    "kind": "subprocess",
+    "repository": "Outer-Void/god"
+   }
+  },
+  {
+   "capability_id": "code.patch",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability code.patch",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "command.discover",
+   "project_id": "god",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "discovery"
+   },
+   "provider": {
+    "entrypoint": "god blux-capability command.discover",
+    "kind": "subprocess",
+    "repository": "Outer-Void/god"
+   }
+  },
+  {
+   "capability_id": "config.generate",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability config.generate",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "echo.test",
+   "project_id": "blux",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "stage": "reference"
+   },
+   "provider": {
+    "entrypoint": "blux_runtime.builtin.echo:handle",
+    "kind": "builtin",
+    "repository": "Outer-Void/blux"
+   }
+  },
+  {
+   "capability_id": "environment.doctor",
+   "project_id": "jadis-toolbox",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "read-only"
+   },
+   "provider": {
+    "entrypoint": "jadis blux-capability environment.doctor",
+    "kind": "subprocess",
+    "repository": "Outer-Void/jadis.toolbox"
+   }
+  },
+  {
+   "capability_id": "environment.inspect",
+   "project_id": "jadis-toolbox",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "read-only"
+   },
+   "provider": {
+    "entrypoint": "jadis blux-capability environment.inspect",
+    "kind": "subprocess",
+    "repository": "Outer-Void/jadis.toolbox"
+   }
+  },
+  {
+   "capability_id": "environment.snapshot",
+   "project_id": "jadis-toolbox",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "read-only"
+   },
+   "provider": {
+    "entrypoint": "jadis blux-capability environment.snapshot",
+    "kind": "subprocess",
+    "repository": "Outer-Void/jadis.toolbox"
+   }
+  },
+  {
+   "capability_id": "notes.search",
+   "project_id": "example-notes",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {},
+   "provider": {
+    "entrypoint": "notes blux-capability notes.search",
+    "kind": "subprocess",
+    "repository": "Outer-Void/example-notes"
+   }
+  },
+  {
+   "capability_id": "package.audit",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability package.audit",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "policy.verify",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability policy.verify",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "project.describe",
+   "project_id": "god",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "discovery"
+   },
+   "provider": {
+    "entrypoint": "god blux-capability project.describe",
+    "kind": "subprocess",
+    "repository": "Outer-Void/god"
+   }
+  },
+  {
+   "capability_id": "reason.analyze",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.analyze",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "reason.compare",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.compare",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "reason.critique",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.critique",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "reason.decompose",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.decompose",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "reason.plan",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.plan",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "reason.rank",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.rank",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "reason.risk",
+   "project_id": "blux-coga",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic",
+    "engine": "coga-2"
+   },
+   "provider": {
+    "entrypoint": "coga blux-capability reason.risk",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-coga"
+   }
+  },
+  {
+   "capability_id": "registry.index",
+   "project_id": "god",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "discovery"
+   },
+   "provider": {
+    "entrypoint": "god blux-capability registry.index",
+    "kind": "subprocess",
+    "repository": "Outer-Void/god"
+   }
+  },
+  {
+   "capability_id": "repo.audit",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability repo.audit",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "repo.compile",
+   "project_id": "lrc",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "lrc blux-capability repo.compile",
+    "kind": "subprocess",
+    "repository": "Outer-Void/lrc"
+   }
+  },
+  {
+   "capability_id": "repo.create",
+   "project_id": "lrc",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "lrc blux-capability repo.create",
+    "kind": "subprocess",
+    "repository": "Outer-Void/lrc"
+   }
+  },
+  {
+   "capability_id": "repo.migrate",
+   "project_id": "lrc",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "lrc blux-capability repo.migrate",
+    "kind": "subprocess",
+    "repository": "Outer-Void/lrc"
+   }
+  },
+  {
+   "capability_id": "repo.patch",
+   "project_id": "blux-ca",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "construction",
+    "certifies": "false",
+    "engine": "ca-2"
+   },
+   "provider": {
+    "entrypoint": "ca blux-capability repo.patch",
+    "kind": "subprocess",
+    "repository": "Outer-Void/blux-ca"
+   }
+  },
+  {
+   "capability_id": "repo.quality",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability repo.quality",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "repo.release",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability repo.release",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "repo.scaffold",
+   "project_id": "lrc",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "lrc blux-capability repo.scaffold",
+    "kind": "subprocess",
+    "repository": "Outer-Void/lrc"
+   }
+  },
+  {
+   "capability_id": "repo.security",
+   "project_id": "dat",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "dat blux-capability repo.security",
+    "kind": "subprocess",
+    "repository": "Outer-Void/dat"
+   }
+  },
+  {
+   "capability_id": "repo.validate",
+   "project_id": "lrc",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "deterministic"
+   },
+   "provider": {
+    "entrypoint": "lrc blux-capability repo.validate",
+    "kind": "subprocess",
+    "repository": "Outer-Void/lrc"
+   }
+  },
+  {
+   "capability_id": "toolchain.inspect",
+   "project_id": "jadis-toolbox",
+   "contract_versions": [
+    "1.0"
+   ],
+   "labels": {
+    "authority": "read-only"
+   },
+   "provider": {
+    "entrypoint": "jadis blux-capability toolchain.inspect",
+    "kind": "subprocess",
+    "repository": "Outer-Void/jadis.toolbox"
+   }
+  }
+ ]
+}

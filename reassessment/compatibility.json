@@ -1,0 +1,86 @@
+{
+ "frozen_at": "2026-10-27",
+ "source": "docs/ecosystem/compatibility.json",
+ "source_sha256": "fa2b03476cf05bbbf529eca0b6ceff8a506cc915f383c8a57999e1b8fe3be384",
+ "content": {
+  "blux": {
+   "contract_version": "1.0",
+   "contracts_sha256": "ad88d14d4928b9519b6a6ff7940bfb2806fca0315a1c032f5468780599b63ef9",
+   "hooks_version": "1.0",
+   "model_api_version": "1.0",
+   "runtime_sdk_pin": "blux-sdk==0.2.0",
+   "sdk_version": "0.2.0",
+   "supported_contract_versions": [
+    "1.0"
+   ],
+   "voidforge_copy_sha256": "6231dbe9fbe9db3c3084aae00caef3f43d053c5cfeb758a133728e57ebe07d87"
+  },
+  "capabilities": {
+   "blux": {
+    "echo.test": "514e917c3988207d84aa0873650c44e8997213354a693318e3a8889d1a798298"
+   },
+   "blux-ca": {
+    "artifact.construct": "cf24d0d6a2cb1fa607a8b9008ba0dffd5c7ea71afbea791b94e412754adc0a9f",
+    "artifact.modify": "aeb45ee9c55370929a85ddccecf6c3aa60c3d413df3d552e7ef92a4f3cdecebb",
+    "artifact.repair": "e2bec62257b0eb67a7138e30ed768ef6b9a394ebdd58034885708cf20818d5ea",
+    "artifact.validate": "c33fc0fe3b536d632c57dac66a3067b2037bb7492a0cbccffb1b6e8bfef155fc",
+    "code.patch": "bd56de8768ff2f228ae709c75f17bcf74a5e2efd6fa0eecd3622763d1b6fcefb",
+    "config.generate": "a584bda6f6f1ef4f2d50351b95fa7ef322acf5bb0a5a16431a8fa39182c34be3",
+    "repo.patch": "1f772f9b8ad828d25660de9665511265a675dffe8a77ee5cc9c9c7fa07e3b341"
+   },
+   "blux-coga": {
+    "reason.analyze": "d7f3b003848701833af8f9015401d6e68f94340cd65e1fefec93b5eb79024123",
+    "reason.compare": "2f28a07b588015524c2bc81fa1a8f045b6aa8bc32d27705411f62b9cad494ddc",
+    "reason.critique": "af376ce5e6fd7146d76de93c46e6740c09c3022d11790bcef46807d534177df8",
+    "reason.decompose": "5df2b4ea08db3196d3a549928c9f5a49faa3e12f1025c1a628aefce9f6aa7522",
+    "reason.plan": "42472151c0c02ee8d266c6a3f6b0ce25666dca304dc773349ee1f404a71629e5",
+    "reason.rank": "b3dbef656d4e0680c047ed1a99b55be72d366d38455be993609fb7427869eb3c",
+    "reason.risk": "15ad3a28a9a089a4283c9e2193fb67ad81bcf1fa96b577d5546e970d34245700"
+   },
+   "dat": {
+    "artifact.audit": "1eca8f093dd1021bb30dfb82d02bfbd43827cc8194bc22cc01675a807cf47030",
+    "package.audit": "1eca8f093dd1021bb30dfb82d02bfbd43827cc8194bc22cc01675a807cf47030",
+    "policy.verify": "3756bc9b6ef206ebda194d304de7daef4682a257c50c7e3a571019d4090acbee",
+    "repo.audit": "1eca8f093dd1021bb30dfb82d02bfbd43827cc8194bc22cc01675a807cf47030",
+    "repo.quality": "1eca8f093dd1021bb30dfb82d02bfbd43827cc8194bc22cc01675a807cf47030",
+    "repo.release": "1eca8f093dd1021bb30dfb82d02bfbd43827cc8194bc22cc01675a807cf47030",
+    "repo.security": "1eca8f093dd1021bb30dfb82d02bfbd43827cc8194bc22cc01675a807cf47030"
+   },
+   "god": {
+    "capability.compat": "b7ed0e4bc4e0f9154ec1caa57cca9a435e461c2ad468325997797a3bbd8aa811",
+    "capability.describe": "2ec4d97e0361181306f72c9b47e64010397734b2a9cfcd1246966e6d5a43e080",
+    "capability.discover": "c986eab54521068ffa0ae20dd5363b058b3b4451b190b703054c9204b818ee57",
+    "command.discover": "a1bd2576bed84a2e0852f024b030939ae288d6791f3038c04349ea1152048415",
+    "project.describe": "f47e4c1309bc674702005fea2f4a9e01e605625fa21146a7a2c5a98a9cdd17b7",
+    "registry.index": "e65031a974c2771f9f21a2841ecf92308dc03e484eba8adfcbe48990a19d08f6"
+   },
+   "jadis.toolbox": {
+    "environment.doctor": "c113cae837b03eb52ce2ad61bdd0996a0c7e30f4af131f103bfb68b7097127e8",
+    "environment.inspect": "6c1d8acc4a18a97470570ba314f0da9caa9101cf4cdbbc7e0943cd69a6a81785",
+    "environment.snapshot": "f075373edd3b81b27fa3890e55cab0719d6535c7785d0e5c6a6c1586ae78a35b",
+    "toolchain.inspect": "29f3dbc1cc9525a78e8a50d0217f82630bdb410345034950de1f9af3c338f095"
+   },
+   "lrc": {
+    "repo.compile": "2b129596aad4e57b02b3dc7d7b4226b5de26a7a72db0dc92214e8682795d9b6b",
+    "repo.create": "47307c8bb2fa12e3cd72a3a954640d483e455b6b44b1fe95f43028be675dc0f3",
+    "repo.migrate": "724313ee02afd2a3b4f16abc7d34dc8b6db441a13bf51bbd1d59aff3bcec4850",
+    "repo.scaffold": "99e1e318bc6f85af5dc17df547d6b14d76040f5f701c7c520a3535e28939842a",
+    "repo.validate": "e5f06a75d1d514dae3a1b7441ec3a0fd52239f577c631cad3d4ae181cba51b56"
+   }
+  },
+  "commits": {
+   "axiom": "2d3e4ef395fd",
+   "blux": "51134aff2a8b",
+   "blux-ca": "7cb953a10313",
+   "blux-coga": "3dc86fa7f791",
+   "blux-system": "f0ba3a13a175",
+   "blux10k": "80a7465f0ce1",
+   "dat": "487e1d4b839c",
+   "god": "ad6f0c4bcb62",
+   "jadis.toolbox": "253c386da4e1",
+   "lrc": "443e53265ecf",
+   "voidforge": "59b6d67959b4"
+  },
+  "voidforge_catalogue_sha256": "6231dbe9fbe9db3c3084aae00caef3f43d053c5cfeb758a133728e57ebe07d87"
+ }
+}

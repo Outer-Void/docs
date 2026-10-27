@@ -1,0 +1,99 @@
+{
+ "format": "outer-void-freeze-dependency-graph v1",
+ "frozen_at": "2026-10-27",
+ "source": "docs/constitution/repositories.json (depends_on)",
+ "nodes": [
+  "blux",
+  "blux-system",
+  "blux-gpt",
+  "blux-coga",
+  "blux-ca",
+  "dat",
+  "lrc",
+  "god",
+  "blux-app",
+  "blux-ca-dataset",
+  "blux-coga-dataset",
+  "axiom",
+  "blux10k",
+  "jadis.toolbox",
+  "voidforge",
+  "void.os",
+  "void.sys",
+  "void.game",
+  "roughin",
+  "vigyl",
+  "resolver",
+  "ov-webpages/theresolver",
+  "termux-background",
+  "ov-webpages/bluxai.app",
+  "ov-webpages/operationrestore",
+  "ov-webpages/ivrp",
+  "credits",
+  "docs",
+  ".github",
+  ".github-private"
+ ],
+ "edges": [
+  {
+   "from": "blux",
+   "to": "blux-system"
+  },
+  {
+   "from": "blux",
+   "to": "blux-gpt"
+  },
+  {
+   "from": "blux-system",
+   "to": "blux"
+  },
+  {
+   "from": "blux-ca",
+   "to": "dat"
+  },
+  {
+   "from": "god",
+   "to": "blux"
+  },
+  {
+   "from": "blux-app",
+   "to": "blux"
+  },
+  {
+   "from": "blux-app",
+   "to": "blux-system"
+  },
+  {
+   "from": "blux-app",
+   "to": "god"
+  },
+  {
+   "from": "blux-ca-dataset",
+   "to": "blux-ca"
+  },
+  {
+   "from": "blux-ca-dataset",
+   "to": "dat"
+  },
+  {
+   "from": "blux-coga-dataset",
+   "to": "blux-coga"
+  },
+  {
+   "from": "void.os",
+   "to": "void.sys"
+  },
+  {
+   "from": "void.os",
+   "to": "void.game"
+  },
+  {
+   "from": "ov-webpages/bluxai.app",
+   "to": "blux"
+  },
+  {
+   "from": "ov-webpages/bluxai.app",
+   "to": "blux-system"
+  }
+ ]
+}
