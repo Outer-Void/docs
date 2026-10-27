@@ -460,24 +460,27 @@
   {
    "component": "Vigyl",
    "repo": "vigyl",
-   "version": null,
-   "commit_sha": "2af2717",
-   "role": "Standalone caregiving/accountability product; Stage 1 backend foundation only",
+   "version": "API 0.2.0",
+   "commit_sha": "a0816a4",
+   "role": "Standalone caregiving/accountability product; backend API only (no UI yet)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "PLANNED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "MOCK_TESTED",
    "hardware_status": "NOT_APPLICABLE",
-   "security_status": "UNVERIFIED",
-   "package_status": "NOT_APPLICABLE",
+   "security_status": "MOCK_TESTED",
+   "package_status": "IMPLEMENTED",
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Only the Stage 1 core loop exists",
+    "No app UI (F43)",
+    "Notifications are in-app only: no push/email delivery (F44)",
+    "PostgreSQL migration + backup CI BLOCKED: GitHub billing lock (F45)",
+    "No recurring tasks, password reset or legal review (F46)",
     "Public repository for privacy-sensitive product source"
    ],
-   "evidence": "Stage 00 baseline (2026-10-24); release readiness is Stage 29",
-   "last_verified": "2026-10-24"
+   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Termux Background",

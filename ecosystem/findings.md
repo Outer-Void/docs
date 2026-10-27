@@ -80,6 +80,23 @@ so the production CSS was empty. Open items:
 | F40 | roughin | Production PWA icons (192/512 PNG) are deliberately kept out of git; only a placeholder SVG ships | Low | `vite build` audit | Owner/brand pipeline (Void.Sys icons) | Yes: store-quality install |
 | F41 | roughin | Optional BLUX features (drafting, scope extraction, summaries) were not started: the brief allows them only after the deterministic core is solid, and the core's hard gate still has F34/F35 open | Info | Stage 28 brief | After F34/F35 | No |
 
+## Stage 29 incremental sync (2026-10-27)
+
+Vigyl core rebuild (vigyl `a01497d`, `a0816a4`). Fixed in the stage, with tests: Stage 1 had no
+authentication. `GET /users` and `GET /care-groups` listed every account's email and every group's join
+code to anyone, and every write trusted a client-supplied `user_id`. Join codes never expired and could be
+reused. Tasks had no verification, missed state or history. The pinned `fastapi==0.116.1` pulled in
+starlette 0.47.3 (7 advisories). Open items:
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F42 | vigyl | Stage 1 SQLite development databases are not migrated (no accounts existed; Alembic starts at 0001 = the Stage 29 models) | Low | Migration design | Documented in the 0001 docstring and roadmap | No (nothing was deployed) |
+| F43 | vigyl | No app UI: the master plan's "see task, tap done" and "see status instantly" flows exist only as API endpoints | High | `frontend/` holds only `.gitkeep` | Future stage (Vigyl UI) | Yes: release |
+| F44 | vigyl | Notifications and escalations are in-app records only; no push, email or SMS delivery, so an escalation reaches nobody who is not in the app | High | `docs/notifications.md` | Future stage | Yes: release (must not be described as alerting until fixed) |
+| F45 | vigyl | The PostgreSQL migration test and backup round-trip are CI-defined but CI run 40445574378 (`a01497d`) never started: "account is locked due to a billing issue" (same as F34) | High | GitHub check-run annotation | **BLOCKED** (Appendix B): the owner clears the billing lock; acceptance = `backend` and `postgres` jobs green | Yes: release |
+| F46 | vigyl | No recurring tasks, password reset, email verification or 2FA; subscriptions (master plan §VI) and location are not built; the privacy policy is a corrected draft needing legal review (health-adjacent data) | Medium | Stage 29 audit | Future stages + owner legal review | Yes: release |
+| F47 | vigyl | Optional BLUX assistance not started; the boundary (suggest-only, never completes/reassigns/verifies, no medical decisions) is documented in `docs/architecture.md#blux-boundary` | Info | Stage 29 brief | After F43/F44 | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,
