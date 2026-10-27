@@ -94,7 +94,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 - **Resolver website** (`ov-webpages/theresolver`): Marketing/acquisition site for the Resolver bot (separate from the runtime). Evidence: Stage 00 baseline (2026-10-24).
   - Blocker: Stage 00 baseline: next 16.1.6 critical advisory, upgrade to >=16.4.3 (not re-verified)
 - **Roughin** (`roughin`): Standalone contractor SaaS (FastAPI + React PWA). Evidence: pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28).
-  - Blocker: PostgreSQL migration + backup/restore CI job defined, no recorded run (F34)
+  - Blocker: PostgreSQL migration + backup/restore CI BLOCKED: GitHub account billing lock, jobs never started (F34)
   - Blocker: No deployment, Stripe test-mode or real R2 run (F35)
   - Blocker: No frontend tests or device testing (F37)
   - Blocker: Frontend dependency advisories need major upgrades; Python deps pip-audit clean (F36)

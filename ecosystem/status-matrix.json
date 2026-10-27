@@ -448,7 +448,7 @@
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "PostgreSQL migration + backup/restore CI job defined, no recorded run (F34)",
+    "PostgreSQL migration + backup/restore CI BLOCKED: GitHub account billing lock, jobs never started (F34)",
     "No deployment, Stripe test-mode or real R2 run (F35)",
     "No frontend tests or device testing (F37)",
     "Frontend dependency advisories need major upgrades; Python deps pip-audit clean (F36)",
