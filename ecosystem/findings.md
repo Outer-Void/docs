@@ -21,7 +21,7 @@ noted. History stays in git.
 | F10 | blux, blux-gpt | No real-provider Model API evidence (provider accounts without balance). Hard-coded provider model IDs are not checked against current catalogs. | Medium | Evidence-model audit (mock vs real-provider) | When provider access exists | No |
 | F11 | .github | `docs/ecosystem-diagram.md` described five repositories that do not exist (`blux-core`, `blux-orbit`, `blux-design-system`, `blux-experience-kit`, `blux-governance`). Now replaced by a pointer to this map. | Medium (docs) | Cross-reference audit | Fixed in this pass | No |
 | F12 | theresolver | Stage 00 baseline: `next` 16.1.6 critical advisory, upgrade to >= 16.4.3. Not re-verified. | High (security, unverified) | Status matrix | Product maintenance | Yes: site release |
-| F13 | roughin | Stage 00 baseline: missing `greenlet` dependency. Not re-verified. | Medium (unverified) | Status matrix | Stage 28 | Unknown |
+| F13 | roughin | ~~Stage 00 baseline: missing `greenlet` dependency~~ **Resolved in Stage 28:** reproduced (import error), fixed with `sqlalchemy[asyncio]` in `backend/requirements.txt` (roughin `9e5cf12`). | Medium | Status matrix | Stage 28 | No longer |
 | F14 | termux-background | README said "v1.0.0 Not Operational" while `VERSION` is 1.1.0; no device has passed its checklist. README corrected. | Low | Version-consistency audit | Owner device run | Yes: release |
 | F15 | jadis.toolbox | The README was an operating checklist and did not describe the repository's scripts. An identity section was added. | Low (docs) | Identity audit | Fixed in this pass | No |
 | F16 | blux10k | `dotfiles/.zshrc` exports `BLUX10K_VERSION="2.0.0"`, while `VERSION` and `bin/blux10k --version` report 3.0.0 | Low | Version-consistency audit | Next blux10k change | No |
@@ -56,6 +56,29 @@ noted. History stays in git.
 | F30 | void.game | An interrupted run is not resumed; only campaign progress, scores and settings persist | Medium | Persistence audit | Future-stage work | No |
 | F31 | void.game, void.os | No device playthroughs, GL context-loss, frame-time or battery evidence on either surface | High | Status matrix | Hardware pending | Yes: release |
 | F32 | void.game, void.os | The default font (libGDX `lsans-15`) has no confirmed upstream licence (credits UNR-020) | Medium | Asset-licensing audit | Unresolved attribution | Yes: legal review |
+
+## Stage 28 incremental sync (2026-10-27)
+
+Roughin release-readiness audit (roughin `9e5cf12`). Fixed in the stage, with tests: the Stripe webhook had no
+idempotency and never recorded payments or linked subscriptions; the checkout customer id was never committed;
+refresh tokens were plaintext, never rotated, and `/auth/refresh` returned 500; CORS was a wildcard with
+credentials; the default JWT secret and `create_all` were allowed in production; invoice numbers were globally
+unique; invoice status was freely patchable; a voided invoice's payment link stayed payable; account deletion
+failed on foreign keys and left stored files; uploads had no type or size limit; search did not escape LIKE
+wildcards; two list routes answered 200 instead of 404 across tenants; Tailwind never ran (no PostCSS config),
+so the production CSS was empty. Open items:
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F33 | roughin | Migration 0001 never matched the models: 32 columns nullable that the models declare NOT NULL, and no unique PaymentIntent id. Databases built by the 1.0 `create_all` have the model schema and no `alembic_version`. **Resolved for migrated databases:** migration 0003 and `test_migrations.py` (SQLite). `create_all` databases need `alembic stamp 0001` (docs/deployment.md) | High | `compare_metadata` test | Stage 28 | No longer (stamping documented) |
+| F34 | roughin | The PostgreSQL migration run and the backup/restore round-trip are defined in CI (`postgres` job) but have not run with recorded evidence; there is no PostgreSQL in the build environment, and `gh` is not authenticated in this session to read CI | High | Stage 28 hard gate | Environment-blocked (Appendix B): next, read the CI run for `9e5cf12`; acceptance = `postgres` job green | Yes: release |
+| F35 | roughin | No production deployment, no Stripe test-mode run, no real R2 bucket test: Stripe and R2 are faked at the network edge in tests (webhook signatures are real) | High | Stage 28 hard gate | Environment-blocked: needs owner accounts and a host; steps in `docs/release-checklist.md` | Yes: release |
+| F36 | roughin | Frontend dependency advisories (`npm audit`: 1 high, 4 moderate): vite ≤6.4.3 and esbuild ≤0.24.2 (dev server only, not in the bundle); react-router 6.x open redirect via `<Link>`/`navigate` (shipped, but every navigation target is a constant or a server UUID, so it is not reachable today). Fixes need majors: react-router-dom 7, vite 8, vite-plugin-pwa 2 | Medium | `npm audit`; Dependabot on push | Future stage: upgrade with UI smoke tests | No (not exploitable as used); yes before adding user-controlled navigation |
+| F37 | roughin | No frontend tests and no real-device mobile or poor-network testing; the UI was changed (refresh interceptor, invoice actions, Settings) and verified only by `vite build` | Medium | Stage 28 audit | Future stage (Roughin UI) | Yes: release confidence |
+| F38 | roughin | Auth rate limiting is in process memory (one instance only); no email verification, password reset, 2FA or account lockout; tokens in `localStorage` | Medium | `docs/security.md` | Future stage | No (documented) |
+| F39 | roughin | Partial payments and refunds are not modelled (audited for manual review); estimates are PDFs, not stored entities; `datetime.utcnow()` naive timestamps (deprecated in Python 3.12+) | Low | Stage 28 audit | Future stage | No |
+| F40 | roughin | Production PWA icons (192/512 PNG) are deliberately kept out of git; only a placeholder SVG ships | Low | `vite build` audit | Owner/brand pipeline (Void.Sys icons) | Yes: store-quality install |
+| F41 | roughin | Optional BLUX features (drafting, scope extraction, summaries) were not started: the brief allows them only after the deterministic core is solid, and the core's hard gate still has F34/F35 open | Info | Stage 28 brief | After F34/F35 | No |
 
 ## TODO / FIXME source audit (2026-10-26)
 

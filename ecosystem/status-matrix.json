@@ -435,24 +435,27 @@
   {
    "component": "Roughin",
    "repo": "roughin",
-   "version": "frontend 1.0.0",
-   "commit_sha": "7bd7125",
+   "version": "1.1.0 (API); frontend 1.0.0",
+   "commit_sha": "9e5cf12",
    "role": "Standalone contractor SaaS (FastAPI + React PWA)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "PLANNED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "MOCK_TESTED",
    "hardware_status": "NOT_APPLICABLE",
-   "security_status": "UNVERIFIED",
-   "package_status": "NOT_APPLICABLE",
+   "security_status": "MOCK_TESTED",
+   "package_status": "IMPLEMENTED",
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Stage 00 baseline: missing greenlet dependency (not re-verified)",
+    "PostgreSQL migration + backup/restore CI job defined, no recorded run (F34)",
+    "No deployment, Stripe test-mode or real R2 run (F35)",
+    "No frontend tests or device testing (F37)",
+    "Frontend dependency advisories need major upgrades (F36)",
     "Public repository for proprietary SaaS source"
    ],
-   "evidence": "Stage 00 baseline (2026-10-24); release readiness is Stage 28",
-   "last_verified": "2026-10-24"
+   "evidence": "pytest: 91 passed at 9e5cf12 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Vigyl",
