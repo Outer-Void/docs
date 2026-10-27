@@ -1,5 +1,8 @@
 # Outer Void ecosystem: map, authority and status
 
+> The authoritative roles, boundaries and policies are in the [constitution](../constitution/README.md); this page
+> is the summary and the stage record.
+
 Engineering and governance reference, kept current by the documentation-synchronization pass that follows
 every stage. Full reconciliation **2026-10-26** after Stage 23; incremental syncs after Stages 24–26 and the JADIS Toolbox checkpoint (2026-10-26).
 
@@ -39,7 +42,7 @@ Roughin, Vigyl, Resolver (Telegram runtime) and its website, Termux Background, 
 | **LRC** (lrc) | Deterministic repository creation, scaffolding and migration | Certifying itself |
 | **GOD** (god) | Discovery of capabilities, projects and commands | Execution of anything it discovers |
 | **BLUX System** (blux-system) | Intelligence-free execution truth: receipts, operation graph, provenance, replay metadata, artifact references | Reasoning, planning, orchestration |
-| **BLUX App** (blux-app) | Read-only observability viewer | Execution or enforcement |
+| **BLUX App** (blux-app) | Local mission control: read-only views over the BLUX tools; read-only BLUX System checks as its only controls | Execution, enforcement, any BLUX logic |
 | **BluxGPT** (blux-gpt) | Provider transport behind Model API v1: retries, streaming, normalization | Agent loops, tool execution, routing across providers, ecosystem authority |
 | **blux10k** | Environment and toolchain authority (`ax env`) and dotfiles | Project or device work |
 | **JADIS Toolbox** (`jadis`, jadis.toolbox) | *This workstation*: environment classification, doctor, safe journaled local repairs and bootstraps, reproducibility snapshots | Dotfile management (blux10k), routing (`ax`), audits (DAT), discovery (GOD), devices (VoidForge), intelligence (BLUX: read-only access only) |
@@ -52,7 +55,7 @@ The detailed contracts live in the BLUX repository: [Contract v1](https://github
 [Hook System v1](https://github.com/Outer-Void/blux/tree/main/docs/hooks), and the
 [capability contract ADR](https://github.com/Outer-Void/blux/blob/main/docs/adr/0003-capability-contract.md).
 A repository integrates by declaring capabilities in a `.blux/` directory (present today in blux, blux-coga,
-blux-ca, dat, lrc and god). A missing `.blux/` is valid wherever BLUX integration is
+blux-ca, dat, lrc, god and jadis.toolbox). A missing `.blux/` is valid wherever BLUX integration is
 intentionally excluded.
 
 ## When to use `blux` and when to use `ax`
@@ -209,6 +212,8 @@ Done:
   from BLUX System, and it controls only read-only checks.
 - **Stage 39 (2026-10-27): BLUX web.** `blux-web` was confirmed absent. bluxai.app 0.1.0 is an API-only
   workspace service, and its hard gate passed: no BLUX logic is duplicated, and it can be switched off safely.
+- **Stage 40 (2026-10-27): docs as constitution.** `constitution/` was added. Hard gate passed: every active
+  repository has a role and an integration boundary (`tools/build_constitution.py --check`).
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.

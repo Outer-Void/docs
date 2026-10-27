@@ -4,6 +4,10 @@ Central engineering, governance, legal and policy documentation for the Outer-Vo
 
 ## Ecosystem (engineering and governance)
 
+- [constitution/](constitution/README.md): the authoritative ecosystem constitution: repository ownership map
+  (generated and checked by `python3 tools/build_constitution.py --check`), architecture and naming, contracts
+  and compatibility, policies, release, deprecation and recovery.
+
 - [ecosystem/README.md](ecosystem/README.md): the ecosystem map, authority boundaries, when to use `blux`
   and when to use `ax`, BLHermes disposition, product maturity, the evidence model and the status
   vocabulary.

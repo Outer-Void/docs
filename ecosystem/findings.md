@@ -206,6 +206,20 @@ service off.
 |---|---|---|---|---|---|---|
 | F66 | bluxai.app | API only: no web front end; not deployed; rate limiting is per process; no email verification or password reset; remote agents not offered | Medium | Stage 39 scope | Future stage (product) | Yes: launch |
 
+## Stage 40 incremental sync (2026-10-27)
+
+The constitution is added (`constitution/`): the repository ownership map (30 active repositories, generated and
+checked, so every active repository in the status matrix has a role and an integration boundary), architecture
+and naming, contracts and compatibility, policies, and lifecycle. The cross-check against source found the
+following. Fixed: the ecosystem README listed `.blux/` in six repositories (jadis.toolbox was missing) and still
+described BLUX App 1.0. BLUX App's engine grouping missed most DAT and LRC capability ids (fixed in blux-app
+`dbdd2a4`).
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F67 | god | `pyproject.toml` declares `Development Status :: 5 - Production/Stable` although GOD is not released | Low | Constitution cross-check | Stage 41 (metadata accuracy) | No |
+| F68 | blux-system | Pins blux-sdk 0.1.0 (commit `0b09a46`) while BLUX ships 0.2.0; same Contract 1.0, but the pin is one release behind | Low | Compatibility matrix | Stage 42 (contract CI) | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,

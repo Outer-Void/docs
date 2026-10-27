@@ -1,0 +1,403 @@
+{
+ "kind": "outer-void.repository-map",
+ "version": "1",
+ "as_of": "2026-10-27",
+ "archived": [
+  {
+   "repo": "blhermes-agent",
+   "note": "Archived fork of Nous Research hermes-agent (MIT); replaced by BLUX; reference only"
+  }
+ ],
+ "excluded": [
+  {
+   "repo": "secret-project",
+   "note": "Owner-excluded; never read"
+  }
+ ],
+ "repositories": [
+  {
+   "repo": "blux",
+   "component": "BLUX",
+   "kind": "platform",
+   "owns": "Contract v1, the capability registry and policy, Model API v1 and routing, Hook System v1, the runtime, the direct `blux` CLI, the training data pipeline and Gen 0 evaluation harness",
+   "never_owns": "Device control, receipt persistence, audits, discovery, repository creation, product business truth",
+   "interface": "`blux` CLI (one JSON document per machine command), blux-sdk (Python), contracts/v1 schemas",
+   "integration_boundary": "Calls engines as subprocesses (ADR-0009) and providers only through the Model API; emits receipts to BLUX System through its CLI (ADR-0008)",
+   "blux": "integrated",
+   "visibility": "public",
+   "depends_on": [
+    "blux-system",
+    "blux-gpt"
+   ]
+  },
+  {
+   "repo": "blux-system",
+   "component": "BLUX System",
+   "kind": "platform",
+   "owns": "Execution truth: receipts, operation graph, timelines, artifact references, replay metadata, retention",
+   "never_owns": "Reasoning, planning, orchestration, policy decisions",
+   "interface": "`blux-system` CLI (one JSON document per command), Python API",
+   "integration_boundary": "Receives receipts from BLUX via its CLI; consumers read through `show/list/graph/timeline`; depends on blux-sdk pinned to a commit",
+   "blux": "integrated",
+   "visibility": "public",
+   "depends_on": [
+    "blux"
+   ]
+  },
+  {
+   "repo": "blux-gpt",
+   "component": "BluxGPT",
+   "kind": "platform",
+   "owns": "Provider transport behind Model API v1: retries, streaming, normalization",
+   "never_owns": "Agent loops, tool execution, routing across providers, ecosystem authority",
+   "interface": "`bluxgpt blux-model-backend` (Model API backend protocol), `bluxgpt` CLI",
+   "integration_boundary": "Invoked only by the BLUX Model API router as a subprocess backend",
+   "blux": "integrated",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "blux-coga",
+   "component": "CogA",
+   "kind": "engine",
+   "owns": "Deterministic structured reasoning with replayable artifacts",
+   "never_owns": "Model identity; hidden chain-of-thought (never stored)",
+   "interface": "`coga` / `blux-coga` CLI, `.blux/` capabilities (reason.analyze, reason.compare, reason.critique, reason.decompose, reason.plan, reason.rank, reason.risk)",
+   "integration_boundary": "Standalone engine; BLUX and `ax reason` call it as a subprocess",
+   "blux": "standalone",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "blux-ca",
+   "component": "cA",
+   "kind": "engine",
+   "owns": "Construction, modification and repair changesets with rollback",
+   "never_owns": "Certifying its own work (DAT validates)",
+   "interface": "`ca` / `blux-ca` CLI, `.blux/` capabilities (artifact.construct, artifact.modify, artifact.repair, artifact.validate, code.patch, repo.patch, config.generate)",
+   "integration_boundary": "Standalone engine; called by BLUX and `ax build`; hands validation to DAT",
+   "blux": "standalone",
+   "visibility": "public",
+   "depends_on": [
+    "dat"
+   ]
+  },
+  {
+   "repo": "dat",
+   "component": "DAT",
+   "kind": "engine",
+   "owns": "Independent audit, security, quality and release gates",
+   "never_owns": "Fixing what it finds",
+   "interface": "`dat` CLI, `.blux/` capabilities (repo.audit, repo.security, repo.quality, repo.release, package.audit, artifact.audit, policy.verify)",
+   "integration_boundary": "Standalone; may reject any component's work; called by cA, BLUX and `ax audit`",
+   "blux": "standalone",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "lrc",
+   "component": "LRC",
+   "kind": "engine",
+   "owns": "Deterministic repository creation, scaffolding and migration",
+   "never_owns": "Certifying itself",
+   "interface": "`lrc` CLI, `.blux/` capabilities (repo.create, repo.scaffold, repo.migrate, repo.compile, repo.validate)",
+   "integration_boundary": "Standalone; called by `ax create` and BLUX",
+   "blux": "standalone",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "god",
+   "component": "GOD",
+   "kind": "engine",
+   "owns": "Discovery of projects, capabilities and commands (reads `.blux/` through blux-sdk)",
+   "never_owns": "Executing anything it discovers",
+   "interface": "`god` CLI and `.blux/` capabilities (registry.index, capability.discover, capability.describe, capability.compat, project.describe, command.discover)",
+   "integration_boundary": "Read-only; called by `ax projects/capabilities` and BLUX App",
+   "blux": "integrated",
+   "visibility": "public",
+   "depends_on": [
+    "blux"
+   ]
+  },
+  {
+   "repo": "blux-app",
+   "component": "BLUX App",
+   "kind": "platform",
+   "owns": "Local mission control: read-only views over the BLUX tools; read-only BLUX System checks as its only controls",
+   "never_owns": "Execution, enforcement, any BLUX logic",
+   "interface": "`blux-app serve|snapshot` (127.0.0.1 web UI and JSON API)",
+   "integration_boundary": "Calls `blux`, `blux-system`, `god`, `voidforge` executables only",
+   "blux": "integrated",
+   "visibility": "public",
+   "depends_on": [
+    "blux",
+    "blux-system",
+    "god"
+   ]
+  },
+  {
+   "repo": "blux-ca-dataset",
+   "component": "cA dataset",
+   "kind": "dataset",
+   "owns": "cA evaluation/training records produced by the pinned cA engine, with splits, locks and canaries",
+   "never_owns": "Training data from private sources",
+   "interface": "`python -m dstool build|validate`, data/*.jsonl",
+   "integration_boundary": "Read by the Gen 0 harness and the routing studies; never copied into other repositories",
+   "blux": "standalone",
+   "visibility": "public",
+   "depends_on": [
+    "blux-ca",
+    "dat"
+   ]
+  },
+  {
+   "repo": "blux-coga-dataset",
+   "component": "CogA dataset",
+   "kind": "dataset",
+   "owns": "CogA evaluation/training records produced by the pinned CogA engine, with splits, locks and canaries",
+   "never_owns": "Training data from private sources",
+   "interface": "`python -m dstool build|validate`, data/*.jsonl",
+   "integration_boundary": "As the cA dataset",
+   "blux": "standalone",
+   "visibility": "public",
+   "depends_on": [
+    "blux-coga"
+   ]
+  },
+  {
+   "repo": "axiom",
+   "component": "AXIOM (`ax`)",
+   "kind": "tool",
+   "owns": "The developer control plane: routes each command to the authoritative engine (exit 69 when missing); the `axiom` cockpit identity",
+   "never_owns": "Reimplementing any engine; the AXIOM Launcher (that is void.os)",
+   "interface": "`ax` CLI (`ax routes`, `ax doctor`, `ax env|reason|build|create|audit|projects|inspect|capabilities|devices|ask|agent`)",
+   "integration_boundary": "Routes only; each engine stays the authority",
+   "blux": "optional",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "blux10k",
+   "component": "blux10k",
+   "kind": "tool",
+   "owns": "Environment and toolchain authority (`ax env`) and dotfiles",
+   "never_owns": "Project or device work",
+   "interface": "`blux10k` CLI, dotfiles",
+   "integration_boundary": "Called by `ax env`",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "jadis.toolbox",
+   "component": "JADIS Toolbox (`jadis`)",
+   "kind": "tool",
+   "owns": "This workstation: environment classification, doctor, journaled local repairs, bootstraps, snapshots; four standalone personal scripts",
+   "never_owns": "Dotfiles, routing, audits, discovery, devices, intelligence",
+   "interface": "`jadis` CLI, `.blux/` (4 read-only capabilities)",
+   "integration_boundary": "BLUX may read its four read-only capabilities; it can never reach repair, bootstrap or restore",
+   "blux": "optional",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "voidforge",
+   "component": "VoidForge",
+   "kind": "product",
+   "owns": "Android device work: ADB, Fastboot/fastbootd, sideload, flashing, Magisk, its journal and local authorization",
+   "never_owns": "Being directed by BLUX: BLUX and `ax devices` can only ask; writes need the person at the device",
+   "interface": "Android app; `voidforge` integration client (ping, describe, devices, call; ask only)",
+   "integration_boundary": "Local integration endpoint; every write is confirmed on the device; members-only distribution",
+   "blux": "optional",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "void.os",
+   "component": "AXIOM Launcher",
+   "kind": "product",
+   "owns": "Launcher behavior and state, the bundled VOID.SYS and AXIOM Shooter surfaces (vendored at locked commits)",
+   "never_owns": "Requiring BLUX; being `ax`",
+   "interface": "Android app",
+   "integration_boundary": "Standalone; vendors void.sys and void.game with drift checks; optional BLUX layer is Stage 27 (skipped)",
+   "blux": "optional",
+   "visibility": "public",
+   "depends_on": [
+    "void.sys",
+    "void.game"
+   ]
+  },
+  {
+   "repo": "void.sys",
+   "component": "VOID.SYS",
+   "kind": "product",
+   "owns": "The icon system and its standalone icon pack",
+   "never_owns": "BLUX intelligence (deliberately independent)",
+   "interface": "Android icon pack",
+   "integration_boundary": "Vendored by the AXIOM Launcher at a locked commit",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "void.game",
+   "component": "AXIOM Shooter",
+   "kind": "product",
+   "owns": "The game core (authoritative) and its standalone Android app",
+   "never_owns": "BLUX intelligence (deliberately independent)",
+   "interface": "Android app; core library",
+   "integration_boundary": "Vendored by the AXIOM Launcher as a hidden Easter egg",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "roughin",
+   "component": "Roughin",
+   "kind": "product",
+   "owns": "Contractor business truth: clients, jobs, invoices, payments, subscriptions",
+   "never_owns": "Delegating money or business truth to BLUX",
+   "interface": "Web app (FastAPI + React PWA)",
+   "integration_boundary": "Standalone; BLUX may only assist in future, never own financial state",
+   "blux": "optional",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "vigyl",
+   "component": "Vigyl",
+   "kind": "product",
+   "owns": "Care-group truth: members, roles, tasks, escalation, timeline",
+   "never_owns": "Medical decisions; delegating care responsibility to BLUX",
+   "interface": "FastAPI backend (no UI yet)",
+   "integration_boundary": "Standalone; any BLUX assistance is suggest-only",
+   "blux": "optional",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "resolver",
+   "component": "Resolver (Telegram bot)",
+   "kind": "product",
+   "owns": "Telegram moderation runtime: moderation, entitlements, payments, admin cockpit",
+   "never_owns": "Marketing pages (that is theresolver)",
+   "interface": "Telegram bot, admin web app",
+   "integration_boundary": "Standalone; its website never reads or reports its runtime state",
+   "blux": "optional",
+   "visibility": "private",
+   "depends_on": []
+  },
+  {
+   "repo": "ov-webpages/theresolver",
+   "component": "Resolver website",
+   "kind": "product",
+   "owns": "Marketing, acquisition, support, privacy and terms pages for the bot",
+   "never_owns": "Bot runtime state, pricing truth (the bot's catalogue is authoritative)",
+   "interface": "Static site (Cloudflare Pages)",
+   "integration_boundary": "Links into Telegram only; prices checked against the bot by script; independent release lifecycle",
+   "blux": "excluded",
+   "visibility": "private",
+   "depends_on": []
+  },
+  {
+   "repo": "termux-background",
+   "component": "Termux Background",
+   "kind": "product",
+   "owns": "Termux Monet wallpaper CLI and Android companion",
+   "never_owns": "BLUX integration (excluded)",
+   "interface": "`termux-background` CLI, Android app",
+   "integration_boundary": "Companion talks to Termux through RUN_COMMAND only",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "ov-webpages/bluxai.app",
+   "component": "bluxai.app",
+   "kind": "platform",
+   "owns": "The private BLUX workspace: organizations, roles, run/receipt inspection, API tokens, audit, opt-in remote runs",
+   "never_owns": "Any BLUX runtime logic",
+   "interface": "HTTP API (FastAPI)",
+   "integration_boundary": "Calls the BLUX executables only; can be switched off without affecting local BLUX",
+   "blux": "integrated",
+   "visibility": "private",
+   "depends_on": [
+    "blux",
+    "blux-system"
+   ]
+  },
+  {
+   "repo": "ov-webpages/operationrestore",
+   "component": "Operation: Restore website",
+   "kind": "product",
+   "owns": "The operationrestore.net static site",
+   "never_owns": "Anything outside that site",
+   "interface": "Static site",
+   "integration_boundary": "None",
+   "blux": "excluded",
+   "visibility": "private",
+   "depends_on": []
+  },
+  {
+   "repo": "ov-webpages/ivrp",
+   "component": "IVRP website",
+   "kind": "product",
+   "owns": "Reserved Inner Void Recovery Program website (README and LICENSE only)",
+   "never_owns": "Clinical or crisis services",
+   "interface": "None yet",
+   "integration_boundary": "None",
+   "blux": "excluded",
+   "visibility": "private",
+   "depends_on": []
+  },
+  {
+   "repo": "credits",
+   "component": "Credits ledger",
+   "kind": "governance",
+   "owns": "Attribution, licensing and provenance ledger; validation tools",
+   "never_owns": "Licence texts it does not own (kept verbatim)",
+   "interface": "`tools/validate.py --org-root`, YAML catalog",
+   "integration_boundary": "Every repository's notices and AI-assistance records are reconciled here",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": "docs",
+   "component": "Central docs",
+   "kind": "governance",
+   "owns": "This constitution, the status matrix, findings, legal baselines",
+   "never_owns": "Repository-specific specifications (those stay in their repositories)",
+   "interface": "Markdown; `tools/build_status_matrix.py`, `tools/build_constitution.py`",
+   "integration_boundary": "Links to canonical sources; never copies specs that can drift",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": ".github",
+   "component": "Organization profile",
+   "kind": "governance",
+   "owns": "The public organization profile and doctrine",
+   "never_owns": "Product status (the matrix is authoritative)",
+   "interface": "GitHub profile README",
+   "integration_boundary": "Reads from the matrix and findings",
+   "blux": "excluded",
+   "visibility": "public",
+   "depends_on": []
+  },
+  {
+   "repo": ".github-private",
+   "component": "Private organization profile",
+   "kind": "governance",
+   "owns": "The members-only organization profile",
+   "never_owns": "Anything public",
+   "interface": "GitHub profile README",
+   "integration_boundary": "None",
+   "blux": "excluded",
+   "visibility": "private",
+   "depends_on": []
+  }
+ ]
+}
