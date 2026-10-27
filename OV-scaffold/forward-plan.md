@@ -58,7 +58,7 @@ payment qualification or deployment approval is claimed.
 | A5 promotion | NOT COMPLETE | Reproducible training and protected results must beat baseline and prove fallback/rollback |
 | B1 Vigyl | PARTIAL | External notifications, recurrence decision, account recovery, browser/mobile/accessibility, PostgreSQL, staging and privacy/legal review |
 | B2 Roughin | PARTIAL | PostgreSQL, Stripe test mode, real R2, staging, mobile/poor-network, full workflow tests, PWA assets |
-| B3 Resolver + website | PARTIAL | Live release gate, subscriptions/payments/admin, tunnel and custom domain deployment; website checkout is not present in this workspace |
+| B3 Resolver + website | PARTIAL | Live release gate, subscriptions/payments/admin, tunnel and custom domain deployment; website checkout at `ov-webpages/theresolver` is retained clean; domain/deployment acceptance remains unverified |
 | B4 bluxai.app | NOT ADVANCED | UI over existing private service after API/remote-run boundaries are accepted; no second runtime |
 | C1 AXIOM Launcher | NOT COMPLETE | Real entitlement/Play Integrity/product-signature service contracts, protected signing, crash-loop guard, device matrix, legal/asset review and Stage 24 hard gate; no Stage 27 approval |
 | C2 VOID.SYS | NOT COMPLETE | Signature verification, release validation, individual visual QA, third-party launcher/device acceptance and signed package |
