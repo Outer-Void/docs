@@ -122,7 +122,7 @@ COMPONENTS = [
     c("Roughin", "roughin", "1.1.0 (API); frontend 1.0.0", "f3599d3", "Standalone contractor SaaS (FastAPI + React PWA)",
       "IMPLEMENTED", "PLANNED", NA, "MOCK_TESTED", NA, "MOCK_TESTED", "IMPLEMENTED", "NOT_STARTED", "NOT_RELEASED",
       ["PostgreSQL migration + backup/restore CI BLOCKED: GitHub account billing lock, jobs never started (F34)", "No deployment, Stripe test-mode or real R2 run (F35)",
-       "No frontend tests or device testing (F37)", "Frontend dependency advisories need major upgrades; Python deps pip-audit clean (F36)", "Public repository for proprietary SaaS source"],
+       "No frontend tests or device testing (F37)", "Frontend dependency advisories need major upgrades; Python deps pip-audit clean (F36)", "boto3 probes instance metadata when R2 settings are empty outside production (F73)", "Public repository for proprietary SaaS source"],
       "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28)",
       "2026-10-27"),
     c("Vigyl", "vigyl", "API 0.2.0", "a0816a4", "Standalone caregiving/accountability product; backend API only (no UI yet)",
@@ -166,6 +166,47 @@ COMPONENTS = [
     c("IVRP website", "ov-webpages/ivrp", None, "0e2b75e", "Reserved Inner Void Recovery Program website repository; README and LICENSE only",
       "NOT_STARTED", NA, NA, NA, NA, NA, NA, NA, NA, [], "File list inspected 2026-10-26"),
 ]
+
+
+# Stage 44 (2026-10-27): final repository-by-repository Definition of Done pass. Each row is re-anchored to the commit
+# that was verified, with the evidence of that run (ecosystem/definition-of-done.md). Statuses are not raised by it.
+STAGE44 = {
+    "blux": ("51134af", "unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean"),
+    "blux-system": ("f0ba3a1", "74 passed (network off)"),
+    "blux-gpt": ("4609cd9", "49 passed, 1 skipped (network off)"),
+    "blux-coga": ("3dc86fa", "343 passed (network off)"),
+    "blux-ca": ("7cb953a", "117 passed (network off)"),
+    "dat": ("487e1d4", "88 passed (BLUX disabled)"),
+    "lrc": ("443e532", "134 passed (network off), 133 with BLUX disabled"),
+    "god": ("ad6f0c4", "94 passed (BLUX disabled and network off)"),
+    "blux-app": ("0de2d9a", "11 passed; ruff fixed and now in CI"),
+    "blux-ca-dataset": ("662ec33", "36 passed, 2 skipped"),
+    "blux-coga-dataset": ("9331f73", "38 passed"),
+    "axiom": ("2d3e4ef", "router tests 12 passed, shell suite and smoke passed"),
+    "blux10k": ("80a7465", "10 passed"),
+    "jadis.toolbox": ("253c386", "75 passed"),
+    "voidforge": ("59b6d67", ":core 86 + :integration 9 passed (forced rerun)"),
+    "void.os": ("24b07cd", "unit 78 passed, debug APK built (BLUX-free core)"),
+    "void.sys": ("09cf56f", "debug APK built; no automated tests"),
+    "void.game": ("b56c1ae", "core 21 passed, debug APK built"),
+    "roughin": ("97921fc", "backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open)"),
+    "vigyl": ("a0816a4", "backend 78 passed (BLUX disabled, network off)"),
+    "resolver": ("bf7f26a", "173 unit tests passed"),
+    "ov-webpages/theresolver": ("49dbeff", "lint, build and 9 tests passed; npm audit clean"),
+    "termux-background": ("75cfb97", "unit 10+10 passed, CLI and package suites passed, shellcheck clean"),
+    "ov-webpages/bluxai.app": ("9e5706a", "13 passed with BLUX, 10 + 3 skipped without; BLUX-absent 503 fix"),
+    "ov-webpages/operationrestore": ("126453f", "DAT audit pass (static site)"),
+    "ov-webpages/ivrp": ("68dbad7", "DAT audit pass (README only)"),
+    "credits": ("8a0c52a", "validate, org-root check and 39 tests passed"),
+    "docs": ("ef7d357", "13 tests, matrix, constitution and contract checks passed"),
+    ".github": ("be5221d", "DAT audit pass; links checked"),
+    ".github-private": ("5ea59da", "DAT audit pass"),
+}
+for _row in COMPONENTS:
+    if _row["repo"] in STAGE44:
+        _row["commit_sha"], _note = STAGE44[_row["repo"]]
+        _row["evidence"] += f". Stage 44 DoD at {_row['commit_sha']} (2026-10-27): {_note}; DAT audit triaged"
+        _row["last_verified"] = "2026-10-27"
 
 
 def render_md(rows):

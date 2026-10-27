@@ -255,6 +255,18 @@ blocker (F71), and it is fixed. Everything that can run here passes. Real provid
 | F72 | axiom | `cockpit/bin/ax` must be sourced. When it is executed instead (`timeout ax …`, scripts, cron), it prints "must be sourced" on **stdout** and exits 1, so a caller expecting JSON gets text. Non-interactive callers must use `cockpit/bin/ax-route` | Low | Stage 43 | Usability; documented here | No |
 | F73 | roughin | With the R2 settings empty (tests, development), `app/services/r2.py` builds its `boto3` client with no credentials. `boto3` then falls back to its default credential chain and probes the cloud instance-metadata address `169.254.169.254`. On a cloud host, a development instance could pick up that host's role credentials. Production is safe: the configuration check requires all four R2 settings | Low | Stage 43 offline run: two refused lookups traced to urllib3 under the Roughin suite | Pass explicit credentials or disable the metadata provider (`AWS_EC2_METADATA_DISABLED=true`) outside production | No |
 
+## Stage 44 incremental sync (2026-10-27)
+
+Final repository-by-repository Definition of Done pass: [definition-of-done.md](definition-of-done.md). The status
+matrix is the final matrix: every active row is re-anchored to the commit verified on 2026-10-27, and no status was
+raised. DAT audited all 30 repositories, and every critical and high finding was triaged; no real secret was found.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F74 | ov-webpages/bluxai.app | Without `blux-system` on the server, `POST /orgs` committed the organization and then raised: the client got a 500 for an org that existed, and a retry hit 409 | Medium | Stage 44 test run without BLUX on PATH | Fixed (`9e5706a`: store created on first use; BLUX absent → 503; regression test) | No (fixed) |
+| F75 | blux-app | `ruff check .` failed with 17 issues and CI never ran ruff | Low | Stage 44 lint pass | Fixed (`0de2d9a`; CI runs ruff) | No (fixed) |
+| F76 | 11 repositories | DAT's raw release gate fails on test fixtures, placeholders and CI-local credentials (all triaged as non-secrets) because no repository commits a DAT target policy | Low | `definition-of-done.md` security triage | Add justified DAT suppressions per repository | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,

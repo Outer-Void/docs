@@ -6,7 +6,7 @@ Accepted baseline for contract verification. Contract 1.0 (SDK supports 1.0), Mo
 | Repository | Commit | Declared capabilities |
 |---|---|---|
 | `axiom` | `2d3e4ef395fd` | — |
-| `blux` | `5dc14ca1d754` | 1 |
+| `blux` | `51134aff2a8b` | 1 |
 | `blux-ca` | `7cb953a10313` | 7 |
 | `blux-coga` | `3dc86fa7f791` | 7 |
 | `blux-system` | `f0ba3a13a175` | — |

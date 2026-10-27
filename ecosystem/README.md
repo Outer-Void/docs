@@ -222,6 +222,10 @@ Done:
   BLOCKED result ([release-candidate.md](release-candidate.md)). One blocker was found and fixed: `blux agent`
   receipts (F71). Real providers, devices and CI are BLOCKED, so the candidate is locally validated, not
   releasable.
+- **Stage 44 (2026-10-27): final repository-by-repository release pass.** Every active repository was checked
+  against the Definition of Done ([definition-of-done.md](definition-of-done.md)). The status matrix is the final
+  matrix, re-anchored to the verified commits. Fixed in this stage: bluxai.app without BLUX (F74) and blux-app lint
+  (F75). Not met: CI (F49), real providers (F10), devices, and VoidForge visibility (F7).
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.

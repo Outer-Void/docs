@@ -24,7 +24,7 @@
    "component": "BLUX (runtime, SDK, contracts, `blux` CLI)",
    "repo": "blux",
    "version": "outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0",
-   "commit_sha": "83ded6f",
+   "commit_sha": "51134af",
    "role": "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -41,14 +41,14 @@
     "No real-provider Model API evidence (provider accounts without balance)",
     "Gen 0 model suites BLOCKED (F60); no native specialist integrated (F63)"
    ],
-   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md)",
+   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "AXIOM control plane (`ax`)",
    "repo": "axiom",
    "version": "2.0.0",
-   "commit_sha": "a276744",
+   "commit_sha": "2d3e4ef",
    "role": "Developer control plane; routes to authoritative engines, reimplements none",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "OPTIONAL",
@@ -62,14 +62,14 @@
    "known_blockers": [
     "Engines must be installed separately; missing engines exit 69 by design"
    ],
-   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test",
-   "last_verified": "2026-10-26"
+   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "blux10k",
    "repo": "blux10k",
    "version": "3.0.0",
-   "commit_sha": "fcb127d",
+   "commit_sha": "80a7465",
    "role": "Environment and toolchain authority (`ax env`) plus dotfiles",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -81,8 +81,8 @@
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [],
-   "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26). Stage 44 DoD at 80a7465 (2026-10-27): 10 passed; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "CogA",
@@ -102,8 +102,8 @@
    "known_blockers": [
     "No release tag for 2.0.0"
    ],
-   "evidence": "pytest: 343 passed at 3dc86fa (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 343 passed at 3dc86fa (re-run 2026-10-26). Stage 44 DoD at 3dc86fa (2026-10-27): 343 passed (network off); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "cA",
@@ -123,14 +123,14 @@
    "known_blockers": [
     "No release tag for 2.0.1"
    ],
-   "evidence": "pytest: 117 passed at 7cb953a (re-run 2026-10-26; needs the declared `hypothesis` dev dependency)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 117 passed at 7cb953a (re-run 2026-10-26; needs the declared `hypothesis` dev dependency). Stage 44 DoD at 7cb953a (2026-10-27): 117 passed (network off); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "DAT",
    "repo": "dat",
    "version": "4.0.0",
-   "commit_sha": "76d0a01",
+   "commit_sha": "487e1d4",
    "role": "Independent audit/security/quality/release authority; may reject any component's work",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -144,14 +144,14 @@
    "known_blockers": [
     "README previously pinned a v4.0.0 tag that does not exist (tags: v1.0.0, v2.0.0-alpha.1, v2.0.0-Stable)"
    ],
-   "evidence": "pytest: 88 passed at 76d0a01 (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 88 passed at 76d0a01 (re-run 2026-10-26). Stage 44 DoD at 487e1d4 (2026-10-27): 88 passed (BLUX disabled); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "LRC",
    "repo": "lrc",
    "version": "2.0.0",
-   "commit_sha": "34b6a04",
+   "commit_sha": "443e532",
    "role": "Deterministic repository creation/scaffolding/migration; does not certify itself",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -165,14 +165,14 @@
    "known_blockers": [
     "No release tag for 2.0.0"
    ],
-   "evidence": "pytest: 133 passed, 1 skipped at 34b6a04 (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 133 passed, 1 skipped at 34b6a04 (re-run 2026-10-26). Stage 44 DoD at 443e532 (2026-10-27): 134 passed (network off), 133 with BLUX disabled; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "GOD",
    "repo": "god",
    "version": "2.0.0",
-   "commit_sha": "a329d89",
+   "commit_sha": "ad6f0c4",
    "role": "Capability/project/command discovery; never execution authority",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -186,8 +186,8 @@
    "known_blockers": [
     "No release tag for 2.0.0"
    ],
-   "evidence": "pytest: 94 passed at a329d89 (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 94 passed at a329d89 (re-run 2026-10-26). Stage 44 DoD at ad6f0c4 (2026-10-27): 94 passed (BLUX disabled and network off); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "BLUX System",
@@ -207,8 +207,8 @@
    "known_blockers": [
     "No release tag for 2.0.0"
    ],
-   "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26). Stage 44 DoD at f0ba3a1 (2026-10-27): 74 passed (network off); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "BluxGPT",
@@ -228,14 +228,14 @@
    "known_blockers": [
     "Real-provider runs not recorded; hard-coded provider model IDs not verified against current catalogs"
    ],
-   "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports. Stage 44 DoD at 4609cd9 (2026-10-27): 49 passed, 1 skipped (network off); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "BLUX App",
    "repo": "blux-app",
    "version": "2.0.0",
-   "commit_sha": "6c8e8dd",
+   "commit_sha": "0de2d9a",
    "role": "Local mission control over the real BLUX tools (read-only views; only read-only BLUX System checks as controls)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -251,7 +251,7 @@
     "CI blocked org-wide (F49)",
     "VoidForge devices need the device app running"
    ],
-   "evidence": "11 tests at 6c8e8dd incl. end-to-end: real blux run operations recorded in a real BLUX System store, inspected through the HTTP API; Host/token/origin/id-validation and secret-redaction tests (Stage 38)",
+   "evidence": "11 tests at 6c8e8dd incl. end-to-end: real blux run operations recorded in a real BLUX System store, inspected through the HTTP API; Host/token/origin/id-validation and secret-redaction tests (Stage 38). Stage 44 DoD at 0de2d9a (2026-10-27): 11 passed; ruff fixed and now in CI; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
@@ -270,8 +270,8 @@
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [],
-   "evidence": "pytest: 36 passed, 2 skipped at 662ec33 (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 36 passed, 2 skipped at 662ec33 (re-run 2026-10-26). Stage 44 DoD at 662ec33 (2026-10-27): 36 passed, 2 skipped; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "CogA dataset",
@@ -289,14 +289,14 @@
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [],
-   "evidence": "pytest: 38 passed at 9331f73 (re-run 2026-10-26)",
-   "last_verified": "2026-10-26"
+   "evidence": "pytest: 38 passed at 9331f73 (re-run 2026-10-26). Stage 44 DoD at 9331f73 (2026-10-27): 38 passed; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "VoidForge",
    "repo": "voidforge",
    "version": "0.1.0-dev",
-   "commit_sha": "463b921",
+   "commit_sha": "59b6d67",
    "role": "Standalone Android-to-Android device-engineering workstation (members-only, free for now)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "OPTIONAL",
@@ -313,8 +313,8 @@
     "Repository is public, conflicting with members-only policy (owner action in docs/DISTRIBUTION.md)",
     "No production release key or keystore configured"
    ],
-   "evidence": "Stage 22/23: :core 86, :integration 9, tools 24 tests passed; app assembleDebug OK; all mock/synthetic",
-   "last_verified": "2026-10-26"
+   "evidence": "Stage 22/23: :core 86, :integration 9, tools 24 tests passed; app assembleDebug OK; all mock/synthetic. Stage 44 DoD at 59b6d67 (2026-10-27): :core 86 + :integration 9 passed (forced rerun); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "AXIOM Launcher",
@@ -340,8 +340,8 @@
     "Public repository for a paid product",
     "Legal/asset notice review"
    ],
-   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26)",
-   "last_verified": "2026-10-26"
+   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26). Stage 44 DoD at 24b07cd (2026-10-27): unit 78 passed, debug APK built (BLUX-free core); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "VOID.SYS",
@@ -364,8 +364,8 @@
     "No device test of the standalone pack in third-party launchers",
     "Public repository for a paid product"
    ],
-   "evidence": "tools tests 8 passed, verify_drawables OK, assembleDebug + assembleRelease OK, release APK keeps all 587 drawable names (Stage 25); AXIOM vendors release/manifest.json bundle byte-for-byte",
-   "last_verified": "2026-10-26"
+   "evidence": "tools tests 8 passed, verify_drawables OK, assembleDebug + assembleRelease OK, release APK keeps all 587 drawable names (Stage 25); AXIOM vendors release/manifest.json bundle byte-for-byte. Stage 44 DoD at 09cf56f (2026-10-27): debug APK built; no automated tests; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "AXIOM Shooter",
@@ -390,8 +390,8 @@
     "Default font licence unresolved (credits UNR-020)",
     "Public repository for a paid product"
    ],
-   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26)",
-   "last_verified": "2026-10-26"
+   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26). Stage 44 DoD at b56c1ae (2026-10-27): core 21 passed, debug APK built; DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "Resolver (Telegram runtime)",
@@ -413,7 +413,7 @@
     "Release gate steps install_resolver.sh / run_resolver.sh need live secrets: not run",
     "CI blocked org-wide by the GitHub billing lock (F49)"
    ],
-   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation)",
+   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation). Stage 44 DoD at bf7f26a (2026-10-27): 173 unit tests passed; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
@@ -435,14 +435,14 @@
     "Custom domain theresolverbot.net (and www) returns Cloudflare error 1033 (tunnel), not the Pages site (F54)",
     "GitHub Actions blocked org-wide by the billing lock (F49)"
    ],
-   "evidence": "npm run check at 49dbeff: lint, build, 9 node:test checks over the export incl. HTTP smoke; npm audit 0; two builds byte-identical; deployed theresolver.pages.dev serves this build (pages 200, deep links, CSP/HSTS headers) (Stage 31)",
+   "evidence": "npm run check at 49dbeff: lint, build, 9 node:test checks over the export incl. HTTP smoke; npm audit 0; two builds byte-identical; deployed theresolver.pages.dev serves this build (pages 200, deep links, CSP/HSTS headers) (Stage 31). Stage 44 DoD at 49dbeff (2026-10-27): lint, build and 9 tests passed; npm audit clean; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "Roughin",
    "repo": "roughin",
    "version": "1.1.0 (API); frontend 1.0.0",
-   "commit_sha": "f3599d3",
+   "commit_sha": "97921fc",
    "role": "Standalone contractor SaaS (FastAPI + React PWA)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "PLANNED",
@@ -458,9 +458,10 @@
     "No deployment, Stripe test-mode or real R2 run (F35)",
     "No frontend tests or device testing (F37)",
     "Frontend dependency advisories need major upgrades; Python deps pip-audit clean (F36)",
+    "boto3 probes instance metadata when R2 settings are empty outside production (F73)",
     "Public repository for proprietary SaaS source"
    ],
-   "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28)",
+   "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28). Stage 44 DoD at 97921fc (2026-10-27): backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open); DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
@@ -485,7 +486,7 @@
     "No recurring tasks, password reset or legal review (F46)",
     "Public repository for privacy-sensitive product source"
    ],
-   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29)",
+   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
@@ -508,7 +509,7 @@
     "No signing key in CI; CI blocked org-wide (F49)",
     "Targets SDK 35; 36 available (F56)"
    ],
-   "evidence": "docs/RELEASE_CHECKS.md at 75cfb97: shellcheck, cli_test.sh, build-deb + package_test, gradle test (10 per variant), lint 0 errors, debug+release APKs (Stage 32)",
+   "evidence": "docs/RELEASE_CHECKS.md at 75cfb97: shellcheck, cli_test.sh, build-deb + package_test, gradle test (10 per variant), lint 0 errors, debug+release APKs (Stage 32). Stage 44 DoD at 75cfb97 (2026-10-27): unit 10+10 passed, CLI and package suites passed, shellcheck clean; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
@@ -533,14 +534,14 @@
     "Small repair catalogue (4 repairs)",
     "CI blocked org-wide (F49)"
    ],
-   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33)",
+   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33). Stage 44 DoD at 253c386 (2026-10-27): 75 passed; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "Credits ledger",
    "repo": "credits",
    "version": null,
-   "commit_sha": "18240ba",
+   "commit_sha": "8a0c52a",
    "role": "Canonical attribution, licensing and provenance ledger",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -552,14 +553,14 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync)",
+   "evidence": "validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync). Stage 44 DoD at 8a0c52a (2026-10-27): validate, org-root check and 39 tests passed; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "Central docs",
    "repo": "docs",
    "version": null,
-   "commit_sha": "6cfbd70",
+   "commit_sha": "ef7d357",
    "role": "Legal/policy baselines and ecosystem governance documentation (this repository)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -571,14 +572,14 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "tools/build_status_matrix.py --check OK; full reconciliation 2026-10-27",
+   "evidence": "tools/build_status_matrix.py --check OK; full reconciliation 2026-10-27. Stage 44 DoD at ef7d357 (2026-10-27): 13 tests, matrix, constitution and contract checks passed; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "Organization profile",
    "repo": ".github",
    "version": null,
-   "commit_sha": "7c9ad5a",
+   "commit_sha": "be5221d",
    "role": "Public organization profile and doctrine",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -592,14 +593,14 @@
    "known_blockers": [
     "Owner banner says 'Stage 21 - 30 of 44'; the queued plan ends at Stage 45 (F50, owner decision)"
    ],
-   "evidence": "Contents reconciled 2026-10-27",
+   "evidence": "Contents reconciled 2026-10-27. Stage 44 DoD at be5221d (2026-10-27): DAT audit pass; links checked; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "Private organization profile",
    "repo": ".github-private",
    "version": null,
-   "commit_sha": "bc32b7a",
+   "commit_sha": "5ea59da",
    "role": "Members-only organization profile",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -611,7 +612,7 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "Contents inspected 2026-10-27 (logo and doctrine line only)",
+   "evidence": "Contents inspected 2026-10-27 (logo and doctrine line only). Stage 44 DoD at 5ea59da (2026-10-27): DAT audit pass; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
@@ -649,14 +650,14 @@
    "distribution_status": "UNVERIFIED",
    "release_status": "UNVERIFIED",
    "known_blockers": [],
-   "evidence": "README inspected 2026-10-26",
-   "last_verified": "2026-10-26"
+   "evidence": "README inspected 2026-10-26. Stage 44 DoD at 126453f (2026-10-27): DAT audit pass (static site); DAT audit triaged",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "bluxai.app",
    "repo": "ov-webpages/bluxai.app",
    "version": "0.1.0",
-   "commit_sha": "9fdb0a2",
+   "commit_sha": "9e5706a",
    "role": "Private BLUX workspace service over the BLUX executables (orgs, roles, runs/receipts, API tokens, audit, opt-in remote runs)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -672,14 +673,14 @@
     "Not deployed; rate limits are per process (F66)",
     "CI blocked org-wide (F49)"
    ],
-   "evidence": "12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; no BLUX runtime imports and local BLUX works without it (Stage 39)",
+   "evidence": "12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; no BLUX runtime imports and local BLUX works without it (Stage 39). Stage 44 DoD at 9e5706a (2026-10-27): 13 passed with BLUX, 10 + 3 skipped without; BLUX-absent 503 fix; DAT audit triaged",
    "last_verified": "2026-10-27"
   },
   {
    "component": "IVRP website",
    "repo": "ov-webpages/ivrp",
    "version": null,
-   "commit_sha": "0e2b75e",
+   "commit_sha": "68dbad7",
    "role": "Reserved Inner Void Recovery Program website repository; README and LICENSE only",
    "standalone_status": "NOT_STARTED",
    "blux_status": "NOT_APPLICABLE",
@@ -691,8 +692,8 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "File list inspected 2026-10-26",
-   "last_verified": "2026-10-26"
+   "evidence": "File list inspected 2026-10-26. Stage 44 DoD at 68dbad7 (2026-10-27): DAT audit pass (README only); DAT audit triaged",
+   "last_verified": "2026-10-27"
   }
  ]
 }
