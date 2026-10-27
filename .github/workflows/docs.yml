@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  schedule:
+    - cron: "17 6 * * *"   # daily: catch contract breaks pushed to other repositories
 permissions:
   contents: read
 jobs:
@@ -12,5 +14,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - run: pip install "blux-sdk @ git+https://github.com/Outer-Void/blux.git#subdirectory=sdk/python" pytest
       - run: python3 tools/build_status_matrix.py --check
       - run: python3 tools/build_constitution.py --check
+      - name: Contract verification mutation tests
+        run: python3 -m pytest -q tests
+      - name: Ecosystem contracts (single-file fetches from GitHub, no clones)
+        run: python3 tools/check_contracts.py --fetch

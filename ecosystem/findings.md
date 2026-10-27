@@ -230,6 +230,19 @@ Organization metadata (`.github`, `.github-private`):
 - The members-only profile now lists the private repositories and the VoidForge members-only build path.
 - Package classifiers corrected (F67).
 
+## Stage 42 incremental sync (2026-10-27)
+
+Cross-repository contract verification: `tools/check_contracts.py`, the lock `ecosystem/compatibility.json`
+(rendered as `compatibility.md`), and `ecosystem/release-ledger.json`. The hard gate passed: 13 mutation tests
+show that every breaking change class fails the check automatically. Docs CI runs it on every push and daily,
+using single-file fetches with no clones. The check confirmed the current ecosystem is compatible. It also found
+nine release tags from before the staged rebuild that were recorded nowhere; they are now ledgered as historical.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F69 | dat, lrc, god, blux-coga, blux-ca | Historical tags (`dat` v1.0.0, v2.0.0-Stable, v2.0.0-alpha.1; `lrc` v1.0.0-stable; `god` v1.0.0; CogA-0.1-mini; cA-0.1, cA-0.1-mini) predate the rebuild and do not describe the current code; `v2.0.0-Stable` and `v1.0.0-stable` names suggest current stability | Low | `ecosystem/release-ledger.json` | Owner decision: keep as history, or retire the tag names | No |
+| F70 | all | The contract checks run in docs CI, which is blocked org-wide (F49); today they run only locally | High | Stage 42 | BLOCKED (billing lock) | Yes: automatic detection in CI |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,

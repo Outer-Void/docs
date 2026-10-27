@@ -96,4 +96,10 @@ A component integrates with the ecosystem by:
 | blux-gpt | Model API 1.0 backend | none | invoked by the Model API router |
 | blux-app, bluxai.app | consume CLI output | none | call executables only |
 
-A contract or SDK change must update this table, and is checked by the cross-repository contract CI (Stage 42).
+The accepted baseline with exact commits is the generated [compatibility matrix](../ecosystem/compatibility.md)
+(from `ecosystem/compatibility.json`). `python3 tools/check_contracts.py --fetch` re-reads each boundary's few defining
+files from GitHub (no clones) and fails on any breaking change: a removed capability, a changed capability schema, Contract
+v1 schemas changed without a version change, an unsupported contract version or SDK pin, a VoidForge catalogue copy that
+drifted, an `ax` route without its executable or subcommand, or an unrecorded release tag
+(`ecosystem/release-ledger.json`). Docs CI runs it on every push and daily. Accepting a change is an explicit, reviewed
+`--write-lock`.

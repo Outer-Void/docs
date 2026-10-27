@@ -216,6 +216,8 @@ Done:
   repository has a role and an integration boundary (`tools/build_constitution.py --check`).
 - **Stage 41 (2026-10-27): organization metadata.** The profiles and defaults now match the architecture, and
   false repository claims were removed.
+- **Stage 42 (2026-10-27): cross-repository contract verification.** Hard gate passed locally: breaking changes are
+  detected automatically, with mutation tests. In CI the check is blocked (F49).
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.
