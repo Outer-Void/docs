@@ -194,6 +194,8 @@ Done:
 - **Stage 31 (2026-10-27): Resolver website.** The hard gate passed on the deployed `pages.dev` build: the
   open-the-bot, add-to-group, community and support flows work, and the site and bot release independently.
   The custom domain is down (F54).
+- **Stage 32 (2026-10-27): Termux Background.** The local release checks pass (`docs/RELEASE_CHECKS.md`). The
+  standalone release gate is not passed: no device qualification, and CI is blocked.
 
 **Stage 27 (AXIOM Launcher optional BLUX layer) was skipped and must be circled back to.** Its brief allows
 it only after Stage 24's hard gate passes, and that gate is not passed.

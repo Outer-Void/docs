@@ -26,7 +26,7 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
 | Resolver website | `ov-webpages/theresolver` | 0.2.0 | `49dbeff` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | IMPLEMENTED | NOT_RELEASED | 2026-10-27 |
 | Roughin | `roughin` | 1.1.0 (API); frontend 1.0.0 | `f3599d3` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
 | Vigyl | `vigyl` | API 0.2.0 | `a0816a4` | IMPLEMENTED | PLANNED | NOT_APPLICABLE | MOCK_TESTED | NOT_APPLICABLE | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-27 |
-| Termux Background | `termux-background` | 1.1.0 | `c375c7e` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | UNVERIFIED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | UNVERIFIED | NOT_RELEASED | 2026-10-26 |
+| Termux Background | `termux-background` | 1.1.0 | `75cfb97` | IMPLEMENTED | EXCLUDED | NOT_APPLICABLE | MOCK_TESTED | HARDWARE_PENDING | NOT_APPLICABLE | IMPLEMENTED | BLOCKED | NOT_RELEASED | 2026-10-27 |
 | JADIS Toolbox (`jadis`) | `jadis.toolbox` | 0.1.0 | `64f5d08` | IMPLEMENTED | OPTIONAL | NOT_APPLICABLE | INTEGRATION_TESTED | HARDWARE_PENDING | MOCK_TESTED | IMPLEMENTED | NOT_STARTED | NOT_RELEASED | 2026-10-26 |
 | Credits ledger | `credits` | - | `18240ba` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | INTEGRATION_TESTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
 | Central docs | `docs` | - | `6cfbd70` | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | IMPLEMENTED | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | 2026-10-27 |
@@ -108,8 +108,10 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: PostgreSQL migration + backup CI BLOCKED: GitHub billing lock (F45)
   - Blocker: No recurring tasks, password reset or legal review (F46)
   - Blocker: Public repository for privacy-sensitive product source
-- **Termux Background** (`termux-background`): Standalone Android companion + Termux CLI for Termux Monet wallpapers. Evidence: Repository docs; not re-run in this pass.
+- **Termux Background** (`termux-background`): Standalone Android companion + Termux CLI for Termux Monet wallpapers. Evidence: docs/RELEASE_CHECKS.md at 75cfb97: shellcheck, cli_test.sh, build-deb + package_test, gradle test (10 per variant), lint 0 errors, debug+release APKs (Stage 32).
   - Blocker: No device has passed docs/DEVICE_RC_CHECKLIST.md
+  - Blocker: No signing key in CI; CI blocked org-wide (F49)
+  - Blocker: Targets SDK 35; 36 available (F56)
 - **JADIS Toolbox (`jadis`)** (`jadis.toolbox`): Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian). Evidence: 67 tests (unit, fixture, real-filesystem integration, adversarial redaction), 7 deliberate breaks caught, ruff/mypy/hygiene clean, wheel smoke test; real PRoot Debian 13 run; real BLUX subprocess call (2026-10-26).
   - Blocker: Not run in native Termux (fixture-tested only)
   - Blocker: Native Debian 13 evidence pending the CI container job's first run

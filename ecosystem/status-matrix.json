@@ -489,22 +489,24 @@
    "component": "Termux Background",
    "repo": "termux-background",
    "version": "1.1.0",
-   "commit_sha": "c375c7e",
+   "commit_sha": "75cfb97",
    "role": "Standalone Android companion + Termux CLI for Termux Monet wallpapers",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
    "ax_status": "NOT_APPLICABLE",
-   "test_status": "UNVERIFIED",
+   "test_status": "MOCK_TESTED",
    "hardware_status": "HARDWARE_PENDING",
    "security_status": "NOT_APPLICABLE",
    "package_status": "IMPLEMENTED",
-   "distribution_status": "UNVERIFIED",
+   "distribution_status": "BLOCKED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "No device has passed docs/DEVICE_RC_CHECKLIST.md"
+    "No device has passed docs/DEVICE_RC_CHECKLIST.md",
+    "No signing key in CI; CI blocked org-wide (F49)",
+    "Targets SDK 35; 36 available (F56)"
    ],
-   "evidence": "Repository docs; not re-run in this pass",
-   "last_verified": "2026-10-26"
+   "evidence": "docs/RELEASE_CHECKS.md at 75cfb97: shellcheck, cli_test.sh, build-deb + package_test, gradle test (10 per variant), lint 0 errors, debug+release APKs (Stage 32)",
+   "last_verified": "2026-10-27"
   },
   {
    "component": "JADIS Toolbox (`jadis`)",

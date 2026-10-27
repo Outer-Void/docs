@@ -135,6 +135,18 @@ Resolver website overhaul (theresolver `49dbeff`). Fixed in the stage, with test
 | F54 | theresolver | `https://theresolverbot.net/` and `www` return HTTP 530, Cloudflare error 1033 (tunnel unreachable), on 2026-10-27; the Pages deployment `theresolver.pages.dev` serves the current build. The apex hostname is routed to a tunnel instead of the Pages project | High | `curl` against both hosts | Owner action in Cloudflare (attach the custom domain to the Pages project, or fix the tunnel route) | Yes: site launch |
 | F55 | theresolver | GitHub reported 86 Dependabot alerts on push while `npm audit` of the pushed lockfile reports 0; the private repository's alerts cannot be listed here (`gh` unauthenticated) | Low | Push output versus `npm audit` | Re-check once `gh` is authenticated | No |
 
+## Stage 32 incremental sync (2026-10-27)
+
+Termux Background release checks (termux-background `75cfb97`). Fixed: three negative CLI test assertions
+(`! grep …` under `set -e`) could never fail; the README lacked uninstall steps (the package does not revert
+`termux.properties`) and still cloned from `Justadudeinspace/`. Local release checks pass
+(`docs/RELEASE_CHECKS.md`); the standalone release gate still needs a device and CI.
+
+| # | Repo | Issue | Severity | Evidence | Class | Blocking |
+|---|---|---|---|---|---|---|
+| F56 | termux-background | Targets SDK 35 while 36 is available (lint `OldTargetApi`); raising it needs a behaviour review and a device re-test | Low | `./gradlew lint` | Future maintenance | Only for Play distribution |
+| F57 | termux-background | `set` installs the image before rewriting properties; a failure in the last step leaves the new image with the old properties (benign: same file name) | Low | CLI review | Tech debt | No |
+
 ## TODO / FIXME source audit (2026-10-26)
 
 `git grep -E '\b(TODO|FIXME|XXX|HACK)\b'` over every repository except archived BLHermes, excluding Markdown,
