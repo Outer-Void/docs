@@ -4,7 +4,17 @@ A forward plan to go with the [reassessment input](POST_STAGED_REBUILD_REASSESSM
 starts from the frozen state recorded there; finding numbers point to
 [ecosystem/findings.md](ecosystem/findings.md).
 
-These are proposals for the owner to accept, reorder or reject. Nothing here has been started.
+These are proposals for the owner to accept, reorder or reject.
+
+**Update (2026-11-03).** Some items were taken up after the freeze in the forward execution recorded in
+[OV-scaffold/forward-plan.md](OV-scaffold/forward-plan.md):
+- the blux-system SDK pin (F68);
+- direct `ax` execution (F72);
+- Roughin frontend modernization and tests (F36, F37, F73);
+- a Vigyl development UI;
+- the Resolver version and tunnel configuration (F48, F53).
+
+Read that report for their status; these recommendations are otherwise unchanged.
 
 ## Phase 0: owner unblockers
 

@@ -173,12 +173,69 @@ The full open list is [reassessment/open-findings.json](reassessment/open-findin
   - Environment-blocked checks are marked BLOCKED with next commands (Appendix B), never PASS.
   - Docs follow the code; code is never changed to make docs true.
 
+## 6a. After the freeze (2026-10-27, outside the staged plan)
+
+Sections 3 and 5 describe the state at the Stage 45 freeze. After it, forward-execution work landed in nine
+commits. It is recorded in [OV-scaffold/forward-plan.md](OV-scaffold/forward-plan.md) and in the updated status
+matrix and findings.
+
+| Repository | Commit | Subject |
+|---|---|---|
+| blux | `8d989de` | Provenance-controlled dataset program and independent evaluation policy |
+| blux-system | `77173f2` | SDK pin aligned with blux-sdk 0.2.0 (addresses F68) |
+| axiom | `ed079e8` | Direct `ax` shell execution through the thin router (addresses F72) |
+| blux10k | `e2e9f58` | Shell version export aligned with 3.0.0 |
+| roughin | `a4410a1` | Frontend modernized with regression coverage; explicit R2 configuration (addresses F36, F37, F73) |
+| vigyl | `f7ce8f3` | Care workspace UI with task, verification and session tests (a development preview) |
+| resolver | `aae88c2` | Application version aligned; tunnel host configuration corrected (addresses F48, F53) |
+| docs | `62300ca`, `3629982` | Forward status report, status matrix and findings updates |
+
+The same work records **F7 as resolved for discoverability**: the owner reports the six product repositories
+(voidforge, void.os, void.sys, void.game, roughin, vigyl) are now private, and the anonymous API returns 404. That
+is not an authenticated attestation; see `OV-scaffold/visibility-check.json`.
+
+These results are as that work records them. **This report does not re-verify them.** The forward report's own
+verdict is "PARTIAL forward program": nothing in it is claimed released. The commits carry no AI co-author trailer,
+so their tooling is recorded as unresolved in credits (UNR-022).
+
 ## 7. Final repository SHAs
 
-Recorded at finalization. Every repository was clean and level with `origin/main`. The docs row is the commit
-before this report; this report and its credits record add one commit each to docs and credits.
+Recorded at finalization on 2026-11-03, after fetching every repository. Each was clean and level with
+`origin/main`. This report's own commit follows the docs row, and the UNR-022 record follows the credits row.
 
-FINAL_SHA_TABLE
+| Repository | Final main SHA | At the Stage 45 freeze | Changed after the freeze |
+|---|---|---|---|
+| blux | `8d989de9bddf` | `51134aff2a8b` | yes |
+| blux-system | `77173f28700e` | `f0ba3a13a175` | yes |
+| blux-gpt | `4609cd987508` | `4609cd987508` | no |
+| blux-coga | `3dc86fa7f791` | `3dc86fa7f791` | no |
+| blux-ca | `7cb953a10313` | `7cb953a10313` | no |
+| dat | `487e1d4b839c` | `487e1d4b839c` | no |
+| lrc | `443e53265ecf` | `443e53265ecf` | no |
+| god | `ad6f0c4bcb62` | `ad6f0c4bcb62` | no |
+| blux-app | `0de2d9a793be` | `0de2d9a793be` | no |
+| blux-ca-dataset | `662ec33cf0f0` | `662ec33cf0f0` | no |
+| blux-coga-dataset | `9331f73f7dfb` | `9331f73f7dfb` | no |
+| axiom | `ed079e8e3e44` | `2d3e4ef395fd` | yes |
+| blux10k | `e2e9f5840d20` | `80a7465f0ce1` | yes |
+| jadis.toolbox | `253c386da4e1` | `253c386da4e1` | no |
+| voidforge | `59b6d67959b4` | `59b6d67959b4` | no |
+| void.os | `24b07cd42357` | `24b07cd42357` | no |
+| void.sys | `09cf56f4f6e2` | `09cf56f4f6e2` | no |
+| void.game | `b56c1aeed256` | `b56c1aeed256` | no |
+| roughin | `a4410a18bead` | `97921fc47c7d` | yes |
+| vigyl | `f7ce8f38609e` | `a0816a4bb9d0` | yes |
+| resolver | `aae88c2ba6d4` | `bf7f26aec9d2` | yes |
+| ov-webpages/theresolver | `49dbeffa4989` | `49dbeffa4989` | no |
+| termux-background | `75cfb974dff8` | `75cfb974dff8` | no |
+| ov-webpages/bluxai.app | `9e5706a12aff` | `9e5706a12aff` | no |
+| ov-webpages/operationrestore | `126453f8964d` | `126453f8964d` | no |
+| ov-webpages/ivrp | `68dbad791dcb` | `68dbad791dcb` | no |
+| credits | `4dea7a33e941` | `19207a728717` | yes |
+| docs | `3629982bb786` | `9cb9798111cc` | yes |
+| .github | `be5221dd7a83` | `be5221dd7a83` | no |
+| .github-private | `5ea59da90caf` | `5ea59da90caf` | no |
+| blhermes-agent | `dc8abc1db051` | `dc8abc1db051` | no |
 
 ## 8. Next
 
