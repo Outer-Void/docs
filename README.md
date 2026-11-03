@@ -19,6 +19,9 @@ Central engineering, governance, legal and policy documentation for the Outer-Vo
   `python3 tools/check_contracts.py` (cross-repository contract verification; mutation tests in `tests/`), and
   [ecosystem/release-ledger.json](ecosystem/release-ledger.json): every release tag.
 
+- [OV-System-Report.md](OV-System-Report.md): the full system report (2026-11-03): architecture, every
+  repository and component, live checks, open findings and what release needs.
+
 ## Legal Documentation
 
 All current legal and trust documents are organized under [`legal/`](legal/README.md).
