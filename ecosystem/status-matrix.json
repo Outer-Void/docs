@@ -43,8 +43,8 @@
     "Rights-cleared substantial corpus and independent protected evaluation are not acquired",
     "Compute budget, inference baseline, serious training and provider qualification remain pending"
    ],
-   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.",
-   "last_verified": "2026-10-27"
+   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.. OV-48 re-run at 8d989de (2026-11-04): training/dataset-program 3 passed; runtime unchanged since 51134af (Stage 44 evidence reused)",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "AXIOM control plane (`ax`)",
@@ -65,8 +65,8 @@
     "Engines must be installed separately; missing engines exit 69 by design",
     "Release packaging/tag qualification remains pending"
    ],
-   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.",
-   "last_verified": "2026-10-27"
+   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.. OV-48 re-run at ed079e8 (2026-11-04): 13 router tests passed; an executed `ax` routes through ax-route",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "blux10k",
@@ -86,8 +86,8 @@
    "known_blockers": [
     "Release packaging/tag and real Termux acceptance remain pending"
    ],
-   "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26). Stage 44 DoD at 80a7465 (2026-10-27): 10 passed; DAT audit triaged Forward execution: dotfiles/.zshrc BLUX10K_VERSION aligned with VERSION and CLI at 3.0.0; README corrected.",
-   "last_verified": "2026-10-27"
+   "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26). Stage 44 DoD at 80a7465 (2026-10-27): 10 passed; DAT audit triaged Forward execution: dotfiles/.zshrc BLUX10K_VERSION aligned with VERSION and CLI at 3.0.0; README corrected.. OV-48 re-run at e2e9f58 (2026-11-04): 10 passed; `zsh -n` clean; `--version` 3.0.0",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "CogA",
@@ -213,8 +213,8 @@
     "No release tag for 2.0.0",
     "Long-running/replay and release/distribution qualification remain pending"
    ],
-   "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26). Stage 44 DoD at f0ba3a1 (2026-10-27): 74 passed (network off); DAT audit triaged Forward execution: SDK dependency pin advanced to immutable SDK 0.2.0 commit 6ee4c805; local sdk/python matches pinned source. Resumed consumer suite: 74 tests PASS.",
-   "last_verified": "2026-10-27"
+   "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26). Stage 44 DoD at f0ba3a1 (2026-10-27): 74 passed (network off); DAT audit triaged Forward execution: SDK dependency pin advanced to immutable SDK 0.2.0 commit 6ee4c805; local sdk/python matches pinned source. Resumed consumer suite: 74 tests PASS.. OV-48 re-run at 77173f2 (2026-11-04): 74 passed against blux-sdk 0.2.0",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "BluxGPT",
@@ -398,7 +398,7 @@
   {
    "component": "Resolver (Telegram runtime)",
    "repo": "resolver",
-   "version": "1.0.0 (app/__init__.py); git tag v4.0",
+   "version": "4.0.0 (app/__init__.py); git tag v4.0 (historical)",
    "commit_sha": "aae88c2",
    "role": "Telegram moderation bot runtime with a paid intelligence layer",
    "standalone_status": "IMPLEMENTED",
@@ -416,8 +416,8 @@
     "Live tunnel/DNS, provider, payment/subscription/admin qualification and release gate need operational credentials",
     "Website domain deployment remains unverified"
    ],
-   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation). Stage 44 DoD at bf7f26a (2026-10-27): 173 unit tests passed; DAT audit triaged Forward execution: app.__version__ aligned to historical v4.0 as 4.0.0; duplicate the in tunnel/host names corrected. Historical tags unchanged.",
-   "last_verified": "2026-10-27"
+   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation). Stage 44 DoD at bf7f26a (2026-10-27): 173 unit tests passed; DAT audit triaged Forward execution: app.__version__ aligned to historical v4.0 as 4.0.0; duplicate the in tunnel/host names corrected. Historical tags unchanged.. OV-48 re-run at aae88c2 (2026-11-04): 173 passed",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "Resolver website",
@@ -460,15 +460,16 @@
     "PostgreSQL 16 migration/backup/restore CI remains blocked; local PostgreSQL 17 initdb stalled in PRoot",
     "No staging deployment, Stripe test-mode or real R2 qualification (F35)",
     "Real mobile/poor-network/browser testing and production PWA assets pending",
-    "Frontend coverage is focused (4 tests); broader payment/task workflows need browser evidence"
+    "Frontend coverage is focused (4 tests); broader payment/task workflows need browser evidence",
+    "Build-time npm advisories through vite-plugin-pwa (F78)"
    ],
-   "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28). Stage 44 DoD at 97921fc (2026-10-27): backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: frontend has 4 regression tests; Vite/React plugin/PWA tooling/React Router upgraded; build PASS and npm audit zero advisories. R2 client now initializes lazily with explicit credentials and fails before credential discovery when unconfigured; 2 regression tests added. Network error text preserves uncertainty about server commits. Resumed validation: backend 93 PASS (including two new R2 configuration regressions), backend ruff PASS; 938 existing datetime deprecation warnings remain.",
-   "last_verified": "2026-10-27"
+   "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28). Stage 44 DoD at 97921fc (2026-10-27): backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: frontend has 4 regression tests; Vite/React plugin/PWA tooling/React Router upgraded; build PASS and npm audit zero advisories. R2 client now initializes lazily with explicit credentials and fails before credential discovery when unconfigured; 2 regression tests added. Network error text preserves uncertainty about server commits. Resumed validation: backend 93 PASS (including two new R2 configuration regressions), backend ruff PASS; 938 existing datetime deprecation warnings remain.. OV-48 re-run at a4410a1 (2026-11-04): backend 93 passed; frontend 4 passed and built; npm audit 6 build-time advisories (F78)",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "Vigyl",
    "repo": "vigyl",
-   "version": "API 0.2.0",
+   "version": "API 0.2.0; frontend 0.1.0 (development preview)",
    "commit_sha": "f7ce8f3",
    "role": "Standalone caregiving/accountability product; FastAPI backend and React development care workspace; server remains authoritative",
    "standalone_status": "IMPLEMENTED",
@@ -486,8 +487,8 @@
     "PostgreSQL 16 migration/backup/restore and staging remain unqualified; local PostgreSQL 17 initdb stalled in PRoot",
     "Recurring tasks, password reset and privacy/legal approval remain open (F46)"
    ],
-   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.",
-   "last_verified": "2026-10-27"
+   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.. OV-48 re-run at f7ce8f3 (2026-11-04): frontend 8 passed, built, npm audit clean; backend unchanged since a0816a4 (78 passed, 2026-10-27)",
+   "last_verified": "2026-11-04"
   },
   {
    "component": "Termux Background",
@@ -507,7 +508,9 @@
    "known_blockers": [
     "No device has passed docs/DEVICE_RC_CHECKLIST.md",
     "No signing key in CI; CI blocked org-wide (F49)",
-    "Targets SDK 35; 36 available (F56)"
+    "Targets SDK 35; 36 available (F56)",
+    "Four public 2025 GitHub releases still offer APKs; the README says there is none (F77, owner decision D-13)",
+    "Four untriaged user issues report that the app closes or doesn't work (F79)"
    ],
    "evidence": "docs/RELEASE_CHECKS.md at 75cfb97: shellcheck, cli_test.sh, build-deb + package_test, gradle test (10 per variant), lint 0 errors, debug+release APKs (Stage 32). Stage 44 DoD at 75cfb97 (2026-10-27): unit 10+10 passed, CLI and package suites passed, shellcheck clean; DAT audit triaged",
    "last_verified": "2026-10-27"

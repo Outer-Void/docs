@@ -229,6 +229,35 @@ if _forward.exists():
         COMPONENTS[-1].update(_updates["secret-project/er"])
 
 
+# OV-48 (2026-11-04): suites affected by post-freeze commits re-run at the tested commit (ov-program/OV-48-report.md).
+# Rows not listed keep their earlier evidence and date. Statuses are not raised by it.
+OV48 = {
+    "blux": ("8d989de", "training/dataset-program 3 passed; runtime unchanged since 51134af (Stage 44 evidence reused)"),
+    "blux-system": ("77173f2", "74 passed against blux-sdk 0.2.0"),
+    "axiom": ("ed079e8", "13 router tests passed; an executed `ax` routes through ax-route"),
+    "blux10k": ("e2e9f58", "10 passed; `zsh -n` clean; `--version` 3.0.0"),
+    "roughin": ("a4410a1", "backend 93 passed; frontend 4 passed and built; npm audit 6 build-time advisories (F78)"),
+    "vigyl": ("f7ce8f3", "frontend 8 passed, built, npm audit clean; backend unchanged since a0816a4 (78 passed, 2026-10-27)"),
+    "resolver": ("aae88c2", "173 passed"),
+}
+OV48_VERSION = {  # verified against the manifests in OV-47
+    "resolver": "4.0.0 (app/__init__.py); git tag v4.0 (historical)",
+    "vigyl": "API 0.2.0; frontend 0.1.0 (development preview)",
+}
+OV48_BLOCKERS = {
+    "roughin": ["Build-time npm advisories through vite-plugin-pwa (F78)"],
+    "termux-background": ["Four public 2025 GitHub releases still offer APKs; the README says there is none (F77, owner decision D-13)",
+                          "Four untriaged user issues report that the app closes or doesn't work (F79)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV48:
+        _row["commit_sha"], _note = OV48[_row["repo"]]
+        _row["evidence"] += f". OV-48 re-run at {_row['commit_sha']} (2026-11-04): {_note}"
+        _row["last_verified"] = "2026-11-04"
+    _row["known_blockers"] = _row["known_blockers"] + OV48_BLOCKERS.get(_row["repo"], [])
+    _row["version"] = OV48_VERSION.get(_row["repo"], _row["version"])
+
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

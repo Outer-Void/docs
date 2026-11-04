@@ -7,9 +7,9 @@
  },
  "counts": {
   "frozen_open": 57,
-  "new": 3,
+  "new": 4,
   "by_status": {
-   "OPEN": 20,
+   "OPEN": 21,
    "EXTERNAL_BLOCKED": 16,
    "RESOLVED_VERIFIED": 8,
    "DEFERRED": 11,
@@ -20,7 +20,7 @@
    "Critical": 3,
    "High": 15,
    "Medium": 19,
-   "Low": 13,
+   "Low": 14,
    "Info": 2
   }
  },
@@ -778,7 +778,7 @@
    "stage": "OV-48",
    "decision": "D-01",
    "evidence": [
-    "docs run for 0b5800a (2026-11-03) annotated: \"The job was not started because your account is locked due to a billing issue.\" Rechecked in OV-48"
+    "Rechecked 2026-11-04 from existing runs (none triggered): the latest CI workflow run of all 23 repositories with workflows failed before starting. 18 carry the annotation \"The job was not started because your account is locked due to a billing issue.\"; the 5 private repositories (vigyl, roughin, void.sys, resolver, theresolver) show `startup_failure` with 0 jobs and no annotation, while all 26 workflow files parse (inventory/workflow-audit.json). blux-gpt's only green run at its HEAD is GitHub's dependency-graph job, not CI"
    ],
    "next_action": "Owner clears the billing lock"
   },
@@ -841,7 +841,7 @@
    "stage": "OV-57",
    "decision": "D-07",
    "evidence": [
-    "https://theresolverbot.net/ returned HTTP 530 on 2026-11-03; rechecked in OV-48"
+    "2026-11-04: https://theresolverbot.net/ and https://www.theresolverbot.net/ return HTTP 530; https://theresolver.pages.dev/ returns 200"
    ],
    "next_action": "Owner attaches the custom domain or fixes the tunnel in Cloudflare"
   },
@@ -1072,7 +1072,7 @@
    "stage": "OV-48",
    "decision": "D-12",
    "evidence": [
-    "Owner shell configuration is never edited automatically (D-12); diagnosed in OV-48"
+    "Diagnosed 2026-11-04 (OV-48 D-12): ~/.zshrc.local lines 16-44 are the BluxGPT 1.0 overlay block; line 22 defines blux(); interactive zsh reports `blux: function`. Not edited (D-12)"
    ],
    "next_action": "Owner applies the OV-48 D-12 correction"
   },
@@ -1281,6 +1281,25 @@
     "gh api repos/Outer-Void/termux-background/issues (2026-11-04)"
    ],
    "next_action": "Triage against the 1.1.0 code and the F77 builds; respond once a fix or a device result exists"
+  },
+  {
+   "id": "F80",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-04 (OV-48)",
+   "repo": "all repositories with workflows",
+   "severity": "Low",
+   "source": "tools/audit_workflows.py (inventory/workflow-audit.json)",
+   "issue": "Workflow hardening backlog. All 26 workflow files pin actions by tag (10 distinct, e.g. actions/checkout@v4), none by commit SHA. void.os android-ci.yml and resolver ci.yml declare no `permissions`, so they get the repository default token scope. 17 files use `ubuntu-latest`, which GitHub is moving to Ubuntu 26. There is no pull_request_target, no write-all, and no untrusted event text inside run steps.",
+   "status": "OPEN",
+   "owner": "repo:docs",
+   "priority": "P1",
+   "stage": "OV-48",
+   "decision": "D-01",
+   "evidence": [
+    "inventory/workflow-audit.json (2026-11-04): 26 files parse; 26 with tag-pinned actions; 2 without permissions"
+   ],
+   "next_action": "Apply SHA pinning, least-privilege permissions and pinned runner images together with the first hosted CI run after D-01, so the change is verified in the same run (plan rule: CI-only changes wait for CI)"
   }
  ]
 }

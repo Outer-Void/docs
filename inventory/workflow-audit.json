@@ -1,0 +1,976 @@
+{
+ "format": "outer-void-workflow-audit v1",
+ "stage": "OV-48",
+ "summary": {
+  "repositories_with_workflows": 23,
+  "workflow_files": 26,
+  "parse_failures": 0,
+  "without_least_privilege": 2,
+  "write_all": 0,
+  "files_with_unpinned_actions": 26,
+  "distinct_unpinned_actions": [
+   "actions/checkout@v4",
+   "actions/download-artifact@v4",
+   "actions/setup-java@v4",
+   "actions/setup-node@v4",
+   "actions/setup-python@v5",
+   "actions/upload-artifact@v4",
+   "android-actions/setup-android@v3",
+   "gradle/actions/setup-gradle@v4",
+   "reactivecircus/android-emulator-runner@v2",
+   "softprops/action-gh-release@v2"
+  ],
+  "pull_request_target": 0,
+  "untrusted_in_run": 0,
+  "runner_labels": [
+   "${{ matrix.os }}",
+   "ubuntu-24.04",
+   "ubuntu-latest"
+  ],
+  "secret_names": [
+   "ANDROID_KEYSTORE_BASE64",
+   "ANDROID_KEYSTORE_PASSWORD",
+   "ANDROID_KEY_ALIAS",
+   "ANDROID_KEY_PASSWORD",
+   "GPG_PASSPHRASE",
+   "GPG_PRIVATE_KEY",
+   "VOIDFORGE_SIGNING_KEYSTORE_B64",
+   "VOIDFORGE_SIGNING_KEY_ALIAS",
+   "VOIDFORGE_SIGNING_KEY_PASSWORD",
+   "VOIDFORGE_SIGNING_STORE_PASSWORD"
+  ]
+ },
+ "repositories": {
+  "blux": {
+   "sha": "8d989de9bddf04a6d1ca6e0ce7e28b1677f62feb",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-system": {
+   "sha": "77173f28700eb1da0d9a681cdea599fcc26f991e",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-gpt": {
+   "sha": "4609cd987508ea6dd0c27218b623b02b74dfb5d4",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-coga": {
+   "sha": "3dc86fa7f791a1ffee88438b549651e4f04c9c3c",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-ca": {
+   "sha": "7cb953a10313276d299170b718f983638be051c2",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "dat": {
+   "sha": "487e1d4b839c788a33e7d576fc151bae8779e4b6",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "actions/upload-artifact@v4"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "actions/upload-artifact@v4"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    },
+    ".github/workflows/release.yml": {
+     "parses": true,
+     "name": "Release",
+     "triggers": [
+      "push"
+     ],
+     "permissions": {
+      "contents": "write"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "softprops/action-gh-release@v2"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "softprops/action-gh-release@v2"
+     ],
+     "secrets": [
+      "GPG_PASSPHRASE",
+      "GPG_PRIVATE_KEY"
+     ],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "lrc": {
+   "sha": "443e53265ecf5b2b2c5885aaffbd9a21da05d40f",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "actions/upload-artifact@v4"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "actions/upload-artifact@v4"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    },
+    ".github/workflows/release.yml": {
+     "parses": true,
+     "name": "Release",
+     "triggers": [
+      "push"
+     ],
+     "permissions": {
+      "contents": "write"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "softprops/action-gh-release@v2"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5",
+      "softprops/action-gh-release@v2"
+     ],
+     "secrets": [
+      "GPG_PASSPHRASE",
+      "GPG_PRIVATE_KEY"
+     ],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "god": {
+   "sha": "ad6f0c4bcb62d5c1f28025f5f63216bd74ad0d7f",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "${{ matrix.os }}"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-app": {
+   "sha": "0de2d9a793beeaee7803f69002062f570b9daf70",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "ci",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-24.04"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-ca-dataset": {
+   "sha": "662ec33cf0f02b4166cc3f7ed26366ac6de14388",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "blux-coga-dataset": {
+   "sha": "9331f73f7dfb3166969d35a12ec0413f77340973",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "axiom": {
+   "sha": "ed079e8e3e44b831656f04e2150fa53f97b08b73",
+   "workflows": {}
+  },
+  "blux10k": {
+   "sha": "e2e9f5840d2067e9d15addc2f8136f0c1b67062f",
+   "workflows": {}
+  },
+  "jadis.toolbox": {
+   "sha": "253c386da4e1783a53bcb04e6ca98b3241254af1",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "JADIS Toolbox CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "voidforge": {
+   "sha": "59b6d67959b4eccd1e01e002aa63fac292e93634",
+   "workflows": {
+    ".github/workflows/android.yml": {
+     "parses": true,
+     "name": "Android quality",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3",
+      "gradle/actions/setup-gradle@v4",
+      "reactivecircus/android-emulator-runner@v2"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3",
+      "gradle/actions/setup-gradle@v4",
+      "reactivecircus/android-emulator-runner@v2"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    },
+    ".github/workflows/release-members.yml": {
+     "parses": true,
+     "name": "Members release",
+     "triggers": [
+      "workflow_dispatch"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3",
+      "gradle/actions/setup-gradle@v4"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3",
+      "gradle/actions/setup-gradle@v4"
+     ],
+     "secrets": [
+      "VOIDFORGE_SIGNING_KEYSTORE_B64",
+      "VOIDFORGE_SIGNING_KEY_ALIAS",
+      "VOIDFORGE_SIGNING_KEY_PASSWORD",
+      "VOIDFORGE_SIGNING_STORE_PASSWORD"
+     ],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "void.os": {
+   "sha": "24b07cd423577881d719e4282fe7ea3621fbe81e",
+   "workflows": {
+    ".github/workflows/android-ci.yml": {
+     "parses": true,
+     "name": "AXIOM Launcher Android CI",
+     "triggers": [
+      "pull_request",
+      "push",
+      "workflow_dispatch"
+     ],
+     "permissions": null,
+     "job_permissions": {},
+     "least_privilege": false,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "void.sys": {
+   "sha": "3f2b7aa0ed1e39eb717142b2613366c5bdb53f20",
+   "workflows": {
+    ".github/workflows/voidsys-ci.yml": {
+     "parses": true,
+     "name": "VOID.SYS CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "android-actions/setup-android@v3"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "android-actions/setup-android@v3"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "void.game": {
+   "sha": "b56c1aeed25698afdd4baa497cd3a12699977965",
+   "workflows": {
+    ".github/workflows/shooter-ci.yml": {
+     "parses": true,
+     "name": "AXIOM Shooter CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "android-actions/setup-android@v3"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-java@v4",
+      "android-actions/setup-android@v3"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "roughin": {
+   "sha": "19d883962263c7644c7452694393d0852b633f07",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "ci",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-24.04"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "vigyl": {
+   "sha": "ee34852abcb7321115b526b57b35a45023078e4d",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "ci",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-24.04"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "resolver": {
+   "sha": "aae88c2ba6d483e0f31458b88bac394929d0a4bf",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "CI",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": null,
+     "job_permissions": {},
+     "least_privilege": false,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "ov-webpages/theresolver": {
+   "sha": "49dbeffa4989b37ff6cfec617356342521385b46",
+   "workflows": {
+    ".github/workflows/ci.yml": {
+     "parses": true,
+     "name": "ci",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-24.04"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "termux-background": {
+   "sha": "75cfb974dff82088281c39d6c8792e974093b79b",
+   "workflows": {
+    ".github/workflows/build.yml": {
+     "parses": true,
+     "name": "Android and Debian builds",
+     "triggers": [
+      "pull_request",
+      "push",
+      "workflow_dispatch"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {
+      "release": {
+       "contents": "write"
+      }
+     },
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-24.04"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/download-artifact@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3",
+      "gradle/actions/setup-gradle@v4",
+      "softprops/action-gh-release@v2"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/download-artifact@v4",
+      "actions/setup-java@v4",
+      "actions/upload-artifact@v4",
+      "android-actions/setup-android@v3",
+      "gradle/actions/setup-gradle@v4",
+      "softprops/action-gh-release@v2"
+     ],
+     "secrets": [
+      "ANDROID_KEYSTORE_BASE64",
+      "ANDROID_KEYSTORE_PASSWORD",
+      "ANDROID_KEY_ALIAS",
+      "ANDROID_KEY_PASSWORD"
+     ],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "ov-webpages/bluxai.app": {
+   "sha": "9e5706a12affc09778db6517536cb745300bcc9f",
+   "workflows": {}
+  },
+  "ov-webpages/operationrestore": {
+   "sha": "126453f8964d5173ff66f7c5ac1b89f47e89afba",
+   "workflows": {}
+  },
+  "ov-webpages/ivrp": {
+   "sha": "68dbad791dcb70463811e914d0753ae31aef1c17",
+   "workflows": {}
+  },
+  "credits": {
+   "sha": "00457781b678ca5a65db58dd7e5800c8fefc0f34",
+   "workflows": {
+    ".github/workflows/validate.yml": {
+     "parses": true,
+     "name": "Validate ledger",
+     "triggers": [
+      "pull_request",
+      "push"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-latest"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  "docs": {
+   "sha": "6ccececd4af3f655351cca4f6f1494b4f285e0bc",
+   "workflows": {
+    ".github/workflows/docs.yml": {
+     "parses": true,
+     "name": "docs",
+     "triggers": [
+      "pull_request",
+      "push",
+      "schedule"
+     ],
+     "permissions": {
+      "contents": "read"
+     },
+     "job_permissions": {},
+     "least_privilege": true,
+     "write_all": false,
+     "runners": [
+      "ubuntu-24.04"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "unpinned_actions": [
+      "actions/checkout@v4",
+      "actions/setup-python@v5"
+     ],
+     "secrets": [],
+     "pull_request_target": false,
+     "untrusted_in_run": false
+    }
+   }
+  },
+  ".github": {
+   "sha": "be5221dd7a83f3d3b241c24e43bfda82fc9b751d",
+   "workflows": {}
+  },
+  ".github-private": {
+   "sha": "5ea59da90caf9182e9e4790e4caea926564ad7ac",
+   "workflows": {}
+  }
+ }
+}
