@@ -19,6 +19,10 @@ Central engineering, governance, legal and policy documentation for the Outer-Vo
   `python3 tools/check_contracts.py` (cross-repository contract verification; mutation tests in `tests/`), and
   [ecosystem/release-ledger.json](ecosystem/release-ledger.json): every release tag.
 
+- [ov-program/](ov-program/MASTER-PLAN.md): the locked OV-46 → OV-70 master execution plan and its stage reports;
+  [inventory/](inventory/inventory-current.json): the current repository inventory
+  (`python3 tools/build_inventory.py --workspace ~/ov --check`), kept apart from the Stage 45 freeze in
+  [reassessment/](reassessment/) (`tools/export_reassessment.py --check` reproduces it).
 - [OV-System-Report.md](OV-System-Report.md): the full system report (2026-11-03): architecture, every
   repository and component, live checks, open findings and what release needs.
 

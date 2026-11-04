@@ -1,0 +1,1381 @@
+{
+ "format": "outer-void-inventory-current v1",
+ "recorded_at": "2026-11-04",
+ "stage": "OV-46",
+ "counts": {
+  "repositories": 32,
+  "github": 32,
+  "archived": 1,
+  "excluded_by_owner_policy": 1,
+  "inspected": 31
+ },
+ "dependency_graph": {
+  "source": "constitution/repositories.json (depends_on)",
+  "frozen": "reassessment/dependency-graph.json",
+  "unchanged_since_freeze": true,
+  "added": [],
+  "removed": []
+ },
+ "repositories": [
+  {
+   "repo": "blux",
+   "github": "Outer-Void/blux",
+   "component": "BLUX (runtime, SDK, contracts, `blux` CLI)",
+   "kind": "platform",
+   "blux": "integrated",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "8d989de9bddf04a6d1ca6e0ce7e28b1677f62feb",
+   "matrix_version": "outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0",
+   "owns": "Contract v1, the capability registry and policy, Model API v1 and routing, Hook System v1, the runtime, the direct `blux` CLI, the training data pipeline and Gen 0 evaluation harness",
+   "never_owns": "Device control, receipt persistence, audits, discovery, repository creation, product business truth",
+   "depends_on": [
+    "blux-system",
+    "blux-gpt"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "8d989de9bddf04a6d1ca6e0ce7e28b1677f62feb",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "51134aff2a8b6659c06a34909f90c7aa21c9331a",
+   "commits_since_freeze": 1,
+   "tracked_files": 502,
+   "manifests": {
+    "Makefile": null,
+    "pyproject.toml": "0.4.0",
+    "sdk/python/pyproject.toml": "0.2.0",
+    "training/pyproject.toml": null
+   },
+   "lock_files": [
+    "migration/blhermes/characterization/requirements.txt",
+    "requirements-dev.txt",
+    "training/requirements.txt"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 1,
+    "latest": [
+     "blux-sdk-v0.1.0"
+    ]
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "blux-system",
+   "github": "Outer-Void/blux-system",
+   "component": "BLUX System",
+   "kind": "platform",
+   "blux": "integrated",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "77173f28700eb1da0d9a681cdea599fcc26f991e",
+   "matrix_version": "2.0.0",
+   "owns": "Execution truth: receipts, operation graph, timelines, artifact references, replay metadata, retention",
+   "never_owns": "Reasoning, planning, orchestration, policy decisions",
+   "depends_on": [
+    "blux"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "77173f28700eb1da0d9a681cdea599fcc26f991e",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "f0ba3a13a1758c9e0873c2ae05f83deaf82baf32",
+   "commits_since_freeze": 1,
+   "tracked_files": 46,
+   "manifests": {
+    "pyproject.toml": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "blux-gpt",
+   "github": "Outer-Void/blux-gpt",
+   "component": "BluxGPT",
+   "kind": "platform",
+   "blux": "integrated",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "4609cd987508ea6dd0c27218b623b02b74dfb5d4",
+   "matrix_version": "2.0.0",
+   "owns": "Provider transport behind Model API v1: retries, streaming, normalization",
+   "never_owns": "Agent loops, tool execution, routing across providers, ecosystem authority",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "4609cd987508ea6dd0c27218b623b02b74dfb5d4",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "4609cd987508ea6dd0c27218b623b02b74dfb5d4",
+   "commits_since_freeze": 0,
+   "tracked_files": 43,
+   "manifests": {
+    "VERSION": "2.0.0",
+    "pyproject.toml": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "blux-coga",
+   "github": "Outer-Void/blux-coga",
+   "component": "CogA",
+   "kind": "engine",
+   "blux": "standalone",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "3dc86fa7f791a1ffee88438b549651e4f04c9c3c",
+   "matrix_version": "2.0.0",
+   "owns": "Deterministic structured reasoning with replayable artifacts",
+   "never_owns": "Model identity; hidden chain-of-thought (never stored)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "3dc86fa7f791a1ffee88438b549651e4f04c9c3c",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "3dc86fa7f791a1ffee88438b549651e4f04c9c3c",
+   "commits_since_freeze": 0,
+   "tracked_files": 163,
+   "manifests": {
+    "Makefile": null,
+    "pyproject.toml": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 1,
+    "latest": [
+     "CogA-0.1-mini"
+    ]
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "blux-ca",
+   "github": "Outer-Void/blux-ca",
+   "component": "cA",
+   "kind": "engine",
+   "blux": "standalone",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "7cb953a10313276d299170b718f983638be051c2",
+   "matrix_version": "2.0.1",
+   "owns": "Construction, modification and repair changesets with rollback",
+   "never_owns": "Certifying its own work (DAT validates)",
+   "depends_on": [
+    "dat"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "7cb953a10313276d299170b718f983638be051c2",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "7cb953a10313276d299170b718f983638be051c2",
+   "commits_since_freeze": 0,
+   "tracked_files": 117,
+   "manifests": {
+    "Makefile": null,
+    "pyproject.toml": "2.0.1"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 2,
+    "latest": [
+     "cA-0.1",
+     "cA-0.1-mini"
+    ]
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "dat",
+   "github": "Outer-Void/dat",
+   "component": "DAT",
+   "kind": "engine",
+   "blux": "standalone",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "487e1d4b839c788a33e7d576fc151bae8779e4b6",
+   "matrix_version": "4.0.0",
+   "owns": "Independent audit, security, quality and release gates",
+   "never_owns": "Fixing what it finds",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "487e1d4b839c788a33e7d576fc151bae8779e4b6",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "487e1d4b839c788a33e7d576fc151bae8779e4b6",
+   "commits_since_freeze": 0,
+   "tracked_files": 77,
+   "manifests": {
+    "Makefile": null,
+    "pyproject.toml": "4.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 2,
+    "latest": [
+     "v2.0.0-alpha.1",
+     "v1.0.0"
+    ]
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "lrc",
+   "github": "Outer-Void/lrc",
+   "component": "LRC",
+   "kind": "engine",
+   "blux": "standalone",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "443e53265ecf5b2b2c5885aaffbd9a21da05d40f",
+   "matrix_version": "2.0.0",
+   "owns": "Deterministic repository creation, scaffolding and migration",
+   "never_owns": "Certifying itself",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "443e53265ecf5b2b2c5885aaffbd9a21da05d40f",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "443e53265ecf5b2b2c5885aaffbd9a21da05d40f",
+   "commits_since_freeze": 0,
+   "tracked_files": 86,
+   "manifests": {
+    "Makefile": null,
+    "pyproject.toml": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 1,
+    "latest": [
+     "v1.0.0-stable"
+    ]
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "god",
+   "github": "Outer-Void/god",
+   "component": "GOD",
+   "kind": "engine",
+   "blux": "integrated",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "ad6f0c4bcb62d5c1f28025f5f63216bd74ad0d7f",
+   "matrix_version": "2.0.0",
+   "owns": "Discovery of projects, capabilities and commands (reads `.blux/` through blux-sdk)",
+   "never_owns": "Executing anything it discovers",
+   "depends_on": [
+    "blux"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "ad6f0c4bcb62d5c1f28025f5f63216bd74ad0d7f",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "ad6f0c4bcb62d5c1f28025f5f63216bd74ad0d7f",
+   "commits_since_freeze": 0,
+   "tracked_files": 42,
+   "manifests": {
+    "Makefile": null,
+    "pyproject.toml": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "blux-app",
+   "github": "Outer-Void/blux-app",
+   "component": "BLUX App",
+   "kind": "platform",
+   "blux": "integrated",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "0de2d9a793beeaee7803f69002062f570b9daf70",
+   "matrix_version": "2.0.0",
+   "owns": "Local mission control: read-only views over the BLUX tools; read-only BLUX System checks as its only controls",
+   "never_owns": "Execution, enforcement, any BLUX logic",
+   "depends_on": [
+    "blux",
+    "blux-system",
+    "god"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "0de2d9a793beeaee7803f69002062f570b9daf70",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "0de2d9a793beeaee7803f69002062f570b9daf70",
+   "commits_since_freeze": 0,
+   "tracked_files": 52,
+   "manifests": {
+    "pyproject.toml": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "blux-ca-dataset",
+   "github": "Outer-Void/blux-ca-dataset",
+   "component": "cA dataset",
+   "kind": "dataset",
+   "blux": "standalone",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "662ec33cf0f02b4166cc3f7ed26366ac6de14388",
+   "matrix_version": "dynamic (pyproject)",
+   "owns": "cA evaluation/training records produced by the pinned cA engine, with splits, locks and canaries",
+   "never_owns": "Training data from private sources",
+   "depends_on": [
+    "blux-ca",
+    "dat"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "662ec33cf0f02b4166cc3f7ed26366ac6de14388",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "662ec33cf0f02b4166cc3f7ed26366ac6de14388",
+   "commits_since_freeze": 0,
+   "tracked_files": 198,
+   "manifests": {
+    "pyproject.toml": null
+   },
+   "lock_files": [
+    "requirements-dev.txt",
+    "requirements.txt"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "blux-coga-dataset",
+   "github": "Outer-Void/blux-coga-dataset",
+   "component": "CogA dataset",
+   "kind": "dataset",
+   "blux": "standalone",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "9331f73f7dfb3166969d35a12ec0413f77340973",
+   "matrix_version": "dynamic (pyproject)",
+   "owns": "CogA evaluation/training records produced by the pinned CogA engine, with splits, locks and canaries",
+   "never_owns": "Training data from private sources",
+   "depends_on": [
+    "blux-coga"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "9331f73f7dfb3166969d35a12ec0413f77340973",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "9331f73f7dfb3166969d35a12ec0413f77340973",
+   "commits_since_freeze": 0,
+   "tracked_files": 141,
+   "manifests": {
+    "pyproject.toml": null
+   },
+   "lock_files": [
+    "requirements-dev.txt",
+    "requirements.txt"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "axiom",
+   "github": "Outer-Void/axiom",
+   "component": "AXIOM control plane (`ax`)",
+   "kind": "tool",
+   "blux": "optional",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "ed079e8e3e44b831656f04e2150fa53f97b08b73",
+   "matrix_version": "2.0.0",
+   "owns": "The developer control plane: routes each command to the authoritative engine (exit 69 when missing); the `axiom` cockpit identity",
+   "never_owns": "Reimplementing any engine; the AXIOM Launcher (that is void.os)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "ed079e8e3e44b831656f04e2150fa53f97b08b73",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "2d3e4ef395fdcd265a26de1d0a53e9461e04c92c",
+   "commits_since_freeze": 1,
+   "tracked_files": 70,
+   "manifests": {
+    "VERSION": "2.0.0"
+   },
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "blux10k",
+   "github": "Outer-Void/blux10k",
+   "component": "blux10k",
+   "kind": "tool",
+   "blux": "excluded",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "e2e9f5840d2067e9d15addc2f8136f0c1b67062f",
+   "matrix_version": "3.0.0",
+   "owns": "Environment and toolchain authority (`ax env`) and dotfiles",
+   "never_owns": "Project or device work",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "e2e9f5840d2067e9d15addc2f8136f0c1b67062f",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "80a7465f0ce186536a627cc73d6bd560f17a9c9b",
+   "commits_since_freeze": 1,
+   "tracked_files": 34,
+   "manifests": {
+    "VERSION": "3.0.0"
+   },
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "jadis.toolbox",
+   "github": "Outer-Void/jadis.toolbox",
+   "component": "JADIS Toolbox (`jadis`)",
+   "kind": "tool",
+   "blux": "optional",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "253c386da4e1783a53bcb04e6ca98b3241254af1",
+   "matrix_version": "0.1.0",
+   "owns": "This workstation: environment classification, doctor, journaled local repairs, bootstraps, snapshots; four standalone personal scripts",
+   "never_owns": "Dotfiles, routing, audits, discovery, devices, intelligence",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "253c386da4e1783a53bcb04e6ca98b3241254af1",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "253c386da4e1783a53bcb04e6ca98b3241254af1",
+   "commits_since_freeze": 0,
+   "tracked_files": 73,
+   "manifests": {
+    "pyproject.toml": "0.1.0"
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "voidforge",
+   "github": "Outer-Void/voidforge",
+   "component": "VoidForge",
+   "kind": "product",
+   "blux": "optional",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "59b6d67959b4eccd1e01e002aa63fac292e93634",
+   "matrix_version": "0.1.0-dev",
+   "owns": "Android device work: ADB, Fastboot/fastbootd, sideload, flashing, Magisk, its journal and local authorization",
+   "never_owns": "Being directed by BLUX: BLUX and `ax devices` can only ask; writes need the person at the device",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "59b6d67959b4eccd1e01e002aa63fac292e93634",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "59b6d67959b4eccd1e01e002aa63fac292e93634",
+   "commits_since_freeze": 0,
+   "tracked_files": 144,
+   "manifests": {
+    "app/build.gradle.kts": null,
+    "build-logic/build.gradle.kts": null,
+    "build-logic/settings.gradle.kts": null,
+    "build.gradle.kts": "0.1.0-dev",
+    "core/build.gradle.kts": null,
+    "integration/build.gradle.kts": null,
+    "settings.gradle.kts": null
+   },
+   "lock_files": [
+    "gradle/libs.versions.toml"
+   ],
+   "workflows": [
+    ".github/workflows/android.yml",
+    ".github/workflows/release-members.yml"
+   ],
+   "toolchains": [
+    "gradle"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "void.os",
+   "github": "Outer-Void/void.os",
+   "component": "AXIOM Launcher",
+   "kind": "product",
+   "blux": "optional",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "24b07cd423577881d719e4282fe7ea3621fbe81e",
+   "matrix_version": "2.0.0-dev",
+   "owns": "Launcher behavior and state, the bundled VOID.SYS and AXIOM Shooter surfaces (vendored at locked commits)",
+   "never_owns": "Requiring BLUX; being `ax`",
+   "depends_on": [
+    "void.sys",
+    "void.game"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "24b07cd423577881d719e4282fe7ea3621fbe81e",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "24b07cd423577881d719e4282fe7ea3621fbe81e",
+   "commits_since_freeze": 0,
+   "tracked_files": 3236,
+   "manifests": {
+    "app/build.gradle.kts": "2.0.0-dev",
+    "build.gradle.kts": null,
+    "settings.gradle.kts": null
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/android-ci.yml"
+   ],
+   "toolchains": [
+    "gradle"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "void.sys",
+   "github": "Outer-Void/void.sys",
+   "component": "VOID.SYS",
+   "kind": "product",
+   "blux": "excluded",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "09cf56f4f6e2fe7d9b5dc66e860a683b61143bbe",
+   "matrix_version": "2.1.0-dev",
+   "owns": "The icon system and its standalone icon pack",
+   "never_owns": "BLUX intelligence (deliberately independent)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "09cf56f4f6e2fe7d9b5dc66e860a683b61143bbe",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "09cf56f4f6e2fe7d9b5dc66e860a683b61143bbe",
+   "commits_since_freeze": 0,
+   "tracked_files": 3557,
+   "manifests": {
+    "app/build.gradle.kts": "2.1.0-dev",
+    "build.gradle.kts": null,
+    "settings.gradle.kts": null
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/voidsys-ci.yml"
+   ],
+   "toolchains": [
+    "gradle"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "void.game",
+   "github": "Outer-Void/void.game",
+   "component": "AXIOM Shooter",
+   "kind": "product",
+   "blux": "excluded",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "b56c1aeed25698afdd4baa497cd3a12699977965",
+   "matrix_version": "2.1.0-dev",
+   "owns": "The game core (authoritative) and its standalone Android app",
+   "never_owns": "BLUX intelligence (deliberately independent)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "b56c1aeed25698afdd4baa497cd3a12699977965",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "b56c1aeed25698afdd4baa497cd3a12699977965",
+   "commits_since_freeze": 0,
+   "tracked_files": 67,
+   "manifests": {
+    "android/build.gradle.kts": "2.1.0-dev",
+    "build.gradle.kts": "2.1.0-dev",
+    "core/build.gradle.kts": null,
+    "settings.gradle.kts": null
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/shooter-ci.yml"
+   ],
+   "toolchains": [
+    "gradle"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "roughin",
+   "github": "Outer-Void/roughin",
+   "component": "Roughin",
+   "kind": "product",
+   "blux": "optional",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "a4410a18bead37b2df5ffa9fb24eb61d43c0fa91",
+   "matrix_version": "1.1.0 (API); frontend 1.0.0",
+   "owns": "Contractor business truth: clients, jobs, invoices, payments, subscriptions",
+   "never_owns": "Delegating money or business truth to BLUX",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "a4410a18bead37b2df5ffa9fb24eb61d43c0fa91",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "97921fc47c7de6dcfc58a81f696bdbc17866824d",
+   "commits_since_freeze": 1,
+   "tracked_files": 130,
+   "manifests": {
+    "Makefile": null,
+    "frontend/package.json": "1.0.0"
+   },
+   "lock_files": [
+    "backend/requirements-dev.txt",
+    "backend/requirements.txt",
+    "frontend/package-lock.json"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "node",
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "# Roughin \u2014 Mobile-First Contractor Job Management"
+  },
+  {
+   "repo": "vigyl",
+   "github": "Outer-Void/vigyl",
+   "component": "Vigyl",
+   "kind": "product",
+   "blux": "optional",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "f7ce8f38609e8e3e67c2c62fa7029c5b7ac22177",
+   "matrix_version": "API 0.2.0",
+   "owns": "Care-group truth: members, roles, tasks, escalation, timeline",
+   "never_owns": "Medical decisions; delegating care responsibility to BLUX",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "f7ce8f38609e8e3e67c2c62fa7029c5b7ac22177",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "a0816a4bb9d0b8141d5a486ba912fc85793644e7",
+   "commits_since_freeze": 1,
+   "tracked_files": 86,
+   "manifests": {
+    "frontend/package.json": "0.1.0"
+   },
+   "lock_files": [
+    "backend/requirements-dev.txt",
+    "backend/requirements.txt",
+    "frontend/package-lock.json"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "node",
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Vigyl Proprietary License"
+  },
+  {
+   "repo": "resolver",
+   "github": "Outer-Void/resolver",
+   "component": "Resolver (Telegram runtime)",
+   "kind": "product",
+   "blux": "optional",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "aae88c2ba6d483e0f31458b88bac394929d0a4bf",
+   "matrix_version": "1.0.0 (app/__init__.py); git tag v4.0",
+   "owns": "Telegram moderation runtime: moderation, entitlements, payments, admin cockpit",
+   "never_owns": "Marketing pages (that is theresolver)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "aae88c2ba6d483e0f31458b88bac394929d0a4bf",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "bf7f26aec9d2bdc126829b631157aa18b79b06ff",
+   "commits_since_freeze": 1,
+   "tracked_files": 120,
+   "manifests": {},
+   "lock_files": [
+    "requirements.txt"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 1,
+    "latest": [
+     "v4.0"
+    ]
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "ov-webpages/theresolver",
+   "github": "Outer-Void/theresolver",
+   "component": "Resolver website",
+   "kind": "product",
+   "blux": "excluded",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "49dbeffa4989b37ff6cfec617356342521385b46",
+   "matrix_version": "0.2.0",
+   "owns": "Marketing, acquisition, support, privacy and terms pages for the bot",
+   "never_owns": "Bot runtime state, pricing truth (the bot's catalogue is authoritative)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "49dbeffa4989b37ff6cfec617356342521385b46",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "49dbeffa4989b37ff6cfec617356342521385b46",
+   "commits_since_freeze": 0,
+   "tracked_files": 80,
+   "manifests": {
+    "package.json": "0.2.0"
+   },
+   "lock_files": [
+    "package-lock.json"
+   ],
+   "workflows": [
+    ".github/workflows/ci.yml"
+   ],
+   "toolchains": [
+    "node"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "termux-background",
+   "github": "Outer-Void/termux-background",
+   "component": "Termux Background",
+   "kind": "product",
+   "blux": "excluded",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "75cfb974dff82088281c39d6c8792e974093b79b",
+   "matrix_version": "1.1.0",
+   "owns": "Termux Monet wallpaper CLI and Android companion",
+   "never_owns": "BLUX integration (excluded)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "75cfb974dff82088281c39d6c8792e974093b79b",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "75cfb974dff82088281c39d6c8792e974093b79b",
+   "commits_since_freeze": 0,
+   "tracked_files": 46,
+   "manifests": {
+    "VERSION": "1.1.0",
+    "app/build.gradle": null,
+    "build.gradle": null
+   },
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/build.yml"
+   ],
+   "toolchains": [
+    "gradle"
+   ],
+   "tags": {
+    "count": 1,
+    "latest": [
+     "version-1.0.0"
+    ]
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "ov-webpages/bluxai.app",
+   "github": "Outer-Void/bluxai.app",
+   "component": "bluxai.app",
+   "kind": "platform",
+   "blux": "integrated",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "9e5706a12affc09778db6517536cb745300bcc9f",
+   "matrix_version": "0.1.0",
+   "owns": "The private BLUX workspace: organizations, roles, run/receipt inspection, API tokens, audit, opt-in remote runs",
+   "never_owns": "Any BLUX runtime logic",
+   "depends_on": [
+    "blux",
+    "blux-system"
+   ],
+   "content_inspection": "INSPECTED",
+   "head": "9e5706a12affc09778db6517536cb745300bcc9f",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "9e5706a12affc09778db6517536cb745300bcc9f",
+   "commits_since_freeze": 0,
+   "tracked_files": 12,
+   "manifests": {
+    "pyproject.toml": "0.1.0"
+   },
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "BLUX Proprietary License"
+  },
+  {
+   "repo": "ov-webpages/operationrestore",
+   "github": "Outer-Void/operationrestore",
+   "component": "Operation: Restore website",
+   "kind": "product",
+   "blux": "excluded",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "126453f8964d5173ff66f7c5ac1b89f47e89afba",
+   "matrix_version": null,
+   "owns": "The operationrestore.net static site",
+   "never_owns": "Anything outside that site",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "126453f8964d5173ff66f7c5ac1b89f47e89afba",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "126453f8964d5173ff66f7c5ac1b89f47e89afba",
+   "commits_since_freeze": 0,
+   "tracked_files": 20,
+   "manifests": {},
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "ov-webpages/ivrp",
+   "github": "Outer-Void/ivrp",
+   "component": "IVRP website",
+   "kind": "product",
+   "blux": "excluded",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "68dbad791dcb70463811e914d0753ae31aef1c17",
+   "matrix_version": null,
+   "owns": "Reserved Inner Void Recovery Program website (README and LICENSE only)",
+   "never_owns": "Clinical or crisis services",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "68dbad791dcb70463811e914d0753ae31aef1c17",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "68dbad791dcb70463811e914d0753ae31aef1c17",
+   "commits_since_freeze": 0,
+   "tracked_files": 2,
+   "manifests": {},
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "credits",
+   "github": "Outer-Void/credits",
+   "component": "Credits ledger",
+   "kind": "governance",
+   "blux": "excluded",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "5390489d2154a663a33ee1ba048ad91e907370b2",
+   "matrix_version": null,
+   "owns": "Attribution, licensing and provenance ledger; validation tools",
+   "never_owns": "Licence texts it does not own (kept verbatim)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "5390489d2154a663a33ee1ba048ad91e907370b2",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "19207a72871732757b875acbe6cde8f693b4eb8b",
+   "commits_since_freeze": 3,
+   "tracked_files": 94,
+   "manifests": {},
+   "lock_files": [
+    "requirements.txt"
+   ],
+   "workflows": [
+    ".github/workflows/validate.yml"
+   ],
+   "toolchains": [
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer Void Proprietary License"
+  },
+  {
+   "repo": "docs",
+   "github": "Outer-Void/docs",
+   "component": "Central docs",
+   "kind": "governance",
+   "blux": "excluded",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "efe411f2869a4f745f4e6ba0bcb16edaa5a98a7b",
+   "matrix_version": null,
+   "owns": "This constitution, the status matrix, findings, legal baselines",
+   "never_owns": "Repository-specific specifications (those stay in their repositories)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "efe411f2869a4f745f4e6ba0bcb16edaa5a98a7b",
+   "level_with_origin": true,
+   "clean": false,
+   "frozen_sha": "9cb9798111cc3d15a6af056790683e0af9af25a1",
+   "commits_since_freeze": 6,
+   "tracked_files": 94,
+   "manifests": {},
+   "lock_files": [],
+   "workflows": [
+    ".github/workflows/docs.yml"
+   ],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": ".github",
+   "github": "Outer-Void/.github",
+   "component": "Organization profile",
+   "kind": "governance",
+   "blux": "excluded",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "be5221dd7a83f3d3b241c24e43bfda82fc9b751d",
+   "matrix_version": null,
+   "owns": "The public organization profile and doctrine",
+   "never_owns": "Product status (the matrix is authoritative)",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "be5221dd7a83f3d3b241c24e43bfda82fc9b751d",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "be5221dd7a83f3d3b241c24e43bfda82fc9b751d",
+   "commits_since_freeze": 0,
+   "tracked_files": 16,
+   "manifests": {},
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": ".github-private",
+   "github": "Outer-Void/.github-private",
+   "component": "Private organization profile",
+   "kind": "governance",
+   "blux": "excluded",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "5ea59da90caf9182e9e4790e4caea926564ad7ac",
+   "matrix_version": null,
+   "owns": "The members-only organization profile",
+   "never_owns": "Anything public",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "5ea59da90caf9182e9e4790e4caea926564ad7ac",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "5ea59da90caf9182e9e4790e4caea926564ad7ac",
+   "commits_since_freeze": 0,
+   "tracked_files": 3,
+   "manifests": {},
+   "lock_files": [],
+   "workflows": [],
+   "toolchains": [],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "Outer-Void Proprietary License"
+  },
+  {
+   "repo": "secret-project/er",
+   "github": "Outer-Void/er",
+   "component": "Eden Recovery",
+   "kind": "institutional planning",
+   "blux": "optional",
+   "declared_visibility": "private",
+   "github_visibility": "private",
+   "visibility_matches": true,
+   "archived": false,
+   "default_branch": "main",
+   "remote_sha": "ac4b89a7eee52cb8469b50eb5903a18b6caea618",
+   "matrix_version": "Phase 0 draft",
+   "owns": "Canonical Eden Recovery architecture, source IVRP workups, Restore integration model, feasibility and evidence gates",
+   "never_owns": "Autonomous clinical decisions or public website runtime; no care delivery authority from repository tests",
+   "depends_on": [],
+   "content_inspection": "EXCLUDED_BY_OWNER_POLICY"
+  },
+  {
+   "repo": "blhermes-agent",
+   "github": "Outer-Void/blhermes-agent",
+   "component": "BLHermes (archived fork)",
+   "kind": "archived",
+   "blux": "none",
+   "declared_visibility": "public",
+   "github_visibility": "public",
+   "visibility_matches": true,
+   "archived": true,
+   "default_branch": "main",
+   "remote_sha": "dc8abc1db051aabc22279aa580bd7fb3cdf86b0c",
+   "matrix_version": "upstream metadata only",
+   "owns": "Historical BLHermes fork (read-only)",
+   "never_owns": "Any runtime role",
+   "depends_on": [],
+   "content_inspection": "INSPECTED",
+   "head": "dc8abc1db051aabc22279aa580bd7fb3cdf86b0c",
+   "level_with_origin": true,
+   "clean": true,
+   "frozen_sha": "dc8abc1db051aabc22279aa580bd7fb3cdf86b0c",
+   "commits_since_freeze": 0,
+   "tracked_files": 20688,
+   "manifests": {
+    "apps/bootstrap-installer/package.json": "0.0.0",
+    "apps/desktop/package.json": "0.0.0",
+    "apps/shared/package.json": "0.0.0",
+    "hermes_cli/setup.py": null,
+    "hermes_cli/subcommands/setup.py": null,
+    "package.json": "1.0.0",
+    "pm/pyproject.toml": "0.0.0",
+    "pyproject.toml": "0.0.0",
+    "scripts/whatsapp-bridge/package.json": "1.0.0",
+    "setup.py": null,
+    "tests-js/package.json": null,
+    "ui-tui/package.json": "0.0.1",
+    "web/package.json": "0.0.0",
+    "website/package.json": "0.0.0"
+   },
+   "lock_files": [
+    "nix/node-gyp-11-4-0-package-lock.json",
+    "optional-skills/finance/dcf-model/requirements.txt",
+    "package-lock.json",
+    "plugins/platforms/photon/sidecar/package-lock.json",
+    "pm/uv.lock",
+    "scripts/whatsapp-bridge/package-lock.json",
+    "uv.lock",
+    "website/package-lock.json"
+   ],
+   "workflows": [
+    ".github/workflows/archive-inputs.yml",
+    ".github/workflows/blob-size-check.yml",
+    ".github/workflows/bootstrap-installer-build.yml",
+    ".github/workflows/bootstrap-installer.yml",
+    ".github/workflows/canary-release.yml",
+    ".github/workflows/case-collision-check.yml",
+    ".github/workflows/catalog-tests.yml",
+    ".github/workflows/ci-review-comment.yml",
+    ".github/workflows/ci.yaml",
+    ".github/workflows/contributor-check.yml",
+    ".github/workflows/deploy-site.yml",
+    ".github/workflows/desktop-bundle-smoke.yml",
+    ".github/workflows/desktop-bundled-release.yml",
+    ".github/workflows/docker-lint.yml",
+    ".github/workflows/docker.yml",
+    ".github/workflows/docs-search-monitor.yml",
+    ".github/workflows/docs-site-checks.yml",
+    ".github/workflows/e2e-desktop-core.yml",
+    ".github/workflows/e2e-desktop-update.yml",
+    ".github/workflows/e2e-desktop.yml",
+    ".github/workflows/history-check.yml",
+    ".github/workflows/icons-freshness-check.yml",
+    ".github/workflows/infographic-check.yml",
+    ".github/workflows/install-e2e-macos-run.yml",
+    ".github/workflows/install-e2e-red.yml",
+    ".github/workflows/install-e2e-run.yml",
+    ".github/workflows/install-e2e-windows-run.yml",
+    ".github/workflows/install-e2e.yml",
+    ".github/workflows/js-autofix.yml",
+    ".github/workflows/js-tests.yml",
+    ".github/workflows/label-rerun.yml",
+    ".github/workflows/lazy-deps-guard.yml",
+    ".github/workflows/lint.yml",
+    ".github/workflows/live-providers.yml",
+    ".github/workflows/lockfile-diff.yml",
+    ".github/workflows/nix.yml",
+    ".github/workflows/osv-scanner.yml",
+    ".github/workflows/plugin-catalog-ci.yml",
+    ".github/workflows/pm-bundle.yml",
+    ".github/workflows/profile-artifact-check.yml",
+    ".github/workflows/prompt-surface-diff.yml",
+    ".github/workflows/remote-backends.yml",
+    ".github/workflows/rust-tests.yml",
+    ".github/workflows/sandbox-image.yml",
+    ".github/workflows/skills-index-freshness.yml",
+    ".github/workflows/skills-index.yml",
+    ".github/workflows/stable-release-publication.yml",
+    ".github/workflows/stable-release.yml",
+    ".github/workflows/supply-chain-audit.yml",
+    ".github/workflows/termux-verify.yml",
+    ".github/workflows/tests-os.yml",
+    ".github/workflows/tests.yml",
+    ".github/workflows/uv-lockfile-check.yml",
+    ".github/workflows/windows-bundle-sdk.yml",
+    ".github/workflows/windows-desktop-attach-e2e.yml",
+    ".github/workflows/windows-install-update-e2e.yml",
+    ".github/workflows/windows-venv-e2e.yml"
+   ],
+   "toolchains": [
+    "node",
+    "python"
+   ],
+   "tags": {
+    "count": 0,
+    "latest": []
+   },
+   "licence_first_line": "MIT License"
+  }
+ ]
+}

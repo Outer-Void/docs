@@ -1,0 +1,263 @@
+{
+ "format": "outer-void-visibility-attestation v1",
+ "recorded_at": "2026-11-04",
+ "source": "authenticated GitHub REST API (gh api repos/Outer-Void/<name>)",
+ "repositories": {
+  "blux": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:21Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-system": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:26Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-gpt": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-25T21:00:32Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-coga": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-25T21:01:07Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-ca": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-25T21:01:04Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "dat": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T12:34:15Z",
+   "open_issues": 0,
+   "releases": 3
+  },
+  "lrc": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T12:34:23Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "god": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T12:34:19Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-app": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T15:59:11Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-ca-dataset": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-25T21:01:33Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux-coga-dataset": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-25T21:01:36Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "axiom": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:32Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blux10k": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:38Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "jadis.toolbox": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T07:40:57Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "voidforge": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-26T15:59:55Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "void.os": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-26T21:25:15Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "void.sys": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-26T19:40:01Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "void.game": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-26T21:13:58Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "roughin": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:54Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "vigyl": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:48Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "resolver": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:04:43Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "theresolver": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T06:17:54Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "termux-background": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T06:57:19Z",
+   "open_issues": 4,
+   "releases": 4
+  },
+  "bluxai.app": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T15:45:30Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "operationrestore": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-25T21:27:36Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "ivrp": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-26T15:59:07Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "credits": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-11-03T03:02:21Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "docs": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-11-03T02:55:06Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  ".github": {
+   "visibility": "public",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T12:30:00Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  ".github-private": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T12:31:32Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "er": {
+   "visibility": "private",
+   "archived": false,
+   "default_branch": "main",
+   "pushed_at": "2026-10-27T22:05:37Z",
+   "open_issues": 0,
+   "releases": 0
+  },
+  "blhermes-agent": {
+   "visibility": "public",
+   "archived": true,
+   "default_branch": "main",
+   "pushed_at": "2026-10-26T12:31:11Z",
+   "open_issues": 0,
+   "releases": 0
+  }
+ }
+}

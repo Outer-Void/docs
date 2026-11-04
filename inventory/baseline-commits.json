@@ -1,0 +1,261 @@
+{
+ "format": "outer-void-baseline-commits v1",
+ "recorded_at": "2026-11-04",
+ "stage": "OV-46",
+ "note": "docs is recorded at its HEAD before the OV-46 commit",
+ "repositories": {
+  "blux": {
+   "branch": "main",
+   "head": "8d989de9bddf04a6d1ca6e0ce7e28b1677f62feb",
+   "remote_sha": "8d989de9bddf04a6d1ca6e0ce7e28b1677f62feb",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-system": {
+   "branch": "main",
+   "head": "77173f28700eb1da0d9a681cdea599fcc26f991e",
+   "remote_sha": "77173f28700eb1da0d9a681cdea599fcc26f991e",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-gpt": {
+   "branch": "main",
+   "head": "4609cd987508ea6dd0c27218b623b02b74dfb5d4",
+   "remote_sha": "4609cd987508ea6dd0c27218b623b02b74dfb5d4",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-coga": {
+   "branch": "main",
+   "head": "3dc86fa7f791a1ffee88438b549651e4f04c9c3c",
+   "remote_sha": "3dc86fa7f791a1ffee88438b549651e4f04c9c3c",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-ca": {
+   "branch": "main",
+   "head": "7cb953a10313276d299170b718f983638be051c2",
+   "remote_sha": "7cb953a10313276d299170b718f983638be051c2",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "dat": {
+   "branch": "main",
+   "head": "487e1d4b839c788a33e7d576fc151bae8779e4b6",
+   "remote_sha": "487e1d4b839c788a33e7d576fc151bae8779e4b6",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "lrc": {
+   "branch": "main",
+   "head": "443e53265ecf5b2b2c5885aaffbd9a21da05d40f",
+   "remote_sha": "443e53265ecf5b2b2c5885aaffbd9a21da05d40f",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "god": {
+   "branch": "main",
+   "head": "ad6f0c4bcb62d5c1f28025f5f63216bd74ad0d7f",
+   "remote_sha": "ad6f0c4bcb62d5c1f28025f5f63216bd74ad0d7f",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-app": {
+   "branch": "main",
+   "head": "0de2d9a793beeaee7803f69002062f570b9daf70",
+   "remote_sha": "0de2d9a793beeaee7803f69002062f570b9daf70",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-ca-dataset": {
+   "branch": "main",
+   "head": "662ec33cf0f02b4166cc3f7ed26366ac6de14388",
+   "remote_sha": "662ec33cf0f02b4166cc3f7ed26366ac6de14388",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux-coga-dataset": {
+   "branch": "main",
+   "head": "9331f73f7dfb3166969d35a12ec0413f77340973",
+   "remote_sha": "9331f73f7dfb3166969d35a12ec0413f77340973",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "axiom": {
+   "branch": "main",
+   "head": "ed079e8e3e44b831656f04e2150fa53f97b08b73",
+   "remote_sha": "ed079e8e3e44b831656f04e2150fa53f97b08b73",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "blux10k": {
+   "branch": "main",
+   "head": "e2e9f5840d2067e9d15addc2f8136f0c1b67062f",
+   "remote_sha": "e2e9f5840d2067e9d15addc2f8136f0c1b67062f",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "jadis.toolbox": {
+   "branch": "main",
+   "head": "253c386da4e1783a53bcb04e6ca98b3241254af1",
+   "remote_sha": "253c386da4e1783a53bcb04e6ca98b3241254af1",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "voidforge": {
+   "branch": "main",
+   "head": "59b6d67959b4eccd1e01e002aa63fac292e93634",
+   "remote_sha": "59b6d67959b4eccd1e01e002aa63fac292e93634",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "void.os": {
+   "branch": "main",
+   "head": "24b07cd423577881d719e4282fe7ea3621fbe81e",
+   "remote_sha": "24b07cd423577881d719e4282fe7ea3621fbe81e",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "void.sys": {
+   "branch": "main",
+   "head": "09cf56f4f6e2fe7d9b5dc66e860a683b61143bbe",
+   "remote_sha": "09cf56f4f6e2fe7d9b5dc66e860a683b61143bbe",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "void.game": {
+   "branch": "main",
+   "head": "b56c1aeed25698afdd4baa497cd3a12699977965",
+   "remote_sha": "b56c1aeed25698afdd4baa497cd3a12699977965",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "roughin": {
+   "branch": "main",
+   "head": "a4410a18bead37b2df5ffa9fb24eb61d43c0fa91",
+   "remote_sha": "a4410a18bead37b2df5ffa9fb24eb61d43c0fa91",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "vigyl": {
+   "branch": "main",
+   "head": "f7ce8f38609e8e3e67c2c62fa7029c5b7ac22177",
+   "remote_sha": "f7ce8f38609e8e3e67c2c62fa7029c5b7ac22177",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "resolver": {
+   "branch": "main",
+   "head": "aae88c2ba6d483e0f31458b88bac394929d0a4bf",
+   "remote_sha": "aae88c2ba6d483e0f31458b88bac394929d0a4bf",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "ov-webpages/theresolver": {
+   "branch": "main",
+   "head": "49dbeffa4989b37ff6cfec617356342521385b46",
+   "remote_sha": "49dbeffa4989b37ff6cfec617356342521385b46",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "termux-background": {
+   "branch": "main",
+   "head": "75cfb974dff82088281c39d6c8792e974093b79b",
+   "remote_sha": "75cfb974dff82088281c39d6c8792e974093b79b",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "ov-webpages/bluxai.app": {
+   "branch": "main",
+   "head": "9e5706a12affc09778db6517536cb745300bcc9f",
+   "remote_sha": "9e5706a12affc09778db6517536cb745300bcc9f",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "ov-webpages/operationrestore": {
+   "branch": "main",
+   "head": "126453f8964d5173ff66f7c5ac1b89f47e89afba",
+   "remote_sha": "126453f8964d5173ff66f7c5ac1b89f47e89afba",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "ov-webpages/ivrp": {
+   "branch": "main",
+   "head": "68dbad791dcb70463811e914d0753ae31aef1c17",
+   "remote_sha": "68dbad791dcb70463811e914d0753ae31aef1c17",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "credits": {
+   "branch": "main",
+   "head": "5390489d2154a663a33ee1ba048ad91e907370b2",
+   "remote_sha": "5390489d2154a663a33ee1ba048ad91e907370b2",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "docs": {
+   "branch": "main",
+   "head": "efe411f2869a4f745f4e6ba0bcb16edaa5a98a7b",
+   "remote_sha": "efe411f2869a4f745f4e6ba0bcb16edaa5a98a7b",
+   "level_with_origin": true,
+   "clean": false,
+   "local": "CHECKOUT"
+  },
+  ".github": {
+   "branch": "main",
+   "head": "be5221dd7a83f3d3b241c24e43bfda82fc9b751d",
+   "remote_sha": "be5221dd7a83f3d3b241c24e43bfda82fc9b751d",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  ".github-private": {
+   "branch": "main",
+   "head": "5ea59da90caf9182e9e4790e4caea926564ad7ac",
+   "remote_sha": "5ea59da90caf9182e9e4790e4caea926564ad7ac",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  },
+  "secret-project/er": {
+   "branch": "main",
+   "remote_sha": "ac4b89a7eee52cb8469b50eb5903a18b6caea618",
+   "local": "EXCLUDED_BY_OWNER_POLICY"
+  },
+  "blhermes-agent": {
+   "branch": "main",
+   "head": "dc8abc1db051aabc22279aa580bd7fb3cdf86b0c",
+   "remote_sha": "dc8abc1db051aabc22279aa580bd7fb3cdf86b0c",
+   "level_with_origin": true,
+   "clean": true,
+   "local": "CHECKOUT"
+  }
+ }
+}
