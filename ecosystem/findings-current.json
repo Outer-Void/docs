@@ -1,0 +1,1286 @@
+{
+ "format": "outer-void-findings-current v1",
+ "as_of": "2026-11-04",
+ "sources": {
+  "frozen": "reassessment/open-findings.json (2026-10-27, unchanged)",
+  "dispositions": "ecosystem/findings-dispositions.json"
+ },
+ "counts": {
+  "frozen_open": 57,
+  "new": 3,
+  "by_status": {
+   "OPEN": 20,
+   "EXTERNAL_BLOCKED": 16,
+   "RESOLVED_VERIFIED": 8,
+   "DEFERRED": 11,
+   "BLOCKED_LOCAL_ENVIRONMENT": 2,
+   "PARTIAL": 3
+  },
+  "unresolved_by_severity": {
+   "Critical": 3,
+   "High": 15,
+   "Medium": 19,
+   "Low": 13,
+   "Info": 2
+  }
+ },
+ "findings": [
+  {
+   "id": "F1",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F1",
+    "repo": "void.os",
+    "issue": "Paid-app entitlement, Play Integrity and product-signature verification are `TODO` stubs (`EntitlementManager`, `IntegrityGate`, `SignatureVerifier`). Release paths fail closed.",
+    "severity": "Critical",
+    "class": "Stage 24 (needs the owner's Play/backend decisions)",
+    "blocking": "Yes: paid release"
+   },
+   "status": "OPEN",
+   "owner": "repo:void.os",
+   "priority": "P0",
+   "stage": "OV-58",
+   "decision": "D-11",
+   "evidence": [
+    "void.os HEAD 24b07cd equals the frozen commit (inventory/inventory-current.json, 2026-11-04): unchanged"
+   ],
+   "next_action": "Implement entitlement, Play Integrity and signature verification once the trust model (D-11) is pinned"
+  },
+  {
+   "id": "F2",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F2",
+    "repo": "void.game",
+    "issue": "`SignatureVerifier` leaves cryptographic verification as `TODO` (Stage 26 replaced `LaunchGate` with `StandaloneEntitlementGate`; still fails closed). Release fails closed; debug builds bypass.",
+    "severity": "Critical",
+    "class": "Stage 26",
+    "blocking": "Yes: paid release"
+   },
+   "status": "OPEN",
+   "owner": "repo:void.game",
+   "priority": "P0",
+   "stage": "OV-58",
+   "decision": "D-11",
+   "evidence": [
+    "void.game HEAD b56c1ae equals the frozen commit: unchanged"
+   ],
+   "next_action": "Implement SignatureVerifier cryptographic verification"
+  },
+  {
+   "id": "F5",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F5",
+    "repo": "voidforge",
+    "issue": "No local confirmation UI. The app's authorizer declines every write, and the production write barrier is locked. File pull/push, backup capture, install, sideload, flash and the root/module workflows exist only in `:core`.",
+    "severity": "High (by design until hardware qualification)",
+    "class": "After real-device acceptance",
+    "blocking": "Yes: write features"
+   },
+   "status": "OPEN",
+   "owner": "repo:voidforge",
+   "priority": "P0",
+   "stage": "OV-59",
+   "decision": null,
+   "evidence": [
+    "voidforge HEAD 59b6d67 equals the frozen commit: unchanged"
+   ],
+   "next_action": "Build the local on-device confirmation UI; writes stay locked"
+  },
+  {
+   "id": "F6",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F6",
+    "repo": "voidforge",
+    "issue": "No real-device evidence. The Stage 23 probe was BLOCKED: no USB in the build container, no attached target, app not installed.",
+    "severity": "High",
+    "class": "Owner-run acceptance (`tools/device_acceptance.py`)",
+    "blocking": "Yes: release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-65",
+   "decision": "D-03",
+   "evidence": [
+    "No Android reference device available (owner, 2026-11-04 plan D-03)"
+   ],
+   "next_action": "Provide a reference device, then run tools/device_acceptance.py"
+  },
+  {
+   "id": "F7",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F7",
+    "repo": "voidforge, void.os, void.sys, void.game, roughin, vigyl",
+    "issue": "Proprietary, paid or members-only product source sits in **public** repositories (unauthenticated GitHub API returns 200). VoidForge's members-only policy is therefore not met for source.",
+    "severity": "High (policy)",
+    "class": "Owner action (repository visibility)",
+    "blocking": "Yes: VoidForge distribution policy"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-49",
+   "decision": null,
+   "evidence": [
+    "Authenticated GitHub API (gh, 2026-11-04): voidforge, void.os, void.sys, void.game, roughin and vigyl are PRIVATE (inventory/visibility-attestation.json)"
+   ],
+   "next_action": "Current visibility only. Historical public exposure is reviewed in OV-49; this does not establish SECRET_HISTORY_REMEDIATED"
+  },
+  {
+   "id": "F8",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F8",
+    "repo": "dat",
+    "issue": "README install command pinned tag `v4.0.0`, which does not exist (tags: `v1.0.0`, `v2.0.0-alpha.1`, `v2.0.0-Stable`). The README is now corrected.",
+    "severity": "Medium",
+    "class": "Owner: tag 4.0.0, or keep installing from `main`",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "repo:dat",
+   "priority": "P1",
+   "stage": "OV-63",
+   "decision": null,
+   "evidence": [
+    "README install line already corrected at the freeze; no v4.0.0 tag exists (inventory: dat tags v2.0.0-alpha.1, v1.0.0 merged; v2.0.0-Stable on GitHub)"
+   ],
+   "next_action": "The DAT pilot release (OV-63) creates the first current tag"
+  },
+  {
+   "id": "F9",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F9",
+    "repo": "blux",
+    "issue": "No release tag or published package. Termux APT on-device installation not run.",
+    "severity": "Medium",
+    "class": "Owner steps in `packaging/termux/ACCEPTANCE.md`",
+    "blocking": "Yes: BLUX release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-65",
+   "decision": "D-03",
+   "evidence": [
+    "blux has 0 GitHub releases; only historical tag blux-sdk-v0.1.0 (inventory, 2026-11-04)"
+   ],
+   "next_action": "Release via the OV-63 machinery; on-device APT install needs a device"
+  },
+  {
+   "id": "F10",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F10",
+    "repo": "blux, blux-gpt",
+    "issue": "No real-provider Model API evidence (provider accounts without balance). Hard-coded provider model IDs are not checked against current catalogs.",
+    "severity": "Medium",
+    "class": "When provider access exists",
+    "blocking": "No"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-64",
+   "decision": "D-02",
+   "evidence": [
+    "No funded provider reported as of 2026-11-04 (plan D-02)"
+   ],
+   "next_action": "Owner provides provider access and a spend ceiling"
+  },
+  {
+   "id": "F14",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F14",
+    "repo": "termux-background",
+    "issue": "README said \"v1.0.0 Not Operational\" while `VERSION` is 1.1.0; no device has passed its checklist. README corrected.",
+    "severity": "Low",
+    "class": "Owner device run",
+    "blocking": "Yes: release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-65",
+   "decision": "D-03",
+   "evidence": [
+    "README corrected at the freeze; no device checklist run. See F77 for the public 2025 releases"
+   ],
+   "next_action": "Device checklist run"
+  },
+  {
+   "id": "F16",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F16",
+    "repo": "blux10k",
+    "issue": "`dotfiles/.zshrc` exports `BLUX10K_VERSION=\"2.0.0\"`, while `VERSION` and `bin/blux10k --version` report 3.0.0",
+    "severity": "Low",
+    "class": "Next blux10k change",
+    "blocking": "No"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux10k",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "blux10k e2e9f58: dotfiles/.zshrc:23 BLUX10K_VERSION=\"3.0.0\" equals VERSION; `bin/blux10k --version` prints 3.0.0; `zsh -n dotfiles/.zshrc` rc 0; 10 tests pass (2026-11-04)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F17",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F17",
+    "repo": "void.sys",
+    "issue": "`security/SignatureVerifier.kt` also leaves signature verification as `TODO`: the standalone icon-pack signature gate is scaffolding",
+    "severity": "High",
+    "class": "Stage 25",
+    "blocking": "Yes: paid release"
+   },
+   "status": "OPEN",
+   "owner": "repo:void.sys",
+   "priority": "P0",
+   "stage": "OV-58",
+   "decision": null,
+   "evidence": [
+    "void.sys source unchanged since the freeze except the OV-47 README version fix (3f2b7aa)"
+   ],
+   "next_action": "Implement signature verification"
+  },
+  {
+   "id": "F19",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F19",
+    "repo": "void.os",
+    "issue": "No crash-loop guard: a startup crash repeats until the user changes the default Home app",
+    "severity": "Medium (P1)",
+    "class": "Future-stage work, needs device verification",
+    "blocking": "Yes: paid release"
+   },
+   "status": "OPEN",
+   "owner": "repo:void.os",
+   "priority": "P1",
+   "stage": "OV-58",
+   "decision": null,
+   "evidence": [
+    "void.os unchanged since the freeze"
+   ],
+   "next_action": "Crash-loop guard with device verification"
+  },
+  {
+   "id": "F20",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F20",
+    "repo": "void.os",
+    "issue": "Backup is disabled (`allowBackup=\"false\"`); customization is lost on device transfer",
+    "severity": "Low (P2)",
+    "class": "Product decision (open question)",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-58",
+   "decision": null,
+   "evidence": [
+    "Product decision still open (allowBackup=false)"
+   ],
+   "next_action": "Owner decides on backup of customization"
+  },
+  {
+   "id": "F21",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F21",
+    "repo": "void.os",
+    "issue": "No release keystore or protected signing job; environment-only signing exists",
+    "severity": "High (P0)",
+    "class": "Release blocker (owner)",
+    "blocking": "Yes"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-58",
+   "decision": "D-04",
+   "evidence": [
+    "No signing custody decision as of 2026-11-04 (D-04)"
+   ],
+   "next_action": "Owner approves key custody; then a protected signing job"
+  },
+  {
+   "id": "F22",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F22",
+    "repo": "void.game",
+    "issue": "~~Standalone packaging only build-verified~~ **Mostly resolved in Stage 26:** release/R8 build and 16 KB audit pass (`6f6c85b`); device runs remain (see F31)",
+    "severity": "Medium",
+    "class": "Stage 26",
+    "blocking": "No longer (device part: F31)"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-65",
+   "decision": "D-03",
+   "evidence": [
+    "Release/R8 build and 16 KB audit passed at 6f6c85b (Stage 26, historical); device runs remain"
+   ],
+   "next_action": "Device runs"
+  },
+  {
+   "id": "F25",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F25",
+    "repo": "void.sys",
+    "issue": "The standalone pack has not been device-tested in third-party launchers (Nova, Lawnchair); appfilter resolution is verified only statically",
+    "severity": "Medium",
+    "class": "Hardware pending",
+    "blocking": "Yes: standalone release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-65",
+   "decision": "D-03",
+   "evidence": [
+    "No third-party launcher device test recorded"
+   ],
+   "next_action": "Nova and Lawnchair device tests"
+  },
+  {
+   "id": "F29",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F29",
+    "repo": "void.game",
+    "issue": "No audio: no sound assets or synthesis exist",
+    "severity": "Medium",
+    "class": "Future-stage product work (needs licensed or synthesized audio and device verification)",
+    "blocking": "Yes: product polish"
+   },
+   "status": "OPEN",
+   "owner": "repo:void.game",
+   "priority": "P1",
+   "stage": "OV-58",
+   "decision": null,
+   "evidence": [
+    "void.game unchanged since the freeze"
+   ],
+   "next_action": "Licensed or synthesized audio"
+  },
+  {
+   "id": "F30",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F30",
+    "repo": "void.game",
+    "issue": "An interrupted run is not resumed; only campaign progress, scores and settings persist",
+    "severity": "Medium",
+    "class": "Future-stage work",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-58",
+   "decision": null,
+   "evidence": [
+    "Persistence decision not yet made"
+   ],
+   "next_action": "Owner decides whether interrupted runs resume"
+  },
+  {
+   "id": "F31",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F31",
+    "repo": "void.game, void.os",
+    "issue": "No device playthroughs, GL context-loss, frame-time or battery evidence on either surface",
+    "severity": "High",
+    "class": "Hardware pending",
+    "blocking": "Yes: release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-65",
+   "decision": "D-03",
+   "evidence": [
+    "No device available"
+   ],
+   "next_action": "Playthrough, GL context-loss, frame-time and battery runs on reference devices"
+  },
+  {
+   "id": "F32",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F32",
+    "repo": "void.game, void.os",
+    "issue": "The default font (libGDX `lsans-15`) has no confirmed upstream licence (credits UNR-020)",
+    "severity": "Medium",
+    "class": "Unresolved attribution",
+    "blocking": "Yes: legal review"
+   },
+   "status": "OPEN",
+   "owner": "repo:credits",
+   "priority": "P1",
+   "stage": "OV-60",
+   "decision": "D-09",
+   "evidence": [
+    "credits UNR-020 still unresolved (2026-11-04)"
+   ],
+   "next_action": "Establish the libGDX lsans-15 upstream and licence, or replace the font"
+  },
+  {
+   "id": "F34",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F34",
+    "repo": "roughin",
+    "issue": "The PostgreSQL migration run and the backup/restore round-trip are defined in CI (`postgres` job) but have no evidence. Every job in CI runs 40437004032 (`6a63057`) and 40438085335 (`f3599d3`) failed before starting: \"The job was not started because your account is locked due to a billing issue.\" There is no PostgreSQL in the build environment",
+    "severity": "High",
+    "class": "**BLOCKED** (Appendix B): the owner clears the GitHub billing lock, then re-runs `ci` on `main`; acceptance = `backend`, `postgres` and `frontend` jobs green. Local alternative: `make test` with `MIGRATION_TEST_URL` pointing at a scratch PostgreSQL 16, plus the `postgres` job's backup steps",
+    "blocking": "Yes: release"
+   },
+   "status": "BLOCKED_LOCAL_ENVIRONMENT",
+   "owner": "repo:roughin",
+   "priority": "P0",
+   "stage": "OV-55",
+   "decision": "D-01",
+   "evidence": [
+    "PostgreSQL could not initialize under PRoot (forward run, 2026-10-27); hosted CI cannot start (F49, rechecked 2026-11-04). SQLite and mocks are not accepted as evidence"
+   ],
+   "next_action": "Run the CI postgres job, or the same commands on a suitable external machine"
+  },
+  {
+   "id": "F35",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F35",
+    "repo": "roughin",
+    "issue": "No production deployment, no Stripe test-mode run, no real R2 bucket test: Stripe and R2 are faked at the network edge in tests (webhook signatures are real)",
+    "severity": "High",
+    "class": "Environment-blocked: needs owner accounts and a host; steps in `docs/release-checklist.md`",
+    "blocking": "Yes: release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-64",
+   "decision": "D-05",
+   "evidence": [
+    "No Stripe sandbox, R2 bucket or host provided"
+   ],
+   "next_action": "Owner approves staging accounts"
+  },
+  {
+   "id": "F36",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F36",
+    "repo": "roughin",
+    "issue": "Dependency advisories. Python: python-jose and ecdsa (unfixed upstream; not exploitable, HS256 pinned) **resolved** by switching to PyJWT (roughin `f3599d3`); `pip-audit` is clean. GitHub reported 11 Dependabot alerts at push time; they could not be itemized (`gh` unauthenticated in this session) and may lag the PyJWT fix. Frontend (`npm audit`: 1 high, 4 moderate): vite \u22646.4.3 and esbuild \u22640.24.2 (dev server only, not in the bundle); react-router 6.x open redirect via `<Link>`/`navigate` (shipped, but every navigation target is a constant or a server UUID, so it is not reachable today). Fixes need majors: react-router-dom 7, vite 8, vite-plugin-pwa 2",
+    "severity": "Medium",
+    "class": "Future stage: upgrade with UI smoke tests",
+    "blocking": "No (not exploitable as used); yes before adding user-controlled navigation"
+   },
+   "status": "PARTIAL",
+   "owner": "repo:roughin",
+   "priority": "P1",
+   "stage": "OV-49",
+   "decision": null,
+   "evidence": [
+    "roughin a4410a1: vite ^8.3.5, react-router-dom ^7.18.4 (the majors F36 asked for); `npm ci && npm test && npm run build` pass (2026-11-04)",
+    "`npm audit` now reports 6 advisories in build-time dependencies (F78)"
+   ],
+   "next_action": "Resolve F78"
+  },
+  {
+   "id": "F37",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F37",
+    "repo": "roughin",
+    "issue": "No frontend tests and no real-device mobile or poor-network testing; the UI was changed (refresh interceptor, invoice actions, Settings) and verified only by `vite build`",
+    "severity": "Medium",
+    "class": "Future stage (Roughin UI)",
+    "blocking": "Yes: release confidence"
+   },
+   "status": "PARTIAL",
+   "owner": "repo:roughin",
+   "priority": "P1",
+   "stage": "OV-55",
+   "decision": null,
+   "evidence": [
+    "roughin a4410a1: 3 Vitest files, 4 tests pass (2026-11-04); frontend CI job defined (not run, F49)"
+   ],
+   "next_action": "Real-device mobile and poor-network testing; broader flows"
+  },
+  {
+   "id": "F38",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F38",
+    "repo": "roughin",
+    "issue": "Auth rate limiting is in process memory (one instance only); no email verification, password reset, 2FA or account lockout; tokens in `localStorage`",
+    "severity": "Medium",
+    "class": "Future stage",
+    "blocking": "No (documented)"
+   },
+   "status": "OPEN",
+   "owner": "repo:roughin",
+   "priority": "P1",
+   "stage": "OV-55",
+   "decision": null,
+   "evidence": [
+    "Auth code unchanged since the freeze (post-freeze diff touches frontend, R2 service and its tests only)"
+   ],
+   "next_action": "Shared rate limiting, account recovery, 2FA decision"
+  },
+  {
+   "id": "F39",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F39",
+    "repo": "roughin",
+    "issue": "Partial payments and refunds are not modelled (audited for manual review); estimates are PDFs, not stored entities; `datetime.utcnow()` naive timestamps (deprecated in Python 3.12+)",
+    "severity": "Low",
+    "class": "Future stage",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "repo:roughin",
+   "priority": "P2",
+   "stage": "OV-55",
+   "decision": null,
+   "evidence": [
+    "93 backend tests pass with 938 deprecation warnings (2026-11-04)"
+   ],
+   "next_action": "Aware timestamps; owner decides partial-payment semantics"
+  },
+  {
+   "id": "F40",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F40",
+    "repo": "roughin",
+    "issue": "Production PWA icons (192/512 PNG) are deliberately kept out of git; only a placeholder SVG ships",
+    "severity": "Low",
+    "class": "Owner/brand pipeline (Void.Sys icons)",
+    "blocking": "Yes: store-quality install"
+   },
+   "status": "DEFERRED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-55",
+   "decision": null,
+   "evidence": [
+    "Brand/icon pipeline not yet decided"
+   ],
+   "next_action": "Produce PWA icons from the VOID.SYS pipeline"
+  },
+  {
+   "id": "F41",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F41",
+    "repo": "roughin",
+    "issue": "Optional BLUX features (drafting, scope extraction, summaries) were not started: the brief allows them only after the deterministic core is solid, and the core's hard gate still has F34/F35 open",
+    "severity": "Info",
+    "class": "After F34/F35",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "repo:roughin",
+   "priority": "P2",
+   "stage": "OV-55",
+   "decision": null,
+   "evidence": [
+    "Depends on F34/F35"
+   ],
+   "next_action": "After F34/F35"
+  },
+  {
+   "id": "F42",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F42",
+    "repo": "vigyl",
+    "issue": "Stage 1 SQLite development databases are not migrated (no accounts existed; Alembic starts at 0001 = the Stage 29 models)",
+    "severity": "Low",
+    "class": "Documented in the 0001 docstring and roadmap",
+    "blocking": "No (nothing was deployed)"
+   },
+   "status": "DEFERRED",
+   "owner": "repo:vigyl",
+   "priority": "P2",
+   "stage": "OV-56",
+   "decision": null,
+   "evidence": [
+    "Accepted design: no accounts existed before Alembic 0001 (documented in the migration docstring)"
+   ],
+   "next_action": "None unless pre-0001 data appears"
+  },
+  {
+   "id": "F43",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F43",
+    "repo": "vigyl",
+    "issue": "No app UI: the master plan's \"see task, tap done\" and \"see status instantly\" flows exist only as API endpoints",
+    "severity": "High",
+    "class": "Future stage (Vigyl UI)",
+    "blocking": "Yes: release"
+   },
+   "status": "PARTIAL",
+   "owner": "repo:vigyl",
+   "priority": "P0",
+   "stage": "OV-56",
+   "decision": null,
+   "evidence": [
+    "vigyl f7ce8f3: React development-preview workspace; `npm ci && npm test` 8 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass (2026-11-04); README updated (ee34852)"
+   ],
+   "next_action": "Release qualification: browser and mobile accessibility, staging, the missing flows"
+  },
+  {
+   "id": "F44",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F44",
+    "repo": "vigyl",
+    "issue": "Notifications and escalations are in-app records only; no push, email or SMS delivery, so an escalation reaches nobody who is not in the app",
+    "severity": "High",
+    "class": "Future stage",
+    "blocking": "Yes: release (must not be described as alerting until fixed)"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-56",
+   "decision": "D-06",
+   "evidence": [
+    "Delivery remains in-app only; the UI reads the in-app channel (frontend/README.md)"
+   ],
+   "next_action": "Owner approves a notification provider and delivery policy"
+  },
+  {
+   "id": "F45",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F45",
+    "repo": "vigyl",
+    "issue": "The PostgreSQL migration test and backup round-trip are CI-defined but CI run 40445574378 (`a01497d`) never started: \"account is locked due to a billing issue\" (same as F34)",
+    "severity": "High",
+    "class": "**BLOCKED** (Appendix B): the owner clears the billing lock; acceptance = `backend` and `postgres` jobs green",
+    "blocking": "Yes: release"
+   },
+   "status": "BLOCKED_LOCAL_ENVIRONMENT",
+   "owner": "repo:vigyl",
+   "priority": "P0",
+   "stage": "OV-56",
+   "decision": "D-01",
+   "evidence": [
+    "Same cause as F34: PostgreSQL cannot run under PRoot; hosted CI cannot start (F49)"
+   ],
+   "next_action": "CI postgres job or a suitable external machine"
+  },
+  {
+   "id": "F46",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F46",
+    "repo": "vigyl",
+    "issue": "No recurring tasks, password reset, email verification or 2FA; subscriptions (master plan \u00a7VI) and location are not built; the privacy policy is a corrected draft needing legal review (health-adjacent data)",
+    "severity": "Medium",
+    "class": "Future stages + owner legal review",
+    "blocking": "Yes: release"
+   },
+   "status": "OPEN",
+   "owner": "repo:vigyl",
+   "priority": "P1",
+   "stage": "OV-56",
+   "decision": null,
+   "evidence": [
+    "Not built as of f7ce8f3"
+   ],
+   "next_action": "Account recovery and verification; owner legal review"
+  },
+  {
+   "id": "F47",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F47",
+    "repo": "vigyl",
+    "issue": "Optional BLUX assistance not started; the boundary (suggest-only, never completes/reassigns/verifies, no medical decisions) is documented in `docs/architecture.md#blux-boundary`",
+    "severity": "Info",
+    "class": "After F43/F44",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "repo:vigyl",
+   "priority": "P2",
+   "stage": "OV-56",
+   "decision": null,
+   "evidence": [
+    "Depends on F43/F44"
+   ],
+   "next_action": "After F43/F44"
+  },
+  {
+   "id": "F48",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F48",
+    "repo": "resolver",
+    "issue": "Version mismatch: git tag `v4.0` (on `73abe3e`) versus `app/__init__.py` `__version__ = \"1.0.0\"`. Neither is documented as the release version",
+    "severity": "Medium",
+    "class": "Owner decision on the versioning scheme",
+    "blocking": "Yes: release labelling"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:resolver",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "resolver aae88c2: app.__version__ = \"4.0.0\" aligns with tag v4.0; docs/VERSIONING.md states the policy; 173 tests pass (2026-11-04)"
+   ],
+   "next_action": "None (tag v4.0 stays historical)"
+  },
+  {
+   "id": "F49",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F49",
+    "repo": "all repositories with CI (18 use `ubuntu-latest`)",
+    "issue": "**No CI has run organization-wide.** The latest run of every checked repository (voidforge, void.os, void.sys, void.game, blux, axiom, dat, jadis.toolbox, termux-background, credits, docs, blux-ca, roughin, vigyl) failed before starting: \"The job was not started because your account is locked due to a billing issue.\" Every CI-based evidence claim therefore rests on local runs only. GitHub also warns that `ubuntu-latest` moves to Ubuntu 26",
+    "severity": "Critical (process)",
+    "class": "**BLOCKED** (Appendix B): the owner clears the billing lock, then re-runs CI; pin runner images in Stage 42 (cross-repo CI)",
+    "blocking": "Yes: every release"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-48",
+   "decision": "D-01",
+   "evidence": [
+    "docs run for 0b5800a (2026-11-03) annotated: \"The job was not started because your account is locked due to a billing issue.\" Rechecked in OV-48"
+   ],
+   "next_action": "Owner clears the billing lock"
+  },
+  {
+   "id": "F50",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F50",
+    "repo": ".github",
+    "issue": "The owner-written banner says \"Stage 21 - 30 of 44\"; the queued plan ends at Stage 45, and Stage 30 has no brief",
+    "severity": "Low",
+    "class": "Owner decision (owner text was not edited)",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-60",
+   "decision": null,
+   "evidence": [
+    ".github profile/README.md:7 still reads \"Stage 21 - 30 of 44\" (2026-11-04); owner-written text, not edited"
+   ],
+   "next_action": "Owner updates the banner"
+  },
+  {
+   "id": "F53",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F53",
+    "repo": "resolver",
+    "issue": "Tracked `cloudflared/config.yml` names tunnel `thetheresolverbotbot` and routes `admin.thetheresolverbotbot.net` / `hq.thetheresolverbotbot.net`; the site and bot docs use `admin.theresolverbot.net` (looks like a doubled find-and-replace)",
+    "severity": "Medium",
+    "class": "Bot maintenance (separate lifecycle; not changed here)",
+    "blocking": "Possibly: admin cockpit routing"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:resolver",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "resolver aae88c2: cloudflared/config.yml names tunnel theresolverbot and hosts admin./hq.theresolverbot.net; no 'thethe' string remains in resolver or theresolver (2026-11-04)"
+   ],
+   "next_action": "Source only; the live tunnel is tracked by F54"
+  },
+  {
+   "id": "F54",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F54",
+    "repo": "theresolver",
+    "issue": "`https://theresolverbot.net/` and `www` return HTTP 530, Cloudflare error 1033 (tunnel unreachable), on 2026-10-27; the Pages deployment `theresolver.pages.dev` serves the current build. The apex hostname is routed to a tunnel instead of the Pages project",
+    "severity": "High",
+    "class": "Owner action in Cloudflare (attach the custom domain to the Pages project, or fix the tunnel route)",
+    "blocking": "Yes: site launch"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-57",
+   "decision": "D-07",
+   "evidence": [
+    "https://theresolverbot.net/ returned HTTP 530 on 2026-11-03; rechecked in OV-48"
+   ],
+   "next_action": "Owner attaches the custom domain or fixes the tunnel in Cloudflare"
+  },
+  {
+   "id": "F55",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F55",
+    "repo": "theresolver",
+    "issue": "GitHub reported 86 Dependabot alerts on push while `npm audit` of the pushed lockfile reports 0; the private repository's alerts cannot be listed here (`gh` unauthenticated)",
+    "severity": "Low",
+    "class": "Re-check once `gh` is authenticated",
+    "blocking": "No"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:theresolver",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "Authenticated API (2026-11-04): Dependabot alerts enabled (vulnerability-alerts 204); 0 alerts in any state"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F56",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F56",
+    "repo": "termux-background",
+    "issue": "Targets SDK 35 while 36 is available (lint `OldTargetApi`); raising it needs a behaviour review and a device re-test",
+    "severity": "Low",
+    "class": "Future maintenance",
+    "blocking": "Only for Play distribution"
+   },
+   "status": "DEFERRED",
+   "owner": "repo:termux-background",
+   "priority": "P2",
+   "stage": "OV-59",
+   "decision": null,
+   "evidence": [
+    "targetSdk unchanged"
+   ],
+   "next_action": "Raise to 36 with a behaviour review and device re-test"
+  },
+  {
+   "id": "F57",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F57",
+    "repo": "termux-background",
+    "issue": "`set` installs the image before rewriting properties; a failure in the last step leaves the new image with the old properties (benign: same file name)",
+    "severity": "Low",
+    "class": "Tech debt",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "repo:termux-background",
+   "priority": "P2",
+   "stage": "OV-59",
+   "decision": null,
+   "evidence": [
+    "Unchanged since the freeze"
+   ],
+   "next_action": "Write properties before installing the image, or roll back"
+  },
+  {
+   "id": "F58",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F58",
+    "repo": "jadis.toolbox",
+    "issue": "`master_log` writes the home-tree listing, `logcat` and `ps aux` to shared storage by default (readable by apps with storage permission), and pings 8.8.8.8. Documented, and `MASTER_LOG_DIR` added; the default was kept because the widget workflow relies on it",
+    "severity": "Medium (privacy)",
+    "class": "Owner decision on the default",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-54",
+   "decision": null,
+   "evidence": [
+    "jadis.toolbox unchanged since the freeze; default not decided"
+   ],
+   "next_action": "Owner decides the master_log default"
+  },
+  {
+   "id": "F59",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F59",
+    "repo": "jadis.toolbox",
+    "issue": "`newproject` overlaps LRC's repository-creation role and defaults to the MIT licence (the organization's default is proprietary); kept as a personal tool and documented",
+    "severity": "Low",
+    "class": "Owner decision",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-54",
+   "decision": null,
+   "evidence": [
+    "Unchanged"
+   ],
+   "next_action": "Owner decides newproject's licence default and its overlap with LRC"
+  },
+  {
+   "id": "F60",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F60",
+    "repo": "blux",
+    "issue": "Model-dependent Gen 0 suites (intent, tool selection, repository diagnosis) are BLOCKED: no provider credentials (same cause as F10); the harness has no live model runner yet",
+    "severity": "High",
+    "class": "Owner action (provider balance) + harness work",
+    "blocking": "Yes: a complete Gen 0 baseline"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-64",
+   "decision": "D-02",
+   "evidence": [
+    "Same cause as F10"
+   ],
+   "next_action": "Provider access"
+  },
+  {
+   "id": "F61",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F61",
+    "repo": "blux",
+    "issue": "Engine \"task success\" is replay determinism against records the same pinned engine produced; it detects regressions, not answer quality. No human-reviewed quality labels exist",
+    "severity": "Medium",
+    "class": "Future evaluation work",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-53",
+   "decision": null,
+   "evidence": [
+    "Post-freeze blux 8d989de adds an independent evaluation and promotion policy (dataset program, 3 tests pass 2026-11-04); no human-reviewed answer-quality set yet"
+   ],
+   "next_action": "Independent evaluation families (OV-53)"
+  },
+  {
+   "id": "F62",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F62",
+    "repo": "blux",
+    "issue": "A second session committed native-router work to `blux/training/` concurrently (a107205\u20260e4b4f6) and replaced `training/README.md`; the Stage 34 commit had to be rebased (README merged, nothing overwritten). Tooling behind those commits is undeclared (credits UNR-021)",
+    "severity": "Medium (process)",
+    "class": "Owner coordination of parallel sessions",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "Parallel sessions continued after the freeze: nine commits without an AI-tool trailer (credits UNR-022)"
+   ],
+   "next_action": "Owner confirms which tool made the post-freeze commits; sessions coordinate through rebase, never overwrite"
+  },
+  {
+   "id": "F63",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F63",
+    "repo": "blux",
+    "issue": "Native specialists need owner-authored, rights-cleared data: 694 independent routing families (training/research/WAKE_UP_REPORT.md section 39); repair and patch ranking need multi-candidate outcome data that cA does not produce",
+    "severity": "High",
+    "class": "Owner data collection",
+    "blocking": "Yes: Generation 1"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-53",
+   "decision": "D-09",
+   "evidence": [
+    "No rights-cleared corpus acquired (forward-plan.md A2 PARTIAL)"
+   ],
+   "next_action": "Owner data collection"
+  },
+  {
+   "id": "F64",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F64",
+    "repo": "blux-app",
+    "issue": "The page was syntax-checked (`node --check`) but not exercised in a browser; there are no UI or accessibility tests yet",
+    "severity": "Medium",
+    "class": "Future (UI testing)",
+    "blocking": "Yes: release"
+   },
+   "status": "OPEN",
+   "owner": "repo:blux-app",
+   "priority": "P1",
+   "stage": "OV-54",
+   "decision": null,
+   "evidence": [
+    "blux-app HEAD 0de2d9a unchanged since Stage 44"
+   ],
+   "next_action": "Browser and accessibility tests"
+  },
+  {
+   "id": "F65",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F65",
+    "repo": "blux-gpt (local shells)",
+    "issue": "BluxGPT 1.0's shell overlay defined a `blux()` function that shadows BLUX's `blux` command. BluxGPT already fixed this (its installer ships `bluxgpt` and runs `unfunction blux`; `docs/AUDIT-1.0.md` item 1, tested), but a stale copy can survive in a user's own startup file and was observed in one. BLUX App resolves tools to absolute paths, so it is unaffected",
+    "severity": "Low",
+    "class": "Owner action: remove the old function, or re-run BluxGPT's `install_shell.sh`",
+    "blocking": "No"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-48",
+   "decision": "D-12",
+   "evidence": [
+    "Owner shell configuration is never edited automatically (D-12); diagnosed in OV-48"
+   ],
+   "next_action": "Owner applies the OV-48 D-12 correction"
+  },
+  {
+   "id": "F66",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F66",
+    "repo": "bluxai.app",
+    "issue": "API only: no web front end; not deployed; rate limiting is per process; no email verification or password reset; remote agents not offered",
+    "severity": "Medium",
+    "class": "Future stage (product)",
+    "blocking": "Yes: launch"
+   },
+   "status": "DEFERRED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-54",
+   "decision": "D-08",
+   "evidence": [
+    "bluxai.app unchanged since Stage 44"
+   ],
+   "next_action": "Owner decides hosted UI and deployment priority"
+  },
+  {
+   "id": "F68",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F68",
+    "repo": "blux-system",
+    "issue": "Pins blux-sdk 0.1.0 (commit `0b09a46`) while BLUX ships 0.2.0; same Contract 1.0, but the pin is one release behind",
+    "severity": "Low",
+    "class": "Stage 42 (contract CI)",
+    "blocking": "No"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "blux-system 77173f2 pins blux-sdk at blux 6ee4c80, whose sdk/python is version 0.2.0 and identical to blux HEAD (`git diff 6ee4c80 HEAD -- sdk/python` empty); 74 tests pass against SDK 0.2.0 (2026-11-04)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F69",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F69",
+    "repo": "dat, lrc, god, blux-coga, blux-ca",
+    "issue": "Historical tags (`dat` v1.0.0, v2.0.0-Stable, v2.0.0-alpha.1; `lrc` v1.0.0-stable; `god` v1.0.0; CogA-0.1-mini; cA-0.1, cA-0.1-mini) predate the rebuild and do not describe the current code; `v2.0.0-Stable` and `v1.0.0-stable` names suggest current stability",
+    "severity": "Low",
+    "class": "Owner decision: keep as history, or retire the tag names",
+    "blocking": "No"
+   },
+   "status": "DEFERRED",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-63",
+   "decision": null,
+   "evidence": [
+    "Tags unchanged and recorded as historical in ecosystem/release-ledger.json"
+   ],
+   "next_action": "Decide at the DAT pilot release whether to retire the names"
+  },
+  {
+   "id": "F70",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F70",
+    "repo": "all",
+    "issue": "The contract checks run in docs CI, which is blocked org-wide (F49); today they run only locally",
+    "severity": "High",
+    "class": "BLOCKED (billing lock)",
+    "blocking": "Yes: automatic detection in CI"
+   },
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-49",
+   "decision": "D-01",
+   "evidence": [
+    "Depends on F49; the contract checks are run locally at current HEAD in OV-49"
+   ],
+   "next_action": "Restore hosted CI"
+  },
+  {
+   "id": "F72",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F72",
+    "repo": "axiom",
+    "issue": "`cockpit/bin/ax` must be sourced. When it is executed instead (`timeout ax \u2026`, scripts, cron), it prints \"must be sourced\" on **stdout** and exits 1, so a caller expecting JSON gets text. Non-interactive callers must use `cockpit/bin/ax-route`",
+    "severity": "Low",
+    "class": "Usability; documented here",
+    "blocking": "No"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:axiom",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "axiom ed079e8: cockpit/bin/ax execs ax-route when executed; `bash cockpit/bin/ax --help` prints usage, rc 0; 13 router tests pass (2026-11-04)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F73",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F73",
+    "repo": "roughin",
+    "issue": "With the R2 settings empty (tests, development), `app/services/r2.py` builds its `boto3` client with no credentials. `boto3` then falls back to its default credential chain and probes the cloud instance-metadata address `169.254.169.254`. On a cloud host, a development instance could pick up that host's role credentials. Production is safe: the configuration check requires all four R2 settings",
+    "severity": "Low",
+    "class": "Pass explicit credentials or disable the metadata provider (`AWS_EC2_METADATA_DISABLED=true`) outside production",
+    "blocking": "No"
+   },
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:roughin",
+   "priority": "P2",
+   "stage": "OV-47",
+   "decision": null,
+   "evidence": [
+    "roughin a4410a1: app/services/r2.py builds its client lazily and raises \"R2 storage is not configured\" without explicit settings; 93 backend tests pass (2026-11-04)"
+   ],
+   "next_action": "Real R2 lifecycle under F35"
+  },
+  {
+   "id": "F76",
+   "origin": "frozen",
+   "frozen": {
+    "id": "F76",
+    "repo": "11 repositories",
+    "issue": "DAT's raw release gate fails on test fixtures, placeholders and CI-local credentials (all triaged as non-secrets) because no repository commits a DAT target policy",
+    "severity": "Low",
+    "class": "Add justified DAT suppressions per repository",
+    "blocking": "No"
+   },
+   "status": "OPEN",
+   "owner": "repo:dat",
+   "priority": "P1",
+   "stage": "OV-49",
+   "decision": null,
+   "evidence": [
+    "No DAT target policy committed in the 11 affected repositories (Stage 44)"
+   ],
+   "next_action": "Narrow, justified target policies per repository (OV-49)"
+  },
+  {
+   "id": "F77",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-04 (OV-46)",
+   "repo": "termux-background",
+   "severity": "High",
+   "source": "Authenticated GitHub API: releases and tags",
+   "issue": "Four published GitHub releases from 2025-07-31 (v1.0.0, v1.0.1, v1.0.3, version-1.0.0) still offer app-release.apk, app-debug.apk and .deb downloads. Only version-1.0.0 still exists as a tag. The README says \"There is no published release yet\" and the matrix says NOT_RELEASED. The README also says the previously committed signing key must be considered compromised, so these APKs may be signed with it.",
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P0",
+   "stage": "OV-49",
+   "decision": "D-13",
+   "evidence": [
+    "gh api repos/Outer-Void/termux-background/releases (2026-11-04)",
+    "git ls-remote --tags: only refs/tags/version-1.0.0"
+   ],
+   "next_action": "OV-49 checks which key signed the APKs. Owner decides (D-13) whether to unpublish or mark the releases deprecated; the README must state the truth"
+  },
+  {
+   "id": "F78",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-04 (OV-47)",
+   "repo": "roughin",
+   "severity": "Low",
+   "source": "npm audit; Dependabot alert 15",
+   "issue": "npm audit reports 6 advisories (2 low, 4 moderate) in build-time dependencies reached through vite-plugin-pwa \u2192 workbox-build: deepmerge (GHSA-gcqx-w48m-w2h4), glob (GHSA-3g3m-2fjr-6pw4) and minimatch (GHSA-g3hv-75wg-m249). npm's suggested fix downgrades vite-plugin-pwa to 1.1.0 (breaking). They were not reported on 2026-10-27.",
+   "status": "OPEN",
+   "owner": "repo:roughin",
+   "priority": "P2",
+   "stage": "OV-49",
+   "decision": null,
+   "evidence": [
+    "`npm audit` in roughin/frontend at 19d8839 exit 1 (2026-11-04)",
+    "gh api dependabot/alerts: 1 open (low, deepmerge, development scope)"
+   ],
+   "next_action": "OV-49 assesses build-time reachability and the upgrade path; no forced downgrade"
+  },
+  {
+   "id": "F79",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-04 (OV-46)",
+   "repo": "termux-background",
+   "severity": "Medium",
+   "source": "GitHub issues",
+   "issue": "Four open user issues (#4, #6, #7, #8; 2026-01 to 2026-06) report that the app closes when tapped or doesn't work, and ask how to use it. None has a response or triage, and they were not in the findings register.",
+   "status": "OPEN",
+   "owner": "repo:termux-background",
+   "priority": "P1",
+   "stage": "OV-59",
+   "decision": null,
+   "evidence": [
+    "gh api repos/Outer-Void/termux-background/issues (2026-11-04)"
+   ],
+   "next_action": "Triage against the 1.1.0 code and the F77 builds; respond once a fix or a device result exists"
+  }
+ ]
+}
