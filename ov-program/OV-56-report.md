@@ -38,6 +38,32 @@ The review started from vigyl `7234fb4` (OV-49).
 - **Docs.** notifications, security-privacy, api-spec, release checklist and the READMEs. The privacy-policy draft
   now says that caregivers can see whether an alert was opened; it still needs legal review.
 
+## Follow-up: repeating tasks and the remaining screens (`68a56a0`, owner request 2026-11-05)
+
+- **Repeating tasks.** A task can repeat every 1–30 days, which needs a due time. The sweep creates each next
+  occurrence 24 hours before it is due, copying the latest occurrence.
+- **Why the schedule drives it.** Occurrences follow the schedule, not completions. If they followed completions,
+  someone who stopped responding would be escalated once and then never again. Now each missed occurrence
+  escalates on its own (tested: four missed days give levels 1, 2, 3, 3).
+- **Safety rules:**
+  - **Sweep outage.** Occurrences already past grace are not created, because nobody was shown them. The gap is
+    recorded once (`task.series_gap`), so there is no burst of escalations when the sweep restarts.
+  - **Assignee leaves or is deleted.** The series stops and caregivers are told. It is never reassigned
+    automatically.
+  - **Duplicates.** A unique constraint on series and due time, plus a row lock, stop concurrent sweeps creating
+    the same occurrence twice.
+  - **Cancel and stop.** Cancel affects one occurrence. "Stop repeating" ends the series.
+  - **Migration 0003.** It only adds, and it is checked on SQLite only.
+- **Screens:**
+  - repeat option, schedule label and stop repeating;
+  - edit task (with discard) and reassign;
+  - invitation list and revoke (only pending invitations can be revoked);
+  - leave circle, and remove member (confirmed, never yourself);
+  - load older timeline activity.
+- **Evidence:** backend **97 passed** (11 new in `tests/test_recurrence.py`); frontend **25 passed** (11 new in
+  `src/Manage.test.jsx`); build ok; `npm audit` 0; DAT gate pass.
+- **Not done:** reminders before a task is due, live updates, and browser and mobile accessibility testing.
+
 ## Evidence (executed 2026-11-05)
 
 | Check | Result |
@@ -55,9 +81,9 @@ The review started from vigyl `7234fb4` (OV-49).
 
 | ID | Before | After | Remaining |
 |---|---|---|---|
-| F43 | PARTIAL | PARTIAL | Reassignment and editing, invitation revocation, live updates; browser and mobile accessibility testing; staging |
+| F43 | PARTIAL | PARTIAL | Live updates; browser and mobile accessibility testing; staging |
 | F44 | EXTERNAL_BLOCKED | EXTERNAL_BLOCKED | A real channel (D-06). In-app receipts are now honest |
-| F46 | OPEN | PARTIAL | Recurring tasks; password reset and email verification (D-14); 2FA; subscriptions and location; legal review |
+| F46 | OPEN | PARTIAL | Reminders; password reset and email verification (D-14); 2FA; subscriptions and location; legal review |
 | F45 | BLOCKED_LOCAL_ENVIRONMENT | unchanged | CI `postgres` job (D-01) |
 
 ## Stage output
@@ -67,10 +93,11 @@ stage_id: OV-56
 implementation:
   changes: [alert receipts API + UI, DB-backed lockout, password change, migration 0002, messages UI,
             account export/delete UI, privacy-policy draft disclosure]
-  excluded: [external notification channel (D-06), password reset (D-14), recurring tasks, legal review]
+  follow_up: [repeating tasks + migration 0003, edit/reassign, invitation revoke, leave/remove member, timeline paging]
+  excluded: [external notification channel (D-06), password reset (D-14), reminders, legal review]
 validation:
-  unit: [backend 86 (SQLite), frontend 14]
+  unit: [backend 86 then 97 (SQLite), frontend 14 then 25]
   security: [DAT gate pass; npm audit 0]
   external: [PostgreSQL BLOCKED_LOCAL_ENVIRONMENT, CI EXTERNAL_BLOCKED, delivery EXTERNAL_BLOCKED]
-disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [recurring tasks, remaining UI flows, browser accessibility pass]}
+disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [reminders, browser accessibility pass, staging]}
 ```

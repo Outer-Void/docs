@@ -264,7 +264,7 @@ for _row in COMPONENTS:
 # Statuses are not raised by it.
 OV55 = {
     "roughin": ("61c4b47", "OV-55: backend 100 passed at 0a794ac and auth suite 23 at 61c4b47 (SQLite); frontend 10 passed and built; npm audit --omit=dev 0; DAT gate pass"),
-    "vigyl": ("c7058b9", "OV-56: backend 86 passed (SQLite); frontend 14 passed and built; npm audit 0; DAT gate pass"),
+    "vigyl": ("68a56a0", "OV-56: backend 97 passed (SQLite); frontend 25 passed and built; npm audit 0; DAT gate pass"),
 }
 OV55_BLOCKERS = {
     "roughin": ["Password reset and email verification need an email provider (D-14)"],

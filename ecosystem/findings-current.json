@@ -656,10 +656,10 @@
    "stage": "OV-56",
    "decision": null,
    "evidence": [
-    "vigyl c7058b9 (OV-56, 2026-11-05): circle messages, alert receipts for caregivers, password change, data export and account deletion added; `npm test` 14 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
-    "Not done: reassignment and task editing, invitation revocation, live updates, and browser or real-mobile accessibility testing"
+    "vigyl 68a56a0 (OV-56, 2026-11-05): development-preview UI now covers messages, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, password change, export and deletion; `npm test` 25 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
+    "Not done: live updates, and browser or real-mobile accessibility testing"
    ],
-   "next_action": "Remaining flows; browser and mobile accessibility testing; staging"
+   "next_action": "Browser and mobile accessibility testing; staging; live updates"
   },
   {
    "id": "F44",
@@ -721,10 +721,11 @@
    "stage": "OV-56",
    "decision": "D-14",
    "evidence": [
-    "vigyl c7058b9 (OV-56, 2026-11-05): per-account lockout in the database (5 failures, 15 minutes, 429 + Retry-After, timeline event account.locked); POST /auth/password deletes every refresh token and rejects older access tokens; backend 86 passed (SQLite)",
+    "vigyl c7058b9 (OV-56, 2026-11-05): per-account lockout in the database (5 failures, 15 minutes, 429 + Retry-After, timeline event account.locked); POST /auth/password deletes every refresh token and rejects older access tokens",
+    "vigyl 68a56a0 (OV-56, 2026-11-05): repeating tasks driven by the schedule (each missed occurrence escalates; outage gaps recorded, never burst; series stop when the assignee leaves; unique per series and due time); migration 0003; backend 97 passed (SQLite)",
     "Privacy-policy draft states that caregivers can see whether an alert was opened; legal review still required"
    ],
-   "next_action": "Recurring tasks; password reset and email verification (D-14); 2FA decision; subscriptions and location; owner legal review"
+   "next_action": "Reminders before a task is due; password reset and email verification (D-14); 2FA decision; subscriptions and location; owner legal review"
   },
   {
    "id": "F47",
