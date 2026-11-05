@@ -3,8 +3,8 @@
 **Status: APPROVED WITH AMENDMENTS (owner, 2026-11-04).** This file is the execution baseline. The amendments are
 already folded into the stage contracts below.
 
-**Authorized now:** OV-46 → OV-49. Stop for owner review before OV-50. Each later stage needs its own
-authorization.
+**Authorized:** OV-46 → OV-49 (complete, 2026-11-05), then OV-55 and OV-56 (owner, 2026-11-05). Each other stage
+needs its own authorization.
 
 **How to change this plan.** Change it only for an evidenced cross-stage architecture, safety or dependency-order
 defect, or an explicit owner product decision. Record any change in the amendment log at the end.
@@ -206,7 +206,7 @@ green.
 - Contract mutations are detected.
 - Every known High finding has a release disposition.
 
-### OV-50 → OV-70 (not yet authorized)
+### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05; the rest not yet authorized)
 These stages are unchanged from the approved plan. Each starts with the delta review from rule 11 instead of
 repeating work verified in Stages 42–44.
 
@@ -268,6 +268,7 @@ repeating work verified in Stages 42–44.
 | D-10 | Independent approval of institutional clinical, legal and financial claims | ER and IVRP operations | Confidential planning |
 | D-11 | Pricing or entitlement trust model not yet pinned | Paid distribution | Engineering without invented policy |
 | D-12 | Owner correction of shell configuration: the stale `blux()` in `~/.zshrc.local` (F65) and the outdated `ANDROID_HOME` in `~/.zshrc` | Running `blux` and Android builds by name on the owner's machine | Diagnosis and recommended fix (OV-48); never edited automatically |
+| D-14 | Transactional email provider and sender domain for account recovery and verification (Roughin and Vigyl) | Password reset and email verification (F38, F46) | Lockout, password change, session hardening (done in OV-55/OV-56) |
 | D-13 | Disposition of termux-background's historical artifacts: the four unsupported 2025 GitHub releases (F77) and the compromised keystore in public history (F81; a purge needs an authorized history rewrite) | Truthful distribution state; user safety | Done in OV-49: signer check, README correction |
 
 No external blocker is ever reclassified as PASS. A missing decision becomes a targeted question at the stage that
@@ -293,3 +294,5 @@ generated docs, ledger, credits and tests agree. An environment-blocked stage is
 | 2026-11-04 | Baseline locked. Amendments: OV-46 reuse and the recovered script; OV-47 separate current findings; OV-48 PostgreSQL `BLOCKED_LOCAL_ENVIRONMENT`; OV-49 history review and reuse of DAT evidence; reuse rule for Stage 42/43 evidence; D-12; git workflow; ER metadata-only | Owner authorization, 2026-11-04 |
 | 2026-11-04 | D-13 added: an owner question raised by OV-46 evidence (F77) | Plan section 6 (missing decisions become targeted owner questions) |
 | 2026-11-05 | D-13 widened to cover F81 (found in OV-49) | Plan section 6 |
+| 2026-11-05 | OV-55 and OV-56 authorized | Owner authorization, 2026-11-05 |
+| 2026-11-05 | D-14 added: account recovery needs an email provider, which no stage may pick | Plan section 6 |

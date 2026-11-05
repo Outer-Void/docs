@@ -445,7 +445,7 @@
    "component": "Roughin",
    "repo": "roughin",
    "version": "1.1.0 (API); frontend 1.0.0",
-   "commit_sha": "a4410a1",
+   "commit_sha": "61c4b47",
    "role": "Standalone contractor SaaS (FastAPI + React PWA)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "PLANNED",
@@ -461,16 +461,17 @@
     "No staging deployment, Stripe test-mode or real R2 qualification (F35)",
     "Real mobile/poor-network/browser testing and production PWA assets pending",
     "Frontend coverage is focused (4 tests); broader payment/task workflows need browser evidence",
-    "Build-time npm advisories through vite-plugin-pwa (F78)"
+    "Build-time npm advisories through vite-plugin-pwa (F78)",
+    "Password reset and email verification need an email provider (D-14)"
    ],
-   "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28). Stage 44 DoD at 97921fc (2026-10-27): backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: frontend has 4 regression tests; Vite/React plugin/PWA tooling/React Router upgraded; build PASS and npm audit zero advisories. R2 client now initializes lazily with explicit credentials and fails before credential discovery when unconfigured; 2 regression tests added. Network error text preserves uncertainty about server commits. Resumed validation: backend 93 PASS (including two new R2 configuration regressions), backend ruff PASS; 938 existing datetime deprecation warnings remain.. OV-48 re-run at a4410a1 (2026-11-04): backend 93 passed; frontend 4 passed and built; npm audit 6 build-time advisories (F78)",
-   "last_verified": "2026-11-04"
+   "evidence": "pytest: 91 passed at f3599d3 (SQLite; Stripe/R2 faked at the edge, real webhook signature verification); ruff clean; vite build OK (Stage 28). Stage 44 DoD at 97921fc (2026-10-27): backend 91 passed (BLUX disabled, network off); frontend npm audit 5 advisories, not exploitable as used (F36 open); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: frontend has 4 regression tests; Vite/React plugin/PWA tooling/React Router upgraded; build PASS and npm audit zero advisories. R2 client now initializes lazily with explicit credentials and fails before credential discovery when unconfigured; 2 regression tests added. Network error text preserves uncertainty about server commits. Resumed validation: backend 93 PASS (including two new R2 configuration regressions), backend ruff PASS; 938 existing datetime deprecation warnings remain.. OV-48 re-run at a4410a1 (2026-11-04): backend 93 passed; frontend 4 passed and built; npm audit 6 build-time advisories (F78). OV-55: backend 100 passed at 0a794ac and auth suite 23 at 61c4b47 (SQLite); frontend 10 passed and built; npm audit --omit=dev 0; DAT gate pass",
+   "last_verified": "2026-11-05"
   },
   {
    "component": "Vigyl",
    "repo": "vigyl",
    "version": "API 0.2.0; frontend 0.1.0 (development preview)",
-   "commit_sha": "f7ce8f3",
+   "commit_sha": "c7058b9",
    "role": "Standalone caregiving/accountability product; FastAPI backend and React development care workspace; server remains authoritative",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "PLANNED",
@@ -485,10 +486,12 @@
     "Frontend is a development preview; real-browser/mobile/accessibility qualification pending",
     "Notifications are in-app only; no external push/email delivery (F44)",
     "PostgreSQL 16 migration/backup/restore and staging remain unqualified; local PostgreSQL 17 initdb stalled in PRoot",
-    "Recurring tasks, password reset and privacy/legal approval remain open (F46)"
+    "Recurring tasks, password reset and privacy/legal approval remain open (F46)",
+    "Password reset and email verification need an email provider (D-14)",
+    "Alerts are in-app only; receipts show seen or not seen, never delivered elsewhere (F44, D-06)"
    ],
-   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.. OV-48 re-run at f7ce8f3 (2026-11-04): frontend 8 passed, built, npm audit clean; backend unchanged since a0816a4 (78 passed, 2026-10-27)",
-   "last_verified": "2026-11-04"
+   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.. OV-48 re-run at f7ce8f3 (2026-11-04): frontend 8 passed, built, npm audit clean; backend unchanged since a0816a4 (78 passed, 2026-10-27). OV-56: backend 86 passed (SQLite); frontend 14 passed and built; npm audit 0; DAT gate pass",
+   "last_verified": "2026-11-05"
   },
   {
    "component": "Termux Background",

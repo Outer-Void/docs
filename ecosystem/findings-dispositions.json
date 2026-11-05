@@ -254,29 +254,33 @@
    "priority": "P1",
    "stage": "OV-55",
    "evidence": [
-    "roughin a4410a1: 3 Vitest files, 4 tests pass (2026-11-04); frontend CI job defined (not run, F49)"
+    "roughin 0a794ac (OV-55): 5 Vitest files, 10 tests pass (2026-11-05): session restore from the cookie, offline reload keeps the shell, no tokens in storage, password change, plus the earlier 4; frontend CI job defined (not run, F49)"
    ],
    "next_action": "Real-device mobile and poor-network testing; broader flows"
   },
   "F38": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:roughin",
    "priority": "P1",
    "stage": "OV-55",
    "evidence": [
-    "Auth code unchanged since the freeze (post-freeze diff touches frontend, R2 service and its tests only)"
+    "roughin 0a794ac + 61c4b47 (OV-55, 2026-11-05): refresh token in an httpOnly, Secure, SameSite=Strict cookie scoped to /api/v1/auth and never in a response body; access token in memory only; legacy localStorage tokens deleted on load",
+    "Per-account lockout stored in the database (shared across instances): 5 consecutive failures lock for 15 minutes, 429 + Retry-After, audited; POST /auth/password revokes every session",
+    "backend 100 passed (SQLite; full suite at 0a794ac, auth suite 23 at 61c4b47), frontend 10 passed, vite build, npm audit --omit=dev 0, DAT gate pass"
    ],
-   "next_action": "Shared rate limiting, account recovery, 2FA decision"
+   "next_action": "Password reset and email verification (D-14); per-IP rate limit stays per instance until a shared store; 2FA is an owner decision",
+   "decision": "D-14"
   },
   "F39": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:roughin",
    "priority": "P2",
    "stage": "OV-55",
    "evidence": [
-    "93 backend tests pass with 938 deprecation warnings (2026-11-04)"
+    "roughin 0a794ac (OV-55, 2026-11-05): datetime.utcnow() replaced by app.timeutil.utcnow() (identical naive UTC values, no schema change); the backend suite reports 0 deprecation warnings (938 before)",
+    "Partial payments, refunds and stored estimates unchanged"
    ],
-   "next_action": "Aware timestamps; owner decides partial-payment semantics"
+   "next_action": "Owner decides partial-payment and refund semantics; timestamptz migration needs PostgreSQL evidence (F34)"
   },
   "F40": {
    "status": "DEFERRED",
@@ -314,9 +318,10 @@
    "priority": "P0",
    "stage": "OV-56",
    "evidence": [
-    "vigyl f7ce8f3: React development-preview workspace; `npm ci && npm test` 8 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass (2026-11-04); README updated (ee34852)"
+    "vigyl c7058b9 (OV-56, 2026-11-05): circle messages, alert receipts for caregivers, password change, data export and account deletion added; `npm test` 14 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
+    "Not done: reassignment and task editing, invitation revocation, live updates, and browser or real-mobile accessibility testing"
    ],
-   "next_action": "Release qualification: browser and mobile accessibility, staging, the missing flows"
+   "next_action": "Remaining flows; browser and mobile accessibility testing; staging"
   },
   "F44": {
    "status": "EXTERNAL_BLOCKED",
@@ -325,7 +330,8 @@
    "stage": "OV-56",
    "decision": "D-06",
    "evidence": [
-    "Delivery remains in-app only; the UI reads the in-app channel (frontend/README.md)"
+    "vigyl c7058b9 (OV-56, 2026-11-05): GET /tasks/{id}/alerts reports each missed-task alert's in-app state as seen or not_seen and external delivery as not_configured; the UI repeats that no push, email or text message is sent. Nothing is reported as delivered outside the app",
+    "No external channel exists; a provider is owner decision D-06"
    ],
    "next_action": "Owner approves a notification provider and delivery policy"
   },
@@ -341,14 +347,16 @@
    "next_action": "CI postgres job or a suitable external machine"
   },
   "F46": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:vigyl",
    "priority": "P1",
    "stage": "OV-56",
    "evidence": [
-    "Not built as of f7ce8f3"
+    "vigyl c7058b9 (OV-56, 2026-11-05): per-account lockout in the database (5 failures, 15 minutes, 429 + Retry-After, timeline event account.locked); POST /auth/password deletes every refresh token and rejects older access tokens; backend 86 passed (SQLite)",
+    "Privacy-policy draft states that caregivers can see whether an alert was opened; legal review still required"
    ],
-   "next_action": "Account recovery and verification; owner legal review"
+   "next_action": "Recurring tasks; password reset and email verification (D-14); 2FA decision; subscriptions and location; owner legal review",
+   "decision": "D-14"
   },
   "F47": {
    "status": "DEFERRED",

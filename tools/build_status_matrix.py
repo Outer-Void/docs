@@ -259,6 +259,25 @@ for _row in COMPONENTS:
     _row["version"] = OV48_VERSION.get(_row["repo"], _row["version"])
 
 
+# OV-55 / OV-56 (2026-11-05): auth hardening and UI flows, run at the commit shown (ov-program/OV-55-report.md,
+# OV-56-report.md). SQLite-backed local runs only; PostgreSQL, Stripe, R2 and notification delivery stay blocked.
+# Statuses are not raised by it.
+OV55 = {
+    "roughin": ("61c4b47", "OV-55: backend 100 passed at 0a794ac and auth suite 23 at 61c4b47 (SQLite); frontend 10 passed and built; npm audit --omit=dev 0; DAT gate pass"),
+    "vigyl": ("c7058b9", "OV-56: backend 86 passed (SQLite); frontend 14 passed and built; npm audit 0; DAT gate pass"),
+}
+OV55_BLOCKERS = {
+    "roughin": ["Password reset and email verification need an email provider (D-14)"],
+    "vigyl": ["Password reset and email verification need an email provider (D-14)",
+              "Alerts are in-app only; receipts show seen or not seen, never delivered elsewhere (F44, D-06)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV55:
+        _row["commit_sha"], _note = OV55[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-05"
+    _row["known_blockers"] = _row["known_blockers"] + OV55_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",
