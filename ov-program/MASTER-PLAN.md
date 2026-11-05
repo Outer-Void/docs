@@ -268,7 +268,7 @@ repeating work verified in Stages 42–44.
 | D-10 | Independent approval of institutional clinical, legal and financial claims | ER and IVRP operations | Confidential planning |
 | D-11 | Pricing or entitlement trust model not yet pinned | Paid distribution | Engineering without invented policy |
 | D-12 | Owner correction of shell configuration: the stale `blux()` in `~/.zshrc.local` (F65) and the outdated `ANDROID_HOME` in `~/.zshrc` | Running `blux` and Android builds by name on the owner's machine | Diagnosis and recommended fix (OV-48); never edited automatically |
-| D-13 | Disposition of termux-background's four public 2025 GitHub releases (APKs possibly signed with the compromised key; F77) | Truthful distribution state; user safety | OV-49 signer check; README truth |
+| D-13 | Disposition of termux-background's historical artifacts: the four unsupported 2025 GitHub releases (F77) and the compromised keystore in public history (F81; a purge needs an authorized history rewrite) | Truthful distribution state; user safety | Done in OV-49: signer check, README correction |
 
 No external blocker is ever reclassified as PASS. A missing decision becomes a targeted question at the stage that
 needs it.
@@ -292,3 +292,4 @@ generated docs, ledger, credits and tests agree. An environment-blocked stage is
 |---|---|---|
 | 2026-11-04 | Baseline locked. Amendments: OV-46 reuse and the recovered script; OV-47 separate current findings; OV-48 PostgreSQL `BLOCKED_LOCAL_ENVIRONMENT`; OV-49 history review and reuse of DAT evidence; reuse rule for Stage 42/43 evidence; D-12; git workflow; ER metadata-only | Owner authorization, 2026-11-04 |
 | 2026-11-04 | D-13 added: an owner question raised by OV-46 evidence (F77) | Plan section 6 (missing decisions become targeted owner questions) |
+| 2026-11-05 | D-13 widened to cover F81 (found in OV-49) | Plan section 6 |

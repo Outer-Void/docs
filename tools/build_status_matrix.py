@@ -246,7 +246,8 @@ OV48_VERSION = {  # verified against the manifests in OV-47
 }
 OV48_BLOCKERS = {
     "roughin": ["Build-time npm advisories through vite-plugin-pwa (F78)"],
-    "termux-background": ["Four public 2025 GitHub releases still offer APKs; the README says there is none (F77, owner decision D-13)",
+    "termux-background": ["Four unsupported 2025 GitHub releases still offer APKs (F77, owner decision D-13)",
+                          "Compromised release keystore and passwords remain in public git history; never sign with it (F81)",
                           "Four untriaged user issues report that the app closes or doesn't work (F79)"],
 }
 for _row in COMPONENTS:

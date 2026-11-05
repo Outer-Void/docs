@@ -509,7 +509,8 @@
     "No device has passed docs/DEVICE_RC_CHECKLIST.md",
     "No signing key in CI; CI blocked org-wide (F49)",
     "Targets SDK 35; 36 available (F56)",
-    "Four public 2025 GitHub releases still offer APKs; the README says there is none (F77, owner decision D-13)",
+    "Four unsupported 2025 GitHub releases still offer APKs (F77, owner decision D-13)",
+    "Compromised release keystore and passwords remain in public git history; never sign with it (F81)",
     "Four untriaged user issues report that the app closes or doesn't work (F79)"
    ],
    "evidence": "docs/RELEASE_CHECKS.md at 75cfb97: shellcheck, cli_test.sh, build-deb + package_test, gradle test (10 per variant), lint 0 errors, debug+release APKs (Stage 32). Stage 44 DoD at 75cfb97 (2026-10-27): unit 10+10 passed, CLI and package suites passed, shellcheck clean; DAT audit triaged",

@@ -117,7 +117,8 @@ Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are
   - Blocker: No device has passed docs/DEVICE_RC_CHECKLIST.md
   - Blocker: No signing key in CI; CI blocked org-wide (F49)
   - Blocker: Targets SDK 35; 36 available (F56)
-  - Blocker: Four public 2025 GitHub releases still offer APKs; the README says there is none (F77, owner decision D-13)
+  - Blocker: Four unsupported 2025 GitHub releases still offer APKs (F77, owner decision D-13)
+  - Blocker: Compromised release keystore and passwords remain in public git history; never sign with it (F81)
   - Blocker: Four untriaged user issues report that the app closes or doesn't work (F79)
 - **JADIS Toolbox (`jadis`)** (`jadis.toolbox`): Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian). Evidence: 75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33). Stage 44 DoD at 253c386 (2026-10-27): 75 passed; DAT audit triaged.
   - Blocker: Not run in native Termux (fixture-tested only)

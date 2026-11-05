@@ -1,26 +1,26 @@
 {
  "format": "outer-void-findings-current v1",
- "as_of": "2026-11-04",
+ "as_of": "2026-11-05",
  "sources": {
   "frozen": "reassessment/open-findings.json (2026-10-27, unchanged)",
   "dispositions": "ecosystem/findings-dispositions.json"
  },
  "counts": {
   "frozen_open": 57,
-  "new": 4,
+  "new": 6,
   "by_status": {
-   "OPEN": 21,
+   "OPEN": 20,
    "EXTERNAL_BLOCKED": 16,
-   "RESOLVED_VERIFIED": 8,
-   "DEFERRED": 11,
+   "RESOLVED_VERIFIED": 10,
+   "DEFERRED": 12,
    "BLOCKED_LOCAL_ENVIRONMENT": 2,
    "PARTIAL": 3
   },
   "unresolved_by_severity": {
    "Critical": 3,
-   "High": 15,
-   "Medium": 19,
-   "Low": 14,
+   "High": 14,
+   "Medium": 21,
+   "Low": 13,
    "Info": 2
   }
  },
@@ -126,7 +126,8 @@
    "stage": "OV-49",
    "decision": null,
    "evidence": [
-    "Authenticated GitHub API (gh, 2026-11-04): voidforge, void.os, void.sys, void.game, roughin and vigyl are PRIVATE (inventory/visibility-attestation.json)"
+    "Authenticated GitHub API (gh, 2026-11-04): voidforge, void.os, void.sys, void.game, roughin and vigyl are PRIVATE (inventory/visibility-attestation.json)",
+    "OV-49 history review (2026-11-05): credential-shaped values across the full git history of all 30 inspected repositories, including the six formerly public product repositories, are test fakes, placeholders or development defaults; no real credential found in them (termux-background is the exception, F81)"
    ],
    "next_action": "Current visibility only. Historical public exposure is reviewed in OV-49; this does not establish SECRET_HISTORY_REMEDIATED"
   },
@@ -1156,7 +1157,8 @@
    "stage": "OV-49",
    "decision": "D-01",
    "evidence": [
-    "Depends on F49; the contract checks are run locally at current HEAD in OV-49"
+    "Depends on F49; the contract checks are run locally at current HEAD in OV-49",
+    "Local contract check at current HEADs (2026-11-05): `tools/check_contracts.py --workspace ~/ov` ok, 0 breaking, 0 invariant failures, 5 informational commit moves; 13 mutation tests pass"
    ],
    "next_action": "Restore hosted CI"
   },
@@ -1213,15 +1215,17 @@
     "class": "Add justified DAT suppressions per repository",
     "blocking": "No"
    },
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:dat",
    "priority": "P1",
    "stage": "OV-49",
    "decision": null,
    "evidence": [
-    "No DAT target policy committed in the 11 affected repositories (Stage 44)"
+    "OV-49 (2026-11-05): .dat/policy.json committed in the 11 repositories (blux 56c9b76, blux-app dca88bf, blux-gpt 0175196, blux-system f7f8ede, blux-ca-dataset 9893d58, blux-coga-dataset e8216be, bluxai.app e894ac6, roughin b908af1, vigyl 01a73bc, void.os 4ae9b33, voidforge 80aec1a)",
+    "Each suppression pins rule_id, path and exact fingerprint with a reason; 56 in total, all listed in each report's suppressed[]",
+    "`dat audit` at those commits: gate verdict pass, 0 blocking, in all 11 (2026-11-05); every suppressed finding was inspected first (test fakes, CI-local PostgreSQL service credentials, DEV_SECRET defaults refused by the production check, SHA-256 icon digests)"
    ],
-   "next_action": "Narrow, justified target policies per repository (OV-49)"
+   "next_action": "None. A new credential-shaped finding stays blocking until triaged"
   },
   {
    "id": "F77",
@@ -1229,9 +1233,9 @@
    "frozen": null,
    "found": "2026-11-04 (OV-46)",
    "repo": "termux-background",
-   "severity": "High",
+   "severity": "Medium",
    "source": "Authenticated GitHub API: releases and tags",
-   "issue": "Four published GitHub releases from 2025-07-31 (v1.0.0, v1.0.1, v1.0.3, version-1.0.0) still offer app-release.apk, app-debug.apk and .deb downloads. Only version-1.0.0 still exists as a tag. The README says \"There is no published release yet\" and the matrix says NOT_RELEASED. The README also says the previously committed signing key must be considered compromised, so these APKs may be signed with it.",
+   "issue": "Four published GitHub releases from 2025-07-31 (v1.0.0, v1.0.1, v1.0.3, version-1.0.0) still offer app-release.apk, app-debug.apk and .deb downloads; only version-1.0.0 still exists as a tag. They predate the rebuild and are unsupported. OV-49 verified that all four release APKs are signed with certificate SHA-256 7bd3603d\u2026ab4a, not with the compromised committed key (F81).",
    "status": "OPEN",
    "owner": "owner",
    "priority": "P0",
@@ -1239,9 +1243,10 @@
    "decision": "D-13",
    "evidence": [
     "gh api repos/Outer-Void/termux-background/releases (2026-11-04)",
-    "git ls-remote --tags: only refs/tags/version-1.0.0"
+    "`apksigner verify --print-certs` on the four app-release.apk files: one signer, SHA-256 7bd3603df7f2c851\u2026ab4a (2026-11-04)",
+    "README corrected to state this (termux-background b81c003, 9fc05d5, 2026-11-05)"
    ],
-   "next_action": "OV-49 checks which key signed the APKs. Owner decides (D-13) whether to unpublish or mark the releases deprecated; the README must state the truth"
+   "next_action": "Owner decides (D-13) whether to unpublish the releases or mark them deprecated"
   },
   {
    "id": "F78",
@@ -1252,16 +1257,18 @@
    "severity": "Low",
    "source": "npm audit; Dependabot alert 15",
    "issue": "npm audit reports 6 advisories (2 low, 4 moderate) in build-time dependencies reached through vite-plugin-pwa \u2192 workbox-build: deepmerge (GHSA-gcqx-w48m-w2h4), glob (GHSA-3g3m-2fjr-6pw4) and minimatch (GHSA-g3hv-75wg-m249). npm's suggested fix downgrades vite-plugin-pwa to 1.1.0 (breaking). They were not reported on 2026-10-27.",
-   "status": "OPEN",
+   "status": "DEFERRED",
    "owner": "repo:roughin",
    "priority": "P2",
    "stage": "OV-49",
    "decision": null,
    "evidence": [
     "`npm audit` in roughin/frontend at 19d8839 exit 1 (2026-11-04)",
-    "gh api dependabot/alerts: 1 open (low, deepmerge, development scope)"
+    "gh api dependabot/alerts: 1 open (low, deepmerge, development scope)",
+    "Upstream check (2026-11-05): vite-plugin-pwa 2.0.0, workbox-build 7.4.1, @rollup/plugin-node-resolve 16.0.3 and deepmerge 4.3.1 are each the latest release, and deepmerge 4.3.1 is itself affected; no fixed version exists",
+    "Not reachable as used: all three advisories need attacker-controlled input, and the build processes only Roughin's own configuration and file globs. Build-time only (scope development); nothing is shipped to clients. Not suppressed: the Dependabot alert stays open"
    ],
-   "next_action": "OV-49 assesses build-time reachability and the upgrade path; no forced downgrade"
+   "next_action": "Upgrade when workbox-build or vite-plugin-pwa ships a fixed chain; no forced transitive overrides or downgrade"
   },
   {
    "id": "F79",
@@ -1300,6 +1307,46 @@
     "inventory/workflow-audit.json (2026-11-04): 26 files parse; 26 with tag-pinned actions; 2 without permissions"
    ],
    "next_action": "Apply SHA pinning, least-privilege permissions and pinned runner images together with the first hosted CI run after D-01, so the change is verified in the same run (plan rule: CI-only changes wait for CI)"
+  },
+  {
+   "id": "F81",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-05 (OV-49)",
+   "repo": "termux-background",
+   "severity": "Medium",
+   "source": "git history credential review",
+   "issue": "The release keystore (termux-release.keystore and app/termux-release.keystore, PKCS12, certificate SHA-256 070cd54d\u2026f68e) and keystore.properties with its store and key passwords were committed between 2025-07-30 (17f815b \u2192 8c3857b) and remain in the public repository history. They were removed from HEAD on 2026-10-21 (f48d6c9), and the README already declares the key compromised. None of the four public release APKs is signed with it (F77).",
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-59",
+   "decision": "D-13",
+   "evidence": [
+    "`git log --all --diff-filter=A` lists both keystore files at 261234d (2025-07-30); keystore.properties in 17f815b, 4a23f32, adfbcfe, 261234d and 8c3857b carries non-placeholder 9-character passwords (values not recorded)",
+    "Certificate fingerprint read with keytool (password supplied from history through the environment, never printed): 070cd54d\u2026f68e; the temporary keystore copies were deleted (2026-11-05)"
+   ],
+   "next_action": "Treat the key as permanently revoked; never sign with it. Purging history needs an authorized history rewrite and would not undo the exposure (owner decision D-13)"
+  },
+  {
+   "id": "F82",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-05 (OV-49)",
+   "repo": "vigyl, roughin, credits",
+   "severity": "Low",
+   "source": "licence check of changed dependency sets",
+   "issue": "The post-freeze frontend work left licensing records behind. Vigyl's bundle ships react 19.3.1, react-dom 19.3.1 and scheduler 0.28.0 (MIT) with no third-party notices or credits entries. Roughin's notices listed react-router 6.30.6 (now 7.18.4) and omitted scheduler. Six credits project records still said visibility public.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:credits",
+   "priority": "P2",
+   "stage": "OV-49",
+   "decision": null,
+   "evidence": [
+    "vigyl 7234fb4 and roughin 96d83d6 (2026-11-05): THIRD_PARTY_NOTICES.md with verbatim licence texts copied from node_modules; all shipped dependencies MIT (vigyl 3, roughin 36; `npm ls --omit=dev`)",
+    "credits: 16 library entries added, 4 versions corrected, 6 project visibilities set from the authenticated API (OV-49 credits commit)"
+   ],
+   "next_action": "None"
   }
  ]
 }
