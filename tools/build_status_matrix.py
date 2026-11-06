@@ -264,8 +264,9 @@ for _row in COMPONENTS:
 # Statuses are not raised by it.
 OV55 = {
     "roughin": ("61c4b47", "OV-55: backend 100 passed at 0a794ac and auth suite 23 at 61c4b47 (SQLite); frontend 10 passed and built; npm audit --omit=dev 0; DAT gate pass"),
-    "vigyl": ("68a56a0", "OV-56: backend 97 passed (SQLite); frontend 25 passed and built; npm audit 0; DAT gate pass"),
+    "vigyl": ("728be24", "OV-56: backend 105 passed (SQLite, 2026-11-06); frontend 27 passed and built; npm audit 0; DAT gate pass"),
 }
+OV55_DATES = {"vigyl": "2026-11-06"}  # the latest re-run per row
 OV55_BLOCKERS = {
     "roughin": ["Password reset and email verification need an email provider (D-14)"],
     "vigyl": ["Password reset and email verification need an email provider (D-14)",
@@ -275,7 +276,7 @@ for _row in COMPONENTS:
     if _row["repo"] in OV55:
         _row["commit_sha"], _note = OV55[_row["repo"]]
         _row["evidence"] += f". {_note}"
-        _row["last_verified"] = "2026-11-05"
+        _row["last_verified"] = OV55_DATES.get(_row["repo"], "2026-11-05")
     _row["known_blockers"] = _row["known_blockers"] + OV55_BLOCKERS.get(_row["repo"], [])
 
 def render_md(rows):

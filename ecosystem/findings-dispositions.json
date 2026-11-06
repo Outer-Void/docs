@@ -318,7 +318,7 @@
    "priority": "P0",
    "stage": "OV-56",
    "evidence": [
-    "vigyl 68a56a0 (OV-56, 2026-11-05): development-preview UI now covers messages, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, password change, export and deletion; `npm test` 25 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
+    "vigyl 68a56a0 and 728be24 (OV-56, 2026-11-05/06): development-preview UI now covers messages, reminders, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, password change, export and deletion; `npm test` 27 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
     "Not done: live updates, and browser or real-mobile accessibility testing"
    ],
    "next_action": "Browser and mobile accessibility testing; staging; live updates"
@@ -354,9 +354,10 @@
    "evidence": [
     "vigyl c7058b9 (OV-56, 2026-11-05): per-account lockout in the database (5 failures, 15 minutes, 429 + Retry-After, timeline event account.locked); POST /auth/password deletes every refresh token and rejects older access tokens",
     "vigyl 68a56a0 (OV-56, 2026-11-05): repeating tasks driven by the schedule (each missed occurrence escalates; outage gaps recorded, never burst; series stop when the assignee leaves; unique per series and due time); migration 0003; backend 97 passed (SQLite)",
+    "vigyl 728be24 (OV-56, 2026-11-06): in-app reminders before the due time (sent once, never after the due time, re-armed when the time moves, copied to repeating occurrences); migration 0004; backend 105 passed (SQLite), frontend 27 passed",
     "Privacy-policy draft states that caregivers can see whether an alert was opened; legal review still required"
    ],
-   "next_action": "Reminders before a task is due; password reset and email verification (D-14); 2FA decision; subscriptions and location; owner legal review",
+   "next_action": "Password reset and email verification (D-14); 2FA decision; subscriptions and location; owner legal review",
    "decision": "D-14"
   },
   "F47": {

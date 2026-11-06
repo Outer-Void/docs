@@ -64,6 +64,24 @@ The review started from vigyl `7234fb4` (OV-49).
   `src/Manage.test.jsx`); build ok; `npm audit` 0; DAT gate pass.
 - **Not done:** reminders before a task is due, live updates, and browser and mobile accessibility testing.
 
+## Follow-up: reminders (`728be24`, owner request 2026-11-06)
+
+- **What it does.** A task with a due time can carry an in-app reminder for its assignee, from 5 minutes to a
+  week before (the app offers 15 minutes, 1 hour and 1 day). The sweep sends it once, when the window opens.
+- **Rules:**
+  - **Never late.** If the sweep missed the window and the task is already due, nothing is sent; missed-task
+    escalation takes over.
+  - **Re-armed.** Moving the due time or changing the reminder re-arms it; other edits do not.
+  - **Repeating tasks** copy the setting to each occurrence.
+  - **Scope.** Only the assignee and only open tasks. In-app only, like every Vigyl notification.
+  - **Migration 0004.** It only adds, and it is checked on SQLite only.
+- **UI.** Choose a reminder at creation or in the editor. The task shows the reminder and whether it was sent in
+  the app.
+- **Defect fixed (existing).** The add-task form was not cleared after a task was added, so the next task
+  silently reused the previous title, repeat and reminder. It is now reset, with a test.
+- **Evidence:** backend **105 passed** (8 new in `tests/test_reminders.py`); frontend **27 passed** (2 new); build
+  ok; `npm audit` 0; DAT gate pass.
+
 ## Evidence (executed 2026-11-05)
 
 | Check | Result |
@@ -83,7 +101,7 @@ The review started from vigyl `7234fb4` (OV-49).
 |---|---|---|---|
 | F43 | PARTIAL | PARTIAL | Live updates; browser and mobile accessibility testing; staging |
 | F44 | EXTERNAL_BLOCKED | EXTERNAL_BLOCKED | A real channel (D-06). In-app receipts are now honest |
-| F46 | OPEN | PARTIAL | Reminders; password reset and email verification (D-14); 2FA; subscriptions and location; legal review |
+| F46 | OPEN | PARTIAL | Password reset and email verification (D-14); 2FA; subscriptions and location; legal review |
 | F45 | BLOCKED_LOCAL_ENVIRONMENT | unchanged | CI `postgres` job (D-01) |
 
 ## Stage output
@@ -94,10 +112,11 @@ implementation:
   changes: [alert receipts API + UI, DB-backed lockout, password change, migration 0002, messages UI,
             account export/delete UI, privacy-policy draft disclosure]
   follow_up: [repeating tasks + migration 0003, edit/reassign, invitation revoke, leave/remove member, timeline paging]
-  excluded: [external notification channel (D-06), password reset (D-14), reminders, legal review]
+  follow_up_2: [in-app reminders + migration 0004, add-task form reset fix]
+  excluded: [external notification channel (D-06), password reset (D-14), legal review]
 validation:
-  unit: [backend 86 then 97 (SQLite), frontend 14 then 25]
+  unit: [backend 86 then 97 then 105 (SQLite), frontend 14 then 25 then 27]
   security: [DAT gate pass; npm audit 0]
   external: [PostgreSQL BLOCKED_LOCAL_ENVIRONMENT, CI EXTERNAL_BLOCKED, delivery EXTERNAL_BLOCKED]
-disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [reminders, browser accessibility pass, staging]}
+disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [browser accessibility pass, staging, live updates]}
 ```
