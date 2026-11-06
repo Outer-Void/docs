@@ -263,10 +263,10 @@ for _row in COMPONENTS:
 # OV-56-report.md). SQLite-backed local runs only; PostgreSQL, Stripe, R2 and notification delivery stay blocked.
 # Statuses are not raised by it.
 OV55 = {
-    "roughin": ("61c4b47", "OV-55: backend 100 passed at 0a794ac and auth suite 23 at 61c4b47 (SQLite); frontend 10 passed and built; npm audit --omit=dev 0; DAT gate pass"),
+    "roughin": ("61c4b47", "OV-55: backend 100 passed at 0a794ac and auth suite 23 at 61c4b47 (SQLite); full backend 100 passed again at 61c4b47 in the deep audit (SQLite, 2026-11-06); frontend 10 passed and built; npm audit --omit=dev 0; DAT gate pass"),
     "vigyl": ("5637f3d", "OV-56: backend 108 passed at 875b006 (SQLite, 2026-11-06; backend unchanged since); frontend 40 passed and built; browser accessibility pass (headless Chromium, axe-core) 12 states 0 violations; npm audit 0; DAT gate pass"),
 }
-OV55_DATES = {"vigyl": "2026-11-06"}  # the latest re-run per row
+OV55_DATES = {"vigyl": "2026-11-06", "roughin": "2026-11-06"}  # the latest re-run per row
 OV55_BLOCKERS = {
     "roughin": ["Password reset and email verification need an email provider (D-14)"],
     "vigyl": ["Password reset and email verification need an email provider (D-14)",

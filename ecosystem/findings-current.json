@@ -1,26 +1,26 @@
 {
  "format": "outer-void-findings-current v1",
- "as_of": "2026-11-05",
+ "as_of": "2026-11-06",
  "sources": {
   "frozen": "reassessment/open-findings.json (2026-10-27, unchanged)",
   "dispositions": "ecosystem/findings-dispositions.json"
  },
  "counts": {
   "frozen_open": 57,
-  "new": 6,
+  "new": 12,
   "by_status": {
-   "OPEN": 17,
+   "OPEN": 22,
    "EXTERNAL_BLOCKED": 16,
    "RESOLVED_VERIFIED": 10,
-   "DEFERRED": 12,
+   "DEFERRED": 13,
    "BLOCKED_LOCAL_ENVIRONMENT": 2,
    "PARTIAL": 6
   },
   "unresolved_by_severity": {
    "Critical": 3,
    "High": 14,
-   "Medium": 21,
-   "Low": 13,
+   "Medium": 23,
+   "Low": 17,
    "Info": 2
   }
  },
@@ -42,7 +42,8 @@
    "stage": "OV-58",
    "decision": "D-11",
    "evidence": [
-    "void.os HEAD 24b07cd equals the frozen commit (inventory/inventory-current.json, 2026-11-04): unchanged"
+    "void.os HEAD 24b07cd equals the frozen commit (inventory/inventory-current.json, 2026-11-04): unchanged",
+    "Source re-read at void.os 4ae9b33 (deep audit, 2026-11-06): SignatureVerifier.verify() ends in a TODO and `return false` (app/src/main/java/com/outervoid/axiom/security/SignatureVerifier.kt:38-39); IntegrityGate.verify() returns false in release (IntegrityGate.kt:9-11); EntitlementManager.evaluate() returns IntegrityFailed or Unlicensed (EntitlementManager.kt:31-35). Release builds therefore show only LockedScreen (MainActivity.kt:216-221): fail-closed, and the whole launcher is unusable in release"
    ],
    "next_action": "Implement entitlement, Play Integrity and signature verification once the trust model (D-11) is pinned"
   },
@@ -63,7 +64,8 @@
    "stage": "OV-58",
    "decision": "D-11",
    "evidence": [
-    "void.game HEAD b56c1ae equals the frozen commit: unchanged"
+    "void.game HEAD b56c1ae equals the frozen commit: unchanged",
+    "Source re-read at void.game b56c1ae (deep audit, 2026-11-06): SignatureVerifier.verify() returns false after a TODO (android/src/main/kotlin/com/outervoid/voidgame/security/SignatureVerifier.kt:31-32), and StandaloneEntitlementGate (AndroidLauncher.kt:27) keeps release gameplay locked: fail-closed"
    ],
    "next_action": "Implement SignatureVerifier cryptographic verification"
   },
@@ -84,7 +86,8 @@
    "stage": "OV-59",
    "decision": null,
    "evidence": [
-    "voidforge HEAD 59b6d67 equals the frozen commit: unchanged"
+    "voidforge HEAD 59b6d67 equals the frozen commit: unchanged",
+    "Source re-read at voidforge 80aec1a (deep audit, 2026-11-06): app/src/main/java/dev/voidforge/app/Workstation.kt:40-44 supplies a LocalConfirmation that always declines, so every non-read operation is refused; the engine's grants are single-use, scope-bound and expiring (core/src/main/kotlin/dev/voidforge/core/Authorization.kt:89-123)"
    ],
    "next_action": "Build the local on-device confirmation UI; writes stay locked"
   },
@@ -253,7 +256,8 @@
    "stage": "OV-58",
    "decision": null,
    "evidence": [
-    "void.sys source unchanged since the freeze except the OV-47 README version fix (3f2b7aa)"
+    "void.sys source unchanged since the freeze except the OV-47 README version fix (3f2b7aa)",
+    "Source re-read at void.sys 3f2b7aa (deep audit, 2026-11-06): SignatureVerifier.verify() returns false after a TODO (app/src/main/java/com/outervoid/voidsys/security/SignatureVerifier.kt:30-31), but neither SignatureGate nor SignatureVerifier is referenced outside the security package (`grep -rn SignatureGate app/src`). IconPackActivity (IconPackActivity.kt:8-15) and the icon resources are served without any entitlement check, so the README statement that verification \"fails closed\" describes the unused verifier, not the product. Unlike F1/F2, VOID.SYS is not fail-closed today"
    ],
    "next_action": "Implement signature verification"
   },
@@ -463,7 +467,8 @@
    "stage": "OV-55",
    "decision": "D-01",
    "evidence": [
-    "PostgreSQL could not initialize under PRoot (forward run, 2026-10-27); hosted CI cannot start (F49, rechecked 2026-11-04). SQLite and mocks are not accepted as evidence"
+    "PostgreSQL could not initialize under PRoot (forward run, 2026-10-27); hosted CI cannot start (F49, rechecked 2026-11-04). SQLite and mocks are not accepted as evidence",
+    "Roughin backend at HEAD 61c4b47 (deep audit, 2026-11-06): 100 passed in 200 s on SQLite (exit 0). This is functional evidence only; it is not PostgreSQL evidence"
    ],
    "next_action": "Run the CI postgres job, or the same commands on a suitable external machine"
   },
@@ -658,7 +663,8 @@
    "evidence": [
     "vigyl 68a56a0, 728be24 and 875b006 (OV-56, 2026-11-05/06): development-preview UI now covers messages, reminders, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, live updates (polling a members-only pulse endpoint; never disturbs an open editor), password change, export and deletion; `npm test` 35 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
     "vigyl 5637f3d (OV-56, 2026-11-06): automated browser accessibility pass (`scripts/a11y-pass.mjs`, headless Chromium 141 with axe-core 4.11, fictional data): 12 states at desktop and 320 px, 0 WCAG 2.2 A/AA violations; it found and the commit fixes focus lost after actions, a 320 px overflow, an unlabelled-role receipts box and undersized targets; the gate fails on the previous build and passes now; `npm test` 40 pass",
-    "Not done: screen-reader (NVDA/VoiceOver) and real-phone testing (D-03); staging"
+    "Not done: screen-reader (NVDA/VoiceOver) and real-phone testing (D-03); staging",
+    "Re-verified at vigyl 5637f3d (HEAD) (deep audit, 2026-11-06): the browser pass, the 40 frontend tests and the focus fixes recorded on 2026-11-06 apply unchanged. Open question for the screen-reader test: the status and alert live regions sit inside <main aria-busy> (frontend/src/App.jsx), and some screen readers hold back announcements while aria-busy is true"
    ],
    "next_action": "Screen-reader and real-phone accessibility testing; staging"
   },
@@ -788,7 +794,8 @@
    "stage": "OV-48",
    "decision": "D-01",
    "evidence": [
-    "Rechecked 2026-11-04 from existing runs (none triggered): the latest CI workflow run of all 23 repositories with workflows failed before starting. 18 carry the annotation \"The job was not started because your account is locked due to a billing issue.\"; the 5 private repositories (vigyl, roughin, void.sys, resolver, theresolver) show `startup_failure` with 0 jobs and no annotation, while all 26 workflow files parse (inventory/workflow-audit.json). blux-gpt's only green run at its HEAD is GitHub's dependency-graph job, not CI"
+    "Rechecked 2026-11-04 from existing runs (none triggered): the latest CI workflow run of all 23 repositories with workflows failed before starting. 18 carry the annotation \"The job was not started because your account is locked due to a billing issue.\"; the 5 private repositories (vigyl, roughin, void.sys, resolver, theresolver) show `startup_failure` with 0 jobs and no annotation, while all 26 workflow files parse (inventory/workflow-audit.json). blux-gpt's only green run at its HEAD is GitHub's dependency-graph job, not CI",
+    "Re-checked (deep audit, 2026-11-06): the docs run at 863d6f0 has 0 steps and the annotation \"The job was not started because your account is locked due to a billing issue.\"; the latest runs in vigyl, roughin, resolver, voidforge and void.os are startup_failure"
    ],
    "next_action": "Owner clears the billing lock"
   },
@@ -851,7 +858,8 @@
    "stage": "OV-57",
    "decision": "D-07",
    "evidence": [
-    "2026-11-04: https://theresolverbot.net/ and https://www.theresolverbot.net/ return HTTP 530; https://theresolver.pages.dev/ returns 200"
+    "2026-11-04: https://theresolverbot.net/ and https://www.theresolverbot.net/ return HTTP 530; https://theresolver.pages.dev/ returns 200",
+    "Re-checked (deep audit, 2026-11-06): https://theresolverbot.net and https://www.theresolverbot.net return HTTP 530 with Cloudflare error 1033 (a tunnel with no connector), although the site is meant to be served by Cloudflare Pages. The bot tunnel's own hostnames admin.theresolverbot.net and hq.theresolverbot.net (resolver/cloudflared/config.yml) have no DNS records"
    ],
    "next_action": "Owner attaches the custom domain or fixes the tunnel in Cloudflare"
   },
@@ -1167,7 +1175,8 @@
    "decision": "D-01",
    "evidence": [
     "Depends on F49; the contract checks are run locally at current HEAD in OV-49",
-    "Local contract check at current HEADs (2026-11-05): `tools/check_contracts.py --workspace ~/ov` ok, 0 breaking, 0 invariant failures, 5 informational commit moves; 13 mutation tests pass"
+    "Local contract check at current HEADs (2026-11-05): `tools/check_contracts.py --workspace ~/ov` ok, 0 breaking, 0 invariant failures, 5 informational commit moves; 13 mutation tests pass",
+    "Local contract check (deep audit, 2026-11-06): `tools/check_contracts.py --workspace ~/ov` ok, 0 breaking, 0 invariant failures, 5 informational commit moves; the hosted run stays blocked by F49"
    ],
    "next_action": "Restore hosted CI"
   },
@@ -1244,7 +1253,7 @@
    "repo": "termux-background",
    "severity": "Medium",
    "source": "Authenticated GitHub API: releases and tags",
-   "issue": "Four published GitHub releases from 2025-07-31 (v1.0.0, v1.0.1, v1.0.3, version-1.0.0) still offer app-release.apk, app-debug.apk and .deb downloads; only version-1.0.0 still exists as a tag. They predate the rebuild and are unsupported. OV-49 verified that all four release APKs are signed with certificate SHA-256 7bd3603d\u2026ab4a, not with the compromised committed key (F81).",
+   "issue": "Four GitHub releases from 2025-07-31 exist, but only one is published: version-1.0.0 (app-release.apk, app-debug.apk and a .deb) is public, while v1.0.0, v1.0.1 and v1.0.3 are drafts visible only to collaborators (corrected 2026-11-06; the earlier text said four published releases). They predate the rebuild and are unsupported. None of their APKs is signed with the compromised committed key (F81).",
    "status": "OPEN",
    "owner": "owner",
    "priority": "P0",
@@ -1253,7 +1262,9 @@
    "evidence": [
     "gh api repos/Outer-Void/termux-background/releases (2026-11-04)",
     "`apksigner verify --print-certs` on the four app-release.apk files: one signer, SHA-256 7bd3603df7f2c851\u2026ab4a (2026-11-04)",
-    "README corrected to state this (termux-background b81c003, 9fc05d5, 2026-11-05)"
+    "README corrected to state this (termux-background b81c003, 9fc05d5, 2026-11-05)",
+    "Unauthenticated `GET /repos/Outer-Void/termux-background/releases` returns only version-1.0.0; the authenticated listing shows v1.0.0, v1.0.1 and v1.0.3 with draft=true (deep audit, 2026-11-06)",
+    "`apksigner verify --print-certs` on the public version-1.0.0 app-release.apk and app-debug.apk: both signed by 7bd3603d\u2026ab4a (CN=Termux Background, O=Termux), not by 070cd54d\u2026f68e (deep audit, 2026-11-06)"
    ],
    "next_action": "Owner decides (D-13) whether to unpublish the releases or mark them deprecated"
   },
@@ -1287,14 +1298,15 @@
    "repo": "termux-background",
    "severity": "Medium",
    "source": "GitHub issues",
-   "issue": "Four open user issues (#4, #6, #7, #8; 2026-01 to 2026-06) report that the app closes when tapped or doesn't work, and ask how to use it. None has a response or triage, and they were not in the findings register.",
+   "issue": "Four open user issues (#4, #6, #7, #8; 2026-01 to 2026-06) report that the app closes when tapped or doesn't work, and ask how to use it. Each has an owner comment from 2026-10-21 saying \"New debug-test version released\", but no GitHub release newer than 2025-07-31 exists, so a reporter following that comment finds only the unsupported 2025 build (corrected 2026-11-06; the earlier text said none had a response).",
    "status": "OPEN",
    "owner": "repo:termux-background",
    "priority": "P1",
    "stage": "OV-59",
    "decision": null,
    "evidence": [
-    "gh api repos/Outer-Void/termux-background/issues (2026-11-04)"
+    "gh api repos/Outer-Void/termux-background/issues (2026-11-04)",
+    "gh issue view 4/6/7/8: comments dated 2026-10-21; `gh release list`: newest release 2025-07-31 (deep audit, 2026-11-06). The 1.1.0 source handles a missing Termux service, a missing RUN_COMMAND permission and dispatch failures without crashing (app/src/main/java/com/termuxbackground/TermuxBridge.java:95-162); the reported crashes are against 2025 builds and cannot be reproduced without a device (D-03)"
    ],
    "next_action": "Triage against the 1.1.0 code and the F77 builds; respond once a fix or a device result exists"
   },
@@ -1313,7 +1325,8 @@
    "stage": "OV-48",
    "decision": "D-01",
    "evidence": [
-    "inventory/workflow-audit.json (2026-11-04): 26 files parse; 26 with tag-pinned actions; 2 without permissions"
+    "inventory/workflow-audit.json (2026-11-04): 26 files parse; 26 with tag-pinned actions; 2 without permissions",
+    "`tools/audit_workflows.py --check` passes (deep audit, 2026-11-06); no workflow file changed since OV-48"
    ],
    "next_action": "Apply SHA pinning, least-privilege permissions and pinned runner images together with the first hosted CI run after D-01, so the change is verified in the same run (plan rule: CI-only changes wait for CI)"
   },
@@ -1325,7 +1338,7 @@
    "repo": "termux-background",
    "severity": "Medium",
    "source": "git history credential review",
-   "issue": "The release keystore (termux-release.keystore and app/termux-release.keystore, PKCS12, certificate SHA-256 070cd54d\u2026f68e) and keystore.properties with its store and key passwords were committed between 2025-07-30 (17f815b \u2192 8c3857b) and remain in the public repository history. They were removed from HEAD on 2026-10-21 (f48d6c9), and the README already declares the key compromised. None of the four public release APKs is signed with it (F77).",
+   "issue": "The release keystore (termux-release.keystore and app/termux-release.keystore, PKCS12, certificate SHA-256 070cd54d\u2026f68e) and keystore.properties with its store and key passwords were committed between 2025-07-30 (17f815b \u2192 8c3857b) and remain in the public repository history. They were removed from HEAD on 2026-10-21 (f48d6c9), and the README already declares the key compromised. None of the 2025 release APKs (one public release, three drafts) is signed with it (F77).",
    "status": "OPEN",
    "owner": "owner",
    "priority": "P1",
@@ -1356,6 +1369,121 @@
     "credits: 16 library entries added, 4 versions corrected, 6 project visibilities set from the authenticated API (OV-49 credits commit)"
    ],
    "next_action": "None"
+  },
+  {
+   "id": "F83",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-06 (deep audit)",
+   "repo": "blux",
+   "severity": "Medium",
+   "source": "source review; reproduction against blux 56c9b76",
+   "issue": "When BLUX System is unavailable, an operation that attached an artifact loses its receipt: Runtime calls emit_artifact() before emit(receipt) inside one try block (runtime/blux_runtime/executor.py:445-450). emit_artifact() raises SINK_UNAVAILABLE, so emit() never runs and the receipt is neither stored nor spooled, contrary to system_sink.py:107 (\"the receipt that lists them still is\"). Every model.generate call attaches a model-call.json artifact (runtime/blux_runtime/models/capability.py:135-147), so this hits model and provider-failure receipts.",
+   "status": "OPEN",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-52",
+   "decision": null,
+   "evidence": [
+    "Reproduced 2026-11-06: echo.test plus one attached artifact, BluxSystemSink with a missing executable gives sink_error {code: SINK_UNAVAILABLE, spooled: false} and no outbox file; the same outage without an artifact spools the receipt (1 outbox line). The result itself is kept and the CLI reports NOT_RECORDED"
+   ],
+   "next_action": "Always attempt emit(receipt) (spooling on retryable errors) even when an artifact upload fails, and record which artifacts are missing; add a regression test"
+  },
+  {
+   "id": "F84",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-06 (deep audit)",
+   "repo": "blux",
+   "severity": "Medium",
+   "source": "source review; reproduction against blux 56c9b76",
+   "issue": "BluxSystemSink.flush() reads the whole outbox, re-sends, then replaces the file with os.replace and no lock (runtime/blux_runtime/system_sink.py:127-147). A receipt that another process spools (emit() \u2192 _spool(), system_sink.py:97-102) between the read and the replace is silently deleted. Constitution: no hidden data loss.",
+   "status": "OPEN",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-52",
+   "decision": null,
+   "evidence": [
+    "Reproduced 2026-11-06 with two sinks on one outbox and a simulated interleaving: after flush() the outbox holds only the old receipt and the concurrently spooled one is gone (flush stats sent 0, remaining 1, refused 0)"
+   ],
+   "next_action": "Serialize outbox writers and flush with an exclusive file lock (or move spooled entries into per-receipt files), then add a two-process test"
+  },
+  {
+   "id": "F85",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-06 (deep audit)",
+   "repo": "blux",
+   "severity": "Low",
+   "source": "source search",
+   "issue": "No shipped entry point calls BluxSystemSink.flush(): spooled receipts are never retried, so they stay outside BLUX System indefinitely (the CLI does report NOT_RECORDED, cli/blux_cli/direct.py:441). Also, _retryable() treats every SINK_* code as retryable (system_sink.py:94-95), so a store refusal without its own code (SINK_REFUSED) is spooled and retried forever instead of being set aside.",
+   "status": "OPEN",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-52",
+   "decision": null,
+   "evidence": [
+    "`grep -rn outbox` and `grep -rn flush` over blux/cli, blux/runtime and blux-system (2026-11-06): flush() is defined only in runtime/blux_runtime/system_sink.py:127 and called only by tests/runtime/test_receipt_sinks.py"
+   ],
+   "next_action": "Add an explicit `blux receipts flush` (or flush on the next successful emit), and exclude SINK_REFUSED from retryable codes"
+  },
+  {
+   "id": "F86",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-06 (deep audit)",
+   "repo": "voidforge",
+   "severity": "Low",
+   "source": "README and docs versus the authenticated GitHub API",
+   "issue": "README.md (\"this repository is still **public**\") and docs/DISTRIBUTION.md (\"As of 2026-10-26 ... is **public**\", plus owner steps to make it private) contradict GitHub: voidforge is private. The two old workflow artifacts that DISTRIBUTION.md says to delete (12373236412, 12371984203, 983 bytes each) still exist, now in a private repository.",
+   "status": "OPEN",
+   "owner": "repo:voidforge",
+   "priority": "P2",
+   "stage": "OV-59",
+   "decision": null,
+   "evidence": [
+    "gh api orgs/Outer-Void/repos: voidforge visibility private (2026-11-06)",
+    "gh api repos/Outer-Void/voidforge/actions/artifacts: 2 artifacts, expired=false (2026-11-06)"
+   ],
+   "next_action": "Update README and DISTRIBUTION.md to the private state; owner decides whether to delete the two artifacts"
+  },
+  {
+   "id": "F87",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-06 (deep audit)",
+   "repo": "voidforge",
+   "severity": "Low",
+   "source": "source review",
+   "issue": "The local integration endpoint trusts any app whose package name is com.termux (app/src/main/java/dev/voidforge/app/IntegrationEndpoint.kt:56-58: getPackageUid(\"com.termux\")). If the real Termux is absent, another app installed under that name could connect while the endpoint is on and run READ_ONLY operations (device properties, package lists, logcat of the attached device), which need no local authorization. Writes stay protected by LocalAuthorizer. The endpoint is off at every launch.",
+   "status": "OPEN",
+   "owner": "repo:voidforge",
+   "priority": "P2",
+   "stage": "OV-59",
+   "decision": null,
+   "evidence": [
+    "IntegrationEndpoint.kt:26-60 read at voidforge 80aec1a (2026-11-06); not reproduced on a device (D-03)"
+   ],
+   "next_action": "Also pin the Termux signing certificate (F-Droid or GitHub build digests) before trusting the UID; add a unit test for the allow-list"
+  },
+  {
+   "id": "F88",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-06 (deep audit)",
+   "repo": "ov-webpages/theresolver",
+   "severity": "Low",
+   "source": "npm audit",
+   "issue": "npm audit reports 8 moderate advisories in the lint toolchain (typescript-eslint through eslint-config-next, including minimatch GHSA-g3hv-75wg-m249). They are development-only: `npm audit --omit=dev` exits 0, and the deployed static export does not contain them. npm's suggested fix downgrades eslint-config-next to 15.5.29. They were not reported at Stage 31 (2026-10-27).",
+   "status": "DEFERRED",
+   "owner": "repo:theresolver",
+   "priority": "P2",
+   "stage": "OV-57",
+   "decision": null,
+   "evidence": [
+    "`npm audit` in ov-webpages/theresolver at 49dbeff: 8 moderate; `npm audit --omit=dev` exit 0 (2026-11-06)"
+   ],
+   "next_action": "Upgrade the lint toolchain when a fixed release exists; no forced downgrade"
   }
  ]
 }
