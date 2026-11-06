@@ -318,10 +318,10 @@
    "priority": "P0",
    "stage": "OV-56",
    "evidence": [
-    "vigyl 68a56a0 and 728be24 (OV-56, 2026-11-05/06): development-preview UI now covers messages, reminders, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, password change, export and deletion; `npm test` 27 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
-    "Not done: live updates, and browser or real-mobile accessibility testing"
+    "vigyl 68a56a0, 728be24 and 875b006 (OV-56, 2026-11-05/06): development-preview UI now covers messages, reminders, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, live updates (polling a members-only pulse endpoint; never disturbs an open editor), password change, export and deletion; `npm test` 35 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
+    "Not done: browser, screen-reader or real-mobile accessibility testing; staging"
    ],
-   "next_action": "Browser and mobile accessibility testing; staging; live updates"
+   "next_action": "Browser and mobile accessibility testing; staging"
   },
   "F44": {
    "status": "EXTERNAL_BLOCKED",

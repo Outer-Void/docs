@@ -82,6 +82,26 @@ The review started from vigyl `7234fb4` (OV-49).
 - **Evidence:** backend **105 passed** (8 new in `tests/test_reminders.py`); frontend **27 passed** (2 new); build
   ok; `npm audit` 0; DAT gate pass.
 
+## Follow-up: live updates (`875b006`, owner request 2026-11-06)
+
+- **Why polling.** Vigyl keeps the access token in memory and sends it as a header. A browser `EventSource`
+  stream cannot send headers, so the token would end up in URLs and server logs. Polling keeps it in the header.
+- **Pulse endpoint.** `GET /care-groups/{id}/pulse` is for members only. It returns the latest timeline event id,
+  the latest message id, and the caller's unread-notification count. Every change to tasks, members and
+  invitations is a timeline event, so any movement means something changed.
+- **App behaviour.**
+  - Polls every 30 seconds, only while a circle is open, the tab is visible and the browser is online. Coming back
+    to the tab or reconnecting checks at once.
+  - Reloads the circle in place, and only when a value moved.
+  - With an editor open or an action running, it shows "New activity in this circle / Show updates" and applies
+    the update when the editor closes. Typed text is never lost.
+  - Background failures show a "Live updates paused" note, not an error banner.
+  - Being removed from the circle clears it and says so.
+  - Screen readers hear "Circle updated" only when a reload actually happened.
+- **Not covered:** profile name changes are not detected until the next reload.
+- **Evidence:** backend **108 passed** (3 new, `tests/test_pulse.py`); frontend **35 passed** (8 new,
+  `src/Live.test.jsx`, stable over two consecutive runs); build ok; `npm audit` 0; DAT gate pass.
+
 ## Evidence (executed 2026-11-05)
 
 | Check | Result |
@@ -99,7 +119,7 @@ The review started from vigyl `7234fb4` (OV-49).
 
 | ID | Before | After | Remaining |
 |---|---|---|---|
-| F43 | PARTIAL | PARTIAL | Live updates; browser and mobile accessibility testing; staging |
+| F43 | PARTIAL | PARTIAL | Browser and mobile accessibility testing; staging |
 | F44 | EXTERNAL_BLOCKED | EXTERNAL_BLOCKED | A real channel (D-06). In-app receipts are now honest |
 | F46 | OPEN | PARTIAL | Password reset and email verification (D-14); 2FA; subscriptions and location; legal review |
 | F45 | BLOCKED_LOCAL_ENVIRONMENT | unchanged | CI `postgres` job (D-01) |
@@ -113,10 +133,11 @@ implementation:
             account export/delete UI, privacy-policy draft disclosure]
   follow_up: [repeating tasks + migration 0003, edit/reassign, invitation revoke, leave/remove member, timeline paging]
   follow_up_2: [in-app reminders + migration 0004, add-task form reset fix]
+  follow_up_3: [live updates: pulse endpoint + polling that never disturbs an open editor]
   excluded: [external notification channel (D-06), password reset (D-14), legal review]
 validation:
-  unit: [backend 86 then 97 then 105 (SQLite), frontend 14 then 25 then 27]
+  unit: [backend 86, 97, 105, 108 (SQLite); frontend 14, 25, 27, 35]
   security: [DAT gate pass; npm audit 0]
   external: [PostgreSQL BLOCKED_LOCAL_ENVIRONMENT, CI EXTERNAL_BLOCKED, delivery EXTERNAL_BLOCKED]
-disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [browser accessibility pass, staging, live updates]}
+disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [browser accessibility pass, staging]}
 ```
