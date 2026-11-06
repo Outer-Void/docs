@@ -657,9 +657,10 @@
    "decision": null,
    "evidence": [
     "vigyl 68a56a0, 728be24 and 875b006 (OV-56, 2026-11-05/06): development-preview UI now covers messages, reminders, alert receipts, repeating tasks, task editing and reassignment, invitation list and revocation, leaving and removing members, older timeline, live updates (polling a members-only pulse endpoint; never disturbs an open editor), password change, export and deletion; `npm test` 35 tests pass, `npm run build` and `npm audit --omit=optional` (0) pass",
-    "Not done: browser, screen-reader or real-mobile accessibility testing; staging"
+    "vigyl 5637f3d (OV-56, 2026-11-06): automated browser accessibility pass (`scripts/a11y-pass.mjs`, headless Chromium 141 with axe-core 4.11, fictional data): 12 states at desktop and 320 px, 0 WCAG 2.2 A/AA violations; it found and the commit fixes focus lost after actions, a 320 px overflow, an unlabelled-role receipts box and undersized targets; the gate fails on the previous build and passes now; `npm test` 40 pass",
+    "Not done: screen-reader (NVDA/VoiceOver) and real-phone testing (D-03); staging"
    ],
-   "next_action": "Browser and mobile accessibility testing; staging"
+   "next_action": "Screen-reader and real-phone accessibility testing; staging"
   },
   {
    "id": "F44",

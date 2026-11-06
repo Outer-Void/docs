@@ -471,7 +471,7 @@
    "component": "Vigyl",
    "repo": "vigyl",
    "version": "API 0.2.0; frontend 0.1.0 (development preview)",
-   "commit_sha": "875b006",
+   "commit_sha": "5637f3d",
    "role": "Standalone caregiving/accountability product; FastAPI backend and React development care workspace; server remains authoritative",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "PLANNED",
@@ -490,7 +490,7 @@
     "Password reset and email verification need an email provider (D-14)",
     "Alerts are in-app only; receipts show seen or not seen, never delivered elsewhere (F44, D-06)"
    ],
-   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.. OV-48 re-run at f7ce8f3 (2026-11-04): frontend 8 passed, built, npm audit clean; backend unchanged since a0816a4 (78 passed, 2026-10-27). OV-56: backend 108 passed (SQLite, 2026-11-06); frontend 35 passed and built; npm audit 0; DAT gate pass",
+   "evidence": "pytest: 78 passed at a0816a4 (SQLite; role, access, privacy, task-history and failure-path suites); ruff clean; pip-audit clean (Stage 29). Stage 44 DoD at a0816a4 (2026-10-27): backend 78 passed (BLUX disabled, network off); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable. Forward execution: React care workspace implements accounts, groups, invitations, task completion, independent verification, status, updates and timeline; frontend 8 tests and production build PASS; npm audit reports zero advisories (2026-10-27). Resumed validation: backend 78 PASS, backend ruff PASS.. OV-48 re-run at f7ce8f3 (2026-11-04): frontend 8 passed, built, npm audit clean; backend unchanged since a0816a4 (78 passed, 2026-10-27). OV-56: backend 108 passed at 875b006 (SQLite, 2026-11-06; backend unchanged since); frontend 40 passed and built; browser accessibility pass (headless Chromium, axe-core) 12 states 0 violations; npm audit 0; DAT gate pass",
    "last_verified": "2026-11-06"
   },
   {

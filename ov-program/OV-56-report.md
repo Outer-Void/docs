@@ -5,7 +5,7 @@ external delivery as "not configured" instead of implying it. It also gained a l
 missing account and messaging UI flows. What the stage exit needs is still blocked:
 - delivered notifications (F44, D-06);
 - PostgreSQL (F45, D-01);
-- browser and real-mobile accessibility testing (F43, D-03);
+- screen-reader and real-phone accessibility testing (F43, D-03; the automated browser pass is done);
 - account recovery (F46, D-14).
 
 ## Delta review (rule 11)
@@ -102,6 +102,43 @@ The review started from vigyl `7234fb4` (OV-49).
 - **Evidence:** backend **108 passed** (3 new, `tests/test_pulse.py`); frontend **35 passed** (8 new,
   `src/Live.test.jsx`, stable over two consecutive runs); build ok; `npm audit` 0; DAT gate pass.
 
+## Follow-up: browser accessibility pass (`5637f3d`, owner request 2026-11-06)
+
+- **What ran.** `scripts/a11y-pass.mjs` drives the built app in headless Chromium 141, with axe-core 4.11 applying the
+  WCAG 2.2 A/AA and best-practice rules.
+  - **Data:** fictional, from `scripts/a11y_fixture.py` (three accounts, one missed task). The fixture refuses
+    anything but a scratch SQLite file. The password comes from the environment.
+  - **States:** 12, at desktop and 320 px widths. They cover signed out, a sign-in error, registration, the
+    caregiver and care-receiver views, open receipts, editor and add-task, and the live-update banner.
+  - **Probes axe does not cover:** keyboard order, a focus ring on every control, where focus lands after each
+    action, horizontal scroll (also at 200% text), and target sizes.
+  - **Gate:** it exits 1 on any failure.
+  - **Tools:** installed outside the repository; `package.json` is unchanged.
+- **Result before the fixes.** axe found **no violations**. The probes found real defects:
+  - **Lost focus.** Focus fell to the page body after nearly every action: sign-in, opening a circle, Mark done,
+    receipts, invitations, and discarding an edit. Keyboard and screen-reader users lost their place. Two causes:
+    controls are disabled while an action runs, and reloading the open circle rebuilt the whole page.
+  - **Sideways scroll** at 320 px with the editor open (a grid column could not shrink below the date field).
+  - **Unlabelled role.** The alert-receipts box had a label but no role (axe "needs review").
+  - **Undersized targets:** the checkbox was 13 px and the "Add a task" toggle 42 px, against Vigyl's 44 px rule.
+- **Fixes:**
+  - **Focus.** After an action, focus returns to the control, or to the task's Edit button (after saving or
+    discarding an edit), or to the nearest heading when the control is gone (for example, the task title after
+    Mark done).
+  - **In-place reload.** Reloading the open circle now updates it in place. A failed reload still clears the
+    circle, so no stale task can be acted on.
+  - **Layout, label and sizes:** the grid column can now shrink, the receipts box has `role="group"`, the
+    checkbox is 24 px, and the toggle is 44 px.
+- **Evidence:**
+  - The gate **fails on the previous build** for each defect above and **passes now**.
+  - Frontend **40 passed** (5 new in `src/Focus.test.jsx`, each failing without the fix), stable over two runs.
+  - Build ok; `npm audit` 0; ruff clean; DAT gate pass.
+  - The backend is unchanged (108 at `875b006`).
+- **Not done.** No screen reader (NVDA, VoiceOver or TalkBack) and no real phone (D-03). Automated checks
+  cannot judge how announcements sound or whether the wording makes sense, so F43 stays PARTIAL. One open
+  question for that test: `main` has `aria-busy` while an action runs, and some screen readers hold back
+  live-region announcements during that time.
+
 ## Evidence (executed 2026-11-05)
 
 | Check | Result |
@@ -119,7 +156,7 @@ The review started from vigyl `7234fb4` (OV-49).
 
 | ID | Before | After | Remaining |
 |---|---|---|---|
-| F43 | PARTIAL | PARTIAL | Browser and mobile accessibility testing; staging |
+| F43 | PARTIAL | PARTIAL | Screen-reader and real-phone accessibility testing; staging (the automated browser pass is done) |
 | F44 | EXTERNAL_BLOCKED | EXTERNAL_BLOCKED | A real channel (D-06). In-app receipts are now honest |
 | F46 | OPEN | PARTIAL | Password reset and email verification (D-14); 2FA; subscriptions and location; legal review |
 | F45 | BLOCKED_LOCAL_ENVIRONMENT | unchanged | CI `postgres` job (D-01) |
@@ -134,10 +171,12 @@ implementation:
   follow_up: [repeating tasks + migration 0003, edit/reassign, invitation revoke, leave/remove member, timeline paging]
   follow_up_2: [in-app reminders + migration 0004, add-task form reset fix]
   follow_up_3: [live updates: pulse endpoint + polling that never disturbs an open editor]
+  follow_up_4: [browser accessibility pass (scripts/a11y-pass.mjs) + focus, reflow, role and target-size fixes]
   excluded: [external notification channel (D-06), password reset (D-14), legal review]
 validation:
-  unit: [backend 86, 97, 105, 108 (SQLite); frontend 14, 25, 27, 35]
+  unit: [backend 86, 97, 105, 108 (SQLite); frontend 14, 25, 27, 35, 40]
+  accessibility: [headless Chromium + axe-core, 12 states, 0 violations; screen reader and real phone not done]
   security: [DAT gate pass; npm audit 0]
   external: [PostgreSQL BLOCKED_LOCAL_ENVIRONMENT, CI EXTERNAL_BLOCKED, delivery EXTERNAL_BLOCKED]
-disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [browser accessibility pass, staging]}
+disposition: {state: PARTIAL, blockers: [D-01, D-03, D-06, D-14], next_actions: [screen-reader and real-phone testing, staging]}
 ```
