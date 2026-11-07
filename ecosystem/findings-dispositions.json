@@ -739,14 +739,15 @@
    "found": "2026-11-06 (deep audit)",
    "source": "source review; reproduction against blux 56c9b76",
    "issue": "When BLUX System is unavailable, an operation that attached an artifact loses its receipt: Runtime calls emit_artifact() before emit(receipt) inside one try block (runtime/blux_runtime/executor.py:445-450). emit_artifact() raises SINK_UNAVAILABLE, so emit() never runs and the receipt is neither stored nor spooled, contrary to system_sink.py:107 (\"the receipt that lists them still is\"). Every model.generate call attaches a model-call.json artifact (runtime/blux_runtime/models/capability.py:135-147), so this hits model and provider-failure receipts.",
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux",
    "priority": "P1",
    "stage": "OV-52",
    "evidence": [
-    "Reproduced 2026-11-06: echo.test plus one attached artifact, BluxSystemSink with a missing executable gives sink_error {code: SINK_UNAVAILABLE, spooled: false} and no outbox file; the same outage without an artifact spools the receipt (1 outbox line). The result itself is kept and the CLI reports NOT_RECORDED"
+    "Reproduced 2026-11-06: echo.test plus one attached artifact, BluxSystemSink with a missing executable gives sink_error {code: SINK_UNAVAILABLE, spooled: false} and no outbox file; the same outage without an artifact spools the receipt (1 outbox line). The result itself is kept and the CLI reports NOT_RECORDED",
+    "Fixed in blux cfd7470 (OV-52, 2026-11-07): the receipt is always attempted, artifacts are spooled with their bytes, sink_error.missing_artifacts names any artifact not stored; tests/runtime/test_receipt_durability.py and tests/integration/test_blux_system.py (real blux-system)"
    ],
-   "next_action": "Always attempt emit(receipt) (spooling on retryable errors) even when an artifact upload fails, and record which artifacts are missing; add a regression test"
+   "next_action": "None"
   },
   {
    "id": "F84",
@@ -755,14 +756,15 @@
    "found": "2026-11-06 (deep audit)",
    "source": "source review; reproduction against blux 56c9b76",
    "issue": "BluxSystemSink.flush() reads the whole outbox, re-sends, then replaces the file with os.replace and no lock (runtime/blux_runtime/system_sink.py:127-147). A receipt that another process spools (emit() → _spool(), system_sink.py:97-102) between the read and the replace is silently deleted. Constitution: no hidden data loss.",
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux",
    "priority": "P1",
    "stage": "OV-52",
    "evidence": [
-    "Reproduced 2026-11-06 with two sinks on one outbox and a simulated interleaving: after flush() the outbox holds only the old receipt and the concurrently spooled one is gone (flush stats sent 0, remaining 1, refused 0)"
+    "Reproduced 2026-11-06 with two sinks on one outbox and a simulated interleaving: after flush() the outbox holds only the old receipt and the concurrently spooled one is gone (flush stats sent 0, remaining 1, refused 0)",
+    "Fixed in blux cfd7470 (OV-52, 2026-11-07): spool and flush serialized with a lock file; flush works from <outbox>.flushing.jsonl; two-process and killed-flush tests in tests/runtime/test_receipt_durability.py"
    ],
-   "next_action": "Serialize outbox writers and flush with an exclusive file lock (or move spooled entries into per-receipt files), then add a two-process test"
+   "next_action": "None"
   },
   {
    "id": "F85",
@@ -771,14 +773,15 @@
    "found": "2026-11-06 (deep audit)",
    "source": "source search",
    "issue": "No shipped entry point calls BluxSystemSink.flush(): spooled receipts are never retried, so they stay outside BLUX System indefinitely (the CLI does report NOT_RECORDED, cli/blux_cli/direct.py:441). Also, _retryable() treats every SINK_* code as retryable (system_sink.py:94-95), so a store refusal without its own code (SINK_REFUSED) is spooled and retried forever instead of being set aside.",
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux",
    "priority": "P2",
    "stage": "OV-52",
    "evidence": [
-    "`grep -rn outbox` and `grep -rn flush` over blux/cli, blux/runtime and blux-system (2026-11-06): flush() is defined only in runtime/blux_runtime/system_sink.py:127 and called only by tests/runtime/test_receipt_sinks.py"
+    "`grep -rn outbox` and `grep -rn flush` over blux/cli, blux/runtime and blux-system (2026-11-06): flush() is defined only in runtime/blux_runtime/system_sink.py:127 and called only by tests/runtime/test_receipt_sinks.py",
+    "Fixed in blux cfd7470 (OV-52, 2026-11-07): `blux receipts status|flush`; `blux doctor` warns while receipts wait; SINK_REFUSED is no longer retryable"
    ],
-   "next_action": "Add an explicit `blux receipts flush` (or flush on the next successful emit), and exclude SINK_REFUSED from retryable codes"
+   "next_action": "None"
   },
   {
    "id": "F86",
@@ -1081,6 +1084,192 @@
     "Reproduced at ea82afc: killed at the second staged file (2026-11-07)"
    ],
    "next_action": "Decide in OV-62 whether `create` may remove stale stage directories it can prove are its own"
+  },
+  {
+   "id": "F104",
+   "repo": "blux-system",
+   "severity": "High",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "A crash between a record and its newline bricked the store: the record verified, the next append was written onto the same line, and from then on every open was STORE_CORRUPT, so every later receipt was refused.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Reproduced at f7f8ede: last newline removed, one ingest stored, reopen STORE_CORRUPT (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): the newline is added and recorded (unterminated_record); a long-lived writer also repairs a torn tail left by another process; tests/test_evidence_authority.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F105",
+   "repo": "blux-system",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "A shortened log verified as ok: whole records cut from the end, or an older copy of the log, left a valid chain. docs/STORE.md also claimed a re-hashed forgery was detected, which a hash chain alone cannot do.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Reproduced at f7f8ede: 2 of 3 records removed, verify ok:true (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): head.json anchors the last record (truncated, anchor_mismatch); verify --expect-head checks a head kept elsewhere; STORE.md says what the chain proves; tests/test_evidence_authority.py"
+   ],
+   "next_action": "The chain is unsigned: detecting a deliberate consistent rewrite needs an external head (see F113)"
+  },
+  {
+   "id": "F106",
+   "repo": "blux-system",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "Corruption crashed readers instead of being reported: a record with recomputed hashes and a malformed payload raised KeyError on every command, an unknown receipt status crashed `graph`, and a damaged retention.json or a non-object store.json raised tracebacks. A newer store format was reported as corrupt without saying why.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Reproduced at f7f8ede with the OV-52 store probe (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): STORE_CORRUPT with invalid_payload or details.reason (unsupported_version for a newer format); verify also checks payloads against Contract v1; tests/test_evidence_authority.py",
+    "False-positive guard: a receipt rejected before its capability was known (null capability_id) stays valid (caught by the BLUX integration suite during the stage, then covered by a test)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F107",
+   "repo": "blux-system",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "Retention could remove records without a record of it: the compacted log was installed first and the retention record appended afterwards, so a run killed in between left an unrecorded removal.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Reproduced at f7f8ede: retention killed before its record, log [] and verify ok:true (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): the retention record (with previous_head and previous_records) is inside the new chain, installed with one rename; kills before and after the rename both leave a recorded state; tests/test_evidence_authority.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F108",
+   "repo": "blux-system",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "Import could stop part-way and accepted malformed events: a conflict in the middle of a bundle left the first part imported, an event without a type crashed the import, and an event with an invalid operation id was stored. docs/STORE.md claimed nothing was written before the bundle was verified.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Reproduced at f7f8ede (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): payloads and conflicts are checked before any write; a failing import imports nothing (imported_before_failure); tests/test_evidence_authority.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F109",
+   "repo": "blux-system",
+   "severity": "Low",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "Tampered or missing artifact blobs verified as ok (only artifact-verify per artifact noticed), re-ingesting the artifact with its bytes did not repair a damaged blob, and blobs were written outside the writer lock, where a retention run could prune one before its record existed.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P2",
+   "stage": "OV-52",
+   "evidence": [
+    "Reproduced at f7f8ede (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): verify reports blob_mismatch and blob_missing; re-ingest repairs; blob writes are fsynced and under the lock; tests/test_evidence_authority.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F110",
+   "repo": "blux-system",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "Simultaneous writers were refused: the writer lock was non-blocking, so 15 of 16 simultaneous ingests got STORE_LOCKED, and BLUX spooled those receipts into an outbox nothing flushed (F85).",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Measured at f7f8ede: 16 simultaneous writers, 1 stored and 15 STORE_LOCKED (2026-11-07)",
+    "Fixed in blux-system 26f2240 (OV-52, 2026-11-07): writers wait up to 10 s for the lock; 16 of 16 stored; tests/test_evidence_authority.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F111",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "A receipt BLUX System refused at emit time (invalid, conflict, corrupt store) was dropped: it was neither spooled nor set aside, although flush() already kept refused receipts in a refused file.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Source review of runtime/blux_runtime/system_sink.py at 9cd53ef (2026-11-07)",
+    "Fixed in blux cfd7470 (OV-52, 2026-11-07): refused documents are set aside in <outbox>.refused.jsonl (owner-only) and can be re-sent with `blux receipts flush --include-refused`; tests/runtime/test_receipt_durability.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F112",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "`blux agent` kept acting after a step's receipt was refused or lost: it recorded the operation as unrecorded and went on to run the tool calls it was asked for, so later actions had no receipt either.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-52",
+   "evidence": [
+    "Shown at 9cd53ef by tests/cli/test_agent_cmd.py, which expected the answer after a failing sink (2026-11-07)",
+    "Fixed in blux cfd7470 (OV-52, 2026-11-07): the agent stops before its next step when a receipt is neither recorded nor queued (ReceiptNotRecorded, exit 5); queued receipts still let it finish"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F113",
+   "repo": "blux-system",
+   "severity": "Low",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "The store's chain and head.json are unsigned, so someone who can write the store directory can rewrite both consistently; only a head kept elsewhere (verify --expect-head) detects that.",
+   "status": "DEFERRED",
+   "owner": "repo:blux-system",
+   "priority": "P2",
+   "stage": "OV-63",
+   "evidence": [
+    "Documented in blux-system docs/STORE.md (OV-52, 2026-11-07)"
+   ],
+   "next_action": "Decide in OV-63 (signing and release machinery) whether to sign or externally publish store heads, with a new key; the exposed key is never used"
+  },
+  {
+   "id": "F114",
+   "repo": "blux",
+   "severity": "Low",
+   "found": "2026-11-07 (OV-52 delta review)",
+   "source": "OV-52 delta review",
+   "issue": "A one-shot command (`blux run`, `exec`, `ask`) still performs its action before it learns that BLUX System refuses the receipt; it then exits non-zero and the receipt is set aside. Only the agent loop can stop before a further action.",
+   "status": "DEFERRED",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-61",
+   "evidence": [
+    "Design review (OV-52, 2026-11-07)"
+   ],
+   "next_action": "Decide in OV-61 whether high-risk capabilities need a store health check before execution"
   }
  ]
 }

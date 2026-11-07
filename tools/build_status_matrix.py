@@ -316,6 +316,23 @@ for _row in COMPONENTS:
     _row["known_blockers"] = _row["known_blockers"] + OV51_BLOCKERS.get(_row["repo"], [])
 
 
+# OV-52 (2026-11-07): BLUX System as the evidence authority (ov-program/OV-52-report.md): store crash repair,
+# head anchor, payload and blob verification, retention, import; receipt durability F83-F85. Statuses unchanged.
+OV52 = {
+    "blux-system": ("26f2240", "OV-52: crash repair, head anchor, payload and blob verification, atomic retention, all-or-nothing import, lock wait F104-F110; 103 passed (also with the pinned SDK 0.2.0); ruff and mypy clean; DAT gate pass"),
+    "blux": ("cfd7470", "OV-52: receipt durability F83-F85, refused receipts set aside F111, agent fails closed F112; full suite 620 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); ruff and mypy clean; DAT gate pass"),
+}
+OV52_BLOCKERS = {
+    "blux-system": ["Store heads are unsigned; a consistent rewrite needs an external head to detect (F113, OV-63)"],
+    "blux": ["One-shot commands act before learning a receipt is refused (F114, OV-61)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV52:
+        _row["commit_sha"], _note = OV52[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-07"
+    _row["known_blockers"] = [b for b in _row["known_blockers"] if "F83-F85" not in b] + OV52_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",
