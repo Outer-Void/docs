@@ -295,6 +295,26 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-07"
     _row["known_blockers"] = _row["known_blockers"] + OV50_BLOCKERS.get(_row["repo"], [])
 
+# OV-51 (2026-11-07): engine reliability (ov-program/OV-51-report.md): interrupted transactions, replay, malformed
+# input. Engine suites and the BLUX hard gates (BLUX_REQUIRE_*=1) at the commits shown. Statuses are not raised by it.
+OV51 = {
+    "blux": ("9cd53ef", "OV-51: SDK .blux loader hardening F98-F99; full suite 611 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); integration hard gates 45 passed, 2 skipped (real-provider) at the final engine commits; ruff and mypy clean; DAT gate pass"),
+    "blux-coga": ("c94dc9c", "OV-51: replay of damaged artifacts F101; 347 passed; eval suite identical under PYTHONHASHSEED 0, 1 and 999; ruff and mypy clean; DAT gate pass"),
+    "blux-ca": ("689ec70", "OV-51: interrupted-commit recovery F97; 119 passed; CogA -> cA -> DAT forced-rejection hard gate passed through BLUX; ruff and mypy clean; DAT gate pass"),
+    "dat": ("57c8099", "OV-51: nested policy F102; 89 passed; FIFO, device and symlinked target policies ignored for the default; ruff and mypy clean; DAT gate pass"),
+    "lrc": ("ea82afc", "OV-51: lrc recover, interruption guard and lock F96; 139 passed; ruff and mypy clean; DAT gate pass"),
+    "god": ("613b800", "OV-51: malformed input and damaged cache F100; 102 passed; workspace check identical before and after; ruff and mypy clean; DAT gate pass"),
+}
+OV51_BLOCKERS = {
+    "lrc": ["A killed create leaves a .lrc-stage-* directory beside the target (F103, OV-62)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV51:
+        _row["commit_sha"], _note = OV51[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-07"
+    _row["known_blockers"] = _row["known_blockers"] + OV51_BLOCKERS.get(_row["repo"], [])
+
 
 def render_md(rows):
     lines = ["# Component status matrix", "",
