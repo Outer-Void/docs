@@ -279,6 +279,23 @@ for _row in COMPONENTS:
         _row["last_verified"] = OV55_DATES.get(_row["repo"], "2026-11-05")
     _row["known_blockers"] = _row["known_blockers"] + OV55_BLOCKERS.get(_row["repo"], [])
 
+# OV-50 (2026-11-07): BLUX runtime and model routing (ov-program/OV-50-report.md). Deterministic and mock suites
+# only; real providers stay BLOCKED until OV-64. Statuses are not raised by it.
+OV50 = {
+    "blux": ("4163637", "OV-50: tool-layer fixes F89-F93; full suite 604 passed, 15 skipped at 4163637 (2026-11-07), engines installed so the integration hard gates ran; ruff and mypy clean on changed code; DAT gate pass"),
+}
+OV50_BLOCKERS = {
+    "blux": ["Receipts can be lost while BLUX System is down (F83-F85, OV-52)",
+             "shell.exec is not an OS sandbox (F95, OV-62)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV50:
+        _row["commit_sha"], _note = OV50[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-07"
+    _row["known_blockers"] = _row["known_blockers"] + OV50_BLOCKERS.get(_row["repo"], [])
+
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

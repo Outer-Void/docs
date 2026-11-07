@@ -1,7 +1,7 @@
 {
  "format": "outer-void-findings-dispositions v1",
  "note": "Hand-authored current dispositions of the frozen findings (reassessment/open-findings.json, 2026-10-27) plus findings discovered after the freeze. tools/build_findings_current.py joins them into findings-current.json. Frozen rows are never edited; this file records what is true now, with evidence.",
- "as_of": "2026-11-06",
+ "as_of": "2026-11-07",
  "dispositions": {
   "F1": {
    "status": "OPEN",
@@ -828,6 +828,123 @@
     "`npm audit` in ov-webpages/theresolver at 49dbeff: 8 moderate; `npm audit --omit=dev` exit 0 (2026-11-06)"
    ],
    "next_action": "Upgrade the lint toolchain when a fixed release exists; no forced downgrade"
+  },
+  {
+   "id": "F89",
+   "repo": "blux",
+   "severity": "High",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`shell.exec` bypassed the file tools' rules: `cat ~/.ssh/id_ed25519` and `echo ... >> ~/.bashrc` ran without approval, although `fs.read` and `fs.write` refuse credential files and gate shell start-up files.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P0",
+   "stage": "OV-50",
+   "evidence": [
+    "Reproduced at 56c9b76: `detect()` returned not dangerous for 5 of 5 credential and start-up commands (2026-11-06)",
+    "Fixed in blux 4163637 (OV-50, 2026-11-07): rules `credential.path` (built from paths.DENY_HOME) and `autorun.write`; tests/runtime/test_tool_hardening.py fails on 56c9b76 and passes now; BLHermes approval goldens unchanged"
+   ],
+   "next_action": "None; residual risk is tracked in F95"
+  },
+  {
+   "id": "F90",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`fs.write` could write `.git/hooks/*`, `.git/config` and `.blux/` inside the workspace without approval, i.e. plant code that runs later outside BLUX's approvals.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-50",
+   "evidence": [
+    "Reproduced at 56c9b76: fs.write .git/hooks/pre-commit and .git/config succeeded (2026-11-06)",
+    "Fixed in blux 4163637 (OV-50, 2026-11-07): `workspace_write_needs_approval`; tests/runtime/test_tool_hardening.py::test_file_writes_into_git_and_blux_directories_need_an_approval"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F91",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`shell.exec` read a command's whole output into memory before cutting it to 64 KiB.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-50",
+   "evidence": [
+    "Reproduced at 56c9b76: 400 MB of output raised peak RSS by about 765 MB (2026-11-06)",
+    "Fixed in blux 4163637 (OV-50, 2026-11-07): streams drained on threads keeping 64 KiB each; same probe +1 MB; tests/runtime/test_tool_hardening.py::test_shell_output_is_capped_while_it_is_read (tracemalloc peak < 8 MiB for 32 MiB)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F92",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`shell.exec` ignored the caller's cancellation: a cancelled `sleep 6` ran to the end and was reported as succeeded.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-50",
+   "evidence": [
+    "Reproduced at 56c9b76: cancel at 0.5 s, call returned succeeded after 6.1 s (2026-11-06)",
+    "Fixed in blux 4163637 (OV-50, 2026-11-07): the process group is killed and the call fails with reason `cancelled` (0.5 s); tests/runtime/test_tool_hardening.py::test_shell_honours_cancellation_and_kills_the_command"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F93",
+   "repo": "blux",
+   "severity": "Low",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`blux agent` with no model configured printed only `model call failed: EXECUTION_FAILED` and exited 1, where `blux ask` lists the routes, a hint and the receipt and exits 3.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-50",
+   "evidence": [
+    "Reproduced at 56c9b76 with an empty environment (2026-11-06)",
+    "Fixed in blux 4163637 (OV-50, 2026-11-07): same report and exit codes as `blux ask`; tests/cli/test_agent_cmd.py::test_agent_without_a_model_says_why_and_exits_as_ask_does"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F94",
+   "repo": "blux",
+   "severity": "Low",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`make lint` fails at BLUX HEAD: ruff reports 13 errors and 2 unformatted files in `training/dataset-program/` (added in 8d989de). Runtime, CLI, SDK and tests are clean.",
+   "status": "OPEN",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-53",
+   "evidence": [
+    "`ruff check .` exit 1 and `ruff format --check .` 2 files at 56c9b76, all in training/dataset-program (2026-11-06)"
+   ],
+   "next_action": "Format and lint training/dataset-program in OV-53, which owns it"
+  },
+  {
+   "id": "F95",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-06 (OV-50 delta review)",
+   "source": "OV-50 delta review",
+   "issue": "`shell.exec` is confined only by its working directory, an allow-list environment and pattern-based command detection. It is not an OS sandbox: an approved or undetected command can read or write anywhere the user can, and a process that leaves the command's process group survives the call.",
+   "status": "DEFERRED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-62",
+   "evidence": [
+    "Recorded in the OV-50 report and ADR-0013 (2026-11-07); F89 narrowed the gap, it did not close it"
+   ],
+   "next_action": "Adversarial drills in OV-62; decide whether shell.exec needs an OS-level sandbox before any release that enables it by default"
   }
  ]
 }

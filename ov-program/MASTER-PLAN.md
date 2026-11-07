@@ -206,7 +206,7 @@ green.
 - Contract mutations are detected.
 - Every known High finding has a release disposition.
 
-### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05; the rest not yet authorized)
+### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 on 2026-11-07; the rest not yet authorized)
 These stages are unchanged from the approved plan. Each starts with the delta review from rule 11 instead of
 repeating work verified in Stages 42–44.
 
@@ -296,3 +296,4 @@ generated docs, ledger, credits and tests agree. An environment-blocked stage is
 | 2026-11-05 | D-13 widened to cover F81 (found in OV-49) | Plan section 6 |
 | 2026-11-05 | OV-55 and OV-56 authorized | Owner authorization, 2026-11-05 |
 | 2026-11-05 | D-14 added: account recovery needs an email provider, which no stage may pick | Plan section 6 |
+| 2026-11-07 | OV-50 authorized | Owner authorization, 2026-11-07 |
