@@ -493,14 +493,16 @@
    "next_action": "Provider access"
   },
   "F61": {
-   "status": "DEFERRED",
-   "owner": "repo:blux",
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
    "priority": "P2",
    "stage": "OV-53",
    "evidence": [
-    "Post-freeze blux 8d989de adds an independent evaluation and promotion policy (dataset program, 3 tests pass 2026-11-04); no human-reviewed answer-quality set yet"
+    "Post-freeze blux 8d989de adds an independent evaluation and promotion policy (dataset program, 3 tests pass 2026-11-04); no human-reviewed answer-quality set yet",
+    "OV-53 (2026-11-07): no independent evaluation custodian or human-reviewed items; custodian and compute budget are owner decision D-15"
    ],
-   "next_action": "Independent evaluation families (OV-53)"
+   "next_action": "Owner appoints an independent evaluation custodian and sets a compute budget (D-15)",
+   "decision": "D-15"
   },
   "F62": {
    "status": "OPEN",
@@ -519,7 +521,8 @@
    "stage": "OV-53",
    "decision": "D-09",
    "evidence": [
-    "No rights-cleared corpus acquired (forward-plan.md A2 PARTIAL)"
+    "No rights-cleared corpus acquired (forward-plan.md A2 PARTIAL)",
+    "OV-53 (2026-11-07): still no eligible corpus: every family in training/dataset-program/families.json is source_acquisition_pending"
    ],
    "next_action": "Owner data collection"
   },
@@ -924,14 +927,15 @@
    "found": "2026-11-06 (OV-50 delta review)",
    "source": "OV-50 delta review",
    "issue": "`make lint` fails at BLUX HEAD: ruff reports 13 errors and 2 unformatted files in `training/dataset-program/` (added in 8d989de). Runtime, CLI, SDK and tests are clean.",
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux",
    "priority": "P2",
    "stage": "OV-53",
    "evidence": [
-    "`ruff check .` exit 1 and `ruff format --check .` 2 files at 56c9b76, all in training/dataset-program (2026-11-06)"
+    "`ruff check .` exit 1 and `ruff format --check .` 2 files at 56c9b76, all in training/dataset-program (2026-11-06)",
+    "Fixed in blux 60ddc76 (OV-53, 2026-11-07): formatted and lint-clean (preflight syntax tree unchanged); `ruff check .` and `ruff format --check .` exit 0 for the whole repository"
    ],
-   "next_action": "Format and lint training/dataset-program in OV-53, which owns it"
+   "next_action": "None"
   },
   {
    "id": "F95",
@@ -1270,6 +1274,91 @@
     "Design review (OV-52, 2026-11-07)"
    ],
    "next_action": "Decide in OV-61 whether high-risk capabilities need a store health check before execution"
+  },
+  {
+   "id": "F115",
+   "repo": "blux",
+   "severity": "High",
+   "found": "2026-11-07 (OV-53 delta review)",
+   "source": "OV-53 delta review",
+   "issue": "The training pipeline's hidden-reasoning gate accepted reasoning-model output: `<think>` blocks (the format of Qwen3, the shortlisted base, and DeepSeek-R1), harmony analysis channels, and fields named `reasoning`, `reasoning_details`, `reasoning_summary`, `thought_process` or `thinking_blocks`. Provider chain-of-thought could have become training data.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-53",
+   "evidence": [
+    "Reproduced at cfd7470 with a gate probe: 6 of 9 reasoning forms accepted (2026-11-07)",
+    "Fixed in blux 60ddc76 (OV-53, 2026-11-07): markers and keys rejected; reasoning_structure and CogA reflection kept; tests/training/test_ov53_gates.py; pipeline 1.1.0",
+    "No false positives on the 127 train/validation records of blux-coga-dataset and blux-ca-dataset (aggregate counts)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F116",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-53 delta review)",
+   "source": "OV-53 delta review",
+   "issue": "The personal-data gate missed common forms: look-alike e-mail domains (`notexample.com` matched the `example.com` allowance), phone numbers without a country code or in international groups, IPv6, `/root` and Windows home paths, card numbers and US SSNs.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-53",
+   "evidence": [
+    "Reproduced at cfd7470: 11 of 14 probed forms passed unredacted (2026-11-07)",
+    "Fixed in blux 60ddc76 (OV-53, 2026-11-07): redacted (Luhn-checked cards, IPv6 with at least three groups so slices are kept); tests/training/test_ov53_gates.py including false-positive guards (slices, times, MACs, hashes, ids, documentation addresses)"
+   ],
+   "next_action": "Bare 10-digit runs are deliberately not treated as phone numbers (ids look the same); private terms cover the rest"
+  },
+  {
+   "id": "F117",
+   "repo": "blux",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-53 delta review)",
+   "source": "OV-53 delta review",
+   "issue": "Reworded siblings of protected evaluation items could enter training: in one build, a lightly reworded copy of a holdout item was hash-assigned to train; in the next version, built with the previous split lock, siblings of the earlier holdout were accepted because the lock carries ids, not content, unless --protected was given.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-53",
+   "evidence": [
+    "Reproduced at cfd7470: 10 of 10 siblings of a v1 holdout item accepted into train/validation in v2 (2026-11-07)",
+    "Fixed in blux 60ddc76 (OV-53, 2026-11-07): siblings of a protected record in the same build are rejected; the previous dataset's protected splits are protected automatically from --lock; tests/training/test_ov53_gates.py"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F118",
+   "repo": "blux-gpt",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-53 delta review)",
+   "source": "OV-53 delta review",
+   "issue": "bluxgpt drops structured provider reasoning (DeepSeek reasoning_content, Anthropic thinking blocks) but passes inline `<think>` text from an OpenAI-compatible server through as answer text, so a local reasoning model (e.g. Qwen3 served without a reasoning parser) would put its chain-of-thought into answers and BLUX sessions.",
+   "status": "OPEN",
+   "owner": "repo:blux-gpt",
+   "priority": "P1",
+   "stage": "OV-64",
+   "evidence": [
+    "Reproduced at 0175196 with the repository's fake provider: content '<think>PRIVATE INLINE</think>42' returned as output text unchanged (temporary probe test, not committed; 2026-11-07)",
+    "Training data is protected regardless: the blux_training gate now rejects `<think>` (F115)"
+   ],
+   "next_action": "Strip leading reasoning blocks in openai_compat (also in streaming) with fake-provider tests; needs authorization (provider layer, OV-64 scope)"
+  },
+  {
+   "id": "F119",
+   "repo": "blux",
+   "severity": "Low",
+   "found": "2026-11-07 (OV-53 delta review)",
+   "source": "OV-53 delta review",
+   "issue": "Four router dataset-integrity tests hard-coded the cloud /workspace layout and were always skipped elsewhere.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-53",
+   "evidence": [
+    "Fixed in blux 60ddc76 (OV-53, 2026-11-07): BLUX_COGA_DATASET and BLUX_COGA_DATASET_PYTHON select a checkout and its pinned environment; all 50 router tests pass here, with a positive control (the unmutated dataset passes the same probe)"
+   ],
+   "next_action": "None"
   }
  ]
 }

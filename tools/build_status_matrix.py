@@ -333,6 +333,22 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-07"
     _row["known_blockers"] = [b for b in _row["known_blockers"] if "F83-F85" not in b] + OV52_BLOCKERS.get(_row["repo"], [])
 
+# OV-53 (2026-11-07): native BLUX research (ov-program/OV-53-report.md). PARTIAL: data controls hardened, Gen 0
+# re-verified; no corpus (D-09), custodian or compute (D-15), so native models stay EXPERIMENTAL. Statuses unchanged.
+OV53 = {
+    "blux": ("60ddc76", "OV-53: training gates F115-F117, lint F94, router tests F119; full suite 648 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); Gen 0 deterministic results match the Stage 35 baseline; ruff and mypy clean for the whole repository; DAT gate pass"),
+}
+OV53_BLOCKERS = {
+    "blux": ["Native models EXPERIMENTAL: no eligible corpus (F63, D-09), no evaluation custodian or compute budget (F61, D-15)"],
+    "blux-gpt": ["Inline <think> from OpenAI-compatible servers reaches answers and sessions (F118, OV-64)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV53:
+        _row["commit_sha"], _note = OV53[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-07"
+    _row["known_blockers"] = _row["known_blockers"] + OV53_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

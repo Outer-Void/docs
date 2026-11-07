@@ -206,7 +206,7 @@ green.
 - Contract mutations are detected.
 - Every known High finding has a release disposition.
 
-### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50, OV-51 and OV-52 on 2026-11-07; the rest not yet authorized)
+### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-53 on 2026-11-07; the rest not yet authorized)
 These stages are unchanged from the approved plan. Each starts with the delta review from rule 11 instead of
 repeating work verified in Stages 42–44.
 
@@ -270,6 +270,7 @@ repeating work verified in Stages 42–44.
 | D-12 | Owner correction of shell configuration: the stale `blux()` in `~/.zshrc.local` (F65) and the outdated `ANDROID_HOME` in `~/.zshrc` | Running `blux` and Android builds by name on the owner's machine | Diagnosis and recommended fix (OV-48); never edited automatically |
 | D-14 | Transactional email provider and sender domain for account recovery and verification (Roughin and Vigyl) | Password reset and email verification (F38, F46) | Lockout, password change, session hardening (done in OV-55/OV-56) |
 | D-13 | Disposition of termux-background's historical artifacts: the four unsupported 2025 GitHub releases (F77) and the compromised keystore in public history (F81; a purge needs an authorized history rewrite) | Truthful distribution state; user safety | Done in OV-49: signer check, README correction |
+| D-15 | Independent evaluation custodian for native-model work, and a compute budget (hardware or a paid service) | Native-model training, protected evaluation and any promotion (OV-53) | Data controls, gates, Gen 0 re-runs, EXPERIMENTAL history |
 
 No external blocker is ever reclassified as PASS. A missing decision becomes a targeted question at the stage that
 needs it.
@@ -299,3 +300,5 @@ generated docs, ledger, credits and tests agree. An environment-blocked stage is
 | 2026-11-07 | OV-50 authorized | Owner authorization, 2026-11-07 |
 | 2026-11-07 | OV-51 authorized | Owner authorization, 2026-11-07 |
 | 2026-11-07 | OV-52 authorized | Owner authorization, 2026-11-07 |
+| 2026-11-07 | OV-53 authorized | Owner authorization, 2026-11-07 |
+| 2026-11-07 | D-15 added: OV-53 needs an independent evaluation custodian and a compute budget, which no stage may choose | Plan section 6 |

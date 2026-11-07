@@ -24,7 +24,7 @@
    "component": "BLUX (runtime, SDK, contracts, `blux` CLI)",
    "repo": "blux",
    "version": "outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0",
-   "commit_sha": "cfd7470",
+   "commit_sha": "60ddc76",
    "role": "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -43,9 +43,10 @@
     "Rights-cleared substantial corpus and independent protected evaluation are not acquired",
     "Compute budget, inference baseline, serious training and provider qualification remain pending",
     "shell.exec is not an OS sandbox (F95, OV-62)",
-    "One-shot commands act before learning a receipt is refused (F114, OV-61)"
+    "One-shot commands act before learning a receipt is refused (F114, OV-61)",
+    "Native models EXPERIMENTAL: no eligible corpus (F63, D-09), no evaluation custodian or compute budget (F61, D-15)"
    ],
-   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.. OV-48 re-run at 8d989de (2026-11-04): training/dataset-program 3 passed; runtime unchanged since 51134af (Stage 44 evidence reused). OV-50: tool-layer fixes F89-F93; full suite 604 passed, 15 skipped at 4163637 (2026-11-07), engines installed so the integration hard gates ran; ruff and mypy clean on changed code; DAT gate pass. OV-51: SDK .blux loader hardening F98-F99; full suite 611 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); integration hard gates 45 passed, 2 skipped (real-provider) at the final engine commits; ruff and mypy clean; DAT gate pass. OV-52: receipt durability F83-F85, refused receipts set aside F111, agent fails closed F112; full suite 620 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); ruff and mypy clean; DAT gate pass",
+   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.. OV-48 re-run at 8d989de (2026-11-04): training/dataset-program 3 passed; runtime unchanged since 51134af (Stage 44 evidence reused). OV-50: tool-layer fixes F89-F93; full suite 604 passed, 15 skipped at 4163637 (2026-11-07), engines installed so the integration hard gates ran; ruff and mypy clean on changed code; DAT gate pass. OV-51: SDK .blux loader hardening F98-F99; full suite 611 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); integration hard gates 45 passed, 2 skipped (real-provider) at the final engine commits; ruff and mypy clean; DAT gate pass. OV-52: receipt durability F83-F85, refused receipts set aside F111, agent fails closed F112; full suite 620 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); ruff and mypy clean; DAT gate pass. OV-53: training gates F115-F117, lint F94, router tests F119; full suite 648 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); Gen 0 deterministic results match the Stage 35 baseline; ruff and mypy clean for the whole repository; DAT gate pass",
    "last_verified": "2026-11-07"
   },
   {
@@ -236,7 +237,8 @@
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Real-provider runs not recorded; hard-coded provider model IDs not verified against current catalogs"
+    "Real-provider runs not recorded; hard-coded provider model IDs not verified against current catalogs",
+    "Inline <think> from OpenAI-compatible servers reaches answers and sessions (F118, OV-64)"
    ],
    "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports. Stage 44 DoD at 4609cd9 (2026-10-27): 49 passed, 1 skipped (network off); DAT audit triaged",
    "last_verified": "2026-10-27"
