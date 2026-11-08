@@ -1,7 +1,7 @@
 {
  "format": "outer-void-findings-dispositions v1",
  "note": "Hand-authored current dispositions of the frozen findings (reassessment/open-findings.json, 2026-10-27) plus findings discovered after the freeze. tools/build_findings_current.py joins them into findings-current.json. Frozen rows are never edited; this file records what is true now, with evidence.",
- "as_of": "2026-11-07",
+ "as_of": "2026-11-08",
  "dispositions": {
   "F1": {
    "status": "OPEN",
@@ -462,24 +462,26 @@
    "next_action": "Write properties before installing the image, or roll back"
   },
   "F58": {
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "owner",
    "priority": "P1",
    "stage": "OV-54",
    "evidence": [
-    "jadis.toolbox unchanged since the freeze; default not decided"
+    "jadis.toolbox unchanged since the freeze; default not decided",
+    "Owner decision 2026-11-07 (OV-54 question): private by default and network check opt-in. Fixed in jadis.toolbox e3f25a5 (OV-54, 2026-11-08): snapshots in owner-only ~/.local/state/jadis/master_log/logs, MASTER_LOG_DIR for shared storage, ping only with MASTER_LOG_PING=1; tests/test_scripts.py (private default, opt-ins)"
    ],
-   "next_action": "Owner decides the master_log default"
+   "next_action": "None"
   },
   "F59": {
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "owner",
    "priority": "P2",
    "stage": "OV-54",
    "evidence": [
-    "Unchanged"
+    "Unchanged",
+    "Owner decision 2026-11-07 (OV-54 question): proprietary default, MIT on request, LRC for organization repositories. Fixed in jadis.toolbox e3f25a5 (OV-54, 2026-11-08): Proprietary licence by default, unknown licences refused; tests/test_scripts.py::test_newproject_is_proprietary_by_default"
    ],
-   "next_action": "Owner decides newproject's licence default and its overlap with LRC"
+   "next_action": "None"
   },
   "F60": {
    "status": "EXTERNAL_BLOCKED",
@@ -527,14 +529,15 @@
    "next_action": "Owner data collection"
   },
   "F64": {
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux-app",
    "priority": "P1",
    "stage": "OV-54",
    "evidence": [
-    "blux-app HEAD 0de2d9a unchanged since Stage 44"
+    "blux-app HEAD 0de2d9a unchanged since Stage 44",
+    "Fixed in blux-app 4bdb899 (OV-54, 2026-11-08): scripts/a11y-pass.mjs (axe-core, 44 states, keyboard/reflow/target probes) passes after the F123 fixes; not a screen-reader or real-device test"
    ],
-   "next_action": "Browser and accessibility tests"
+   "next_action": "None"
   },
   "F65": {
    "status": "EXTERNAL_BLOCKED",
@@ -554,7 +557,8 @@
    "stage": "OV-54",
    "decision": "D-08",
    "evidence": [
-    "bluxai.app unchanged since Stage 44"
+    "bluxai.app unchanged since Stage 44",
+    "OV-54 (2026-11-08): still API only and not deployed (D-08). Tenant isolation re-verified: 14 passed with BLUX, including a new boundary test (bluxai.app 32e988d); clean install of .[dev] into a fresh venv works"
    ],
    "next_action": "Owner decides hosted UI and deployment priority"
   },
@@ -1359,6 +1363,90 @@
     "Fixed in blux 60ddc76 (OV-53, 2026-11-07): BLUX_COGA_DATASET and BLUX_COGA_DATASET_PYTHON select a checkout and its pinned environment; all 50 router tests pass here, with a positive control (the unmutated dataset passes the same probe)"
    ],
    "next_action": "None"
+  },
+  {
+   "id": "F120",
+   "repo": "axiom",
+   "severity": "High",
+   "found": "2026-11-07 (OV-54 delta review)",
+   "source": "OV-54 delta review",
+   "issue": "`cockpit/bin/ax-route`, the executable every `ax` routing command runs, was never committed: the generic `bin/` .gitignore rule hid it from Stage 18 on. On a clean clone `ax` exited 127 and 9 of 13 router tests failed; every earlier `ax` result (Stages 18, 22, 44, OV-48) was produced on the one checkout that had the untracked file.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:axiom",
+   "priority": "P0",
+   "stage": "OV-54",
+   "evidence": [
+    "Reproduced 2026-11-07 from a fresh clone of github.com/Outer-Void/axiom at ed079e8: `ax audit` exit 127 (ax-route: No such file or directory); tests/test_ax_router.py 9 failed, 1 passed, 3 skipped",
+    "Fixed in axiom 1272d75 (OV-54, 2026-11-08): .gitignore re-includes cockpit/bin/, ax-route committed; a fresh clone of 1272d75 gives `ax audit` exit 69 with DAT absent and 11 passed, 3 skipped (the skips need the sibling VoidForge checkout)"
+   ],
+   "next_action": "Release evidence must come from clean clones, not working checkouts (carry into OV-63 release machinery)"
+  },
+  {
+   "id": "F121",
+   "repo": "axiom",
+   "severity": "Low",
+   "found": "2026-11-07 (OV-54 delta review)",
+   "source": "OV-54 delta review",
+   "issue": "An AX_BIN_* override pointing at a directory, or at an executable that cannot be started (no interpreter line), ended in a Python traceback with exit 1 instead of AX's explanation.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:axiom",
+   "priority": "P2",
+   "stage": "OV-54",
+   "evidence": [
+    "Reproduced at ed079e8 (2026-11-07)",
+    "Fixed in axiom 1272d75 (OV-54, 2026-11-08): a directory is 'not installed' (exit 69); an unstartable engine exits 126 with a message; tests/test_ax_router.py::test_broken_overrides_are_explained_not_crashes"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F122",
+   "repo": "jadis.toolbox",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-54 delta review)",
+   "source": "OV-54 delta review",
+   "issue": "`newproject -t node` was broken: the package.json template was eval'd, so its `... && exit 1` test script ran and aborted the project half-made (exit 2, invalid package.json with empty name). The MIT licence's copyright line was always empty, and an unknown licence silently became MIT.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:jadis.toolbox",
+   "priority": "P1",
+   "stage": "OV-54",
+   "evidence": [
+    "Reproduced at 253c386 (2026-11-07)",
+    "Fixed in jadis.toolbox e3f25a5 (OV-54, 2026-11-08): package.json written with printf and JSON escaping; licence text generated with the holder; unknown licences refused; tests/test_scripts.py::test_newproject_node_writes_valid_package_json"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F123",
+   "repo": "blux-app",
+   "severity": "Medium",
+   "found": "2026-11-07 (OV-54 delta review)",
+   "source": "OV-54 delta review",
+   "issue": "The first browser accessibility pass of BLUX Mission Control found: light-scheme accent and status text at about 2.4:1 contrast (WCAG 1.4.3 needs 4.5:1), wide tables in a scroll region keyboard users could not focus (2.1.1), no visible focus style beyond the browser default (2.4.7), and long operation ids forcing page-level horizontal scroll at 320 px (1.4.10).",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-app",
+   "priority": "P1",
+   "stage": "OV-54",
+   "evidence": [
+    "scripts/a11y-pass.mjs at dca88bf (2026-11-07): color-contrast in 22+ states, scrollable-region-focusable, focus not visible, reflow 363 px at 320 px",
+    "Fixed in blux-app 4bdb899 (OV-54, 2026-11-08): 44 states, 0 axe violations, focus, reflow and target-size probes pass; tests/test_ui_accessibility.py (3 tests fail on dca88bf)"
+   ],
+   "next_action": "Screen-reader and real-device checks stay on the release checklist"
+  },
+  {
+   "id": "F124",
+   "repo": "blux10k",
+   "severity": "Low",
+   "found": "2026-11-07 (OV-54 delta review)",
+   "source": "OV-54 delta review",
+   "issue": "`blux10k verify` lists every managed dotfile as missing in an empty HOME but still exits 0: only the tool checks decide its exit code, although the README describes it as verifying managed dotfiles and tools.",
+   "status": "OPEN",
+   "owner": "repo:blux10k",
+   "priority": "P2",
+   "stage": "OV-54",
+   "evidence": [
+    "Observed at e2e9f58 with an empty scratch HOME (2026-11-07)"
+   ],
+   "next_action": "Decide whether missing or unlinked dotfiles should fail `verify` (or document that it does not)"
   }
  ]
 }

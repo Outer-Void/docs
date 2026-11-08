@@ -349,6 +349,25 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-07"
     _row["known_blockers"] = _row["known_blockers"] + OV53_BLOCKERS.get(_row["repo"], [])
 
+# OV-54 (2026-11-08): ax, blux10k, JADIS Toolbox, BLUX App, bluxai.app (ov-program/OV-54-report.md). Clean installs,
+# exit 69, tenant isolation and no second runtime verified; bluxai.app deployment stays D-08. Statuses unchanged.
+OV54 = {
+    "axiom": ("1272d75", "OV-54: ax-route committed (F120: it was never tracked, so `ax` failed on clean clones), broken overrides explained F121; router 14 passed here and 11 passed, 3 skipped from a fresh GitHub clone; run_tests.sh 14/14; smoke passed; every route exits 69 without its engine; DAT gate pass"),
+    "blux10k": ("e2e9f58", "OV-54 re-run (2026-11-07): 10 passed; probes leave HOME untouched; bootstrap --apply into a scratch HOME links all dotfiles and backs up existing ones"),
+    "jadis.toolbox": ("e3f25a5", "OV-54: master_log private and offline by default (F58), newproject proprietary by default (F59), node template fix F122; 79 passed; ruff, format and mypy clean; clean install into a fresh venv; DAT gate pass"),
+    "blux-app": ("4bdb899", "OV-54: browser accessibility pass (F64) and fixes F123: 44 states, 0 axe violations, focus/reflow/target probes pass; 14 passed; clean install; DAT gate pass"),
+    "ov-webpages/bluxai.app": ("32e988d", "OV-54: tenant-boundary test added (no defect found); 14 passed with BLUX, 10 passed and 4 skipped without (503); clean install of .[dev]; DAT gate pass"),
+}
+OV54_BLOCKERS = {
+    "blux10k": ["`verify` exits 0 with every managed dotfile missing (F124)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV54:
+        _row["commit_sha"], _note = OV54[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-08" if _row["repo"] != "blux10k" else "2026-11-07"
+    _row["known_blockers"] = _row["known_blockers"] + OV54_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

@@ -53,7 +53,7 @@
    "component": "AXIOM control plane (`ax`)",
    "repo": "axiom",
    "version": "2.0.0",
-   "commit_sha": "ed079e8",
+   "commit_sha": "1272d75",
    "role": "Developer control plane; routes to authoritative engines, reimplements none",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "OPTIONAL",
@@ -68,8 +68,8 @@
     "Engines must be installed separately; missing engines exit 69 by design",
     "Release packaging/tag qualification remains pending"
    ],
-   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.. OV-48 re-run at ed079e8 (2026-11-04): 13 router tests passed; an executed `ax` routes through ax-route",
-   "last_verified": "2026-11-04"
+   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.. OV-48 re-run at ed079e8 (2026-11-04): 13 router tests passed; an executed `ax` routes through ax-route. OV-54: ax-route committed (F120: it was never tracked, so `ax` failed on clean clones), broken overrides explained F121; router 14 passed here and 11 passed, 3 skipped from a fresh GitHub clone; run_tests.sh 14/14; smoke passed; every route exits 69 without its engine; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "blux10k",
@@ -87,10 +87,11 @@
    "distribution_status": "NOT_STARTED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "Release packaging/tag and real Termux acceptance remain pending"
+    "Release packaging/tag and real Termux acceptance remain pending",
+    "`verify` exits 0 with every managed dotfile missing (F124)"
    ],
-   "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26). Stage 44 DoD at 80a7465 (2026-10-27): 10 passed; DAT audit triaged Forward execution: dotfiles/.zshrc BLUX10K_VERSION aligned with VERSION and CLI at 3.0.0; README corrected.. OV-48 re-run at e2e9f58 (2026-11-04): 10 passed; `zsh -n` clean; `--version` 3.0.0",
-   "last_verified": "2026-11-04"
+   "evidence": "pytest: 10 passed at fcb127d (re-run 2026-10-26). Stage 44 DoD at 80a7465 (2026-10-27): 10 passed; DAT audit triaged Forward execution: dotfiles/.zshrc BLUX10K_VERSION aligned with VERSION and CLI at 3.0.0; README corrected.. OV-48 re-run at e2e9f58 (2026-11-04): 10 passed; `zsh -n` clean; `--version` 3.0.0. OV-54 re-run (2026-11-07): 10 passed; probes leave HOME untouched; bootstrap --apply into a scratch HOME links all dotfiles and backs up existing ones",
+   "last_verified": "2026-11-07"
   },
   {
    "component": "CogA",
@@ -247,7 +248,7 @@
    "component": "BLUX App",
    "repo": "blux-app",
    "version": "2.0.0",
-   "commit_sha": "0de2d9a",
+   "commit_sha": "4bdb899",
    "role": "Local mission control over the real BLUX tools (read-only views; only read-only BLUX System checks as controls)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -263,8 +264,8 @@
     "CI blocked org-wide (F49)",
     "VoidForge devices need the device app running"
    ],
-   "evidence": "11 tests at 6c8e8dd incl. end-to-end: real blux run operations recorded in a real BLUX System store, inspected through the HTTP API; Host/token/origin/id-validation and secret-redaction tests (Stage 38). Stage 44 DoD at 0de2d9a (2026-10-27): 11 passed; ruff fixed and now in CI; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "11 tests at 6c8e8dd incl. end-to-end: real blux run operations recorded in a real BLUX System store, inspected through the HTTP API; Host/token/origin/id-validation and secret-redaction tests (Stage 38). Stage 44 DoD at 0de2d9a (2026-10-27): 11 passed; ruff fixed and now in CI; DAT audit triaged. OV-54: browser accessibility pass (F64) and fixes F123: 44 states, 0 axe violations, focus/reflow/target probes pass; 14 passed; clean install; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "cA dataset",
@@ -529,7 +530,7 @@
    "component": "JADIS Toolbox (`jadis`)",
    "repo": "jadis.toolbox",
    "version": "0.1.0",
-   "commit_sha": "253c386",
+   "commit_sha": "e3f25a5",
    "role": "Portable workstation tool: environment classification, doctor, safe journaled repair, bootstrap, snapshots (Termux, PRoot Debian, Debian)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "OPTIONAL",
@@ -547,8 +548,8 @@
     "Small repair catalogue (4 repairs)",
     "CI blocked org-wide (F49)"
    ],
-   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33). Stage 44 DoD at 253c386 (2026-10-27): 75 passed; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33). Stage 44 DoD at 253c386 (2026-10-27): 75 passed; DAT audit triaged. OV-54: master_log private and offline by default (F58), newproject proprietary by default (F59), node template fix F122; 79 passed; ruff, format and mypy clean; clean install into a fresh venv; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Credits ledger",
@@ -670,7 +671,7 @@
    "component": "bluxai.app",
    "repo": "ov-webpages/bluxai.app",
    "version": "0.1.0",
-   "commit_sha": "9e5706a",
+   "commit_sha": "32e988d",
    "role": "Private BLUX workspace service over the BLUX executables (orgs, roles, runs/receipts, API tokens, audit, opt-in remote runs)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -686,8 +687,8 @@
     "Not deployed; rate limits are per process (F66)",
     "CI blocked org-wide (F49)"
    ],
-   "evidence": "12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; no BLUX runtime imports and local BLUX works without it (Stage 39). Stage 44 DoD at 9e5706a (2026-10-27): 13 passed with BLUX, 10 + 3 skipped without; BLUX-absent 503 fix; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "12 tests at 9fdb0a2 incl. a real remote run into the organization's own BLUX System store, tenant isolation, roles, read-only API tokens; no BLUX runtime imports and local BLUX works without it (Stage 39). Stage 44 DoD at 9e5706a (2026-10-27): 13 passed with BLUX, 10 + 3 skipped without; BLUX-absent 503 fix; DAT audit triaged. OV-54: tenant-boundary test added (no defect found); 14 passed with BLUX, 10 passed and 4 skipped without (503); clean install of .[dev]; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "IVRP website",
