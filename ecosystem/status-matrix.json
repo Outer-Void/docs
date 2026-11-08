@@ -333,7 +333,7 @@
    "component": "AXIOM Launcher",
    "repo": "void.os",
    "version": "2.0.0-dev",
-   "commit_sha": "d4c3dc9",
+   "commit_sha": "d009469",
    "role": "Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -353,7 +353,7 @@
     "Legal/asset notice review",
     "No device run of safe mode, backup/restore or sound (D-03)"
    ],
-   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26). Stage 44 DoD at 24b07cd (2026-10-27): unit 78 passed, debug APK built (BLUX-free core); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F1 (partial: Play licensing/Integrity still TODO), crash-loop guard F19, layout-only backup F20, Shooter core re-vendored with SFX; 93 unit tests; assembleDebug and assembleRelease OK (unsigned); 16 KB native check; components check vs both upstreams OK; DAT gate pass",
+   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26). Stage 44 DoD at 24b07cd (2026-10-27): unit 78 passed, debug APK built (BLUX-free core); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F1 (partial: Play licensing/Integrity still TODO), crash-loop guard F19, layout-only backup F20, Shooter core re-vendored with SFX; 93 unit tests; assembleDebug and assembleRelease OK (unsigned); 16 KB native check; components check vs both upstreams OK; DAT gate pass. OV-60: lsans-15 font notice (OFL-1.1, F32), tools/check_notices.py in CI; release APK rebuilt; components check OK; DAT gate pass",
    "last_verified": "2026-11-08"
   },
   {
@@ -383,7 +383,7 @@
    "component": "AXIOM Shooter",
    "repo": "void.game",
    "version": "2.1.0-dev",
-   "commit_sha": "0839bcd",
+   "commit_sha": "c5ce555",
    "role": "Standalone game product; core/ is the authoritative gameplay source bundled in AXIOM Launcher as a hidden Easter egg",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -402,7 +402,7 @@
     "Default font licence unresolved (credits UNR-020)",
     "Sound not heard on a device (D-03)"
    ],
-   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26). Stage 44 DoD at b56c1ae (2026-10-27): core 21 passed, debug APK built; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F2, synthesized SFX with a SOUND setting F29; core 24 tests, android 8; assembleRelease OK (unsigned); 16 KB native check; DAT gate pass",
+   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26). Stage 44 DoD at b56c1ae (2026-10-27): core 21 passed, debug APK built; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F2, synthesized SFX with a SOUND setting F29; core 24 tests, android 8; assembleRelease OK (unsigned); 16 KB native check; DAT gate pass. OV-60: lsans-15 font notice (OFL-1.1, F32), notices at libGDX 1.14.2 (F129), tools/check_notices.py in CI (fails on the old notices); release APK rebuilt; DAT gate pass",
    "last_verified": "2026-11-08"
   },
   {
@@ -560,7 +560,7 @@
    "component": "Credits ledger",
    "repo": "credits",
    "version": null,
-   "commit_sha": "8a0c52a",
+   "commit_sha": "c0d4565",
    "role": "Canonical attribution, licensing and provenance ledger",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -572,8 +572,8 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync). Stage 44 DoD at 8a0c52a (2026-10-27): validate, org-root check and 39 tests passed; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "validate.py --org-root and 39 tests OK at 18240ba (Stage 29 sync). Stage 44 DoD at 8a0c52a (2026-10-27): validate, org-root check and 39 tests passed; DAT audit triaged. OV-60: UNR-020 resolved (lsans-15 is OFL-1.1 Liberation Sans), UNR-014 narrowed to six public repositories, libGDX 1.14.2 natives; validate, acknowledgments and unresolved checks, pytest 39 pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Central docs",
@@ -598,7 +598,7 @@
    "component": "Organization profile",
    "repo": ".github",
    "version": null,
-   "commit_sha": "be5221d",
+   "commit_sha": "6e8083f",
    "role": "Public organization profile and doctrine",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -612,14 +612,14 @@
    "known_blockers": [
     "Owner banner says 'Stage 21 - 30 of 44'; the queued plan ends at Stage 45 (F50, owner decision)"
    ],
-   "evidence": "Contents reconciled 2026-10-27. Stage 44 DoD at be5221d (2026-10-27): DAT audit pass; links checked; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "Contents reconciled 2026-10-27. Stage 44 DoD at be5221d (2026-10-27): DAT audit pass; links checked; DAT audit triaged. OV-60: banner names the OV-46-70 program (owner decision, F50); VoidForge, Vigyl and private-product facts corrected (F132); DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Private organization profile",
    "repo": ".github-private",
    "version": null,
-   "commit_sha": "5ea59da",
+   "commit_sha": "dbe0b6f",
    "role": "Members-only organization profile",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -631,8 +631,8 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "Contents inspected 2026-10-27 (logo and doctrine line only). Stage 44 DoD at 5ea59da (2026-10-27): DAT audit pass; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "Contents inspected 2026-10-27 (logo and doctrine line only). Stage 44 DoD at 5ea59da (2026-10-27): DAT audit pass; DAT audit triaged. OV-60: private repository list matches the GitHub API; per-class VoidForge write locks (F132); DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "BLHermes (archived fork)",
@@ -668,9 +668,12 @@
    "package_status": "NOT_APPLICABLE",
    "distribution_status": "UNVERIFIED",
    "release_status": "UNVERIFIED",
-   "known_blockers": [],
-   "evidence": "README inspected 2026-10-26. Stage 44 DoD at 126453f (2026-10-27): DAT audit pass (static site); DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "known_blockers": [
+    "The site serves README.md and .gitignore (F130, owner)",
+    "Impact text and privacy notice need owner review (F131, D-10)"
+   ],
+   "evidence": "README inspected 2026-10-26. Stage 44 DoD at 126453f (2026-10-27): DAT audit pass (static site); DAT audit triaged. OV-60: live operationrestore.net matches 126453f file for file; security headers present; README.md and .gitignore are served publicly (F130); impact text and privacy notice need the owner (F131, D-10); no change (owner decision)",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "bluxai.app",
@@ -711,8 +714,8 @@
    "distribution_status": "NOT_APPLICABLE",
    "release_status": "NOT_APPLICABLE",
    "known_blockers": [],
-   "evidence": "File list inspected 2026-10-26. Stage 44 DoD at 68dbad7 (2026-10-27): DAT audit pass (README only); DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "File list inspected 2026-10-26. Stage 44 DoD at 68dbad7 (2026-10-27): DAT audit pass (README only); DAT audit triaged. OV-60: reserved repository (README and licence only); policies in docs/legal/ivrp are drafts, not legal advice; next action waits for the owner (D-10)",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Eden Recovery",
@@ -734,8 +737,8 @@
     "Jurisdiction, market, workforce, payer and capital studies not commissioned",
     "Curriculum approval and institutional phase gates remain open"
    ],
-   "evidence": "281 source references verified; three illustrative financial-model tests pass; no institutional approval",
-   "last_verified": "2026-10-27"
+   "evidence": "281 source references verified; three illustrative financial-model tests pass; no institutional approval. OV-60: GitHub metadata only (private, main ac4b89a, last push 2026-10-27, no releases or tags); content EXCLUDED_BY_OWNER_POLICY; independent review is D-10",
+   "last_verified": "2026-11-08"
   }
  ]
 }

@@ -418,6 +418,28 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-08"
     _row["known_blockers"] = _row["known_blockers"] + OV59_BLOCKERS.get(_row["repo"], [])
 
+# OV-60 (2026-11-08): institutional and support repositories (ov-program/OV-60-report.md). PASSED: explicit state
+# and safe next action for each; ER by GitHub metadata only.
+OV60 = {
+    "void.game": ("c5ce555", "OV-60: lsans-15 font notice (OFL-1.1, F32), notices at libGDX 1.14.2 (F129), tools/check_notices.py in CI (fails on the old notices); release APK rebuilt; DAT gate pass"),
+    "void.os": ("d009469", "OV-60: lsans-15 font notice (OFL-1.1, F32), tools/check_notices.py in CI; release APK rebuilt; components check OK; DAT gate pass"),
+    ".github": ("6e8083f", "OV-60: banner names the OV-46-70 program (owner decision, F50); VoidForge, Vigyl and private-product facts corrected (F132); DAT gate pass"),
+    ".github-private": ("dbe0b6f", "OV-60: private repository list matches the GitHub API; per-class VoidForge write locks (F132); DAT gate pass"),
+    "credits": ("c0d4565", "OV-60: UNR-020 resolved (lsans-15 is OFL-1.1 Liberation Sans), UNR-014 narrowed to six public repositories, libGDX 1.14.2 natives; validate, acknowledgments and unresolved checks, pytest 39 pass"),
+    "ov-webpages/operationrestore": ("126453f", "OV-60: live operationrestore.net matches 126453f file for file; security headers present; README.md and .gitignore are served publicly (F130); impact text and privacy notice need the owner (F131, D-10); no change (owner decision)"),
+    "ov-webpages/ivrp": ("68dbad7", "OV-60: reserved repository (README and licence only); policies in docs/legal/ivrp are drafts, not legal advice; next action waits for the owner (D-10)"),
+    "secret-project/er": ("ac4b89a", "OV-60: GitHub metadata only (private, main ac4b89a, last push 2026-10-27, no releases or tags); content EXCLUDED_BY_OWNER_POLICY; independent review is D-10"),
+}
+OV60_BLOCKERS = {
+    "ov-webpages/operationrestore": ["The site serves README.md and .gitignore (F130, owner)", "Impact text and privacy notice need owner review (F131, D-10)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV60:
+        _row["commit_sha"], _note = OV60[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-08"
+    _row["known_blockers"] = _row["known_blockers"] + OV60_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

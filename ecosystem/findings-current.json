@@ -7,20 +7,20 @@
  },
  "counts": {
   "frozen_open": 57,
-  "new": 52,
+  "new": 56,
   "by_status": {
    "PARTIAL": 11,
-   "RESOLVED_VERIFIED": 54,
+   "RESOLVED_VERIFIED": 58,
    "EXTERNAL_BLOCKED": 19,
    "DEFERRED": 14,
-   "OPEN": 9,
-   "BLOCKED_LOCAL_ENVIRONMENT": 2
+   "BLOCKED_LOCAL_ENVIRONMENT": 2,
+   "OPEN": 9
   },
   "unresolved_by_severity": {
    "Critical": 2,
    "High": 14,
-   "Medium": 21,
-   "Low": 16,
+   "Medium": 22,
+   "Low": 15,
    "Info": 2
   }
  },
@@ -449,15 +449,17 @@
     "class": "Unresolved attribution",
     "blocking": "Yes: legal review"
    },
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:credits",
    "priority": "P1",
    "stage": "OV-60",
    "decision": "D-09",
    "evidence": [
-    "credits UNR-020 still unresolved (2026-11-04)"
+    "credits UNR-020 still unresolved (2026-11-04)",
+    "(OV-60, 2026-11-08) libGDX PR 6727 (commit 50bc5e2c89, merged 2021-12-14) states lsans-15 is Liberation Sans renamed because 'Liberation' is a Reserved Font Name, under OFL-1.1; the Liberation Fonts LICENSE gives the copyright lines (Google 2010, Red Hat 2012). The .fnt and .png in gdx-1.14.2.jar have the same git blob ids as libGDX tag 1.14.2; both release APKs (rebuilt 2026-11-08) ship them and the jar carries no licence",
+    "void.game c5ce555 and void.os d009469: THIRD_PARTY_NOTICES.md carry the OFL notice (void.game also gains licenses/OFL-1.1.txt, identical to the credits copy); tools/check_notices.py fails if a shipped font or the libGDX version is missing from the notices (it failed on both old files) and runs in CI; credits UNR-020 resolved, asset:font/lsans-15 recorded, and the void-os record gains the libGDX Android backend and natives it ships"
    ],
-   "next_action": "Establish the libGDX lsans-15 upstream and licence, or replace the font"
+   "next_action": "None"
   },
   {
    "id": "F34",
@@ -819,15 +821,16 @@
     "class": "Owner decision (owner text was not edited)",
     "blocking": "No"
    },
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "owner",
    "priority": "P2",
    "stage": "OV-60",
    "decision": null,
    "evidence": [
-    ".github profile/README.md:7 still reads \"Stage 21 - 30 of 44\" (2026-11-04); owner-written text, not edited"
+    ".github profile/README.md:7 still reads \"Stage 21 - 30 of 44\" (2026-11-04); owner-written text, not edited",
+    ".github 6e8083f: owner decision 2026-11-08: the banner reads \"Currently in the OV-46\u201370 qualification program. No product is released yet.\" Pushed to protected main with the owner bypass"
    ],
-   "next_action": "Owner updates the banner"
+   "next_action": "None"
   },
   {
    "id": "F53",
@@ -2305,6 +2308,82 @@
     "Release gate passes locally on 2026-11-08: 184 tests, smoke check, run_resolver.sh proof mode from a clean copy (placeholder secrets)"
    ],
    "next_action": "Owner runs docs/LAUNCH_CHECKLIST.md with the real token (D-07)"
+  },
+  {
+   "id": "F129",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-08 (OV-60 delta review)",
+   "repo": "void.game",
+   "severity": "Low",
+   "source": "OV-60 delta review",
+   "issue": "THIRD_PARTY_NOTICES.md still listed libGDX 1.12.1 and tracked jniLibs natives; the build has used 1.14.2 with natives extracted from Maven since OV-58.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:void.game",
+   "priority": "P2",
+   "stage": "OV-60",
+   "decision": null,
+   "evidence": [
+    "void.game c5ce555 (OV-60, 2026-11-08): notices state 1.14.2 and the Maven natives; the shipped arm64 libgdx.so equals gdx-platform-1.14.2 (sha256 prefix 7f81e8c16e222b77); tools/check_notices.py checks the version"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F130",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-08 (OV-60 delta review)",
+   "repo": "ov-webpages/operationrestore",
+   "severity": "Medium",
+   "source": "OV-60 delta review",
+   "issue": "operationrestore.net publishes the whole repository directory: README.md (internal planning notes) and .gitignore are served publicly from a private repository, and unknown paths return the home page with status 200 instead of 404.",
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-60",
+   "decision": null,
+   "evidence": [
+    "(OV-60, 2026-11-08) live site matches 126453f (all assets, PDFs and index.html, apart from Cloudflare email obfuscation); GET /README.md and /.gitignore return 200; owner decision: record only, no site change"
+   ],
+   "next_action": "Owner serves only the site files (for example move them to a public/ folder and set it as the Cloudflare Pages output directory), then adds a 404 page"
+  },
+  {
+   "id": "F131",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-08 (OV-60 delta review)",
+   "repo": "ov-webpages/operationrestore",
+   "severity": "Medium",
+   "source": "OV-60 delta review",
+   "issue": "Institutional content on the live site needs owner review: the impact numbers are hand-entered and the text says it 'launched publicly this month' (written in October); the site invites people to send needs-assessment and volunteer forms by text, but the legal pack has no Operation: Restore privacy notice.",
+   "status": "OPEN",
+   "owner": "owner",
+   "priority": "P2",
+   "stage": "OV-60",
+   "decision": "D-10",
+   "evidence": [
+    "(OV-60, 2026-11-08) index.html #impact and #involved at 126453f; docs/legal covers IVRP, BLUX, Vigyl and others but not Operation: Restore. Not changed: institutional claims need the owner (D-10)"
+   ],
+   "next_action": "Owner refreshes the impact section and decides on a privacy notice for the forms (D-10)"
+  },
+  {
+   "id": "F132",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-08 (OV-60 delta review)",
+   "repo": ".github, .github-private",
+   "severity": "Low",
+   "source": "OV-60 delta review",
+   "issue": "Organization profiles were out of date: VoidForge was said to be waiting to go private, Vigyl to have no UI, six private products were linked as public, and the members' list of private repositories missed seven of them.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:.github",
+   "priority": "P2",
+   "stage": "OV-60",
+   "decision": null,
+   "evidence": [
+    ".github 6e8083f and .github-private dbe0b6f: corrected against the authenticated GitHub API (2026-11-08) and the status matrix"
+   ],
+   "next_action": "None"
   }
  ]
 }

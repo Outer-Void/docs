@@ -104,6 +104,10 @@ clean-room; no BLHermes code was copied without provenance accounting.
 
 ## Product maturity (summary)
 
+Snapshot as of 2026-10-27, before the OV-46–70 program. For the current state use the
+[status matrix](status-matrix.md) and [findings-current.json](findings-current.json); for example, VoidForge's
+repository is now private and Vigyl has a development-preview UI.
+
 | Product | State today |
 |---|---|
 | **VoidForge** | **Development preview, writes locked in production.** Core implements ADB, Fastboot/fastbootd, sideload, sync, Logcat, APK manifest parsing, backups, gated flash, Magisk patch verification, root restore and module rollback, all mock-tested. The app exposes only read-only paths and live Logcat. No real-device evidence exists (Stage 23 probe: BLOCKED). Members-only distribution is implemented in CI and tooling, but the repository is still public. |
