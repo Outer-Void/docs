@@ -30,15 +30,17 @@
    "next_action": "None for the verifier; keys and issuer under D-04/D-11"
   },
   "F5": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:voidforge",
    "priority": "P0",
    "stage": "OV-59",
    "evidence": [
     "voidforge HEAD 59b6d67 equals the frozen commit: unchanged",
-    "Source re-read at voidforge 80aec1a (deep audit, 2026-11-06): app/src/main/java/dev/voidforge/app/Workstation.kt:40-44 supplies a LocalConfirmation that always declines, so every non-read operation is refused; the engine's grants are single-use, scope-bound and expiring (core/src/main/kotlin/dev/voidforge/core/Authorization.kt:89-123)"
+    "Source re-read at voidforge 80aec1a (deep audit, 2026-11-06): app/src/main/java/dev/voidforge/app/Workstation.kt:40-44 supplies a LocalConfirmation that always declines, so every non-read operation is refused; the engine's grants are single-use, scope-bound and expiring (core/src/main/kotlin/dev/voidforge/core/Authorization.kt:89-123)",
+    "voidforge 671349e (OV-59, 2026-11-08): local confirmation screen (ConfirmationBroker + on-device dialog: operation, class, risk, target, identity, source hash, typed phrase; one request at a time; 90 s timeout; never on the UI thread); graduated write classes (SafetyPolicy opens a class only with a WriteQualification entry citing a voidforge-write-qualification v1 record; none exist, so every write class stays locked); ADR-011; ConfirmationBrokerTest 5 and WriteQualificationTest 5. Not exercised on a device"
    ],
-   "next_action": "Build the local on-device confirmation UI; writes stay locked"
+   "next_action": "Per-class device qualification (D-03); then add each class's record and entry",
+   "decision": "D-03"
   },
   "F6": {
    "status": "EXTERNAL_BLOCKED",
@@ -459,19 +461,21 @@
    "priority": "P2",
    "stage": "OV-59",
    "evidence": [
-    "targetSdk unchanged"
+    "targetSdk unchanged",
+    "OV-59 (2026-11-08): unchanged; raising targetSdk needs a device re-test (D-03)"
    ],
    "next_action": "Raise to 36 with a behaviour review and device re-test"
   },
   "F57": {
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:termux-background",
    "priority": "P2",
    "stage": "OV-59",
    "evidence": [
-    "Unchanged since the freeze"
+    "Unchanged since the freeze",
+    "termux-background 49164f6 (OV-59, 2026-11-08): set keeps the previous image and restores it (or removes the new one, and a new Monet marker) when anything fails before the properties are committed; tests/cli_test.sh rollback case fails on 9fc05d5; package_test passes against a rebuilt .deb"
    ],
-   "next_action": "Write properties before installing the image, or roll back"
+   "next_action": "None"
   },
   "F58": {
    "status": "RESOLVED_VERIFIED",
@@ -694,9 +698,10 @@
    "stage": "OV-59",
    "evidence": [
     "gh api repos/Outer-Void/termux-background/issues (2026-11-04)",
-    "gh issue view 4/6/7/8: comments dated 2026-10-21; `gh release list`: newest release 2025-07-31 (deep audit, 2026-11-06). The 1.1.0 source handles a missing Termux service, a missing RUN_COMMAND permission and dispatch failures without crashing (app/src/main/java/com/termuxbackground/TermuxBridge.java:95-162); the reported crashes are against 2025 builds and cannot be reproduced without a device (D-03)"
+    "gh issue view 4/6/7/8: comments dated 2026-10-21; `gh release list`: newest release 2025-07-31 (deep audit, 2026-11-06). The 1.1.0 source handles a missing Termux service, a missing RUN_COMMAND permission and dispatch failures without crashing (app/src/main/java/com/termuxbackground/TermuxBridge.java:95-162); the reported crashes are against 2025 builds and cannot be reproduced without a device (D-03)",
+    "termux-background 49164f6 (OV-59, 2026-11-08): docs/ISSUE_TRIAGE.md assesses #4/#8 (closes on tap; likely the unsupported 2025 builds; 1.1.0 shows a fallback screen on startup errors) and #6/#7 (usage: README Requirements/Install); no reply posted"
    ],
-   "next_action": "Triage against the 1.1.0 code and the F77 builds; respond once a fix or a device result exists"
+   "next_action": "Owner replies and closes #4-#8 after a 1.1.0 device run (D-03)"
   },
   {
    "id": "F80",
@@ -730,7 +735,8 @@
    "decision": "D-13",
    "evidence": [
     "`git log --all --diff-filter=A` lists both keystore files at 261234d (2025-07-30); keystore.properties in 17f815b, 4a23f32, adfbcfe, 261234d and 8c3857b carries non-placeholder 9-character passwords (values not recorded)",
-    "Certificate fingerprint read with keytool (password supplied from history through the environment, never printed): 070cd54d…f68e; the temporary keystore copies were deleted (2026-11-05)"
+    "Certificate fingerprint read with keytool (password supplied from history through the environment, never printed): 070cd54d…f68e; the temporary keystore copies were deleted (2026-11-05)",
+    "OV-59 (2026-11-08): the exposed key was not used; history rewrite still needs owner authorization (D-13)"
    ],
    "next_action": "Treat the key as permanently revoked; never sign with it. Purging history needs an authorized history rewrite and would not undo the exposure (owner decision D-13)"
   },
@@ -809,15 +815,16 @@
    "found": "2026-11-06 (deep audit)",
    "source": "README and docs versus the authenticated GitHub API",
    "issue": "README.md (\"this repository is still **public**\") and docs/DISTRIBUTION.md (\"As of 2026-10-26 ... is **public**\", plus owner steps to make it private) contradict GitHub: voidforge is private. The two old workflow artifacts that DISTRIBUTION.md says to delete (12373236412, 12371984203, 983 bytes each) still exist, now in a private repository.",
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:voidforge",
    "priority": "P2",
    "stage": "OV-59",
    "evidence": [
     "gh api orgs/Outer-Void/repos: voidforge visibility private (2026-11-06)",
-    "gh api repos/Outer-Void/voidforge/actions/artifacts: 2 artifacts, expired=false (2026-11-06)"
+    "gh api repos/Outer-Void/voidforge/actions/artifacts: 2 artifacts, expired=false (2026-11-06)",
+    "voidforge 671349e (OV-59, 2026-11-08): README and docs/DISTRIBUTION.md state the private repository (anonymous API 404 while authenticated access works, 2026-11-08); the two old workflow artifacts remain an owner follow-up in DISTRIBUTION.md"
    ],
-   "next_action": "Update README and DISTRIBUTION.md to the private state; owner decides whether to delete the two artifacts"
+   "next_action": "Owner decides whether to delete the two old artifacts"
   },
   {
    "id": "F87",
@@ -826,14 +833,15 @@
    "found": "2026-11-06 (deep audit)",
    "source": "source review",
    "issue": "The local integration endpoint trusts any app whose package name is com.termux (app/src/main/java/dev/voidforge/app/IntegrationEndpoint.kt:56-58: getPackageUid(\"com.termux\")). If the real Termux is absent, another app installed under that name could connect while the endpoint is on and run READ_ONLY operations (device properties, package lists, logcat of the attached device), which need no local authorization. Writes stay protected by LocalAuthorizer. The endpoint is off at every launch.",
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:voidforge",
    "priority": "P2",
    "stage": "OV-59",
    "evidence": [
-    "IntegrationEndpoint.kt:26-60 read at voidforge 80aec1a (2026-11-06); not reproduced on a device (D-03)"
+    "IntegrationEndpoint.kt:26-60 read at voidforge 80aec1a (2026-11-06); not reproduced on a device (D-03)",
+    "voidforge 671349e (OV-59, 2026-11-08): owner decision 2026-11-08 (F-Droid by default, GitHub build only with a per-launch local switch). IntegrationEndpoint requires every current signer (apkContentsSigners) to be trusted; TermuxTrust pins F-Droid 228FB2CF…1C42 and GitHub B6DA0148…E5E1, measured from the official 0.118.3 APKs with tools/apk_signer_digest.py and apksigner (the installed Termux is byte-identical to the GitHub release); Termux publishes the GitHub signing key, so that pin is opt-in; TermuxTrustTest 4"
    ],
-   "next_action": "Also pin the Termux signing certificate (F-Droid or GitHub build digests) before trusting the UID; add a unit test for the allow-list"
+   "next_action": "None"
   },
   {
    "id": "F88",

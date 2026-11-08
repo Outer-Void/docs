@@ -402,6 +402,22 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-08"
     _row["known_blockers"] = _row["known_blockers"] + OV58_BLOCKERS.get(_row["repo"], [])
 
+# OV-59 (2026-11-08): VoidForge and Termux Background (ov-program/OV-59-report.md). PARTIAL: confirmation screen,
+# graduated write classes (all locked), Termux signer pinning, set rollback; device evidence per class needs D-03.
+OV59 = {
+    "voidforge": ("671349e", "OV-59: local confirmation screen F5 (partial), graduated write classes (none qualified, all locked), Termux signer pinning F87, private-state docs F86; core 96 and integration 13 tests; assembleDebug/Release, lintDebug, detekt, spotless, source policy, tools tests OK; DAT gate pass"),
+    "termux-background": ("49164f6", "OV-59: set rolls back the image on a failed properties write F57; cli and package tests pass (rebuilt .deb); issue triage F79; DAT gate pass"),
+}
+OV59_BLOCKERS = {
+    "voidforge": ["Every write class locked until per-class device evidence (F5, D-03)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV59:
+        _row["commit_sha"], _note = OV59[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-08"
+    _row["known_blockers"] = _row["known_blockers"] + OV59_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",
