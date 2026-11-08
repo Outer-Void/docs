@@ -332,7 +332,7 @@
    "component": "AXIOM Launcher",
    "repo": "void.os",
    "version": "2.0.0-dev",
-   "commit_sha": "24b07cd",
+   "commit_sha": "d4c3dc9",
    "role": "Paid Android launcher product (bundles VOID.SYS and hidden AXIOM Shooter)",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -349,16 +349,17 @@
     "No device matrix run",
     "No release keystore / protected signing job (env-only signing exists)",
     "No crash-loop guard",
-    "Legal/asset notice review"
+    "Legal/asset notice review",
+    "No device run of safe mode, backup/restore or sound (D-03)"
    ],
-   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26). Stage 44 DoD at 24b07cd (2026-10-27): unit 78 passed, debug APK built (BLUX-free core); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.",
-   "last_verified": "2026-10-27"
+   "evidence": "testDebugUnitTest 78 passed, assembleDebug OK, tool tests OK, components check with both upstreams OK, 16 KB native QA OK at 24b07cd (Stage 26). Stage 44 DoD at 24b07cd (2026-10-27): unit 78 passed, debug APK built (BLUX-free core); DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F1 (partial: Play licensing/Integrity still TODO), crash-loop guard F19, layout-only backup F20, Shooter core re-vendored with SFX; 93 unit tests; assembleDebug and assembleRelease OK (unsigned); 16 KB native check; components check vs both upstreams OK; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "VOID.SYS",
    "repo": "void.sys",
    "version": "2.1.0-dev",
-   "commit_sha": "09cf56f",
+   "commit_sha": "af0050b",
    "role": "Icon system: one lineage for the standalone icon pack and the versioned bundle consumed by AXIOM Launcher",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -374,14 +375,14 @@
     "2,903 asset variants pending individual visual review",
     "No device test of the standalone pack in third-party launchers"
    ],
-   "evidence": "tools tests 8 passed, verify_drawables OK, assembleDebug + assembleRelease OK, release APK keeps all 587 drawable names (Stage 25); AXIOM vendors release/manifest.json bundle byte-for-byte. Stage 44 DoD at 09cf56f (2026-10-27): debug APK built; no automated tests; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.",
-   "last_verified": "2026-10-27"
+   "evidence": "tools tests 8 passed, verify_drawables OK, assembleDebug + assembleRelease OK, release APK keeps all 587 drawable names (Stage 25); AXIOM vendors release/manifest.json bundle byte-for-byte. Stage 44 DoD at 09cf56f (2026-10-27): debug APK built; no automated tests; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F17; 8 unit tests (first in this repository); assembleRelease OK (unsigned); DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "AXIOM Shooter",
    "repo": "void.game",
    "version": "2.1.0-dev",
-   "commit_sha": "b56c1ae",
+   "commit_sha": "0839bcd",
    "role": "Standalone game product; core/ is the authoritative gameplay source bundled in AXIOM Launcher as a hidden Easter egg",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "EXCLUDED",
@@ -397,10 +398,11 @@
     "No audio",
     "Interrupted runs are not resumed",
     "No device playthroughs, GL context-loss, frame-time or battery evidence",
-    "Default font licence unresolved (credits UNR-020)"
+    "Default font licence unresolved (credits UNR-020)",
+    "Sound not heard on a device (D-03)"
    ],
-   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26). Stage 44 DoD at b56c1ae (2026-10-27): core 21 passed, debug APK built; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.",
-   "last_verified": "2026-10-27"
+   "evidence": "core:test 21 passed; android assembleDebug + assembleRelease OK; tools/check_apk_natives.py passes both APKs (libGDX 1.14.2, 16 KB); aapt2: launchable 'AXIOM Shooter' (Stage 26). Stage 44 DoD at b56c1ae (2026-10-27): core 21 passed, debug APK built; DAT audit triaged. Forward visibility reconciliation: owner reports private; anonymous API 404 on 2026-10-27; authenticated API unavailable.. OV-58: product signature v1 F2, synthesized SFX with a SOUND setting F29; core 24 tests, android 8; assembleRelease OK (unsigned); 16 KB native check; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Resolver (Telegram runtime)",

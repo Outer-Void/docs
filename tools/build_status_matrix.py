@@ -384,6 +384,24 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-08"
     _row["known_blockers"] = _row["known_blockers"] + OV57_BLOCKERS.get(_row["repo"], [])
 
+# OV-58 (2026-11-08): Launcher family (ov-program/OV-58-report.md). PARTIAL: signature v1, crash-loop guard, layout-only
+# backup and synthesized Shooter SFX; signing (D-04), devices (D-03) and Play licensing/Integrity (D-11) still block.
+OV58 = {
+    "void.os": ("d4c3dc9", "OV-58: product signature v1 F1 (partial: Play licensing/Integrity still TODO), crash-loop guard F19, layout-only backup F20, Shooter core re-vendored with SFX; 93 unit tests; assembleDebug and assembleRelease OK (unsigned); 16 KB native check; components check vs both upstreams OK; DAT gate pass"),
+    "void.sys": ("af0050b", "OV-58: product signature v1 F17; 8 unit tests (first in this repository); assembleRelease OK (unsigned); DAT gate pass"),
+    "void.game": ("0839bcd", "OV-58: product signature v1 F2, synthesized SFX with a SOUND setting F29; core 24 tests, android 8; assembleRelease OK (unsigned); 16 KB native check; DAT gate pass"),
+}
+OV58_BLOCKERS = {
+    "void.os": ["No device run of safe mode, backup/restore or sound (D-03)"],
+    "void.game": ["Sound not heard on a device (D-03)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV58:
+        _row["commit_sha"], _note = OV58[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-08"
+    _row["known_blockers"] = _row["known_blockers"] + OV58_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

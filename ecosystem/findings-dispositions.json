@@ -4,28 +4,30 @@
  "as_of": "2026-11-08",
  "dispositions": {
   "F1": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:void.os",
    "priority": "P0",
    "stage": "OV-58",
    "decision": "D-11",
    "evidence": [
     "void.os HEAD 24b07cd equals the frozen commit (inventory/inventory-current.json, 2026-11-04): unchanged",
-    "Source re-read at void.os 4ae9b33 (deep audit, 2026-11-06): SignatureVerifier.verify() ends in a TODO and `return false` (app/src/main/java/com/outervoid/axiom/security/SignatureVerifier.kt:38-39); IntegrityGate.verify() returns false in release (IntegrityGate.kt:9-11); EntitlementManager.evaluate() returns IntegrityFailed or Unlicensed (EntitlementManager.kt:31-35). Release builds therefore show only LockedScreen (MainActivity.kt:216-221): fail-closed, and the whole launcher is unusable in release"
+    "Source re-read at void.os 4ae9b33 (deep audit, 2026-11-06): SignatureVerifier.verify() ends in a TODO and `return false` (app/src/main/java/com/outervoid/axiom/security/SignatureVerifier.kt:38-39); IntegrityGate.verify() returns false in release (IntegrityGate.kt:9-11); EntitlementManager.evaluate() returns IntegrityFailed or Unlicensed (EntitlementManager.kt:31-35). Release builds therefore show only LockedScreen (MainActivity.kt:216-221): fail-closed, and the whole launcher is unusable in release",
+    "void.os d4c3dc9 (OV-58, 2026-11-08): SignatureVerifier verifies product signature v1 (owner decision 2026-11-08 (OV-58 question): ECDSA P-256 over a canonical payload, keys pinned at build time, fail closed with none); ProductSignatureCryptoTest 8 tests incl. a cross-language vector from tools/product_signature.py. EntitlementManager (Play licensing) and IntegrityGate (Play Integrity) remain TODO pending the trust model, so release builds stay locked"
    ],
-   "next_action": "Implement entitlement, Play Integrity and signature verification once the trust model (D-11) is pinned"
+   "next_action": "Pin the trust model (D-11) and issuer keys (D-04); then Play licensing and Play Integrity"
   },
   "F2": {
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:void.game",
    "priority": "P0",
    "stage": "OV-58",
    "decision": "D-11",
    "evidence": [
     "void.game HEAD b56c1ae equals the frozen commit: unchanged",
-    "Source re-read at void.game b56c1ae (deep audit, 2026-11-06): SignatureVerifier.verify() returns false after a TODO (android/src/main/kotlin/com/outervoid/voidgame/security/SignatureVerifier.kt:31-32), and StandaloneEntitlementGate (AndroidLauncher.kt:27) keeps release gameplay locked: fail-closed"
+    "Source re-read at void.game b56c1ae (deep audit, 2026-11-06): SignatureVerifier.verify() returns false after a TODO (android/src/main/kotlin/com/outervoid/voidgame/security/SignatureVerifier.kt:31-32), and StandaloneEntitlementGate (AndroidLauncher.kt:27) keeps release gameplay locked: fail-closed",
+    "void.game 0839bcd (OV-58, 2026-11-08): SignatureVerifier checks the install's signing certificate and verifies product signature v1 (owner decision 2026-11-08 (OV-58 question)); android ProductSignatureCryptoTest 8 tests. Release stays locked until an issuer key is pinned (D-04) and an issuing service exists (D-11)"
    ],
-   "next_action": "Implement SignatureVerifier cryptographic verification"
+   "next_action": "None for the verifier; keys and issuer under D-04/D-11"
   },
   "F5": {
    "status": "OPEN",
@@ -114,35 +116,40 @@
    "next_action": "None"
   },
   "F17": {
-   "status": "OPEN",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:void.sys",
    "priority": "P0",
    "stage": "OV-58",
    "evidence": [
     "void.sys source unchanged since the freeze except the OV-47 README version fix (3f2b7aa)",
-    "Source re-read at void.sys 3f2b7aa (deep audit, 2026-11-06): SignatureVerifier.verify() returns false after a TODO (app/src/main/java/com/outervoid/voidsys/security/SignatureVerifier.kt:30-31), but neither SignatureGate nor SignatureVerifier is referenced outside the security package (`grep -rn SignatureGate app/src`). IconPackActivity (IconPackActivity.kt:8-15) and the icon resources are served without any entitlement check, so the README statement that verification \"fails closed\" describes the unused verifier, not the product. Unlike F1/F2, VOID.SYS is not fail-closed today"
+    "Source re-read at void.sys 3f2b7aa (deep audit, 2026-11-06): SignatureVerifier.verify() returns false after a TODO (app/src/main/java/com/outervoid/voidsys/security/SignatureVerifier.kt:30-31), but neither SignatureGate nor SignatureVerifier is referenced outside the security package (`grep -rn SignatureGate app/src`). IconPackActivity (IconPackActivity.kt:8-15) and the icon resources are served without any entitlement check, so the README statement that verification \"fails closed\" describes the unused verifier, not the product. Unlike F1/F2, VOID.SYS is not fail-closed today",
+    "void.sys af0050b (OV-58, 2026-11-08): SignatureVerifier checks the signing certificate and verifies product signature v1 (owner decision 2026-11-08 (OV-58 question)); ProductSignatureCryptoTest 8 tests; assembleRelease OK. The gate is not yet called by the app"
    ],
-   "next_action": "Implement signature verification"
+   "next_action": "None"
   },
   "F19": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:void.os",
    "priority": "P1",
    "stage": "OV-58",
    "evidence": [
-    "void.os unchanged since the freeze"
+    "void.os unchanged since the freeze",
+    "void.os d4c3dc9 (OV-58, 2026-11-08): crash-loop guard (AxiomApplication installs it; 3 crashes without a healthy 10 s session -> plain-view safe mode: try again, reset layout settings, choose another Home app); CrashLoopPolicyTest; release APK manifest names AxiomApplication. Not exercised on a device"
    ],
-   "next_action": "Crash-loop guard with device verification"
+   "next_action": "Verify on a device (D-03)",
+   "decision": "D-03"
   },
   "F20": {
-   "status": "DEFERRED",
+   "status": "PARTIAL",
    "owner": "owner",
    "priority": "P2",
    "stage": "OV-58",
    "evidence": [
-    "Product decision still open (allowBackup=false)"
+    "Product decision still open (allowBackup=false)",
+    "owner decision 2026-11-08 (OV-58 question): back up layout only. void.os d4c3dc9 (OV-58, 2026-11-08): allowBackup with backup_rules.xml and data_extraction_rules.xml including only datastore/axiom_settings.preferences_pb (not feed notes and tasks, signatures, entitlement, crash state or caches); unknown widget ids after restore show a placeholder; test asserts the include set; release APK manifest carries both rule files. Backup/transfer not run on a device"
    ],
-   "next_action": "Owner decides on backup of customization"
+   "next_action": "Verify a backup and restore on a device (D-03)",
+   "decision": "D-03"
   },
   "F21": {
    "status": "EXTERNAL_BLOCKED",
@@ -151,7 +158,8 @@
    "stage": "OV-58",
    "decision": "D-04",
    "evidence": [
-    "No signing custody decision as of 2026-11-04 (D-04)"
+    "No signing custody decision as of 2026-11-04 (D-04)",
+    "OV-58 (2026-11-08): still no signing custody (D-04); all three release APKs build unsigned. The exposed termux-background key is never used"
    ],
    "next_action": "Owner approves key custody; then a protected signing job"
   },
@@ -178,24 +186,27 @@
    "next_action": "Nova and Lawnchair device tests"
   },
   "F29": {
-   "status": "OPEN",
+   "status": "PARTIAL",
    "owner": "repo:void.game",
    "priority": "P1",
    "stage": "OV-58",
    "evidence": [
-    "void.game unchanged since the freeze"
+    "void.game unchanged since the freeze",
+    "owner decision 2026-11-08 (OV-58 question): synthesized SFX. void.game 0839bcd (OV-58, 2026-11-08): seven effects synthesized in code (no third-party audio), Settings SOUND on/off, failures turn audio off; SfxSynthTest (deterministic, valid WAV, audible, click-free, every effect used); vendored into AXIOM Launcher via components.py sync. Playback not heard on a device"
    ],
-   "next_action": "Licensed or synthesized audio"
+   "next_action": "Listen on a device (D-03)",
+   "decision": "D-03"
   },
   "F30": {
-   "status": "DEFERRED",
+   "status": "RESOLVED_VERIFIED",
    "owner": "owner",
    "priority": "P2",
    "stage": "OV-58",
    "evidence": [
-    "Persistence decision not yet made"
+    "Persistence decision not yet made",
+    "owner decision 2026-11-08 (OV-58 question): keep as is; an interrupted run is abandoned. void.game README records it (0839bcd)"
    ],
-   "next_action": "Owner decides whether interrupted runs resume"
+   "next_action": "None"
   },
   "F31": {
    "status": "EXTERNAL_BLOCKED",

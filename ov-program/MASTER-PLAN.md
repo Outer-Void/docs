@@ -206,7 +206,7 @@ green.
 - Contract mutations are detected.
 - Every known High finding has a release disposition.
 
-### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-54 on 2026-11-07, OV-57 on 2026-11-08; the rest not yet authorized)
+### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-54 on 2026-11-07, OV-57 and OV-58 on 2026-11-08; the rest not yet authorized)
 These stages are unchanged from the approved plan. Each starts with the delta review from rule 11 instead of
 repeating work verified in Stages 42–44.
 
@@ -304,3 +304,4 @@ generated docs, ledger, credits and tests agree. An environment-blocked stage is
 | 2026-11-07 | D-15 added: OV-53 needs an independent evaluation custodian and a compute budget, which no stage may choose | Plan section 6 |
 | 2026-11-07 | OV-54 authorized; owner decisions F58 (master_log private by default) and F59 (newproject proprietary by default) | Owner authorization and answers, 2026-11-07 |
 | 2026-11-08 | OV-57 authorized | Owner authorization, 2026-11-08 |
+| 2026-11-08 | OV-58 authorized; owner decisions: product signature v1 (F1/F2/F17), layout-only backup (F20), runs not resumed (F30), synthesized SFX (F29) | Owner authorization and answers, 2026-11-08 |
