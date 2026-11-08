@@ -368,6 +368,22 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-08" if _row["repo"] != "blux10k" else "2026-11-07"
     _row["known_blockers"] = _row["known_blockers"] + OV54_BLOCKERS.get(_row["repo"], [])
 
+# OV-57 (2026-11-08): Resolver and website (ov-program/OV-57-report.md). PARTIAL: payment and recovery fixes, root cause
+# of 530/1033 found from outside; domain, tunnel, live bot and live recovery need the owner's access (D-07).
+OV57 = {
+    "resolver": ("63cce8b", "OV-57: charged Stars payments never dropped F125, database backup/restore and recovery runbook F126; 184 tests, smoke check, run_resolver.sh proof mode from a clean copy; DAT gate pass"),
+    "ov-webpages/theresolver": ("49dbeff", "OV-57 re-run (2026-11-08): lint, build, 9 tests, pricing matches the bot (5 plans); theresolver.pages.dev serves this build; npm audit --omit=dev clean"),
+}
+OV57_BLOCKERS = {
+    "resolver": ["Mini App hostnames admin./hq. have no DNS (F127, D-07)", "Bot not verified live against Telegram (F128, D-07)"],
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV57:
+        _row["commit_sha"], _note = OV57[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-08"
+    _row["known_blockers"] = _row["known_blockers"] + OV57_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

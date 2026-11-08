@@ -406,7 +406,7 @@
    "component": "Resolver (Telegram runtime)",
    "repo": "resolver",
    "version": "4.0.0 (app/__init__.py); git tag v4.0 (historical)",
-   "commit_sha": "aae88c2",
+   "commit_sha": "63cce8b",
    "role": "Telegram moderation bot runtime with a paid intelligence layer",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "UNVERIFIED",
@@ -421,10 +421,12 @@
     "Release gate steps install_resolver.sh / run_resolver.sh need live secrets: not run",
     "CI blocked org-wide by the GitHub billing lock (F49)",
     "Live tunnel/DNS, provider, payment/subscription/admin qualification and release gate need operational credentials",
-    "Website domain deployment remains unverified"
+    "Website domain deployment remains unverified",
+    "Mini App hostnames admin./hq. have no DNS (F127, D-07)",
+    "Bot not verified live against Telegram (F128, D-07)"
    ],
-   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation). Stage 44 DoD at bf7f26a (2026-10-27): 173 unit tests passed; DAT audit triaged Forward execution: app.__version__ aligned to historical v4.0 as 4.0.0; duplicate the in tunnel/host names corrected. Historical tags unchanged.. OV-48 re-run at aae88c2 (2026-11-04): 173 passed",
-   "last_verified": "2026-11-04"
+   "evidence": "Release gate offline steps at bf7f26a: compileall OK, unittest 173 OK, scripts/smoke_check.py OK (2026-10-27 reconciliation). Stage 44 DoD at bf7f26a (2026-10-27): 173 unit tests passed; DAT audit triaged Forward execution: app.__version__ aligned to historical v4.0 as 4.0.0; duplicate the in tunnel/host names corrected. Historical tags unchanged.. OV-48 re-run at aae88c2 (2026-11-04): 173 passed. OV-57: charged Stars payments never dropped F125, database backup/restore and recovery runbook F126; 184 tests, smoke check, run_resolver.sh proof mode from a clean copy; DAT gate pass",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Resolver website",
@@ -445,8 +447,8 @@
     "Custom domain theresolverbot.net (and www) returns Cloudflare error 1033 (tunnel), not the Pages site (F54)",
     "GitHub Actions blocked org-wide by the billing lock (F49)"
    ],
-   "evidence": "npm run check at 49dbeff: lint, build, 9 node:test checks over the export incl. HTTP smoke; npm audit 0; two builds byte-identical; deployed theresolver.pages.dev serves this build (pages 200, deep links, CSP/HSTS headers) (Stage 31). Stage 44 DoD at 49dbeff (2026-10-27): lint, build and 9 tests passed; npm audit clean; DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "npm run check at 49dbeff: lint, build, 9 node:test checks over the export incl. HTTP smoke; npm audit 0; two builds byte-identical; deployed theresolver.pages.dev serves this build (pages 200, deep links, CSP/HSTS headers) (Stage 31). Stage 44 DoD at 49dbeff (2026-10-27): lint, build and 9 tests passed; npm audit clean; DAT audit triaged. OV-57 re-run (2026-11-08): lint, build, 9 tests, pricing matches the bot (5 plans); theresolver.pages.dev serves this build; npm audit --omit=dev clean",
+   "last_verified": "2026-11-08"
   },
   {
    "component": "Roughin",

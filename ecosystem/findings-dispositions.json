@@ -427,7 +427,8 @@
    "decision": "D-07",
    "evidence": [
     "2026-11-04: https://theresolverbot.net/ and https://www.theresolverbot.net/ return HTTP 530; https://theresolver.pages.dev/ returns 200",
-    "Re-checked (deep audit, 2026-11-06): https://theresolverbot.net and https://www.theresolverbot.net return HTTP 530 with Cloudflare error 1033 (a tunnel with no connector), although the site is meant to be served by Cloudflare Pages. The bot tunnel's own hostnames admin.theresolverbot.net and hq.theresolverbot.net (resolver/cloudflared/config.yml) have no DNS records"
+    "Re-checked (deep audit, 2026-11-06): https://theresolverbot.net and https://www.theresolverbot.net return HTTP 530 with Cloudflare error 1033 (a tunnel with no connector), although the site is meant to be served by Cloudflare Pages. The bot tunnel's own hostnames admin.theresolverbot.net and hq.theresolverbot.net (resolver/cloudflared/config.yml) have no DNS records",
+    "OV-57 root cause (2026-11-07, observed from outside): apex and www are proxied by Cloudflare and answer 530 with `error code: 1033`, i.e. they are routed to a Cloudflare Tunnel with no healthy connector, while theresolver.pages.dev serves the current build (visible text identical to a local build of 49dbeff). Fix: route apex and www to the Pages project as custom domains (resolver docs/RECOVERY.md section 1)"
    ],
    "next_action": "Owner attaches the custom domain or fixes the tunnel in Cloudflare"
   },
@@ -835,7 +836,8 @@
    "priority": "P2",
    "stage": "OV-57",
    "evidence": [
-    "`npm audit` in ov-webpages/theresolver at 49dbeff: 8 moderate; `npm audit --omit=dev` exit 0 (2026-11-06)"
+    "`npm audit` in ov-webpages/theresolver at 49dbeff: 8 moderate; `npm audit --omit=dev` exit 0 (2026-11-06)",
+    "OV-57 (2026-11-08): still 8 moderate, dev-only; npm offers only a major downgrade (eslint-config-next 15.5.29), 16.4.5 does not fix it; `npm audit --omit=dev` exit 0"
    ],
    "next_action": "Upgrade the lint toolchain when a fixed release exists; no forced downgrade"
   },
@@ -1447,6 +1449,74 @@
     "Observed at e2e9f58 with an empty scratch HOME (2026-11-07)"
    ],
    "next_action": "Decide whether missing or unlinked dotfiles should fail `verify` (or document that it does not)"
+  },
+  {
+   "id": "F125",
+   "repo": "resolver",
+   "severity": "High",
+   "found": "2026-11-08 (OV-57 delta review)",
+   "source": "OV-57 delta review",
+   "issue": "A Stars payment that Telegram had already charged was dropped when the bot could not apply it: on an unknown invoice (for example after a database restore), an amount, payer, plan or subject mismatch, an expired invoice, a second charge for an invoice already paid, or any error while applying it, `successful_payment` only replied with an error. The charge was recorded nowhere, so the user paid for nothing with no refund trail.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:resolver",
+   "priority": "P1",
+   "stage": "OV-57",
+   "evidence": [
+    "Source review and tests at aae88c2 (2026-11-08): 6 of 8 cases in tests/test_payment_post_charge.py fail (no ledger row for the charge)",
+    "Fixed in resolver 63cce8b (OV-57, 2026-11-08): every such charge is recorded in stars_ledger as needs_review (not revenue) with an audit entry and a refund reference to the user; entitlement still fails closed; refunds stay an owner action (docs/RECOVERY.md)"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F126",
+   "repo": "resolver",
+   "severity": "Medium",
+   "found": "2026-11-08 (OV-57 delta review)",
+   "source": "OV-57 delta review",
+   "issue": "The bot had no database backup or restore procedure and no recovery runbook, although the database holds subscriptions, payments and the Stars ledger.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:resolver",
+   "priority": "P1",
+   "stage": "OV-57",
+   "evidence": [
+    "docs/ at aae88c2 had no backup, restore or recovery section (2026-11-08)",
+    "Fixed in resolver 63cce8b (OV-57, 2026-11-08): scripts/db_backup.py (online backup, integrity check, checksum, verify, restore that refuses damaged backups and keeps the replaced file) and docs/RECOVERY.md; rehearsed locally by tests/test_recovery_rehearsal.py (backup during a write, loss, restore with paid state intact, tampered backup refused)"
+   ],
+   "next_action": "Rehearse a restore on the real bot host (owner, with D-07 access)"
+  },
+  {
+   "id": "F127",
+   "repo": "resolver",
+   "severity": "High",
+   "found": "2026-11-08 (OV-57 delta review)",
+   "source": "OV-57 delta review",
+   "issue": "The Mini App hostnames the bot requires (`admin.theresolverbot.net`, `hq.theresolverbot.net`) do not exist in DNS (NXDOMAIN), so the Group Admin and owner HQ Mini Apps cannot load even when the bot runs.",
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-57",
+   "evidence": [
+    "dig on 2026-11-07: NXDOMAIN for both; the repository tunnel config routes exactly these names to the bot's port 8080"
+   ],
+   "next_action": "Owner creates the tunnel DNS routes and runs the connector next to the bot (docs/RECOVERY.md section 2)",
+   "decision": "D-07"
+  },
+  {
+   "id": "F128",
+   "repo": "resolver",
+   "severity": "Medium",
+   "found": "2026-11-08 (OV-57 delta review)",
+   "source": "OV-57 delta review",
+   "issue": "The bot itself has not been verified live: no bot token or Telegram test account is available to this program, so `getMe`, polling, the admin flows, a Stars test purchase and the restore path (`ga:restore`) have not run against Telegram.",
+   "status": "EXTERNAL_BLOCKED",
+   "owner": "owner",
+   "priority": "P1",
+   "stage": "OV-57",
+   "evidence": [
+    "Release gate passes locally on 2026-11-08: 184 tests, smoke check, run_resolver.sh proof mode from a clean copy (placeholder secrets)"
+   ],
+   "next_action": "Owner runs docs/LAUNCH_CHECKLIST.md with the real token (D-07)",
+   "decision": "D-07"
   }
  ]
 }
