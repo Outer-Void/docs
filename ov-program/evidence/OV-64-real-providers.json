@@ -1,0 +1,200 @@
+{
+ "run": "OV-64 metered real-provider qualification",
+ "ceiling_usd": 1.0,
+ "rates_usd_per_million": {
+  "input": 5,
+  "output": 25
+ },
+ "upper_bound_usd": 0.039,
+ "results": [
+  {
+   "case": "text",
+   "route_id": "main.openai",
+   "provider": "openai",
+   "model": "gpt-5-mini",
+   "at": "2026-11-09T21:29:53Z",
+   "outcome": "FAIL",
+   "error_code": "PROVIDER_QUOTA_EXCEEDED",
+   "error_message": "The provider account has no usable balance or quota: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/setting",
+   "cost_upper_usd": 0.013,
+   "seconds": 1.86
+  },
+  {
+   "case": "stream",
+   "route_id": "main.openai",
+   "provider": "openai",
+   "model": "gpt-5-mini",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "structured",
+   "route_id": "main.openai",
+   "provider": "openai",
+   "model": "gpt-5-mini",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "tool_call",
+   "route_id": "main.openai",
+   "provider": "openai",
+   "model": "gpt-5-mini",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "text",
+   "route_id": "main.anthropic",
+   "provider": "anthropic",
+   "model": "claude-haiku-4-5-20251001",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "FAIL",
+   "error_code": "PROVIDER_QUOTA_EXCEEDED",
+   "error_message": "The provider account has no usable balance or quota: Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purc",
+   "cost_upper_usd": 0.013,
+   "seconds": 0.42
+  },
+  {
+   "case": "stream",
+   "route_id": "main.anthropic",
+   "provider": "anthropic",
+   "model": "claude-haiku-4-5-20251001",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "structured",
+   "route_id": "main.anthropic",
+   "provider": "anthropic",
+   "model": "claude-haiku-4-5-20251001",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "tool_call",
+   "route_id": "main.anthropic",
+   "provider": "anthropic",
+   "model": "claude-haiku-4-5-20251001",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "text",
+   "route_id": "main.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-chat",
+   "at": "2026-11-09T21:29:55Z",
+   "outcome": "FAIL",
+   "error_code": "PROVIDER_QUOTA_EXCEEDED",
+   "error_message": "The provider account has no usable balance or quota: Insufficient Balance (request_id: e68c6203-6eb6-42d8-865b-3f808be61a0a)",
+   "cost_upper_usd": 0.013,
+   "seconds": 1.12
+  },
+  {
+   "case": "stream",
+   "route_id": "main.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-chat",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "structured",
+   "route_id": "main.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-chat",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "tool_call",
+   "route_id": "main.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-chat",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "text",
+   "route_id": "reason.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-reasoner",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "stream",
+   "route_id": "reason.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-reasoner",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "NOT_RUN",
+   "reason": "provider stopped after an auth or billing error"
+  },
+  {
+   "case": "wrong_key",
+   "route_id": "main.openai",
+   "provider": "openai",
+   "model": "gpt-5-mini",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "PASS",
+   "error_code": "PROVIDER_AUTH_FAILED",
+   "error_message": "The provider rejected the credentials (HTTP 401).",
+   "cost_upper_usd": 0.0,
+   "seconds": 0.56
+  },
+  {
+   "case": "wrong_key",
+   "route_id": "main.anthropic",
+   "provider": "anthropic",
+   "model": "claude-haiku-4-5-20251001",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "PASS",
+   "error_code": "PROVIDER_AUTH_FAILED",
+   "error_message": "The provider rejected the credentials (HTTP 401).",
+   "cost_upper_usd": 0.0,
+   "seconds": 0.31
+  },
+  {
+   "case": "wrong_key",
+   "route_id": "main.deepseek",
+   "provider": "deepseek",
+   "model": "deepseek-chat",
+   "at": "2026-11-09T21:29:57Z",
+   "outcome": "PASS",
+   "error_code": "PROVIDER_AUTH_FAILED",
+   "error_message": "The provider rejected the credentials (HTTP 401).",
+   "cost_upper_usd": 0.0,
+   "seconds": 0.81
+  },
+  {
+   "case": "deadline",
+   "route_id": "main.openai",
+   "provider": "openai",
+   "model": "gpt-5-mini",
+   "at": "2026-11-09T21:29:58Z",
+   "outcome": "PASS",
+   "error_code": "PROVIDER_TIMEOUT",
+   "error_message": "The provider connection timed out.",
+   "cost_upper_usd": 0.0,
+   "seconds": 0.27
+  }
+ ],
+ "note": "Actual spend US$0: every paid call was refused for billing before any generation. upper_bound_usd is the harness's conservative bound (worst case counted for calls without reported usage). Key values never recorded.",
+ "date": "2026-11-09",
+ "components": {
+  "blux-gpt": "bc2aba4 (F118 fix; routes unchanged in 11b83a4)",
+  "blux": "b56d06c"
+ }
+}

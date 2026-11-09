@@ -495,6 +495,19 @@ for _row in COMPONENTS:
         _row.update(OV63_STATUS.get(_row["repo"], {}))
         _row["known_blockers"] = _row["known_blockers"] + OV63_BLOCKERS.get(_row["repo"], [])
 
+# OV-64 (2026-11-09): real services and providers (ov-program/OV-64-report.md). BLOCKED: every provider account is
+# unfunded (D-02); D-05, D-06 and D-07 kept blocked by the owner. Local fixes only.
+OV64 = {
+    "blux-gpt": ("11b83a4", "OV-64: inline <think> reasoning dropped from OpenAI-compatible answers and streams (F118); API-key config created 0600 (F141); suite 62 passed; metered real run: keys valid, every account PROVIDER_QUOTA_EXCEEDED, spend US$0"),
+}
+OV64_BLOCKERS = {"blux-gpt": ["D-02: OpenAI, Anthropic and DeepSeek accounts have no balance (2026-11-09); the authorized US$1 real run repeats once one is funded"]}
+for _row in COMPONENTS:
+    if _row["repo"] in OV64:
+        _row["commit_sha"], _note = OV64[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-09"
+        _row["known_blockers"] = _row["known_blockers"] + OV64_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

@@ -227,7 +227,7 @@
    "component": "BluxGPT",
    "repo": "blux-gpt",
    "version": "2.0.0",
-   "commit_sha": "0175196",
+   "commit_sha": "11b83a4",
    "role": "Provider/model gateway behind Model API v1; no agent loop, no tool execution, no authority",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -240,9 +240,10 @@
    "release_status": "NOT_RELEASED",
    "known_blockers": [
     "Real-provider runs not recorded; hard-coded provider model IDs not verified against current catalogs",
-    "Inline <think> from OpenAI-compatible servers reaches answers and sessions (F118, OV-64)"
+    "Inline <think> from OpenAI-compatible servers reaches answers and sessions (F118, OV-64)",
+    "D-02: OpenAI, Anthropic and DeepSeek accounts have no balance (2026-11-09); the authorized US$1 real run repeats once one is funded"
    ],
-   "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports. Stage 44 DoD at 4609cd9 (2026-10-27): 49 passed, 1 skipped (network off); DAT audit triaged. OV-61: own suite passes without the BLUX runtime (fresh clone at 0175196)",
+   "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports. Stage 44 DoD at 4609cd9 (2026-10-27): 49 passed, 1 skipped (network off); DAT audit triaged. OV-61: own suite passes without the BLUX runtime (fresh clone at 0175196). OV-64: inline <think> reasoning dropped from OpenAI-compatible answers and streams (F118); API-key config created 0600 (F141); suite 62 passed; metered real run: keys valid, every account PROVIDER_QUOTA_EXCEEDED, spend US$0",
    "last_verified": "2026-11-09"
   },
   {
