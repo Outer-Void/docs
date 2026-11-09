@@ -139,7 +139,7 @@
    "component": "DAT",
    "repo": "dat",
    "version": "4.0.0",
-   "commit_sha": "24a7290",
+   "commit_sha": "eff11ee",
    "role": "Independent audit/security/quality/release authority; may reject any component's work",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -147,13 +147,14 @@
    "test_status": "INTEGRATION_TESTED",
    "hardware_status": "NOT_APPLICABLE",
    "security_status": "IMPLEMENTED",
-   "package_status": "IMPLEMENTED",
-   "distribution_status": "NOT_STARTED",
+   "package_status": "INTEGRATION_TESTED",
+   "distribution_status": "BLOCKED",
    "release_status": "NOT_RELEASED",
    "known_blockers": [
-    "README previously pinned a v4.0.0 tag that does not exist (tags: v1.0.0, v2.0.0-alpha.1, v2.0.0-Stable)"
+    "README previously pinned a v4.0.0 tag that does not exist (tags: v1.0.0, v2.0.0-alpha.1, v2.0.0-Stable)",
+    "D-01: CI cannot run, and the release policy needs green CI on the release commit; the pilot stays local (owner decision 2026-11-09)"
    ],
-   "evidence": "pytest: 88 passed at 76d0a01 (re-run 2026-10-26). Stage 44 DoD at 487e1d4 (2026-10-27): 88 passed (BLUX disabled); DAT audit triaged. OV-51: nested policy F102; 89 passed; FIFO, device and symlinked target policies ignored for the default; ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at 57c8099). OV-62: an unreadable file makes the audit incomplete (exit 3) instead of passing the gate (F134); suite 91 passed; BLUX off passes; DAT gate pass",
+   "evidence": "pytest: 88 passed at 76d0a01 (re-run 2026-10-26). Stage 44 DoD at 487e1d4 (2026-10-27): 88 passed (BLUX disabled); DAT audit triaged. OV-51: nested policy F102; 89 passed; FIFO, device and symlinked target policies ignored for the default; ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at 57c8099). OV-62: an unreadable file makes the audit incomplete (exit 3) instead of passing the gate (F134); suite 91 passed; BLUX off passes; DAT gate pass. OV-63: pilot 4.0.0-pilot.1 built from two fresh clones byte-identically, tests 98, lint, wheel and sdist installed into empty environments with smoke checks, bandit/detect-secrets/pip-audit pass, signed with the release key (releases/dat/4.0.0-pilot.1); unparsed Android manifests block the security gate (F139); the tag workflow only verifies (F140)",
    "last_verified": "2026-11-09"
   },
   {

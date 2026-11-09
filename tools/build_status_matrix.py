@@ -480,6 +480,21 @@ for _row in COMPONENTS:
         _row["evidence"] += f". {_note}"
         _row["last_verified"] = "2026-11-09"
 
+# OV-63 (2026-11-09): DAT pilot and shared release machinery (ov-program/OV-63-report.md, releases/). PARTIAL:
+# a signed, reproducible, independently checked and installable DAT build exists; no release while CI cannot run.
+OV63 = {
+    "dat": ("eff11ee", "OV-63: pilot 4.0.0-pilot.1 built from two fresh clones byte-identically, tests 98, lint, wheel and sdist installed into empty environments with smoke checks, bandit/detect-secrets/pip-audit pass, signed with the release key (releases/dat/4.0.0-pilot.1); unparsed Android manifests block the security gate (F139); the tag workflow only verifies (F140)"),
+}
+OV63_STATUS = {"dat": {"package_status": "INTEGRATION_TESTED", "distribution_status": "BLOCKED"}}
+OV63_BLOCKERS = {"dat": ["D-01: CI cannot run, and the release policy needs green CI on the release commit; the pilot stays local (owner decision 2026-11-09)"]}
+for _row in COMPONENTS:
+    if _row["repo"] in OV63:
+        _row["commit_sha"], _note = OV63[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-09"
+        _row.update(OV63_STATUS.get(_row["repo"], {}))
+        _row["known_blockers"] = _row["known_blockers"] + OV63_BLOCKERS.get(_row["repo"], [])
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

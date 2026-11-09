@@ -7,12 +7,12 @@
  },
  "counts": {
   "frozen_open": 57,
-  "new": 62,
+  "new": 64,
   "by_status": {
    "PARTIAL": 11,
-   "RESOLVED_VERIFIED": 67,
+   "RESOLVED_VERIFIED": 70,
    "EXTERNAL_BLOCKED": 19,
-   "DEFERRED": 11,
+   "DEFERRED": 10,
    "BLOCKED_LOCAL_ENVIRONMENT": 2,
    "OPEN": 9
   },
@@ -20,7 +20,7 @@
    "Critical": 2,
    "High": 14,
    "Medium": 21,
-   "Low": 13,
+   "Low": 12,
    "Info": 2
   }
  },
@@ -2006,15 +2006,16 @@
    "severity": "Low",
    "source": "OV-52 delta review",
    "issue": "The store's chain and head.json are unsigned, so someone who can write the store directory can rewrite both consistently; only a head kept elsewhere (verify --expect-head) detects that.",
-   "status": "DEFERRED",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux-system",
    "priority": "P2",
    "stage": "OV-63",
    "decision": null,
    "evidence": [
-    "Documented in blux-system docs/STORE.md (OV-52, 2026-11-07)"
+    "Documented in blux-system docs/STORE.md (OV-52, 2026-11-07)",
+    "docs OV-63 (2026-11-09): owner decision: anchor heads in signed release receipts. tools/release_pipeline.py writes the BLUX System evidence-store head into receipt.json, signs it with the new release key, and `verify --store` runs `blux-system verify --expect-head`; test_f113_a_consistently_rewritten_evidence_store_is_detected replaces the store with one rebuilt so its own chain verifies, and verification fails"
    ],
-   "next_action": "Decide in OV-63 (signing and release machinery) whether to sign or externally publish store heads, with a new key; the exposed key is never used"
+   "next_action": "None for release evidence; signing every store head on write stays out of scope (owner decision 2026-11-09)"
   },
   {
    "id": "F114",
@@ -2502,6 +2503,44 @@
     "blux b56d06c (OV-62, 2026-11-09): a torn tail alone passes, other damage still blocks; tests fail on 5995419"
    ],
    "next_action": "None"
+  },
+  {
+   "id": "F139",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-09 (OV-63, independent scanner review)",
+   "repo": "dat",
+   "severity": "High",
+   "source": "OV-63 pilot: bandit B314 review led to a hostile-manifest drill",
+   "issue": "android.manifest-unparseable was quality/medium, which `dat security` drops; one DOCTYPE line in front of a debuggable AndroidManifest.xml made `dat security --gate` pass (exit 0) with no finding.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:dat",
+   "priority": "P0",
+   "stage": "OV-63",
+   "decision": null,
+   "evidence": [
+    "dat eff11ee (OV-63, 2026-11-09): the rule is now security/high; test_ov63_a_manifest_dat_cannot_parse_fails_the_security_gate (3 cases) fails on 24a7290; the five Android repositories still pass their gates; the pilot's smoke check runs the same drill against the installed wheel and sdist"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F140",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-09 (OV-63 delta review)",
+   "repo": "dat",
+   "severity": "Medium",
+   "source": "OV-63 delta review of DAT's release workflow",
+   "issue": "release.yml would publish a GitHub release on a version tag after only DAT's own audit (no tests), and signed only if a GPG secret existed; DAT has no secrets, so a tag would have published unsigned, self-certified artifacts.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:dat",
+   "priority": "P1",
+   "stage": "OV-63",
+   "decision": null,
+   "evidence": [
+    "dat eff11ee (OV-63, 2026-11-09): the workflow only verifies (tests, rebuild against the signed record) and has read-only permissions; tests/test_release_workflow.py (3) fails on 24a7290. The workflow itself cannot run (D-01)"
+   ],
+   "next_action": "Run the tag workflow once CI can start (D-01)"
   }
  ]
 }

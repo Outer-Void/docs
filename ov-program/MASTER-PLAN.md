@@ -206,7 +206,7 @@ green.
 - Contract mutations are detected.
 - Every known High finding has a release disposition.
 
-### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-54 on 2026-11-07, OV-57 to OV-60 on 2026-11-08, OV-61 and OV-62 on 2026-11-09; the rest not yet authorized)
+### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-54 on 2026-11-07, OV-57 to OV-60 on 2026-11-08, OV-61 to OV-63 on 2026-11-09; the rest not yet authorized)
 These stages are unchanged from the approved plan. Each starts with the delta review from rule 11 instead of
 repeating work verified in Stages 42–44.
 
@@ -259,7 +259,7 @@ repeating work verified in Stages 42–44.
 | D-01 | GitHub Actions billing and runner access | Hosted CI and release gates | Source, tests, docs |
 | D-02 | Real-model provider access and a spend ceiling | Real BLUX provider qualification | Deterministic runtime, evaluation design |
 | D-03 | Physical Android reference devices | Device qualification | JVM, build, UI and safety tests |
-| D-04 | Signing key custody and distribution channels | Paid Android releases | Entitlement implementation, negative tests |
+| D-04 | Signing key custody and distribution channels. Decided for DAT on 2026-11-09 (OV-63): a dedicated Ed25519 release key on the owner's machine, SSH signature format (`releases/allowed_signers`). Android signing custody is still open | Paid Android releases | Entitlement implementation, negative tests |
 | D-05 | Stripe, R2 and PostgreSQL staging accounts | Roughin live-service gates | Local functional tests |
 | D-06 | Notification provider, privacy and delivery policy | Vigyl delivered-alert claims | In-app flows, accessibility |
 | D-07 | Cloudflare and Telegram access for Resolver diagnostics | Resolver production gate | Configuration, local tests |

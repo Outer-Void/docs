@@ -1,0 +1,331 @@
+{
+ "artifacts": [
+  {
+   "name": "outervoid_dat-4.0.0-py3-none-any.whl",
+   "sha256": "c3869b5f4f5d49cc861f2075a857e4c3ad6913152cdd176e509b4b1e44f3bc2f",
+   "size": 61855
+  },
+  {
+   "name": "outervoid_dat-4.0.0.tar.gz",
+   "sha256": "6387b305eef56d4fce4cb919bef2a511d25d7229228d8ae3eeaf4f5b31b07cde",
+   "size": 65598
+  }
+ ],
+ "channel": "pilot.1",
+ "checks": [
+  {
+   "builds": {
+    "a": {
+     "outervoid_dat-4.0.0-py3-none-any.whl": "c3869b5f4f5d49cc861f2075a857e4c3ad6913152cdd176e509b4b1e44f3bc2f",
+     "outervoid_dat-4.0.0.tar.gz": "6387b305eef56d4fce4cb919bef2a511d25d7229228d8ae3eeaf4f5b31b07cde"
+    },
+    "b": {
+     "outervoid_dat-4.0.0-py3-none-any.whl": "c3869b5f4f5d49cc861f2075a857e4c3ad6913152cdd176e509b4b1e44f3bc2f",
+     "outervoid_dat-4.0.0.tar.gz": "6387b305eef56d4fce4cb919bef2a511d25d7229228d8ae3eeaf4f5b31b07cde"
+    }
+   },
+   "name": "reproducible-build",
+   "passed": true
+  },
+  {
+   "argv": [
+    "pytest"
+   ],
+   "counts": {
+    "errors": 0,
+    "failures": 0,
+    "passed": 98,
+    "skipped": 0,
+    "tests": 98
+   },
+   "exit": 0,
+   "name": "test-suite",
+   "passed": true
+  },
+  {
+   "argv": [
+    "ruff",
+    "check",
+    "."
+   ],
+   "exit": 0,
+   "name": "lint:ruff check .",
+   "passed": true
+  },
+  {
+   "argv": [
+    "ruff",
+    "format",
+    "--check",
+    "."
+   ],
+   "exit": 0,
+   "name": "lint:ruff format --check .",
+   "passed": true
+  },
+  {
+   "argv": [
+    "mypy"
+   ],
+   "exit": 0,
+   "name": "lint:mypy",
+   "passed": true
+  },
+  {
+   "argv": [
+    "pip install --no-index --no-deps",
+    "outervoid_dat-4.0.0-py3-none-any.whl"
+   ],
+   "exit": 0,
+   "name": "install-wheel",
+   "passed": true,
+   "smoke": [
+    {
+     "argv": [
+      "{bin}/dat",
+      "--version"
+     ],
+     "exit": 0,
+     "expected_exit": 0,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/python",
+      "-c",
+      "import importlib.resources as r, json; [json.loads(r.files('dat').joinpath('schemas', n).read_text()) for n in ('report.v1.schema.json', 'policy.v1.schema.json')]"
+     ],
+     "exit": 0,
+     "expected_exit": 0,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "security",
+      "{fixture_planted}",
+      "--gate",
+      "--quiet"
+     ],
+     "exit": 1,
+     "expected_exit": 1,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "security",
+      "{fixture_clean}",
+      "--gate",
+      "--quiet"
+     ],
+     "exit": 0,
+     "expected_exit": 0,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "security",
+      "{fixture_doctype}",
+      "--gate",
+      "--quiet"
+     ],
+     "exit": 1,
+     "expected_exit": 1,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "audit",
+      "{fixture_clean}/missing",
+      "--quiet"
+     ],
+     "exit": 3,
+     "expected_exit": 3,
+     "passed": true
+    }
+   ]
+  },
+  {
+   "argv": [
+    "pip install --no-index --no-deps",
+    "outervoid_dat-4.0.0.tar.gz"
+   ],
+   "exit": 0,
+   "name": "install-sdist",
+   "passed": true,
+   "smoke": [
+    {
+     "argv": [
+      "{bin}/dat",
+      "--version"
+     ],
+     "exit": 0,
+     "expected_exit": 0,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/python",
+      "-c",
+      "import importlib.resources as r, json; [json.loads(r.files('dat').joinpath('schemas', n).read_text()) for n in ('report.v1.schema.json', 'policy.v1.schema.json')]"
+     ],
+     "exit": 0,
+     "expected_exit": 0,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "security",
+      "{fixture_planted}",
+      "--gate",
+      "--quiet"
+     ],
+     "exit": 1,
+     "expected_exit": 1,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "security",
+      "{fixture_clean}",
+      "--gate",
+      "--quiet"
+     ],
+     "exit": 0,
+     "expected_exit": 0,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "security",
+      "{fixture_doctype}",
+      "--gate",
+      "--quiet"
+     ],
+     "exit": 1,
+     "expected_exit": 1,
+     "passed": true
+    },
+    {
+     "argv": [
+      "{bin}/dat",
+      "audit",
+      "{fixture_clean}/missing",
+      "--quiet"
+     ],
+     "exit": 3,
+     "expected_exit": 3,
+     "passed": true
+    }
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "filename": "src/dat/analyzers/android.py",
+     "line": 86,
+     "test_id": "B314"
+    }
+   ],
+   "argv": [
+    "bandit",
+    "-r",
+    "src"
+   ],
+   "blocking": [],
+   "errors": 0,
+   "exit": 1,
+   "low": 8,
+   "name": "independent:bandit",
+   "passed": true
+  },
+  {
+   "argv": [
+    "detect-secrets",
+    "scan",
+    "<git ls-files>"
+   ],
+   "blocking": [],
+   "exit": 0,
+   "hits": 12,
+   "name": "independent:detect-secrets",
+   "passed": true
+  },
+  {
+   "argv": [
+    "pip-audit",
+    "--path",
+    "<wheel-venv site-packages>"
+   ],
+   "dependencies": 1,
+   "exit": 0,
+   "name": "independent:pip-audit",
+   "not_on_index": [
+    "outervoid-dat"
+   ],
+   "passed": true,
+   "vulnerabilities": []
+  }
+ ],
+ "ci": {
+  "decision": "D-01",
+  "evidence": "CI run 42672703427 at this commit: the job was not started (account billing lock), 2026-11-09",
+  "status": "BLOCKED"
+ },
+ "commit": "eff11ee0f2e399f1fdb022805250a445bad77e1a",
+ "created_at": "2026-11-09T19:00:00Z",
+ "duration_s": 362,
+ "evidence_store": {
+  "artifact_ids": [
+   "art_01M70TWH753681XX7RE7GR0MGG",
+   "art_01M70TWM204712K0HH6QAXAWG6"
+  ],
+  "head": "5538fdc84cc8d0feb2c8634840fa3e68095c1790c54a08363b135cb514793370",
+  "operation_id": "op_01M70TWH70S4BM3J1BKK6CMQG8",
+  "receipt_id": "rcpt_01M70TWPTCN37DSYTZMCAAS1ZX",
+  "records": 9
+ },
+ "kind": "outer-void.release-receipt",
+ "package_version": "4.0.0",
+ "release_status": "NOT_RELEASED",
+ "repo": "dat",
+ "result": "PASS",
+ "self_checks": [
+  {
+   "argv": [
+    "{bin}/dat",
+    "audit",
+    "{source}",
+    "--gate",
+    "--quiet"
+   ],
+   "counted": false,
+   "exit": 0
+  }
+ ],
+ "signer": {
+  "fingerprint": "SHA256:Puur0bR6kbQK+12BgzoUQ7gnoa1z972W966bRqumEyc",
+  "namespace": "outer-void-release",
+  "principal": "outer-void-release"
+ },
+ "source_date_epoch": 1794248227,
+ "toolchain": {
+  "build": [
+   "build==1.2.2.post1",
+   "packaging==26.3",
+   "pip==25.1.1",
+   "pyproject_hooks==1.3.3",
+   "setuptools==80.9.0",
+   "wheel==0.45.1"
+  ],
+  "python": "3.13.5"
+ },
+ "url": "https://github.com/Outer-Void/dat.git",
+ "version": "1"
+}

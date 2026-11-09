@@ -1,0 +1,223 @@
+{
+ "kind": "outer-void.release-spec",
+ "version": "4.0.0",
+ "repo": "dat",
+ "url": "https://github.com/Outer-Void/dat.git",
+ "commit": "eff11ee0f2e399f1fdb022805250a445bad77e1a",
+ "channel": "pilot.1",
+ "ci": {
+  "status": "BLOCKED",
+  "decision": "D-01",
+  "evidence": "CI run 42672703427 at this commit: the job was not started (account billing lock), 2026-11-09"
+ },
+ "build_requirements": [
+  "build==1.2.2.post1",
+  "setuptools==80.9.0",
+  "wheel==0.45.1"
+ ],
+ "scanner_requirements": [
+  "bandit==1.8.6",
+  "detect-secrets==1.5.0",
+  "pip-audit==2.9.0"
+ ],
+ "tests": {
+  "extras": "dev",
+  "extra_pip": [
+   "blux-sdk @ git+https://github.com/Outer-Void/blux.git@0b09a46a98a29cbdb108679f3ef5252b0b6881d1#subdirectory=sdk/python"
+  ],
+  "env": {
+   "DAT_REQUIRE_BLUX_SDK": "1"
+  },
+  "lint": [
+   [
+    "ruff",
+    "check",
+    "."
+   ],
+   [
+    "ruff",
+    "format",
+    "--check",
+    "."
+   ],
+   [
+    "mypy"
+   ]
+  ]
+ },
+ "fixtures": {
+  "planted": {
+   "git": true,
+   "files": {
+    "settings.py": "TOKEN = \"{github_token}\"\n",
+    "README.md": "# planted\n"
+   }
+  },
+  "clean": {
+   "git": true,
+   "files": {
+    "a.py": "print(1)\n"
+   }
+  },
+  "doctype": {
+   "git": true,
+   "files": {
+    "app/AndroidManifest.xml": "<?xml version=\"1.0\"?>\n<!DOCTYPE m SYSTEM \"file:///etc/passwd\">\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"><application android:debuggable=\"true\"/></manifest>\n"
+   }
+  }
+ },
+ "smoke": [
+  {
+   "argv": [
+    "{bin}/dat",
+    "--version"
+   ],
+   "exit": 0,
+   "stdout_contains": "dat 4.0.0"
+  },
+  {
+   "argv": [
+    "{bin}/python",
+    "-c",
+    "import importlib.resources as r, json; [json.loads(r.files('dat').joinpath('schemas', n).read_text()) for n in ('report.v1.schema.json', 'policy.v1.schema.json')]"
+   ],
+   "exit": 0
+  },
+  {
+   "argv": [
+    "{bin}/dat",
+    "security",
+    "{fixture_planted}",
+    "--gate",
+    "--quiet"
+   ],
+   "exit": 1
+  },
+  {
+   "argv": [
+    "{bin}/dat",
+    "security",
+    "{fixture_clean}",
+    "--gate",
+    "--quiet"
+   ],
+   "exit": 0
+  },
+  {
+   "argv": [
+    "{bin}/dat",
+    "security",
+    "{fixture_doctype}",
+    "--gate",
+    "--quiet"
+   ],
+   "exit": 1
+  },
+  {
+   "argv": [
+    "{bin}/dat",
+    "audit",
+    "{fixture_clean}/missing",
+    "--quiet"
+   ],
+   "exit": 3
+  }
+ ],
+ "scanners": {
+  "bandit_paths": [
+   "src"
+  ],
+  "bandit_accepted": [
+   {
+    "test_id": "B314",
+    "filename": "src/dat/analyzers/android.py",
+    "reason": "DTDs and entities are refused before parsing, and an unparsed manifest is a high finding (F139); expat does not load external DTDs"
+   }
+  ],
+  "detect_secrets_accepted": [
+   {
+    "filename": "snapshot.md",
+    "type": "Hex High Entropy String",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "50e5bb73ee00d4e98d3a69957e7d3cdb7c209692"
+   },
+   {
+    "filename": "snapshot.md",
+    "type": "Secret Keyword",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "ad6070881b352321643699a957c4fa7ae82b0a3a"
+   },
+   {
+    "filename": "snapshot.md",
+    "type": "Secret Keyword",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "00942f4668670f34c5943cf52c7ef3139fe2b8d6"
+   },
+   {
+    "filename": "snapshot.md",
+    "type": "Secret Keyword",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "7288edd0fc3ffcbe93a0cf06e3568e28521687bc"
+   },
+   {
+    "filename": "snapshot.md",
+    "type": "Hex High Entropy String",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "ef678205593788329ff416ce5c65fa04f33a05bd"
+   },
+   {
+    "filename": "snapshot.md",
+    "type": "Secret Keyword",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "af7b88c4d90a3bb9937ffed4889d943c25244026"
+   },
+   {
+    "filename": "snapshot.md",
+    "type": "Secret Keyword",
+    "reason": "historical 2026-01-21 snapshot: example and test values quoted from old test output (OV-63 review)",
+    "value_sha1": "cbfdac6008f9cab4083784cbd1874f76618d2a97"
+   },
+   {
+    "filename": "tests/test_analyzers.py",
+    "type": "Secret Keyword",
+    "reason": "DAT secrets-analyzer fixture (placeholder, low-entropy or fake value)",
+    "value_sha1": "aecf21023ffa694f5e60dbbaab62d75b9835e1ec"
+   },
+   {
+    "filename": "tests/test_analyzers.py",
+    "type": "Secret Keyword",
+    "reason": "DAT secrets-analyzer fixture (placeholder, low-entropy or fake value)",
+    "value_sha1": "384fcd160ab3b33174ea279ad26052eee191508a"
+   },
+   {
+    "filename": "tests/test_analyzers.py",
+    "type": "Basic Auth Credentials",
+    "reason": "DAT secrets-analyzer fixture (placeholder, low-entropy or fake value)",
+    "value_sha1": "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684"
+   },
+   {
+    "filename": "tests/test_engine_policy.py",
+    "type": "Secret Keyword",
+    "reason": "not a secret: a dictionary key named secrets in an assertion",
+    "value_sha1": "7a85f4764bbd6daf1c3545efbbf0f279a6dc0beb"
+   },
+   {
+    "filename": "tests/test_regressions.py",
+    "type": "Secret Keyword",
+    "reason": "DAT regression fixture (example-like value)",
+    "value_sha1": "af7b88c4d90a3bb9937ffed4889d943c25244026"
+   }
+  ]
+ },
+ "self_checks": [
+  {
+   "argv": [
+    "{bin}/dat",
+    "audit",
+    "{source}",
+    "--gate",
+    "--quiet"
+   ]
+  }
+ ]
+}
