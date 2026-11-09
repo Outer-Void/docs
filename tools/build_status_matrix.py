@@ -467,6 +467,19 @@ for _row in COMPONENTS:
     if _row["repo"] == "blux-gpt":
         _row["commit_sha"] = "0175196"
 
+# OV-62 (2026-11-09): adversarial and fault-injection drills (ov-program/OV-62-report.md). PASSED.
+OV62 = {
+    "blux": ("b56d06c", "OV-62: every shell.exec command needs approval (F95, owner decision); file tools never follow a symlink swapped in after the check (F136); STORE_IO_ERROR retryable and torn tail tolerated by the preflight (F138); integration pins bumped; drills and fresh-clone matrix pass"),
+    "dat": ("24a7290", "OV-62: an unreadable file makes the audit incomplete (exit 3) instead of passing the gate (F134); suite 91 passed; BLUX off passes; DAT gate pass"),
+    "lrc": ("3765215", "OV-62: stale staging directories reported (F103, owner decision); a full disk is an IO_ERROR document (F137); suite 140 passed; BLUX off passes"),
+    "blux-system": ("9392449", "OV-62: an I/O failure is a STORE_IO_ERROR document, SIGXFSZ ignored (F135); suite 104 passed; BLUX off passes"),
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV62:
+        _row["commit_sha"], _note = OV62[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-09"
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",

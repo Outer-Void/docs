@@ -1,27 +1,27 @@
 {
  "format": "outer-void-integration-matrix v1",
- "stage": "OV-61",
+ "stage": "OV-62 (rerun at the pins bumped in OV-62)",
  "run_date": "2026-11-09",
- "pin_set": "5995419",
+ "pin_set": "b56d06c",
  "summary": "Every BLUX boundary passes from fresh clones with each BLUX_REQUIRE_* set, and every engine and `ax` work without the BLUX runtime.",
  "pins": {
   "axiom": "1272d75a0de2c3f9867ee24eb26d122e8d751e1d",
-  "blux": "5995419a308a0821d22ad41601fde5cbedfbad84",
+  "blux": "b56d06c5f13c477c1bfa802f6d5b60b26a8ef725",
   "blux-ca": "689ec703416c8762f475b0d4e9bdc4c3b03ffed4",
   "blux-coga": "c94dc9c1d93207266ecff9ff8d296e191ee16ab3",
   "blux-gpt": "017519661105d1d8697ccc1894f853429646e5f7",
-  "blux-system": "26f22400256e836dcc79ae5f69b9acd9c5231f6c",
-  "dat": "57c8099d346ad3259b82829b95f6cd9d5b51ff39",
+  "blux-system": "93924495d00a913e35bf74df64b38b16c06fc67d",
+  "dat": "24a7290ec628f2126c1a8b422dac15862a0c8682",
   "god": "613b8002ee87359bfbc4720dfea1bec2019cb01b",
   "jadis.toolbox": "e3f25a51b4560fb309691574c85cacab4f35b4eb",
-  "lrc": "ea82afcc45703370cc5e4e312872051182e3259a",
+  "lrc": "3765215b09f60ee4c328fd373811f2dfa72d4570",
   "voidforge": "671349e417fc65b992cb11e275e87ffb5be24e7d"
  },
  "blux_on": [
   {
    "boundary": "BLUX ↔ BLUX System (receipts, outbox, store preflight)",
    "tests": "`tests/integration/test_blux_system.py`, `tests/runtime/test_receipt_preflight.py`, `tests/runtime/test_receipt_durability.py`",
-   "count": "23 passed",
+   "count": "26 passed",
    "result": "PASS",
    "note": ""
   },
@@ -70,9 +70,9 @@
   {
    "boundary": "Whole blux suite in the same environment",
    "tests": "`pytest` (all)",
-   "count": "656 passed, 19 skipped",
+   "count": "662 passed, 19 skipped",
    "result": "PASS",
-   "note": "skips: real-provider paths (D-02); archived BLHermes fork checks and the VoidForge adapter test, which need sibling checkouts (both ran in the dev-environment run: 660 passed, 15 skipped)"
+   "note": "skips: real-provider paths (D-02); archived BLHermes fork checks and the VoidForge adapter test, which need sibling checkouts (both ran in the dev-environment run)"
   },
   {
    "boundary": "BLUX ↔ VoidForge adapter",
@@ -154,7 +154,7 @@
   {
    "component": "DAT",
    "how": "own test suite, fresh clone, venv without the BLUX runtime",
-   "count": "87 passed, 2 skipped",
+   "count": "89 passed, 2 skipped",
    "result": "PASS",
    "note": "skips: could not import 'blux_sdk.dot_blux': No module named 'blux_sdk'",
    "packages": [
@@ -184,7 +184,7 @@
   {
    "component": "LRC",
    "how": "own test suite, fresh clone, venv without the BLUX runtime",
-   "count": "136 passed, 3 skipped",
+   "count": "138 passed, 3 skipped",
    "result": "PASS",
    "note": "skips: blux-sdk not installed; dat not installed",
    "packages": [
@@ -247,7 +247,7 @@
   {
    "component": "BLUX System",
    "how": "own test suite, fresh clone, venv without the BLUX runtime (blux-sdk only)",
-   "count": "103 passed, 0 skipped",
+   "count": "104 passed, 0 skipped",
    "result": "PASS",
    "note": "",
    "packages": [

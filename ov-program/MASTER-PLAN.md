@@ -206,7 +206,7 @@ green.
 - Contract mutations are detected.
 - Every known High finding has a release disposition.
 
-### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-54 on 2026-11-07, OV-57 to OV-60 on 2026-11-08, OV-61 on 2026-11-09; the rest not yet authorized)
+### OV-50 → OV-70 (OV-55 and OV-56 authorized 2026-11-05, OV-50 to OV-54 on 2026-11-07, OV-57 to OV-60 on 2026-11-08, OV-61 and OV-62 on 2026-11-09; the rest not yet authorized)
 These stages are unchanged from the approved plan. Each starts with the delta review from rule 11 instead of
 repeating work verified in Stages 42–44.
 
@@ -308,3 +308,4 @@ generated docs, ledger, credits and tests agree. An environment-blocked stage is
 | 2026-11-08 | OV-59 authorized; owner decision F87 (F-Droid Termux by default, GitHub build only with a local switch) | Owner authorization and answer, 2026-11-08 |
 | 2026-11-08 | OV-60 authorized; owner decisions F50 (banner names the OV-46–70 program) and operationrestore.net (record only, no site change) | Owner authorization and answers, 2026-11-08 |
 | 2026-11-09 | OV-61 authorized; owner decisions F114 (external and destructive capabilities preflight the receipt store) and F96 (LRC recovery stays CLI-only) | Owner authorization and answers, 2026-11-09 |
+| 2026-11-09 | OV-62 authorized; owner decisions F95 (every shell.exec command needs the person's approval) and F103 (LRC reports stale staging directories, never deletes them) | Owner authorization and answers, 2026-11-09 |

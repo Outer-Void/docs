@@ -972,14 +972,15 @@
    "found": "2026-11-06 (OV-50 delta review)",
    "source": "OV-50 delta review",
    "issue": "`shell.exec` is confined only by its working directory, an allow-list environment and pattern-based command detection. It is not an OS sandbox: an approved or undetected command can read or write anywhere the user can, and a process that leaves the command's process group survives the call.",
-   "status": "DEFERRED",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux",
    "priority": "P1",
    "stage": "OV-62",
    "evidence": [
-    "Recorded in the OV-50 report and ADR-0013 (2026-11-07); F89 narrowed the gap, it did not close it"
+    "Recorded in the OV-50 report and ADR-0013 (2026-11-07); F89 narrowed the gap, it did not close it",
+    "blux b56d06c (OV-62, 2026-11-09): drill: with no approvals 5 of 9 escape attempts took effect outside the workspace (../, absolute path, shell variables, obfuscated rm -r, home dotfile). Owner decision: every shell.exec command needs a one-time approval of that exact command or YOLO; session approvals no longer cover shell commands; an outside cwd is refused first. test_ov62_no_shell_command_runs_without_the_persons_approval fails on 5995419"
    ],
-   "next_action": "Adversarial drills in OV-62; decide whether shell.exec needs an OS-level sandbox before any release that enables it by default"
+   "next_action": "None (an OS sandbox would allow relaxing it; none works on Android/PRoot)"
   },
   {
    "id": "F96",
@@ -1109,14 +1110,15 @@
    "found": "2026-11-07 (OV-51 delta review)",
    "source": "OV-51 delta review",
    "issue": "A `create` killed while staging leaves its `.lrc-stage-*` directory beside the target. The target is never created and a later create succeeds, but nothing removes the stale directory.",
-   "status": "DEFERRED",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:lrc",
    "priority": "P2",
    "stage": "OV-62",
    "evidence": [
-    "Reproduced at ea82afc: killed at the second staged file (2026-11-07)"
+    "Reproduced at ea82afc: killed at the second staged file (2026-11-07)",
+    "lrc 3765215 (OV-62, 2026-11-09): owner decision (report, never delete): create and recover list stale .lrc-stage-* directories as STALE_STAGE_DIRECTORY warnings with the removal command; test fails on ea82afc"
    ],
-   "next_action": "Decide in OV-62 whether `create` may remove stale stage directories it can prove are its own"
+   "next_action": "None"
   },
   {
    "id": "F104",
@@ -1622,6 +1624,86 @@
     "blux 5995419 (OV-61, 2026-11-09): integrations/targets.lock.json is the single pin set; tools/integration_targets.py installs, checks out and requires it (BLUX_REQUIRE_* come from the lock); its check fails on the old ci.yml; tests/packaging/test_integration_targets.py; the integration matrix ran from fresh clones through this path (docs ecosystem/integration-matrix.md)"
    ],
    "next_action": "None (hosted CI itself stays blocked by D-01)"
+  },
+  {
+   "id": "F134",
+   "repo": "dat",
+   "severity": "High",
+   "found": "2026-11-09 (OV-62 drills)",
+   "source": "OV-62 adversarial and fault-injection drills",
+   "issue": "An enforced DAT gate passed (exit 0) over a file DAT could not read: the file was listed only in target.skipped, so a secret in it went unseen.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:dat",
+   "priority": "P0",
+   "stage": "OV-62",
+   "evidence": [
+    "dat 24a7290 (OV-62, 2026-11-09): drill (unreadable file with a secret, --fail-on critical): gate pass, exit 0 on 57c8099. Now TARGET_UNREADABLE, outcome incomplete, exit 3; test_ov62_an_unreadable_file_makes_the_audit_incomplete fails on 57c8099; size-limit skips unchanged"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F135",
+   "repo": "blux-system",
+   "severity": "Medium",
+   "found": "2026-11-09 (OV-62 drills)",
+   "source": "OV-62 adversarial and fault-injection drills",
+   "issue": "A full disk or a file-size limit during blux-system ingest escaped as a traceback with nothing on stdout (breaking the one-JSON-document protocol), and a size limit could kill the process silently. Nothing was reported as stored and the next ingest repaired the torn tail.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux-system",
+   "priority": "P1",
+   "stage": "OV-62",
+   "evidence": [
+    "blux-system 9392449 (OV-62, 2026-11-09): STORE_IO_ERROR document (details.errno/error), SIGXFSZ ignored; tests/test_fault_drills.py fails on 26f2240. blux b56d06c treats STORE_IO_ERROR as retryable, so the receipt is spooled"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F136",
+   "repo": "blux",
+   "severity": "High",
+   "found": "2026-11-09 (OV-62 drills)",
+   "source": "OV-62 adversarial and fault-injection drills",
+   "issue": "fs.read and fs.write resolved and checked a path, then opened it with a plain open(): a directory swapped for a symlink in between redirected the call outside the workspace. A race drill wrote a file outside in 1 of 584 tries, reported as success.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P0",
+   "stage": "OV-62",
+   "evidence": [
+    "blux b56d06c (OV-62, 2026-11-09): open_confined() opens each component of the checked path relative to its parent with O_NOFOLLOW; race drill 0 of 621; deterministic test (swap right after the check) fails on 5995419 for fs.read and fs.write"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F137",
+   "repo": "lrc",
+   "severity": "Low",
+   "found": "2026-11-09 (OV-62 drills)",
+   "source": "OV-62 adversarial and fault-injection drills",
+   "issue": "lrc scaffold (and other commands outside create) let an OSError such as a file-size limit escape as a traceback, so --json callers got no document. The target was unchanged and the next scaffold worked.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:lrc",
+   "priority": "P2",
+   "stage": "OV-62",
+   "evidence": [
+    "lrc 3765215 (OV-62, 2026-11-09): IO_ERROR document with details.errno; test fails on ea82afc"
+   ],
+   "next_action": "None"
+  },
+  {
+   "id": "F138",
+   "repo": "blux",
+   "severity": "Low",
+   "found": "2026-11-09 (OV-62 drills)",
+   "source": "OV-62 adversarial and fault-injection drills",
+   "issue": "The OV-61 receipt-store preflight refused external/destructive capabilities when verify reported only a torn tail, which the next ingest repairs (seen right after the F135 drill).",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P2",
+   "stage": "OV-62",
+   "evidence": [
+    "blux b56d06c (OV-62, 2026-11-09): a torn tail alone passes, other damage still blocks; tests fail on 5995419"
+   ],
+   "next_action": "None"
   }
  ]
 }

@@ -6,15 +6,15 @@ Accepted baseline for contract verification. Contract 1.0 (SDK supports 1.0), Mo
 | Repository | Commit | Declared capabilities |
 |---|---|---|
 | `axiom` | `1272d75a0de2` | — |
-| `blux` | `5995419a308a` | 1 |
+| `blux` | `b56d06c5f13c` | 1 |
 | `blux-ca` | `689ec703416c` | 7 |
 | `blux-coga` | `c94dc9c1d932` | 7 |
-| `blux-system` | `26f22400256e` | — |
+| `blux-system` | `93924495d00a` | — |
 | `blux10k` | `e2e9f5840d20` | — |
-| `dat` | `57c8099d346a` | 7 |
+| `dat` | `24a7290ec628` | 7 |
 | `god` | `613b8002ee87` | 6 |
 | `jadis.toolbox` | `e3f25a51b456` | 4 |
-| `lrc` | `ea82afcc4570` | 5 |
+| `lrc` | `3765215b09f6` | 5 |
 | `voidforge` | `671349e417fc` | — |
 
 Boundaries verified on every check: BLUX ↔ Runtime (SDK pin), BLUX ↔ CogA, cA, DAT, LRC, GOD and jadis (`.blux/` with the
