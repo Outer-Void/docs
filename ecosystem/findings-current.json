@@ -1,18 +1,18 @@
 {
  "format": "outer-void-findings-current v1",
- "as_of": "2026-11-08",
+ "as_of": "2026-11-09",
  "sources": {
   "frozen": "reassessment/open-findings.json (2026-10-27, unchanged)",
   "dispositions": "ecosystem/findings-dispositions.json"
  },
  "counts": {
   "frozen_open": 57,
-  "new": 56,
+  "new": 57,
   "by_status": {
    "PARTIAL": 11,
-   "RESOLVED_VERIFIED": 58,
+   "RESOLVED_VERIFIED": 60,
    "EXTERNAL_BLOCKED": 19,
-   "DEFERRED": 14,
+   "DEFERRED": 13,
    "BLOCKED_LOCAL_ENVIRONMENT": 2,
    "OPEN": 9
   },
@@ -20,7 +20,7 @@
    "Critical": 2,
    "High": 14,
    "Medium": 22,
-   "Low": 15,
+   "Low": 14,
    "Info": 2
   }
  },
@@ -1669,9 +1669,10 @@
    "decision": null,
    "evidence": [
     "Reproduced at 443e532: migrate killed at its second file write; rollback exit 3 NOTHING_TO_ROLL_BACK, migrate back to v1 exit 1 MIGRATION_CONFLICT (2026-11-07)",
-    "Fixed in lrc ea82afc (OV-51, 2026-11-07): `lrc recover`, INTERRUPTED_TRANSACTION guard, fsynced backups, advisory lock (TARGET_LOCKED); tests/test_interrupted.py (5 tests, all fail on 443e532)"
+    "Fixed in lrc ea82afc (OV-51, 2026-11-07): `lrc recover`, INTERRUPTED_TRANSACTION guard, fsynced backups, advisory lock (TARGET_LOCKED); tests/test_interrupted.py (5 tests, all fail on 443e532)",
+    "OV-61 (2026-11-09): owner decision: recovery stays CLI-only (`lrc recover`); no repo.recover capability and no contract change. The INTERRUPTED_TRANSACTION error keeps naming the command"
    ],
-   "next_action": "Recovery is a CLI command, not a BLUX capability: through BLUX the INTERRUPTED_TRANSACTION error names it. Add a repo.recover capability only as a versioned contract change (OV-61)"
+   "next_action": "None"
   },
   {
    "id": "F97",
@@ -2022,15 +2023,16 @@
    "severity": "Low",
    "source": "OV-52 delta review",
    "issue": "A one-shot command (`blux run`, `exec`, `ask`) still performs its action before it learns that BLUX System refuses the receipt; it then exits non-zero and the receipt is set aside. Only the agent loop can stop before a further action.",
-   "status": "DEFERRED",
+   "status": "RESOLVED_VERIFIED",
    "owner": "repo:blux",
    "priority": "P2",
    "stage": "OV-61",
    "decision": null,
    "evidence": [
-    "Design review (OV-52, 2026-11-07)"
+    "Design review (OV-52, 2026-11-07)",
+    "blux 5995419 (OV-61, 2026-11-09): owner decision 2026-11-09 (preflight external and destructive capabilities). Before such a capability acts, BluxSystemSink.preflight() runs blux-system verify; a damaged store or a refusal-class error stops it (EXECUTION_FAILED, reason receipt_store_preflight); an unavailable store still spools. tests/runtime/test_receipt_preflight.py (8, one against a real damaged store): 4 fail on 60ddc76. read and write capabilities keep the OV-52 behaviour (owner scope)"
    ],
-   "next_action": "Decide in OV-61 whether high-risk capabilities need a store health check before execution"
+   "next_action": "None"
   },
   {
    "id": "F115",
@@ -2384,6 +2386,25 @@
     ".github 6e8083f and .github-private dbe0b6f: corrected against the authenticated GitHub API (2026-11-08) and the status matrix"
    ],
    "next_action": "None"
+  },
+  {
+   "id": "F133",
+   "origin": "new",
+   "frozen": null,
+   "found": "2026-11-09 (OV-61 delta review)",
+   "repo": "blux",
+   "severity": "Medium",
+   "source": "OV-61 delta review",
+   "issue": "BLUX's CI ran its cross-repository integration tests against engine commits hard-coded in Stages 02-09 (blux-system ebdf84c, DAT ba58386, LRC 9b99551, GOD 26fa415, CogA 64375dc, cA 6dcfcd7, BluxGPT dc34f80), 2 to 5 commits behind each engine and before the OV-51/52 fixes; it installed BluxGPT at one commit and checked out another. A green CI run would not have covered the engines as they are.",
+   "status": "RESOLVED_VERIFIED",
+   "owner": "repo:blux",
+   "priority": "P1",
+   "stage": "OV-61",
+   "decision": null,
+   "evidence": [
+    "blux 5995419 (OV-61, 2026-11-09): integrations/targets.lock.json is the single pin set; tools/integration_targets.py installs, checks out and requires it (BLUX_REQUIRE_* come from the lock); its check fails on the old ci.yml; tests/packaging/test_integration_targets.py; the integration matrix ran from fresh clones through this path (docs ecosystem/integration-matrix.md)"
+   ],
+   "next_action": "None (hosted CI itself stays blocked by D-01)"
   }
  ]
 }

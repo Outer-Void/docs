@@ -24,7 +24,7 @@
    "component": "BLUX (runtime, SDK, contracts, `blux` CLI)",
    "repo": "blux",
    "version": "outervoid-blux 0.4.0; blux-sdk 0.2.0; Contract v1 / Model API v1 / Hook System v1 = 1.0",
-   "commit_sha": "60ddc76",
+   "commit_sha": "5995419",
    "role": "Intelligence/runtime/integration platform: contracts, capability registry, Model API, routing, Hook System, direct `blux` CLI, training data pipeline, Gen 0 evaluation",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "NOT_APPLICABLE",
@@ -46,8 +46,8 @@
     "One-shot commands act before learning a receipt is refused (F114, OV-61)",
     "Native models EXPERIMENTAL: no eligible corpus (F63, D-09), no evaluation custodian or compute budget (F61, D-15)"
    ],
-   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.. OV-48 re-run at 8d989de (2026-11-04): training/dataset-program 3 passed; runtime unchanged since 51134af (Stage 44 evidence reused). OV-50: tool-layer fixes F89-F93; full suite 604 passed, 15 skipped at 4163637 (2026-11-07), engines installed so the integration hard gates ran; ruff and mypy clean on changed code; DAT gate pass. OV-51: SDK .blux loader hardening F98-F99; full suite 611 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); integration hard gates 45 passed, 2 skipped (real-provider) at the final engine commits; ruff and mypy clean; DAT gate pass. OV-52: receipt durability F83-F85, refused receipts set aside F111, agent fails closed F112; full suite 620 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); ruff and mypy clean; DAT gate pass. OV-53: training gates F115-F117, lint F94, router tests F119; full suite 648 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); Gen 0 deterministic results match the Stage 35 baseline; ruff and mypy clean for the whole repository; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "make ci at ba160c3: 594 passed, 15 skipped; schema lock, ruff, strict mypy, wheel OK; Gen 0 baseline evals/reports/gen0 reproduces (--check) (Stages 34-36). Stage 43 at 83ded6f (agent receipts fix, F71): 597 passed, 15 skipped with the network disconnected; integration hard gates with every engine required 45 passed; from a clean clone without BLHermes 568 passed and the wheels build (ecosystem/release-candidate.md). Stage 44 DoD at 51134af (2026-10-27): unit+integration 597 passed (network off), hard gates 45 passed, ruff+mypy clean; DAT audit triaged Forward execution: dataset-program family catalogue, acquisition/evaluation policies, primary-source model shortlist and metadata/family/digest preflight added; 3 preflight tests PASS. No substantial corpus, training, independent evaluation result or promotion claimed.. OV-48 re-run at 8d989de (2026-11-04): training/dataset-program 3 passed; runtime unchanged since 51134af (Stage 44 evidence reused). OV-50: tool-layer fixes F89-F93; full suite 604 passed, 15 skipped at 4163637 (2026-11-07), engines installed so the integration hard gates ran; ruff and mypy clean on changed code; DAT gate pass. OV-51: SDK .blux loader hardening F98-F99; full suite 611 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); integration hard gates 45 passed, 2 skipped (real-provider) at the final engine commits; ruff and mypy clean; DAT gate pass. OV-52: receipt durability F83-F85, refused receipts set aside F111, agent fails closed F112; full suite 620 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); ruff and mypy clean; DAT gate pass. OV-53: training gates F115-F117, lint F94, router tests F119; full suite 648 passed, 15 skipped with every BLUX_REQUIRE_*=1 (2026-11-07); Gen 0 deterministic results match the Stage 35 baseline; ruff and mypy clean for the whole repository; DAT gate pass. OV-61: receipt-store preflight for external/destructive capabilities (F114, owner decision), single integration pin set integrations/targets.lock.json used by CI (F133); integration matrix from fresh clones with every BLUX_REQUIRE_* set; DAT gate pass",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "AXIOM control plane (`ax`)",
@@ -68,8 +68,8 @@
     "Engines must be installed separately; missing engines exit 69 by design",
     "Release packaging/tag qualification remains pending"
    ],
-   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.. OV-48 re-run at ed079e8 (2026-11-04): 13 router tests passed; an executed `ax` routes through ax-route. OV-54: ax-route committed (F120: it was never tracked, so `ax` failed on clean clones), broken overrides explained F121; router 14 passed here and 11 passed, 3 skipped from a fresh GitHub clone; run_tests.sh 14/14; smoke passed; every route exits 69 without its engine; DAT gate pass",
-   "last_verified": "2026-11-08"
+   "evidence": "tests/test_ax_router.py 12 passed and tests/run_tests.sh 14/14 at a276744 (Stage 22); `ax devices` chain also exercised from VoidForge's integration test. Stage 44 DoD at 2d3e4ef (2026-10-27): router tests 12 passed, shell suite and smoke passed; DAT audit triaged Forward execution: direct cockpit/bin/ax execution delegates to ax-route; regression verifies exact stdout, arguments and exit status; 13 routing tests PASS.. OV-48 re-run at ed079e8 (2026-11-04): 13 router tests passed; an executed `ax` routes through ax-route. OV-54: ax-route committed (F120: it was never tracked, so `ax` failed on clean clones), broken overrides explained F121; router 14 passed here and 11 passed, 3 skipped from a fresh GitHub clone; run_tests.sh 14/14; smoke passed; every route exits 69 without its engine; DAT gate pass. OV-61: ax routes work with BLUX absent (ask/agent exit 69 naming BLUX); run_tests.sh 14 and test_ax_router 14 pass, VoidForge client tests included",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "blux10k",
@@ -111,8 +111,8 @@
    "known_blockers": [
     "No release tag for 2.0.0"
    ],
-   "evidence": "pytest: 343 passed at 3dc86fa (re-run 2026-10-26). Stage 44 DoD at 3dc86fa (2026-10-27): 343 passed (network off); DAT audit triaged. OV-51: replay of damaged artifacts F101; 347 passed; eval suite identical under PYTHONHASHSEED 0, 1 and 999; ruff and mypy clean; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "pytest: 343 passed at 3dc86fa (re-run 2026-10-26). Stage 44 DoD at 3dc86fa (2026-10-27): 343 passed (network off); DAT audit triaged. OV-51: replay of damaged artifacts F101; 347 passed; eval suite identical under PYTHONHASHSEED 0, 1 and 999; ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at c94dc9c)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "cA",
@@ -132,8 +132,8 @@
    "known_blockers": [
     "No release tag for 2.0.1"
    ],
-   "evidence": "pytest: 117 passed at 7cb953a (re-run 2026-10-26; needs the declared `hypothesis` dev dependency). Stage 44 DoD at 7cb953a (2026-10-27): 117 passed (network off); DAT audit triaged. OV-51: interrupted-commit recovery F97; 119 passed; CogA -> cA -> DAT forced-rejection hard gate passed through BLUX; ruff and mypy clean; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "pytest: 117 passed at 7cb953a (re-run 2026-10-26; needs the declared `hypothesis` dev dependency). Stage 44 DoD at 7cb953a (2026-10-27): 117 passed (network off); DAT audit triaged. OV-51: interrupted-commit recovery F97; 119 passed; CogA -> cA -> DAT forced-rejection hard gate passed through BLUX; ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at 689ec70)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "DAT",
@@ -153,8 +153,8 @@
    "known_blockers": [
     "README previously pinned a v4.0.0 tag that does not exist (tags: v1.0.0, v2.0.0-alpha.1, v2.0.0-Stable)"
    ],
-   "evidence": "pytest: 88 passed at 76d0a01 (re-run 2026-10-26). Stage 44 DoD at 487e1d4 (2026-10-27): 88 passed (BLUX disabled); DAT audit triaged. OV-51: nested policy F102; 89 passed; FIFO, device and symlinked target policies ignored for the default; ruff and mypy clean; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "pytest: 88 passed at 76d0a01 (re-run 2026-10-26). Stage 44 DoD at 487e1d4 (2026-10-27): 88 passed (BLUX disabled); DAT audit triaged. OV-51: nested policy F102; 89 passed; FIFO, device and symlinked target policies ignored for the default; ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at 57c8099)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "LRC",
@@ -175,8 +175,8 @@
     "No release tag for 2.0.0",
     "A killed create leaves a .lrc-stage-* directory beside the target (F103, OV-62)"
    ],
-   "evidence": "pytest: 133 passed, 1 skipped at 34b6a04 (re-run 2026-10-26). Stage 44 DoD at 443e532 (2026-10-27): 134 passed (network off), 133 with BLUX disabled; DAT audit triaged. OV-51: lrc recover, interruption guard and lock F96; 139 passed; ruff and mypy clean; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "pytest: 133 passed, 1 skipped at 34b6a04 (re-run 2026-10-26). Stage 44 DoD at 443e532 (2026-10-27): 134 passed (network off), 133 with BLUX disabled; DAT audit triaged. OV-51: lrc recover, interruption guard and lock F96; 139 passed; ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at ea82afc)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "GOD",
@@ -196,8 +196,8 @@
    "known_blockers": [
     "No release tag for 2.0.0"
    ],
-   "evidence": "pytest: 94 passed at a329d89 (re-run 2026-10-26). Stage 44 DoD at ad6f0c4 (2026-10-27): 94 passed (BLUX disabled and network off); DAT audit triaged. OV-51: malformed input and damaged cache F100; 102 passed; workspace check identical before and after; ruff and mypy clean; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "pytest: 94 passed at a329d89 (re-run 2026-10-26). Stage 44 DoD at ad6f0c4 (2026-10-27): 94 passed (BLUX disabled and network off); DAT audit triaged. OV-51: malformed input and damaged cache F100; 102 passed; workspace check identical before and after; ruff and mypy clean; DAT gate pass. OV-61: own suite passes with blux-sdk only, no BLUX runtime (fresh clone at 613b800)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "BLUX System",
@@ -219,14 +219,14 @@
     "Long-running/replay and release/distribution qualification remain pending",
     "Store heads are unsigned; a consistent rewrite needs an external head to detect (F113, OV-63)"
    ],
-   "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26). Stage 44 DoD at f0ba3a1 (2026-10-27): 74 passed (network off); DAT audit triaged Forward execution: SDK dependency pin advanced to immutable SDK 0.2.0 commit 6ee4c805; local sdk/python matches pinned source. Resumed consumer suite: 74 tests PASS.. OV-48 re-run at 77173f2 (2026-11-04): 74 passed against blux-sdk 0.2.0. OV-52: crash repair, head anchor, payload and blob verification, atomic retention, all-or-nothing import, lock wait F104-F110; 103 passed (also with the pinned SDK 0.2.0); ruff and mypy clean; DAT gate pass",
-   "last_verified": "2026-11-07"
+   "evidence": "pytest: 74 passed at f0ba3a1 (re-run 2026-10-26). Stage 44 DoD at f0ba3a1 (2026-10-27): 74 passed (network off); DAT audit triaged Forward execution: SDK dependency pin advanced to immutable SDK 0.2.0 commit 6ee4c805; local sdk/python matches pinned source. Resumed consumer suite: 74 tests PASS.. OV-48 re-run at 77173f2 (2026-11-04): 74 passed against blux-sdk 0.2.0. OV-52: crash repair, head anchor, payload and blob verification, atomic retention, all-or-nothing import, lock wait F104-F110; 103 passed (also with the pinned SDK 0.2.0); ruff and mypy clean; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at 26f2240)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "BluxGPT",
    "repo": "blux-gpt",
    "version": "2.0.0",
-   "commit_sha": "4609cd9",
+   "commit_sha": "0175196",
    "role": "Provider/model gateway behind Model API v1; no agent loop, no tool execution, no authority",
    "standalone_status": "IMPLEMENTED",
    "blux_status": "INTEGRATION_TESTED",
@@ -241,8 +241,8 @@
     "Real-provider runs not recorded; hard-coded provider model IDs not verified against current catalogs",
     "Inline <think> from OpenAI-compatible servers reaches answers and sessions (F118, OV-64)"
    ],
-   "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports. Stage 44 DoD at 4609cd9 (2026-10-27): 49 passed, 1 skipped (network off); DAT audit triaged",
-   "last_verified": "2026-10-27"
+   "evidence": "pytest: 49 passed, 1 skipped at 4609cd9 (re-run 2026-10-26), deterministic mock and fake transports. Stage 44 DoD at 4609cd9 (2026-10-27): 49 passed, 1 skipped (network off); DAT audit triaged. OV-61: own suite passes without the BLUX runtime (fresh clone at 0175196)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "BLUX App",
@@ -553,8 +553,8 @@
     "Small repair catalogue (4 repairs)",
     "CI blocked org-wide (F49)"
    ],
-   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33). Stage 44 DoD at 253c386 (2026-10-27): 75 passed; DAT audit triaged. OV-54: master_log private and offline by default (F58), newproject proprietary by default (F59), node template fix F122; 79 passed; ruff, format and mypy clean; clean install into a fresh venv; DAT gate pass",
-   "last_verified": "2026-11-08"
+   "evidence": "75 tests at 253c386 (CLI suite plus 8 for the standalone scripts, incl. a mutation-checked git-crypt plaintext guard), ruff/mypy clean; earlier: real PRoot Debian 13 run, real BLUX subprocess call; GOD discovers its 4 read-only capabilities (Stage 33). Stage 44 DoD at 253c386 (2026-10-27): 75 passed; DAT audit triaged. OV-54: master_log private and offline by default (F58), newproject proprietary by default (F59), node template fix F122; 79 passed; ruff, format and mypy clean; clean install into a fresh venv; DAT gate pass. OV-61: own suite passes without the BLUX runtime (fresh clone at e3f25a5)",
+   "last_verified": "2026-11-09"
   },
   {
    "component": "Credits ledger",

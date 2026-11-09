@@ -5,17 +5,17 @@ Accepted baseline for contract verification. Contract 1.0 (SDK supports 1.0), Mo
 
 | Repository | Commit | Declared capabilities |
 |---|---|---|
-| `axiom` | `2d3e4ef395fd` | — |
-| `blux` | `51134aff2a8b` | 1 |
-| `blux-ca` | `7cb953a10313` | 7 |
-| `blux-coga` | `3dc86fa7f791` | 7 |
-| `blux-system` | `f0ba3a13a175` | — |
-| `blux10k` | `80a7465f0ce1` | — |
-| `dat` | `487e1d4b839c` | 7 |
-| `god` | `ad6f0c4bcb62` | 6 |
-| `jadis.toolbox` | `253c386da4e1` | 4 |
-| `lrc` | `443e53265ecf` | 5 |
-| `voidforge` | `59b6d67959b4` | — |
+| `axiom` | `1272d75a0de2` | — |
+| `blux` | `5995419a308a` | 1 |
+| `blux-ca` | `689ec703416c` | 7 |
+| `blux-coga` | `c94dc9c1d932` | 7 |
+| `blux-system` | `26f22400256e` | — |
+| `blux10k` | `e2e9f5840d20` | — |
+| `dat` | `57c8099d346a` | 7 |
+| `god` | `613b8002ee87` | 6 |
+| `jadis.toolbox` | `e3f25a51b456` | 4 |
+| `lrc` | `ea82afcc4570` | 5 |
+| `voidforge` | `671349e417fc` | — |
 
 Boundaries verified on every check: BLUX ↔ Runtime (SDK pin), BLUX ↔ CogA, cA, DAT, LRC, GOD and jadis (`.blux/` with the
 current SDK), BLUX ↔ BLUX System (pinned SDK supports the contract), BLUX ↔ GOD (SDK range), BLUX ↔ VoidForge adapter

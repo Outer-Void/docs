@@ -440,6 +440,33 @@ for _row in COMPONENTS:
         _row["last_verified"] = "2026-11-08"
     _row["known_blockers"] = _row["known_blockers"] + OV60_BLOCKERS.get(_row["repo"], [])
 
+# OV-61 (2026-11-09): versioned cross-repository integration (ov-program/OV-61-report.md, ecosystem/integration-matrix.md).
+# PASSED: every BLUX boundary from fresh clones at one pin set; every engine and ax without the BLUX runtime.
+OV61 = {
+    "blux": ("5995419", "OV-61: receipt-store preflight for external/destructive capabilities (F114, owner decision), single integration pin set integrations/targets.lock.json used by CI (F133); integration matrix from fresh clones with every BLUX_REQUIRE_* set; DAT gate pass"),
+}
+OV61_OFF = {
+    "blux-coga": "OV-61: own suite passes without the BLUX runtime (fresh clone at c94dc9c)",
+    "blux-ca": "OV-61: own suite passes without the BLUX runtime (fresh clone at 689ec70)",
+    "dat": "OV-61: own suite passes without the BLUX runtime (fresh clone at 57c8099)",
+    "lrc": "OV-61: own suite passes without the BLUX runtime (fresh clone at ea82afc)",
+    "god": "OV-61: own suite passes with blux-sdk only, no BLUX runtime (fresh clone at 613b800)",
+    "blux-system": "OV-61: own suite passes without the BLUX runtime (fresh clone at 26f2240)",
+    "blux-gpt": "OV-61: own suite passes without the BLUX runtime (fresh clone at 0175196)",
+    "jadis.toolbox": "OV-61: own suite passes without the BLUX runtime (fresh clone at e3f25a5)",
+    "axiom": "OV-61: ax routes work with BLUX absent (ask/agent exit 69 naming BLUX); run_tests.sh 14 and test_ax_router 14 pass, VoidForge client tests included",
+}
+for _row in COMPONENTS:
+    if _row["repo"] in OV61:
+        _row["commit_sha"], _note = OV61[_row["repo"]]
+        _row["evidence"] += f". {_note}"
+        _row["last_verified"] = "2026-11-09"
+    if _row["repo"] in OV61_OFF:
+        _row["evidence"] += f". {OV61_OFF[_row['repo']]}"
+        _row["last_verified"] = "2026-11-09"
+    if _row["repo"] == "blux-gpt":
+        _row["commit_sha"] = "0175196"
+
 def render_md(rows):
     lines = ["# Component status matrix", "",
              "Generated from `tools/build_status_matrix.py`; do not edit by hand. Statuses are defined in",
